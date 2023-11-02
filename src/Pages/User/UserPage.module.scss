@@ -1,0 +1,114 @@
+@import '../../Assets/Styles/variables.css';
+@import '../../Assets/Styles/animations.css';
+
+.UserData {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    animation: OpenBlock 0.3s forwards ease-in-out;
+
+    .UserPhoto {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 1px solid var(--accentTextColor);
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    .UserTexts {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        justify-content: space-between;
+        .UserName {
+            font-size: 20px;
+            font-weight: 500;
+        }
+        .UserStatus {
+            font-size: 16px;
+            color: var(--secondTextColor);
+        }
+        .UserStats {
+            margin-top: 2px;
+            display: flex;
+            justify-content: space-between;
+            svg {
+                width: 20px;
+                height: 20px;
+            }
+            * {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+        }
+    }
+}
+.ButtonWrapper {
+    width: 100%;
+    animation: OpenBlock 0.3s forwards ease-in-out;
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+    justify-content: center;
+}
+.Button {
+    color: var(--mainTextColor);
+    width: 100%;
+    margin: 0 20px;
+    margin-top: 10px;
+    animation: OpenBlock 0.3s forwards ease-in-out;
+    padding: 0.6em;
+    background: var(--accentTextColor);
+    border-radius: 0.5em;
+    border: 1px solid var(--mainBorderColor);
+}
+.ButtonLogout {
+    margin: 0 20px;
+    width: 100%;
+    animation: OpenBlock 0.3s forwards ease-in-out;
+    padding: 0.6em;
+    border-radius: 10px;
+    border: 1px solid var(--errorAccentColor);
+    background-color: var(--secondBackGroudColor);
+}
+
+.Showcase {
+    min-height: 100px;
+    margin: 20px;
+    animation: OpenBlock 0.3s forwards ease-in-out;
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+    border-radius: 10px;
+    position: relative;
+    border: 1px solid var(--mainBorderColor);
+    background-color: var(--secondBackGroudColor);
+    .title {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        padding-right: 40px;
+        position: absolute;
+        font-size: 20px;
+    }
+    .Achiwement {
+        margin-top: 45px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        img {
+            width: 60px;
+            height: 60px;
+            border: 1px solid var(--accentTextColor);
+            border-radius: 50%;
+            background-color: var(--secondTextColor);
+        }
+    }
+}

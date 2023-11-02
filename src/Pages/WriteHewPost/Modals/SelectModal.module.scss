@@ -1,0 +1,66 @@
+.SelectModal {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    animation: openselectModal 0.5s forwards;
+    left: 0;
+    .content {
+        flex-direction: column;
+        width: 100%;
+        gap: 20px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        z-index: 100;
+        .Title {
+            min-width: 350px;
+            padding: 0.6em;
+            border: 1px solid var(--accentTextColor);
+            transition: all 0.3s;
+            font-size: 1em;
+            border-radius: 0.5em;
+            font-weight: 500;
+            color: var(--accentTextColor);
+            box-sizing: border-box;
+            outline: none;
+            background: var(--mainBorderColor);
+        }
+        .ResultBlock {
+            min-width: 350px;
+            min-height: 350px;
+            transition: all 0.3s;
+            padding: 0.6em;
+            border: 1px solid var(--accentTextColor);
+            resize: none;
+            font-size: 1em;
+            border-radius: 0.5em;
+            color: var(--mainTextColor);
+            box-sizing: border-box;
+            outline: none;
+            background: var(--mainBorderColor);
+        }
+    }
+}
+.SelectModal::after {
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--mainBorderColor);
+    opacity: 0.5;
+}
+
+@keyframes openselectModal {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

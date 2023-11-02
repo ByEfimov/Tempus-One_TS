@@ -1,0 +1,104 @@
+@import '../../Assets/Styles/animations.css';
+@import '../../Assets/Styles/variables.css';
+
+.Container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    height: 92vh;
+    font-family: 'Golos Text';
+    .nextForm {
+        margin-top: 10px;
+        display: flex;
+        font-size: 1.1em;
+        gap: 5px;
+        position: absolute;
+        bottom: 20px;
+        a {
+            color: var(--accentTextColor);
+        }
+    }
+    .AuthForm {
+        animation: forwards 0.3s OpenBlock;
+        margin-top: -30px;
+        padding: 2em;
+        border-radius: 1em;
+        border: 1px solid var(--mainBorderColor);
+        box-shadow: var(--mainBoxShadow);
+        background-color: var(--mainBackGroudColor);
+        display: flex;
+        width: 85vw;
+        align-items: center;
+        flex-direction: column;
+        font-size: 16px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+
+        button {
+            transition: all 0.3s;
+            color: var(--mainTextColor);
+            width: 70vw;
+            margin-top: 10px;
+            padding: 0.6em;
+            background: var(--accentTextColor);
+            border-radius: 0.5em;
+            border: 1px solid var(--mainBorderColor);
+        }
+        .ActiveButton {
+            box-shadow: var(--activeBoxShadow);
+            transform: scale(1.005);
+        }
+        .Title {
+            margin-bottom: 40px;
+            font-weight: 500;
+            font-size: 1.8em;
+        }
+        input::placeholder {
+            transition: all 0.3s;
+            color: var(--secondTextColor);
+        }
+        input:focus {
+            background: var(--secondBackGroudColor);
+            border-bottom: 1px solid var(--errorAccentColor);
+        }
+        input:focus::placeholder {
+            color: var(--mainTextColor);
+        }
+        input {
+            transition: all 0.3s;
+            border: 1px solid transparent;
+            margin-bottom: 0.8em;
+            width: 70vw;
+            padding: 0.6em;
+            font-size: 1em;
+            border-radius: 0.5em;
+            color: var(--mainTextColor);
+            box-sizing: border-box;
+            background: var(--mainBorderColor);
+        }
+
+        .validInput {
+            border-bottom: 1px solid var(--activeAccentColor);
+        }
+        .validInput:focus {
+            border-bottom: 1px solid var(--activeAccentColor);
+        }
+        .moreInputs {
+            display: flex;
+            gap: 0.9vw;
+            border-radius: 0.5em;
+            overflow: hidden;
+            margin-bottom: 20px;
+            input {
+                margin-bottom: 0px;
+                border-radius: 0px;
+                width: 35vw;
+            }
+            input:focus {
+                border: 1px solid transparent;
+            }
+        }
+    }
+}

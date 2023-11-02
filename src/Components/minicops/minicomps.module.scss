@@ -1,0 +1,76 @@
+@import '../../Assets/Styles/variables.css';
+
+.ButtonWrapper {
+    width: 100%;
+    animation: OpenBlock 0.3s forwards ease-in-out;
+    display: flex;
+    justify-content: center;
+    .Button {
+        transition: all 0.3s;
+        color: var(--mainTextColor);
+        width: 90vw;
+        padding: 0.6em;
+        background: var(--accentTextColor);
+        border-radius: 0.5em;
+        border: 1px solid var(--mainBorderColor);
+    }
+}
+
+.ButtonLogout {
+    width: 100%;
+    margin: 0 20px;
+    animation: OpenBlock 0.3s forwards ease-in-out;
+    padding: 0.6em;
+    border-radius: 10px;
+    border: 1px solid var(--errorAccentColor);
+    background-color: var(--secondBackGroudColor);
+}
+.CustomInput {
+    color: var(--mainTextColor);
+    font-weight: 500;
+    width: 100%;
+    transition: all 0.3s;
+    border: 1px solid transparent;
+    margin-bottom: 0.8em;
+    padding: 0.6em;
+    font-size: 1.05em;
+    border-radius: 0.5em;
+    box-sizing: border-box;
+    background: var(--mainBorderColor);
+}
+.CustomInput:focus {
+    background: var(--secondBackGroudColor);
+}
+.CustomInputSmall {
+    width: 60%;
+    transition: all 0.3s;
+    border: 1px solid transparent;
+    padding: 0.5em;
+    font-size: 0.9em;
+    border-bottom: 1px solid var(--secondTextColor);
+    border-top-right-radius: 0.5em;
+    border-top-left-radius: 0.5em;
+    color: var(--accentTextColor);
+    box-sizing: border-box;
+    background: var(--mainBorderColor);
+}
+.CustomInputSmall:focus {
+    background: var(--secondBackGroudColor);
+}
+
+.CustomTextarea {
+    width: 100%;
+    transition: all 0.3s;
+    padding: 0.6em;
+    min-height: 350px;
+    resize: none;
+    font-size: 1em;
+    border-radius: 0.5em;
+    color: var(--mainTextColor);
+    box-sizing: border-box;
+    outline: none;
+    background: var(--mainBorderColor);
+}
+.CustomTextarea:focus {
+    background: var(--secondBackGroudColor);
+}

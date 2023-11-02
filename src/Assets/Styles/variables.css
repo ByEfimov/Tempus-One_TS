@@ -1,0 +1,12 @@
+html {
+    --mainTextColor: #f0f0f0;
+    --accentTextColor: #38669b;
+    --activeAccentColor: #2c7c4d;
+    --errorAccentColor: #7c382c;
+    --secondTextColor: #686868;
+    --mainBorderColor: #202020;
+    --mainBackGroudColor: #191919;
+    --secondBackGroudColor: #222222;
+    --mainBoxShadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+    --activeBoxShadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.4);
+}

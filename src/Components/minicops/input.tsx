@@ -1,0 +1,30 @@
+import { ChangeEvent, FC } from 'react';
+import Styles from './minicomps.module.css';
+
+interface CustomInput {
+    changeFunction: (e: ChangeEvent<HTMLInputElement>) => void;
+    value: string;
+    placeholder: string;
+    mode: string;
+}
+const CustomInput: FC<CustomInput> = ({
+    value,
+    placeholder,
+    changeFunction,
+    mode,
+}) => {
+    return (
+        <input
+            className={
+                mode === 'default'
+                    ? Styles.CustomInput
+                    : mode === 'small' && Styles.CustomInputSmall
+            }
+            value={value}
+            placeholder={placeholder}
+            onChange={(e) => changeFunction(e)}
+        ></input>
+    );
+};
+
+export default CustomInput;

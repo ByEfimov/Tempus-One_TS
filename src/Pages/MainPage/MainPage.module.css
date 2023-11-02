@@ -1,0 +1,1 @@
+@import'../../Assets/Styles/variables.css';.button{transition:all .3s;color:var(--mainTextColor);width:100%;margin:0 20px;margin-top:20px;padding:.6em;background:var(--accentTextColor);border-radius:.5em;border:1px solid var(--mainBorderColor)}
