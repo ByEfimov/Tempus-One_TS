@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC, LegacyRef } from 'react';
 import Styles from './SelectModal.module.css';
 import ButtonVoid from '../../../Components/minicops/B-void';
 import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
@@ -45,6 +45,7 @@ const SelectModal: FC<SelectModalProps> = ({
     setAllDataForPost,
     AllDataOfPost,
 }) => {
+    const SelectModalRef: LegacyRef<HTMLDivElement> = React.createRef();
     function deleteMode() {
         if (ResultObject?.id !== 0) {
             setAllDataForPost(
@@ -71,7 +72,7 @@ const SelectModal: FC<SelectModalProps> = ({
     }
 
     return (
-        <div className={Styles.SelectModal}>
+        <div className={Styles.SelectModal} ref={SelectModalRef}>
             <div className={Styles.content}>
                 <>
                     {ResultObject?.title && (
@@ -92,7 +93,14 @@ const SelectModal: FC<SelectModalProps> = ({
                     classes={Styles.ButtonClose}
                 ></ButtonVoid>
                 <ButtonVoid
-                    clickHandler={() => setIsModalOpen(false)}
+                    clickHandler={() => {
+                        SelectModalRef.current?.classList.add(
+                            Styles.SelectModalClose
+                        );
+                        setTimeout(() => {
+                            setIsModalOpen(false);
+                        }, 300);
+                    }}
                     title="Закрыть"
                     classes={Styles.ButtonClose}
                 ></ButtonVoid>

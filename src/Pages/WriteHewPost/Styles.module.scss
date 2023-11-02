@@ -67,8 +67,9 @@
     user-select: none;
     padding: 20px;
     .card {
-        width: 90vw;
-        height: 90vw;
+        width: 100vw;
+        margin: 0 20px;
+        height: 80vw;
         position: relative;
         transform-style: preserve-3d;
     }

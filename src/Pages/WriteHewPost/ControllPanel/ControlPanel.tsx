@@ -68,13 +68,10 @@ const ControlBlocksPanel: FC<ControlPanelProps> = ({
     }) => {
         TimeHoldOnButton = setTimeout(() => {
             setIsModalOpen(true);
-            window.navigator.vibrate([
-                100, 30, 100, 30, 100, 200, 200, 30, 200, 30, 200, 200, 100, 30,
-                100, 30, 100,
-            ]);
+            window.navigator.vibrate(100);
             clearTimeout(TimeHoldOnButton);
             setSelectBlockForModal(blockData);
-        }, 500);
+        }, 700);
     };
     const handleInteractionEnd = () => {
         clearTimeout(TimeHoldOnButton);
