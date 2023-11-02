@@ -6,7 +6,7 @@
     display: flex;
     gap: 10px;
     margin-top: 5px;
-    padding-top: 43px;
+    padding-top: 0px;
     padding-bottom: 10px;
     padding-left: 10px;
     padding-right: 10px;
@@ -63,6 +63,10 @@
         }
     }
 }
+.WritePost:has(.topBlock) .ControlPanel {
+    padding-top: 43px;
+}
+
 .WritePost {
     user-select: none;
     padding: 20px;
