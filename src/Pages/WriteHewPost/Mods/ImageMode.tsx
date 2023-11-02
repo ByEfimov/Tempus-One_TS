@@ -15,12 +15,13 @@ interface ModsProps {
 const ImageMode: FC<ModsProps> = ({ AllDataOfPost, SelectMode }) => {
     const [TitleOfImage, setTitleOfImage] = useState('');
 
+    console.log(AllDataOfPost, SelectMode);
     return (
         <>
             <CustomInput
                 value={TitleOfImage}
                 placeholder="Название для картинки"
-                setState={setTitleOfImage}
+                changeFunction={(e) => setTitleOfImage(e.target.value)}
                 mode={ModsOfInput.small}
             ></CustomInput>
         </>

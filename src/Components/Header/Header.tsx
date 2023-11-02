@@ -25,7 +25,7 @@ export default function Header() {
                 </div>
                 <button className={Styles.ProfileIcon} onClick={OpenProfile}>
                     {UserIsAuth ? (
-                        <img src={UserPhoto}></img>
+                        <img src={UserPhoto || undefined}></img>
                     ) : (
                         <FeatherIcon icon="user" className={Styles.Img} />
                     )}

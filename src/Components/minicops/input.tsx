@@ -18,7 +18,7 @@ const CustomInput: FC<CustomInput> = ({
             className={
                 mode === 'default'
                     ? Styles.CustomInput
-                    : mode === 'small' && Styles.CustomInputSmall
+                    : (mode === 'small' && Styles.CustomInputSmall) || undefined
             }
             value={value}
             placeholder={placeholder}

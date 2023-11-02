@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
-import Styles from '../Styles.module.scss';
+import Styles from '../Styles.module.css';
 import { PostData } from '../WritePost';
 import FeatherIcon from 'feather-icons-react';
 import { FC, useState } from 'react';

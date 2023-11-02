@@ -8,7 +8,6 @@ import CustomInput from '../../Components/minicops/input';
 import TextMode from './Mods/TextMode';
 import KodMode from './Mods/KodMode';
 import ImageMode from './Mods/ImageMode';
-import MyModal from '../../Components/Modals/ModalSelect';
 
 interface TitleForPostProps {
     TitleOfPost: string;

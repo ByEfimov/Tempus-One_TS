@@ -1,3 +1,3 @@
 export default function ForgoutPasswordPage() {
-    return;
+    return <h1>Забыл пароль - вспоминай</h1>;
 }

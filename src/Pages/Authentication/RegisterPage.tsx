@@ -10,6 +10,7 @@ export default function RegisterPage() {
         inputName: string,
         inputAge: number
     ) {
+        console.log(inputEmail, inputPass, inputName, inputAge);
         console.error('Регистрация не доступна.');
     }
     return !UserIsAuth ? (

@@ -51,7 +51,8 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({
                 <input
                     type="email"
                     className={
-                        validateEmail(inputEmail) && FormsStyles.validInput
+                        (validateEmail(inputEmail) && FormsStyles.validInput) ||
+                        undefined
                     }
                     onChange={(e) => setInputEmail(e.target.value)}
                     placeholder="Почта"
@@ -59,7 +60,9 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({
                 <input
                     type="password"
                     className={
-                        validatePassword(inputPass) && FormsStyles.validInput
+                        (validatePassword(inputPass) &&
+                            FormsStyles.validInput) ||
+                        undefined
                     }
                     onChange={(e) => setInputPass(e.target.value)}
                     placeholder="Пароль"
@@ -84,9 +87,10 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({
                     title="Продолжить"
                     clickHandler={() => {}}
                     classes={
-                        validateEmail(inputEmail) &&
-                        validatePassword(inputPass) &&
-                        FormsStyles.ActiveButton
+                        (validateEmail(inputEmail) &&
+                            validatePassword(inputPass) &&
+                            FormsStyles.ActiveButton) ||
+                        undefined
                     }
                 ></ButtonVoid>
             </div>
