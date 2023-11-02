@@ -4,7 +4,7 @@ import Styles from '../Styles.module.css';
 import { PostData } from '../WritePost';
 import FeatherIcon from 'feather-icons-react';
 import { FC, useState } from 'react';
-import SelectModal from '../Modals/SelectModal';
+import SelectModal from '../Mods/SelectModal';
 
 interface ControlPanelProps {
     AllDataOfPost: Array<{
