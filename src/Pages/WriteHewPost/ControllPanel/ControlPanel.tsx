@@ -4,7 +4,7 @@ import Styles from '../Styles.module.css';
 import { PostData } from '../WritePost';
 import FeatherIcon from 'feather-icons-react';
 import { FC, useState } from 'react';
-import SelectModal from '../Mods/SelectModal';
+import SelectModal from '../Modals/SelectModal';
 
 interface ControlPanelProps {
     AllDataOfPost: Array<{
@@ -68,9 +68,10 @@ const ControlBlocksPanel: FC<ControlPanelProps> = ({
     }) => {
         TimeHoldOnButton = setTimeout(() => {
             setIsModalOpen(true);
+            window.navigator.vibrate(200);
             clearTimeout(TimeHoldOnButton);
             setSelectBlockForModal(blockData);
-        }, 1000);
+        }, 500);
     };
     const handleInteractionEnd = () => {
         clearTimeout(TimeHoldOnButton);
