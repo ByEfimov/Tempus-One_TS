@@ -7,7 +7,7 @@ import FeatherIcon from 'feather-icons-react';
 import { PostData } from '../WritePost';
 import { UpdateData } from '../../../Utils/UpdatePostData';
 import classNames from 'classnames';
-import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';
+import { LiveProvider, LiveEditor, LivePreview } from 'react-live';
 import ShowModal, { ModsForShowModal } from '../Modals/ShowModal';
 
 interface ModsProps {
