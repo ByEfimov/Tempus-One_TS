@@ -2,9 +2,6 @@ import { PostData } from '../Pages/WriteHewPost/WritePost';
 
 export function UpdateData(
     setData: React.Dispatch<React.SetStateAction<PostData>>,
-    e:
-        | React.ChangeEvent<HTMLInputElement>
-        | React.ChangeEvent<HTMLTextAreaElement>,
     SelectMode: { type: string; id: number },
     AllDataOfPost: Array<{
         id: number;
@@ -12,7 +9,11 @@ export function UpdateData(
         text: string;
         title?: string;
     }>,
-    mode: string
+    mode: string,
+    e?:
+        | React.ChangeEvent<HTMLInputElement>
+        | React.ChangeEvent<HTMLTextAreaElement>,
+    DataText?: string
 ) {
     const updatedData = AllDataOfPost.slice();
     const objectToUpdate = updatedData.find(
@@ -20,9 +21,9 @@ export function UpdateData(
     );
     if (objectToUpdate) {
         if (mode === 'text') {
-            objectToUpdate.text = e.target.value;
+            objectToUpdate.text = e?.target.value || DataText || '';
         } else {
-            objectToUpdate.title = e.target.value;
+            objectToUpdate.title = e?.target.value;
         }
     }
     setData(updatedData);

@@ -3,6 +3,7 @@ import Styles from './SelectModal.module.css';
 import ButtonVoid from '../../../Components/minicops/B-void';
 import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
 import { PostData } from '../WritePost';
+import { LiveProvider, LivePreview } from 'react-live';
 
 interface SelectModalProps {
     setIsModalOpen: (open: boolean) => void;
@@ -33,12 +34,21 @@ interface ShowResultProps {
 const ShowResult: FC<ShowResultProps> = ({ ResultObject }) => {
     return (
         <div className={Styles.ResultBlock}>
-            {ResultObject?.text || 'Здесь будет результат.'}
+            {ResultObject?.type === ModsOfWritePost.text
+                ? ResultObject?.text || 'Здесь будет результат.'
+                : ResultObject?.type === ModsOfWritePost.kod && (
+                      <LiveProvider
+                          enableTypeScript={true}
+                          code={ResultObject.text}
+                      >
+                          <LivePreview />
+                      </LiveProvider>
+                  )}
         </div>
     );
 };
 
-const SelectModal: FC<SelectModalProps> = ({
+const FullScreenModal: FC<SelectModalProps> = ({
     setIsModalOpen,
     ResultObject,
     setSelectMode,
@@ -108,4 +118,4 @@ const SelectModal: FC<SelectModalProps> = ({
         </div>
     );
 };
-export default SelectModal;
+export default FullScreenModal;

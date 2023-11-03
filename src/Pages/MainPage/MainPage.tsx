@@ -4,6 +4,7 @@ import Styles from './MainPage.module.css';
 
 export default function MainPage() {
     const navigate = useNavigate();
+
     return (
         <>
             <ButtonVoid

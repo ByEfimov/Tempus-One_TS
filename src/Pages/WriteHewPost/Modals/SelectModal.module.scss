@@ -5,6 +5,7 @@
     top: 0;
     animation: openselectModal 0.5s forwards;
     left: 0;
+    z-index: 10;
     .content {
         flex-direction: column;
         width: 100%;
@@ -18,6 +19,7 @@
         .Title {
             min-width: 90vw;
             padding: 0.6em;
+            max-width: 90vw;
             border: 1px solid var(--accentTextColor);
             transition: all 0.3s;
             font-size: 1em;
@@ -31,6 +33,7 @@
         .ResultBlock {
             min-width: 90vw;
             min-height: 90vw;
+            max-width: 90vw;
             transition: all 0.3s;
             padding: 0.6em;
             border: 1px solid var(--accentTextColor);

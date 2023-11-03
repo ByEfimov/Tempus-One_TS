@@ -20,7 +20,7 @@ const TextMode: FC<TextOfPostProps> = ({
     setAllDataForPost,
 }) => {
     function changeMainText(e: React.ChangeEvent<HTMLTextAreaElement>) {
-        UpdateData(setAllDataForPost, e, SelectMode, AllDataOfPost, 'text');
+        UpdateData(setAllDataForPost, SelectMode, AllDataOfPost, 'text', e);
     }
 
     return (

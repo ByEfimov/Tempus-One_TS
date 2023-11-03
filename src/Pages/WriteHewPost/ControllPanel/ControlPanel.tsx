@@ -4,7 +4,8 @@ import Styles from '../Styles.module.css';
 import { PostData } from '../WritePost';
 import FeatherIcon from 'feather-icons-react';
 import { FC, useState } from 'react';
-import SelectModal from '../Modals/SelectModal';
+import FullScreenModal from '../Modals/FullScreenModal';
+import { LiveProvider, LivePreview } from 'react-live';
 
 interface ControlPanelProps {
     AllDataOfPost: Array<{
@@ -36,7 +37,7 @@ const ControlBlocksPanel: FC<ControlPanelProps> = ({
         setAllDataForPost([
             ...AllDataOfPost,
             {
-                text: '',
+                text: '<div>Пиши свой код здесь.</div>',
                 type: 'kod',
                 id: AllDataOfPost.length,
                 title: '',
@@ -80,17 +81,18 @@ const ControlBlocksPanel: FC<ControlPanelProps> = ({
     return (
         <>
             {isModalOpen && (
-                <SelectModal
+                <FullScreenModal
                     setIsModalOpen={setIsModalOpen}
                     ResultObject={selectBlockForModal}
                     setSelectMode={setSelectMode}
                     setAllDataForPost={setAllDataForPost}
                     AllDataOfPost={AllDataOfPost}
-                ></SelectModal>
+                ></FullScreenModal>
             )}
             <div className={Styles.ControlPanel}>
                 {AllDataOfPost.map((blockData) => (
                     <div
+                        key={blockData.id}
                         onMouseDown={() => handleInteractionStart(blockData)}
                         onMouseUp={handleInteractionEnd}
                         onTouchStart={() => handleInteractionStart(blockData)}
@@ -101,13 +103,32 @@ const ControlBlocksPanel: FC<ControlPanelProps> = ({
                                 Styles.wrapperActive
                         )}
                     >
-                        <div
-                            onClick={() => openMod(blockData)}
-                            className={Styles.OneceMode}
-                            key={blockData.id}
-                        >
-                            {blockData.text}
-                        </div>
+                        {blockData.type === ModsOfWritePost.text ? (
+                            <div
+                                onClick={() => openMod(blockData)}
+                                className={Styles.OneceMode}
+                                key={blockData.id}
+                            >
+                                {blockData.text}
+                            </div>
+                        ) : (
+                            blockData.type === ModsOfWritePost.kod && (
+                                <LiveProvider
+                                    enableTypeScript={true}
+                                    code={blockData.text}
+                                >
+                                    <div
+                                        onClick={() => openMod(blockData)}
+                                        className={Styles.OneceMode}
+                                        key={blockData.id}
+                                    >
+                                        <div>
+                                            <LivePreview />
+                                        </div>
+                                    </div>
+                                </LiveProvider>
+                            )
+                        )}
                     </div>
                 ))}
                 <button className={Styles.ButtonAdd} onClick={createMode}>

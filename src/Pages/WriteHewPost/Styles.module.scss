@@ -1,6 +1,23 @@
 .ControlPanel::-webkit-scrollbar {
     height: 0;
 }
+pre::-webkit-scrollbar {
+    width: 0;
+}
+
+.LiveEdit {
+    border-top-right-radius: 0.4em;
+    border-bottom-left-radius: 0.4em;
+    border-bottom-right-radius: 0.4em;
+    transition: all 0.3s;
+    overflow: hidden;
+    pre {
+        background-color: var(--mainBorderColor) !important;
+        min-height: 300px;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+}
 
 .ControlPanel {
     display: flex;
@@ -67,7 +84,7 @@
 }
 textarea {
     height: 100% !important;
-    min-height: 300px !important;
+    min-height: 350px !important;
 }
 
 .WritePost {
@@ -78,7 +95,7 @@ textarea {
 
     .card {
         width: 100%;
-        height: 300px;
+        height: 350px;
         position: relative;
         transform-style: preserve-3d;
     }
@@ -90,7 +107,7 @@ textarea {
         top: 0;
         left: 0;
         width: 100%;
-        height: 300px;
+        height: 350px;
         transform: rotateY(0deg);
         backface-visibility: hidden;
     }
@@ -116,11 +133,25 @@ textarea {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        svg {
-            width: 20px;
-        }
-        svg * {
-            color: var(--secondTextColor);
+        .buttons {
+            display: flex;
+            gap: 10px;
+            svg {
+                width: 25px;
+            }
+            svg * {
+                color: var(--accentTextColor);
+            }
+            .helpButton {
+                svg * {
+                    color: var(--activeAccentColor);
+                }
+            }
+            .alertButton {
+                svg * {
+                    color: var(--errorAccentColor);
+                }
+            }
         }
     }
 }
