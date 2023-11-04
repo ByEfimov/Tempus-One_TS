@@ -53,6 +53,7 @@ export default function WritePost() {
         id: 0,
     });
 
+    console.log(SelectMode);
     return UserIsAuth ? (
         <div className={Styles.WritePost}>
             <TitleForPost
@@ -76,6 +77,7 @@ export default function WritePost() {
             )}
             {SelectMode.type === ModsOfWritePost.image && (
                 <ImageMode
+                    setAllDataForPost={setAllDataForPost}
                     AllDataOfPost={AllDataOfPost}
                     SelectMode={SelectMode}
                 />

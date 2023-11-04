@@ -1,8 +1,8 @@
 .SelectModal {
     position: absolute;
     width: 100vw;
-    height: 100vh;
-    top: 0;
+    height: 100dvh;
+    top: -8dvh;
     animation: openselectModal 0.5s forwards;
     left: 0;
     z-index: 10;
@@ -44,12 +44,23 @@
             box-sizing: border-box;
             outline: none;
             background: var(--mainBorderColor);
+            .image {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            img {
+                max-width: 90vw;
+                max-height: 90vw;
+            }
         }
     }
 }
 .SelectModal::after {
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     z-index: 0;
     content: '';
     position: absolute;

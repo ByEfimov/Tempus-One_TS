@@ -6,6 +6,7 @@ import FeatherIcon from 'feather-icons-react';
 import { FC, useState } from 'react';
 import FullScreenModal from '../Modals/FullScreenModal';
 import { LiveProvider, LivePreview } from 'react-live';
+import SelectModal from '../Modals/SelectModal';
 
 interface ControlPanelProps {
     AllDataOfPost: Array<{
@@ -26,6 +27,7 @@ const ControlBlocksPanel: FC<ControlPanelProps> = ({
     SelectMode,
 }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalSelectOpen, setModalSelectOpen] = useState(false);
     const [selectBlockForModal, setSelectBlockForModal] = useState<{
         text: string;
         type: string;
@@ -34,17 +36,7 @@ const ControlBlocksPanel: FC<ControlPanelProps> = ({
     }>();
 
     function createMode() {
-        setAllDataForPost([
-            ...AllDataOfPost,
-            {
-                text: '<div>Пиши свой код здесь.</div>',
-                type: 'kod',
-                id: AllDataOfPost.length,
-                title: '',
-            },
-        ]);
-
-        openMod({ type: ModsOfWritePost.kod, id: AllDataOfPost.length });
+        setModalSelectOpen(true);
     }
 
     function openMod(blockData: { type: string; id: number }) {
@@ -89,6 +81,14 @@ const ControlBlocksPanel: FC<ControlPanelProps> = ({
                     AllDataOfPost={AllDataOfPost}
                 ></FullScreenModal>
             )}
+            {isModalSelectOpen && (
+                <SelectModal
+                    openMod={openMod}
+                    setIsModalOpen={setModalSelectOpen}
+                    setAllDataForPost={setAllDataForPost}
+                    AllDataOfPost={AllDataOfPost}
+                ></SelectModal>
+            )}
             <div className={Styles.ControlPanel}>
                 {AllDataOfPost.map((blockData) => (
                     <div
@@ -111,22 +111,32 @@ const ControlBlocksPanel: FC<ControlPanelProps> = ({
                             >
                                 {blockData.text}
                             </div>
-                        ) : (
-                            blockData.type === ModsOfWritePost.kod && (
-                                <LiveProvider
-                                    enableTypeScript={true}
-                                    code={blockData.text}
+                        ) : blockData.type === ModsOfWritePost.kod ? (
+                            <LiveProvider
+                                enableTypeScript={true}
+                                code={blockData.text}
+                            >
+                                <div
+                                    onClick={() => openMod(blockData)}
+                                    className={Styles.OneceMode}
+                                    key={blockData.id}
                                 >
-                                    <div
-                                        onClick={() => openMod(blockData)}
-                                        className={Styles.OneceMode}
-                                        key={blockData.id}
-                                    >
-                                        <div>
-                                            <LivePreview />
-                                        </div>
+                                    <div>
+                                        <LivePreview />
                                     </div>
-                                </LiveProvider>
+                                </div>
+                            </LiveProvider>
+                        ) : (
+                            blockData.type === ModsOfWritePost.image && (
+                                <div
+                                    onClick={() => openMod(blockData)}
+                                    className={Styles.OneceMode}
+                                    key={blockData.id}
+                                >
+                                    {blockData.text && (
+                                        <img src={blockData.text} alt="" />
+                                    )}
+                                </div>
                             )
                         )}
                     </div>

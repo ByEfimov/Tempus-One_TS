@@ -34,16 +34,21 @@ interface ShowResultProps {
 const ShowResult: FC<ShowResultProps> = ({ ResultObject }) => {
     return (
         <div className={Styles.ResultBlock}>
-            {ResultObject?.type === ModsOfWritePost.text
-                ? ResultObject?.text || 'Здесь будет результат.'
-                : ResultObject?.type === ModsOfWritePost.kod && (
-                      <LiveProvider
-                          enableTypeScript={true}
-                          code={ResultObject.text}
-                      >
-                          <LivePreview />
-                      </LiveProvider>
-                  )}
+            {ResultObject?.type === ModsOfWritePost.text ? (
+                ResultObject?.text || 'Здесь будет результат.'
+            ) : ResultObject?.type === ModsOfWritePost.kod ? (
+                <LiveProvider enableTypeScript={true} code={ResultObject.text}>
+                    <LivePreview />
+                </LiveProvider>
+            ) : (
+                ResultObject?.type === ModsOfWritePost.image && (
+                    <div className={Styles.image}>
+                        {ResultObject.text && (
+                            <img src={ResultObject.text} alt="" />
+                        )}
+                    </div>
+                )
+            )}
         </div>
     );
 };
@@ -65,7 +70,7 @@ const FullScreenModal: FC<SelectModalProps> = ({
                 type: ModsOfWritePost.text,
                 id: 0,
             });
-            setIsModalOpen(false);
+            closePopup();
         }
     }
 
@@ -78,8 +83,15 @@ const FullScreenModal: FC<SelectModalProps> = ({
         });
         setAllDataForPost(updatedData);
 
-        setIsModalOpen(false);
+        closePopup();
     }
+
+    const closePopup = () => {
+        SelectModalRef.current?.classList.add(Styles.SelectModalClose);
+        setTimeout(() => {
+            setIsModalOpen(false);
+        }, 300);
+    };
 
     return (
         <div className={Styles.SelectModal} ref={SelectModalRef}>
@@ -103,14 +115,7 @@ const FullScreenModal: FC<SelectModalProps> = ({
                     classes={Styles.ButtonClose}
                 ></ButtonVoid>
                 <ButtonVoid
-                    clickHandler={() => {
-                        SelectModalRef.current?.classList.add(
-                            Styles.SelectModalClose
-                        );
-                        setTimeout(() => {
-                            setIsModalOpen(false);
-                        }, 300);
-                    }}
+                    clickHandler={closePopup}
                     title="Закрыть"
                     classes={Styles.ButtonClose}
                 ></ButtonVoid>

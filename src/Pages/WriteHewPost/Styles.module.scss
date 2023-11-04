@@ -1,3 +1,5 @@
+@import '../../Assets/Styles/animations.css';
+
 .ControlPanel::-webkit-scrollbar {
     height: 0;
 }
@@ -22,6 +24,7 @@ pre::-webkit-scrollbar {
 .ControlPanel {
     display: flex;
     gap: 10px;
+    animation: OpenBlock forwards 0.3s;
     margin-top: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
@@ -33,15 +36,16 @@ pre::-webkit-scrollbar {
         transition: all 0.3s;
         animation: creteNewModWr 0.3s forwards;
         min-width: 60px;
+        min-height: 60px;
         width: 80px;
-        max-width: 80px;
+        height: 80px;
+        border-radius: 0.4em;
         cursor: pointer;
         overflow: hidden;
         display: flex;
         justify-content: center;
         align-items: center;
         .OneceMode {
-            border-radius: 0.4em;
             width: 100%;
             height: 100%;
             background: var(--mainBorderColor);
@@ -53,6 +57,12 @@ pre::-webkit-scrollbar {
             justify-content: start;
             align-items: start;
             display: flex;
+            img {
+                width: 100%;
+                object-fit: contain;
+                border-radius: 0.4em;
+                background-color: var(--mainBorderColor);
+            }
         }
     }
     .wrapper:before {
@@ -66,7 +76,7 @@ pre::-webkit-scrollbar {
     }
 
     .ButtonAdd {
-        min-width: 60px;
+        min-width: 80px;
         width: 80px;
         display: flex;
         justify-content: center;
@@ -84,10 +94,11 @@ pre::-webkit-scrollbar {
 }
 textarea {
     height: 100% !important;
-    min-height: 350px !important;
+    min-height: 300px !important;
 }
 
 .WritePost {
+    animation: OpenBlock forwards 0.3s;
     user-select: none;
     padding: 20px;
     height: auto;
@@ -95,11 +106,12 @@ textarea {
 
     .card {
         width: 100%;
-        height: 350px;
+        height: 300px;
         position: relative;
         transform-style: preserve-3d;
     }
     .card .face {
+        overflow: hidden;
         border-radius: 0.5em;
         transition: 1s ease-in-out;
         transform-style: preserve-3d;
@@ -107,17 +119,29 @@ textarea {
         top: 0;
         left: 0;
         width: 100%;
-        height: 350px;
+        height: 300px;
         transform: rotateY(0deg);
         backface-visibility: hidden;
+        input {
+            width: 100%;
+            margin: 10px;
+            height: 100%;
+        }
     }
     .card .face.front {
         background-color: var(--mainBorderColor);
     }
     .card .face.back {
+        overflow: hidden;
         padding: 0.6em;
         transform: rotateY(180deg);
         background-color: var(--mainBorderColor);
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+            background-color: var(--mainBorderColor);
+        }
     }
     .cardActive .face.front {
         transform: rotateY(180deg);
@@ -187,7 +211,7 @@ textarea {
         max-width: 0px;
     }
     100% {
-        min-width: 60px;
+        min-width: 80px;
         width: 80px;
         max-width: 80px;
     }
