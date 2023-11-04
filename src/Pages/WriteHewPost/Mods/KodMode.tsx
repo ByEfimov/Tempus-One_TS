@@ -39,6 +39,7 @@ const KodMode: FC<ModsProps> = ({
             UserCode
         );
     }, [UserCode]);
+
     useEffect(() => {
         setUserCode(AllDataOfPost[SelectMode.id].text);
     }, [SelectMode]);
@@ -120,11 +121,13 @@ const KodMode: FC<ModsProps> = ({
                     </div>
                     <div className={classNames(Styles.face, Styles.back)}>
                         <h1>
-                            {(
+                            {UserCode ? (
                                 <div>
                                     <LivePreview />
                                 </div>
-                            ) || 'Здесь будет результат.'}
+                            ) : (
+                                'Здесь будет результат.'
+                            )}
                         </h1>
                     </div>
                 </div>

@@ -6,6 +6,8 @@
     animation: openselectModal 0.5s forwards;
     left: 0;
     z-index: 10;
+    display: flex;
+    justify-content: center;
     .content {
         flex-direction: column;
         width: 100%;
@@ -16,10 +18,11 @@
         align-items: center;
         position: absolute;
         z-index: 100;
+        max-width: 85vw;
         .Title {
-            min-width: 90vw;
             padding: 0.6em;
             max-width: 90vw;
+            width: 100%;
             border: 1px solid var(--accentTextColor);
             transition: all 0.3s;
             font-size: 1em;
@@ -30,8 +33,16 @@
             outline: none;
             background: var(--mainBorderColor);
         }
+        .ButtonClose {
+            width: 100%;
+            animation: OpenBlock 0.3s forwards ease-in-out;
+            padding: 0.6em;
+            border-radius: 10px;
+            border: 1px solid var(--errorAccentColor);
+            background-color: var(--secondBackGroudColor);
+        }
         .ResultBlock {
-            min-width: 90vw;
+            width: 100%;
             min-height: 90vw;
             max-width: 90vw;
             transition: all 0.3s;
@@ -67,7 +78,7 @@
     top: 0;
     left: 0;
     background-color: var(--mainBorderColor);
-    opacity: 0.5;
+    opacity: 0.9;
 }
 
 .SelectModalClose {

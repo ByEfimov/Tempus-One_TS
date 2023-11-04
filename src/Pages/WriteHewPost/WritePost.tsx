@@ -1,5 +1,5 @@
 import { useAuth } from '../../Hooks/useAuth';
-import { useState, FC } from 'react';
+import React, { useState, FC } from 'react';
 import { Navigate } from 'react-router-dom';
 import { ModsOfWritePost, ModsOfInput } from '../../Utils/ModsOfComps';
 import Styles from './Styles.module.css';
@@ -8,6 +8,12 @@ import CustomInput from '../../Components/minicops/input';
 import TextMode from './Mods/TextMode';
 import KodMode from './Mods/KodMode';
 import ImageMode from './Mods/ImageMode';
+import ButtonVoid from '../../Components/minicops/B-void';
+import { usePosts } from '../../Hooks/usePosts';
+import { useAppDispatch } from '../../Hooks/redus-hooks';
+import { addPost } from '../../Store/slices/PostsSlice';
+import { useNavigate } from 'react-router-dom';
+import { checkArrayIsFull } from '../../Utils/CheckValidPost';
 
 interface TitleForPostProps {
     TitleOfPost: string;
@@ -39,21 +45,35 @@ export type PostData = {
     title?: string;
 }[];
 
-export default function WritePost() {
-    const { UserIsAuth } = useAuth();
+const WritePost = () => {
+    const { UserIsAuth, UserId } = useAuth();
+    const dispatch = useAppDispatch();
+    const { Posts } = usePosts();
     const [TitleOfPost, setTitleOfPost] = useState('');
+    const navigate = useNavigate();
     const [AllDataOfPost, setAllDataForPost] = useState<PostData>([
         { text: '', id: 0, type: 'text' },
     ]);
-
-    console.log(AllDataOfPost);
 
     const [SelectMode, setSelectMode] = useState({
         type: ModsOfWritePost.text,
         id: 0,
     });
 
-    console.log(SelectMode);
+    function sendNewPost() {
+        const NewPost = {
+            PostId: Posts.length,
+            PostDataBlocks: AllDataOfPost,
+            PostTitle: TitleOfPost,
+            PostAuthorId: UserId || 0,
+        };
+
+        if (checkArrayIsFull(NewPost)) {
+            dispatch(addPost({ NewPost }));
+            navigate('/');
+        }
+    }
+
     return UserIsAuth ? (
         <div className={Styles.WritePost}>
             <TitleForPost
@@ -89,8 +109,15 @@ export default function WritePost() {
                 setAllDataForPost={setAllDataForPost}
                 setSelectMode={setSelectMode}
             ></ControlBlocksPanel>
+            <ButtonVoid
+                classes={Styles.ButtonWrite}
+                title="Отправить пост"
+                clickHandler={sendNewPost}
+            ></ButtonVoid>
         </div>
     ) : (
         <Navigate to="/NeedAuth" />
     );
-}
+};
+
+export default WritePost;

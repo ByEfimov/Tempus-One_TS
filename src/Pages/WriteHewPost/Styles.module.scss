@@ -20,6 +20,17 @@ pre::-webkit-scrollbar {
         overflow-y: auto;
     }
 }
+.ButtonWrite {
+    transition: all 0.3s;
+    color: var(--mainTextColor);
+    width: 90vw;
+    padding: 0.6em;
+
+    background: var(--activeAccentColor);
+    border-radius: 0.5em;
+    margin-top: 20px;
+    border: 1px solid var(--mainBorderColor);
+}
 
 .ControlPanel {
     display: flex;

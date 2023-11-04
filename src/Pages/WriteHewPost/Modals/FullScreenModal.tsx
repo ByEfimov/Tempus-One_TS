@@ -38,13 +38,19 @@ const ShowResult: FC<ShowResultProps> = ({ ResultObject }) => {
                 ResultObject?.text || 'Здесь будет результат.'
             ) : ResultObject?.type === ModsOfWritePost.kod ? (
                 <LiveProvider enableTypeScript={true} code={ResultObject.text}>
-                    <LivePreview />
+                    {ResultObject.text ? (
+                        <LivePreview />
+                    ) : (
+                        'Здесь будет результат.'
+                    )}
                 </LiveProvider>
             ) : (
                 ResultObject?.type === ModsOfWritePost.image && (
                     <div className={Styles.image}>
-                        {ResultObject.text && (
+                        {ResultObject.text ? (
                             <img src={ResultObject.text} alt="" />
+                        ) : (
+                            'Здесь будет результат.'
                         )}
                     </div>
                 )
@@ -82,6 +88,10 @@ const FullScreenModal: FC<SelectModalProps> = ({
             return item;
         });
         setAllDataForPost(updatedData);
+        setSelectMode({
+            type: ModsOfWritePost.text,
+            id: 0,
+        });
 
         closePopup();
     }
@@ -107,12 +117,10 @@ const FullScreenModal: FC<SelectModalProps> = ({
                 <ButtonVoid
                     clickHandler={clearMode}
                     title="Очистить"
-                    classes={Styles.ButtonClose}
                 ></ButtonVoid>
                 <ButtonVoid
                     clickHandler={deleteMode}
                     title="Удалить"
-                    classes={Styles.ButtonClose}
                 ></ButtonVoid>
                 <ButtonVoid
                     clickHandler={closePopup}

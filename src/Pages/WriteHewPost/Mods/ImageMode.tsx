@@ -76,8 +76,10 @@ const ImageMode: FC<ModsProps> = ({
                     <input type="file" onChange={handleImageUpload} />
                 </div>
                 <div className={classNames(Styles.face, Styles.back)}>
-                    {AllDataOfPost[SelectMode.id].text && (
+                    {AllDataOfPost[SelectMode.id].text ? (
                         <img src={AllDataOfPost[SelectMode.id].text} alt="" />
+                    ) : (
+                        'Здесь будет результат.'
                     )}
                 </div>
             </div>
