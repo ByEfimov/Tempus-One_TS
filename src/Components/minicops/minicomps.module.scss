@@ -1,4 +1,5 @@
 @import '../../Assets/Styles/variables.css';
+@import '../../Assets/Styles/animations.css';
 
 .ButtonWrapper {
     width: 100%;
@@ -8,6 +9,7 @@
     .Button {
         transition: all 0.3s;
         color: var(--mainTextColor);
+        animation: OpenBlock 0.3s forwards ease-in-out;
         width: 90vw;
         padding: 0.6em;
         background: var(--accentTextColor);

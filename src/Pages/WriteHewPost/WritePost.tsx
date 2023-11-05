@@ -61,11 +61,13 @@ const WritePost = () => {
     });
 
     function sendNewPost() {
+        const ToDay = new Date().getTime();
         const NewPost = {
             PostId: Posts.length,
             PostDataBlocks: AllDataOfPost,
             PostTitle: TitleOfPost,
             PostAuthorId: UserId || 0,
+            PostDate: ToDay,
         };
 
         if (checkArrayIsFull(NewPost)) {

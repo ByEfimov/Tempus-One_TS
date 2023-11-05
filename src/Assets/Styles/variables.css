@@ -6,7 +6,22 @@ html {
     --secondTextColor: #686868;
     --mainBorderColor: #202020;
     --mainBackGroudColor: #191919;
-    --secondBackGroudColor: #222222;
+    --secondBackGroudColor: #333;
     --mainBoxShadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
     --activeBoxShadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.4);
 }
+
+/* 
+Мой первый пост
+
+Привет, функция с написанием постов, наконец то, готова! И это текст демонстрации ее работы.
+
+function ShowMod() {
+    const [count, setCount] = React.useState(0);
+    return (
+        <div style={{display:"flex", alignItems: "center",  justifyContent: "center"}}>
+            <h1>{count}</h1>
+            <button onClick={() => setCount(count + 1)}>Добавить</button>
+        </div>
+    );
+} */

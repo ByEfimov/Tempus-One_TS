@@ -12,6 +12,7 @@ export type Post = {
     PostAuthorId: number;
     PostTitle: string;
     PostDataBlocks: PostData[];
+    PostDate: number;
 };
 
 export type AllPostsData = Post[];
