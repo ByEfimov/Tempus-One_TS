@@ -2,13 +2,14 @@
 import CustomInput from '../../../Components/minicops/input';
 import { ModsOfInput } from '../../../Utils/ModsOfComps';
 import { FC, useEffect, useState } from 'react';
-import Styles from '../Styles.module.css';
-import FeatherIcon from 'feather-icons-react';
+import Styles from '../Styles.module.scss';
 import { PostData } from '../WritePost';
 import { UpdateData } from '../../../Utils/UpdatePostData';
 import classNames from 'classnames';
-import { LiveProvider, LiveEditor, LivePreview } from 'react-live';
+import { LiveProvider, LiveEditor } from 'react-live';
 import ShowModal, { ModsForShowModal } from '../Modals/ShowModal';
+import ActiveButton from '../../../Components/ShowPosts/postsComp/activeButton';
+import ShowCode from '../../../Components/ShowPosts/postsComp/ShowCode';
 
 interface ModsProps {
     AllDataOfPost: Array<{
@@ -67,71 +68,58 @@ const KodMode: FC<ModsProps> = ({
                 ></ShowModal>
             )}
 
-            <LiveProvider enableTypeScript={true} code={UserCode}>
-                <div className={Styles.topBlock} id="topBlock">
-                    <CustomInput
-                        mode={ModsOfInput.small}
-                        value={AllDataOfPost[SelectMode.id].title || ''}
-                        placeholder="Название для кода"
-                        changeFunction={changeTitle}
-                    ></CustomInput>
-                    <div className={Styles.buttons}>
-                        <button
-                            onClick={() => {
-                                setIsModalErrorsOpen(true);
-                            }}
-                            className={Styles.alertButton}
-                        >
-                            <FeatherIcon
-                                icon="alert-triangle"
-                                className={Styles.Img}
-                            />
-                        </button>
-                        <button
-                            onClick={() => {
-                                setIsModalClueCodeOpen(true);
-                            }}
-                            className={Styles.helpButton}
-                        >
-                            <FeatherIcon
-                                icon="help-circle"
-                                className={Styles.Img}
-                            />
-                        </button>
-                        <button
-                            onClick={reverceBlock}
-                            className={Styles.swapButton}
-                        >
-                            <FeatherIcon
-                                icon="refresh-ccw"
-                                className={Styles.Img}
-                            />
-                        </button>
-                    </div>
+            <div className={Styles.topBlock} id="topBlock">
+                <CustomInput
+                    mode={ModsOfInput.small}
+                    value={AllDataOfPost[SelectMode.id].title || ''}
+                    placeholder="Название для кода"
+                    changeFunction={changeTitle}
+                ></CustomInput>
+                <div className={Styles.buttons}>
+                    <ActiveButton
+                        clickHandler={() => setIsModalErrorsOpen(true)}
+                        Styles={Styles}
+                        Class={Styles.alertButton}
+                        icon="alert-triangle"
+                    ></ActiveButton>
+                    <ActiveButton
+                        clickHandler={() => setIsModalClueCodeOpen(true)}
+                        Styles={Styles}
+                        Class={Styles.helpButton}
+                        icon="help-circle"
+                    ></ActiveButton>
+                    <ActiveButton
+                        clickHandler={() => reverceBlock()}
+                        Styles={Styles}
+                        Class={Styles.swapButton}
+                        icon="refresh-ccw"
+                    ></ActiveButton>
                 </div>
+            </div>
 
-                <div className={Styles.card} id="card">
-                    <div className={classNames(Styles.face, Styles.front)}>
-                        <div>
+            <div className={Styles.card} id="card">
+                <div className={classNames(Styles.face, Styles.front)}>
+                    <div>
+                        <LiveProvider enableTypeScript={true} code={UserCode}>
                             <LiveEditor
                                 className={Styles.LiveEdit}
                                 onChange={(e) => setUserCode(e)}
                             />
-                        </div>
-                    </div>
-                    <div className={classNames(Styles.face, Styles.back)}>
-                        <h1>
-                            {UserCode ? (
-                                <div>
-                                    <LivePreview />
-                                </div>
-                            ) : (
-                                'Здесь будет результат.'
-                            )}
-                        </h1>
+                        </LiveProvider>
                     </div>
                 </div>
-            </LiveProvider>
+                <div className={classNames(Styles.face, Styles.back)}>
+                    <h1>
+                        {UserCode ? (
+                            <div>
+                                <ShowCode UserCode={UserCode} />
+                            </div>
+                        ) : (
+                            'Здесь будет результат.'
+                        )}
+                    </h1>
+                </div>
+            </div>
         </>
     );
 };

@@ -1,5 +1,5 @@
 import FeatherIcon from 'feather-icons-react';
-import Styles from './Header.module.css';
+import Styles from './Header.module.scss';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../Hooks/useAuth';
 

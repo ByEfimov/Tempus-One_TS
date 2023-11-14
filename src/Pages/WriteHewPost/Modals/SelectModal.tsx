@@ -1,5 +1,5 @@
 import React, { FC, LegacyRef } from 'react';
-import Styles from './SelectModal.module.css';
+import Styles from './SelectModal.module.scss';
 import ButtonVoid from '../../../Components/minicops/B-void';
 import { PostData } from '../WritePost';
 import { ModsOfWritePost } from '../../../Utils/ModsOfComps';

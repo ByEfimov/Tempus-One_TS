@@ -4,8 +4,13 @@
 }
 
 .Header {
+    position: fixed;
     width: 100%;
     height: 8dvh;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: var(--mainBackGroudColor);
     display: flex;
     padding: 1em;
     font-size: 16px;

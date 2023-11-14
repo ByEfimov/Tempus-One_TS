@@ -1,4 +1,4 @@
-import FormsStyles from './FormsStyles.module.css';
+import FormsStyles from './FormsStyles.module.scss';
 import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ButtonVoid from '../minicops/B-void';

@@ -1,9 +1,10 @@
 import React, { FC, LegacyRef } from 'react';
-import Styles from './SelectModal.module.css';
+import Styles from './SelectModal.module.scss';
 import ButtonVoid from '../../../Components/minicops/B-void';
 import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
 import { PostData } from '../WritePost';
-import { LiveProvider, LivePreview } from 'react-live';
+import ShowCode from '../../../Components/ShowPosts/postsComp/ShowCode';
+import ShowImage from '../../../Components/ShowPosts/postsComp/ShowImage';
 
 interface SelectModalProps {
     setIsModalOpen: (open: boolean) => void;
@@ -37,21 +38,11 @@ const ShowResult: FC<ShowResultProps> = ({ ResultObject }) => {
             {ResultObject?.type === ModsOfWritePost.text ? (
                 ResultObject?.text || 'Здесь будет результат.'
             ) : ResultObject?.type === ModsOfWritePost.kod ? (
-                <LiveProvider enableTypeScript={true} code={ResultObject.text}>
-                    {ResultObject.text ? (
-                        <LivePreview />
-                    ) : (
-                        'Здесь будет результат.'
-                    )}
-                </LiveProvider>
+                <ShowCode UserCode={ResultObject.text} />
             ) : (
                 ResultObject?.type === ModsOfWritePost.image && (
                     <div className={Styles.image}>
-                        {ResultObject.text ? (
-                            <img src={ResultObject.text} alt="" />
-                        ) : (
-                            'Здесь будет результат.'
-                        )}
+                        <ShowImage imageSrc={ResultObject.text} />
                     </div>
                 )
             )}

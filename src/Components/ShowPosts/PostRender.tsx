@@ -5,7 +5,8 @@ import Styles from './Styles.module.scss';
 import { UsersList } from '../../Api/Users';
 import FeatherIcon from 'feather-icons-react';
 import { ModsOfWritePost } from '../../Utils/ModsOfComps';
-import { LiveProvider, LivePreview } from 'react-live';
+import ShowImage from './postsComp/ShowImage';
+import ShowCode from './postsComp/ShowCode';
 
 interface PostProps {
     post: Post;
@@ -75,20 +76,17 @@ const PostRender: FC<PostProps> = ({ post }) => {
                     {post.PostDataBlocks[selectBlock].type ==
                         ModsOfWritePost.kod && (
                         <div className={Styles.code}>
-                            <LiveProvider
-                                code={post.PostDataBlocks[selectBlock].text}
-                            >
-                                <LivePreview />
-                            </LiveProvider>
+                            <ShowCode
+                                UserCode={post.PostDataBlocks[selectBlock].text}
+                            ></ShowCode>
                         </div>
                     )}
                     {post.PostDataBlocks[selectBlock].type ==
                         ModsOfWritePost.image && (
                         <div className={Styles.image}>
-                            <img
-                                src={post.PostDataBlocks[selectBlock].text}
-                                alt=""
-                            />
+                            <ShowImage
+                                imageSrc={post.PostDataBlocks[selectBlock].text}
+                            ></ShowImage>
                         </div>
                     )}
                 </div>

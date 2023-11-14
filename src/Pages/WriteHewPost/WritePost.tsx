@@ -2,7 +2,7 @@ import { useAuth } from '../../Hooks/useAuth';
 import React, { useState, FC } from 'react';
 import { Navigate } from 'react-router-dom';
 import { ModsOfWritePost, ModsOfInput } from '../../Utils/ModsOfComps';
-import Styles from './Styles.module.css';
+import Styles from './Styles.module.scss';
 import ControlBlocksPanel from './ControllPanel/ControlPanel';
 import CustomInput from '../../Components/minicops/input';
 import TextMode from './Mods/TextMode';

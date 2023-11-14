@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { UsersList } from '../../Api/Users';
 import FeatherIcon from 'feather-icons-react';
-import Styles from './UserPage.module.css';
+import Styles from './UserPage.module.scss';
 import { UserAchives } from '../../Api/UserAchives';
 import { useAuth } from '../../Hooks/useAuth';
 import { useAppDispatch } from '../../Hooks/redus-hooks';

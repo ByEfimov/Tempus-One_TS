@@ -1,12 +1,13 @@
 import classNames from 'classnames';
 import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
-import Styles from '../Styles.module.css';
+import Styles from '../Styles.module.scss';
 import { PostData } from '../WritePost';
 import FeatherIcon from 'feather-icons-react';
 import { FC, useState } from 'react';
 import FullScreenModal from '../Modals/FullScreenModal';
-import { LiveProvider, LivePreview } from 'react-live';
 import SelectModal from '../Modals/SelectModal';
+import ShowCode from '../../../Components/ShowPosts/postsComp/ShowCode';
+import ShowImage from '../../../Components/ShowPosts/postsComp/ShowImage';
 
 interface ControlPanelProps {
     AllDataOfPost: Array<{
@@ -112,20 +113,15 @@ const ControlBlocksPanel: FC<ControlPanelProps> = ({
                                 {blockData.text}
                             </div>
                         ) : blockData.type === ModsOfWritePost.kod ? (
-                            <LiveProvider
-                                enableTypeScript={true}
-                                code={blockData.text}
+                            <div
+                                onClick={() => openMod(blockData)}
+                                className={Styles.OneceMode}
+                                key={blockData.id}
                             >
-                                <div
-                                    onClick={() => openMod(blockData)}
-                                    className={Styles.OneceMode}
-                                    key={blockData.id}
-                                >
-                                    <div>
-                                        <LivePreview />
-                                    </div>
+                                <div>
+                                    <ShowCode UserCode={blockData.text} />
                                 </div>
-                            </LiveProvider>
+                            </div>
                         ) : (
                             blockData.type === ModsOfWritePost.image && (
                                 <div
@@ -133,9 +129,9 @@ const ControlBlocksPanel: FC<ControlPanelProps> = ({
                                     className={Styles.OneceMode}
                                     key={blockData.id}
                                 >
-                                    {blockData.text && (
-                                        <img src={blockData.text} alt="" />
-                                    )}
+                                    <ShowImage
+                                        imageSrc={blockData.text}
+                                    ></ShowImage>
                                 </div>
                             )
                         )}

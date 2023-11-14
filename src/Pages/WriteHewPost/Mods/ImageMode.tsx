@@ -1,11 +1,12 @@
 import { FC, ChangeEvent } from 'react';
 import { ModsOfInput } from '../../../Utils/ModsOfComps';
 import CustomInput from '../../../Components/minicops/input';
-import Styles from '../Styles.module.css';
-import FeatherIcon from 'feather-icons-react';
+import Styles from '../Styles.module.scss';
 import classNames from 'classnames';
 import { UpdateData } from '../../../Utils/UpdatePostData';
 import { PostData } from '../WritePost';
+import ActiveButton from '../../../Components/ShowPosts/postsComp/activeButton';
+import ShowImage from '../../../Components/ShowPosts/postsComp/ShowImage';
 
 interface ModsProps {
     AllDataOfPost: Array<{
@@ -60,15 +61,12 @@ const ImageMode: FC<ModsProps> = ({
                     mode={ModsOfInput.small}
                 ></CustomInput>
                 <div className={Styles.buttons}>
-                    <button
-                        onClick={reverceBlock}
-                        className={Styles.swapButton}
-                    >
-                        <FeatherIcon
-                            icon="refresh-ccw"
-                            className={Styles.Img}
-                        />
-                    </button>
+                    <ActiveButton
+                        clickHandler={() => reverceBlock()}
+                        Styles={Styles}
+                        Class={Styles.swapButton}
+                        icon="refresh-ccw"
+                    ></ActiveButton>
                 </div>
             </div>
             <div className={Styles.card} id="card">
@@ -76,11 +74,9 @@ const ImageMode: FC<ModsProps> = ({
                     <input type="file" onChange={handleImageUpload} />
                 </div>
                 <div className={classNames(Styles.face, Styles.back)}>
-                    {AllDataOfPost[SelectMode.id].text ? (
-                        <img src={AllDataOfPost[SelectMode.id].text} alt="" />
-                    ) : (
-                        'Здесь будет результат.'
-                    )}
+                    <ShowImage
+                        imageSrc={AllDataOfPost[SelectMode.id].text}
+                    ></ShowImage>
                 </div>
             </div>
         </>

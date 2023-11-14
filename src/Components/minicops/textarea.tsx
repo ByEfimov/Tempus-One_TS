@@ -1,5 +1,5 @@
 import { ChangeEvent, FC } from 'react';
-import Styles from './minicomps.module.css';
+import Styles from './minicomps.module.scss';
 
 interface CustomTextarea {
     value: string;

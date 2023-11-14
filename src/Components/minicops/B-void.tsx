@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import Styles from './minicomps.module.css';
+import Styles from './minicomps.module.scss';
 
 interface ButtonVoid {
     clickHandler: () => void;
