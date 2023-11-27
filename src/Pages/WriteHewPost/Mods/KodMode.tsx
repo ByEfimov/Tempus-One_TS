@@ -10,10 +10,11 @@ import { LiveProvider, LiveEditor } from 'react-live';
 import ShowModal, { ModsForShowModal } from '../Modals/ShowModal';
 import ActiveButton from '../../../Components/ShowPosts/postsComp/activeButton';
 import ShowCode from '../../../Components/ShowPosts/postsComp/ShowCode';
+import { reverceBlock } from '../../../Utils/anims/reverceBlock';
 
 interface ModsProps {
     AllDataOfPost: Array<{
-        id: number;
+        id: string;
         type: string;
         text: string;
         title?: string;
@@ -47,9 +48,6 @@ const KodMode: FC<ModsProps> = ({
 
     function changeTitle(e: React.ChangeEvent<HTMLInputElement>) {
         UpdateData(setAllDataForPost, SelectMode, AllDataOfPost, 'title', e);
-    }
-    function reverceBlock() {
-        document.getElementById('card')?.classList.toggle(Styles.cardActive);
     }
 
     return (
@@ -89,7 +87,9 @@ const KodMode: FC<ModsProps> = ({
                         icon="help-circle"
                     ></ActiveButton>
                     <ActiveButton
-                        clickHandler={() => reverceBlock()}
+                        clickHandler={() =>
+                            reverceBlock('card', Styles.cardActive)
+                        }
                         Styles={Styles}
                         Class={Styles.swapButton}
                         icon="refresh-ccw"

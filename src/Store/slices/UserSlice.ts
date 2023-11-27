@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type UserType = {
     email: string | null;
-    id: number | null;
+    id: string | null;
     name: string | null;
     age: number | null;
     photo: string | null;
@@ -23,18 +23,18 @@ const UserSlice = createSlice({
         setUser(
             state,
             action: PayloadAction<{
-                email: string;
-                id: number;
-                name: string;
+                email: string | null;
+                id: string | null;
+                name: string | null;
                 age: number;
-                photo: string;
+                photo: string | null;
             }>
         ) {
-            state.email = action.payload.email;
-            state.id = action.payload.id;
-            state.name = action.payload.name;
+            state.email = action.payload.email || null;
+            state.id = action.payload.id || null;
+            state.name = action.payload.name || null;
             state.age = action.payload.age;
-            state.photo = action.payload.photo;
+            state.photo = action.payload.photo || null;
         },
         removeUser(state) {
             state.email = null;
@@ -43,8 +43,12 @@ const UserSlice = createSlice({
             state.age = null;
             state.photo = null;
         },
+
+        UpdateUserName(state, action) {
+            state.name = action.payload.name || null;
+        },
     },
 });
-export const { setUser, removeUser } = UserSlice.actions;
+export const { setUser, removeUser, UpdateUserName } = UserSlice.actions;
 
 export default UserSlice.reducer;

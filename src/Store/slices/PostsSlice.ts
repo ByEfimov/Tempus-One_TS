@@ -2,14 +2,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type PostData = {
     text: string;
-    id: number;
+    id: string;
     type: string;
     title?: string;
 };
 
 export type Post = {
-    PostId: number;
-    PostAuthorId: number;
+    Postid: string;
+    PostAuthorid: string;
     PostTitle: string;
     PostDataBlocks: PostData[];
     PostDate: number;

@@ -7,10 +7,11 @@ import { UpdateData } from '../../../Utils/UpdatePostData';
 import { PostData } from '../WritePost';
 import ActiveButton from '../../../Components/ShowPosts/postsComp/activeButton';
 import ShowImage from '../../../Components/ShowPosts/postsComp/ShowImage';
+import { reverceBlock } from '../../../Utils/anims/reverceBlock';
 
 interface ModsProps {
     AllDataOfPost: Array<{
-        id: number;
+        id: string;
         type: string;
         text: string;
         title?: string;
@@ -24,9 +25,6 @@ const ImageMode: FC<ModsProps> = ({
     SelectMode,
     setAllDataForPost,
 }) => {
-    function reverceBlock() {
-        document.getElementById('card')?.classList.toggle(Styles.cardActive);
-    }
     function changeTitle(e: React.ChangeEvent<HTMLInputElement>) {
         UpdateData(setAllDataForPost, SelectMode, AllDataOfPost, 'title', e);
     }
@@ -62,7 +60,9 @@ const ImageMode: FC<ModsProps> = ({
                 ></CustomInput>
                 <div className={Styles.buttons}>
                     <ActiveButton
-                        clickHandler={() => reverceBlock()}
+                        clickHandler={() =>
+                            reverceBlock('card', Styles.cardActive)
+                        }
                         Styles={Styles}
                         Class={Styles.swapButton}
                         icon="refresh-ccw"

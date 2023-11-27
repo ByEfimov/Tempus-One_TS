@@ -4,7 +4,7 @@ export function UpdateData(
     setData: React.Dispatch<React.SetStateAction<PostData>>,
     SelectMode: { type: string; id: number },
     AllDataOfPost: Array<{
-        id: number;
+        id: string;
         type: string;
         text: string;
         title?: string;

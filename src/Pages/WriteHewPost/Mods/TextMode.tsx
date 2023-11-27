@@ -5,7 +5,7 @@ import { PostData } from '../WritePost';
 
 interface TextOfPostProps {
     AllDataOfPost: Array<{
-        id: number;
+        id: string;
         type: string;
         text: string;
         title?: string;

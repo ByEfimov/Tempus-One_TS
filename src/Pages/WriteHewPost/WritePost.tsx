@@ -40,21 +40,22 @@ const TitleForPost: FC<TitleForPostProps> = ({
 
 export type PostData = {
     text: string;
-    id: number;
+    id: string;
     type: string;
     title?: string;
 }[];
 
 const WritePost = () => {
-    const { UserIsAuth, UserId } = useAuth();
-    const dispatch = useAppDispatch();
     const { Posts } = usePosts();
+    const { UserIsAuth, UserId } = useAuth();
     const [TitleOfPost, setTitleOfPost] = useState('');
+
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
+
     const [AllDataOfPost, setAllDataForPost] = useState<PostData>([
         { text: '', id: 0, type: 'text' },
     ]);
-
     const [SelectMode, setSelectMode] = useState({
         type: ModsOfWritePost.text,
         id: 0,
@@ -76,6 +77,35 @@ const WritePost = () => {
         }
     }
 
+    const openSelectMode = () => {
+        switch (SelectMode.type) {
+            case ModsOfWritePost.text:
+                return (
+                    <TextMode
+                        setAllDataForPost={setAllDataForPost}
+                        AllDataOfPost={AllDataOfPost}
+                        SelectMode={SelectMode}
+                    ></TextMode>
+                );
+            case ModsOfWritePost.kod:
+                return (
+                    <KodMode
+                        setAllDataForPost={setAllDataForPost}
+                        AllDataOfPost={AllDataOfPost}
+                        SelectMode={SelectMode}
+                    />
+                );
+            case ModsOfWritePost.image:
+                return (
+                    <ImageMode
+                        setAllDataForPost={setAllDataForPost}
+                        AllDataOfPost={AllDataOfPost}
+                        SelectMode={SelectMode}
+                    />
+                );
+        }
+    };
+
     return UserIsAuth ? (
         <div className={Styles.WritePost}>
             <TitleForPost
@@ -83,27 +113,7 @@ const WritePost = () => {
                 setTitleOfPost={setTitleOfPost}
             ></TitleForPost>
 
-            {SelectMode.type === ModsOfWritePost.text && (
-                <TextMode
-                    setAllDataForPost={setAllDataForPost}
-                    AllDataOfPost={AllDataOfPost}
-                    SelectMode={SelectMode}
-                ></TextMode>
-            )}
-            {SelectMode.type === ModsOfWritePost.kod && (
-                <KodMode
-                    setAllDataForPost={setAllDataForPost}
-                    AllDataOfPost={AllDataOfPost}
-                    SelectMode={SelectMode}
-                />
-            )}
-            {SelectMode.type === ModsOfWritePost.image && (
-                <ImageMode
-                    setAllDataForPost={setAllDataForPost}
-                    AllDataOfPost={AllDataOfPost}
-                    SelectMode={SelectMode}
-                />
-            )}
+            {openSelectMode()}
 
             <ControlBlocksPanel
                 SelectMode={SelectMode}
@@ -111,6 +121,7 @@ const WritePost = () => {
                 setAllDataForPost={setAllDataForPost}
                 setSelectMode={setSelectMode}
             ></ControlBlocksPanel>
+
             <ButtonVoid
                 classes={Styles.ButtonWrite}
                 title="Отправить пост"

@@ -1,22 +1,62 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { UsersList } from '../../Api/Users';
 import FeatherIcon from 'feather-icons-react';
 import Styles from './UserPage.module.scss';
-import { UserAchives } from '../../Api/UserAchives';
 import { useAuth } from '../../Hooks/useAuth';
 import { useAppDispatch } from '../../Hooks/redus-hooks';
 import { removeUser } from '../../Store/slices/UserSlice';
 import ButtonVoid from '../../Components/minicops/B-void';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { getUserFromId } from '../../Api/Utils/getUserdataFromId';
+
+export default function UserPage() {
+    const { id } = useParams();
+    const [OpenUser, setOpenUser] = useState<OpenUserType>();
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const { UserId } = useAuth();
+
+    useEffect(() => {
+        getUserFromId(id).then((user) => setOpenUser(user));
+    }, []);
+
+    return (
+        OpenUser && (
+            <>
+                <UserData OpenUser={OpenUser} />
+
+                {OpenUser.id === UserId && (
+                    <ButtonVoid
+                        title="Редактировать профиль"
+                        classes={Styles.Button}
+                        clickHandler={() => console.log('da')}
+                    ></ButtonVoid>
+                )}
+
+                {OpenUser.id === UserId && (
+                    <ButtonVoid
+                        title="Выйти"
+                        classes={Styles.ButtonLogout}
+                        clickHandler={() => {
+                            dispatch(removeUser());
+                            navigate('/Login');
+                        }}
+                    ></ButtonVoid>
+                )}
+            </>
+        )
+    );
+}
+
+export type OpenUserType = {
+    photo: string;
+    name: string;
+    email: string;
+    id: string;
+    age: number;
+};
 
 interface UserDataProps {
-    OpenUser: {
-        photo: string;
-        name: string;
-        email: string;
-        id: number;
-        age: number;
-    };
+    OpenUser: OpenUserType;
 }
 
 const UserData: FC<UserDataProps> = ({ OpenUser }) => {
@@ -49,78 +89,3 @@ const UserData: FC<UserDataProps> = ({ OpenUser }) => {
         </div>
     );
 };
-
-const ShowcaseAchives = () => {
-    interface AchiveProps {
-        AchiveData: {
-            AchivePhoto: string;
-            AchiveTitle: string;
-            AchiveDate: string;
-            AchiveDesc: string;
-            AchiveId: number;
-        };
-    }
-    const Achive: FC<AchiveProps> = ({ AchiveData }) => {
-        return (
-            <div className={Styles.Achiwement}>
-                <img
-                    src={AchiveData.AchivePhoto}
-                    className={Styles.AchIcon}
-                    alt=""
-                />
-                <p className={Styles.AchText}>{AchiveData.AchiveTitle}</p>
-            </div>
-        );
-    };
-    return (
-        <div className={Styles.Showcase}>
-            <div className={Styles.title}>
-                Ветрина достижений
-                <FeatherIcon icon="eye"></FeatherIcon>
-            </div>
-            {UserAchives.map((AchiveData) => (
-                <Achive
-                    AchiveData={AchiveData}
-                    key={AchiveData.AchiveId}
-                ></Achive>
-            ))}
-        </div>
-    );
-};
-
-export default function UserPage() {
-    const { id } = useParams();
-    const navigate = useNavigate();
-    const dispatch = useAppDispatch();
-    const { UserId } = useAuth();
-    const OpenUser = UsersList.find((user) => user.id.toString() == id);
-
-    return (
-        OpenUser && (
-            <>
-                <UserData OpenUser={OpenUser} />
-
-                {OpenUser.id === UserId && (
-                    <ButtonVoid
-                        title="Редактировать профиль"
-                        classes={Styles.Button}
-                        clickHandler={() => console.log('da')}
-                    ></ButtonVoid>
-                )}
-
-                <ShowcaseAchives />
-
-                {OpenUser.id === UserId && (
-                    <ButtonVoid
-                        title="Выйти"
-                        classes={Styles.ButtonLogout}
-                        clickHandler={() => {
-                            dispatch(removeUser());
-                            navigate('/Login');
-                        }}
-                    ></ButtonVoid>
-                )}
-            </>
-        )
-    );
-}

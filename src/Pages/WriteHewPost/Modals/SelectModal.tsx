@@ -3,11 +3,12 @@ import Styles from './SelectModal.module.scss';
 import ButtonVoid from '../../../Components/minicops/B-void';
 import { PostData } from '../WritePost';
 import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
+import closePopup from '../../../Utils/anims/closePopup';
 
 interface ShowSelectModeProps {
     setAllDataForPost: React.Dispatch<React.SetStateAction<PostData>>;
     AllDataOfPost: Array<{
-        id: number;
+        id: string;
         type: string;
         text: string;
         title?: string;
@@ -60,7 +61,7 @@ interface ShowModalProps {
     setIsModalOpen: (open: boolean) => void;
     setAllDataForPost: React.Dispatch<React.SetStateAction<PostData>>;
     AllDataOfPost: Array<{
-        id: number;
+        id: string;
         type: string;
         text: string;
         title?: string;
@@ -76,13 +77,6 @@ const SelectModal: FC<ShowModalProps> = ({
 }) => {
     const SelectModalRef: LegacyRef<HTMLDivElement> = React.createRef();
 
-    const closePopup = () => {
-        SelectModalRef.current?.classList.add(Styles.SelectModalClose);
-        setTimeout(() => {
-            setIsModalOpen(false);
-        }, 300);
-    };
-
     return (
         <div className={Styles.SelectModal} ref={SelectModalRef}>
             <div className={Styles.content}>
@@ -90,10 +84,22 @@ const SelectModal: FC<ShowModalProps> = ({
                     openMod={openMod}
                     setAllDataForPost={setAllDataForPost}
                     AllDataOfPost={AllDataOfPost}
-                    closePopup={closePopup}
+                    closePopup={() =>
+                        closePopup(
+                            SelectModalRef,
+                            Styles.SelectModalClose,
+                            setIsModalOpen
+                        )
+                    }
                 ></ShowSelectMode>
                 <ButtonVoid
-                    clickHandler={closePopup}
+                    clickHandler={() =>
+                        closePopup(
+                            SelectModalRef,
+                            Styles.SelectModalClose,
+                            setIsModalOpen
+                        )
+                    }
                     title="Закрыть"
                     classes={Styles.ButtonClose}
                 ></ButtonVoid>

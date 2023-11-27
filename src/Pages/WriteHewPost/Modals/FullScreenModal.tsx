@@ -1,9 +1,10 @@
-import React, { FC, LegacyRef } from 'react';
+import React, { FC, RefObject } from 'react';
 import Styles from './SelectModal.module.scss';
 import ButtonVoid from '../../../Components/minicops/B-void';
 import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
 import { PostData } from '../WritePost';
 import ShowCode from '../../../Components/ShowPosts/postsComp/ShowCode';
+import closePopup from '../../../Utils/anims/closePopup';
 import ShowImage from '../../../Components/ShowPosts/postsComp/ShowImage';
 
 interface SelectModalProps {
@@ -11,11 +12,11 @@ interface SelectModalProps {
     ResultObject?: {
         text: string;
         type: string;
-        id: number;
+        id: string;
         title?: string;
     };
     AllDataOfPost: Array<{
-        id: number;
+        id: string;
         type: string;
         text: string;
         title?: string;
@@ -27,7 +28,7 @@ interface ShowResultProps {
     ResultObject?: {
         text: string;
         type: string;
-        id: number;
+        id: string;
         title?: string;
     };
 }
@@ -57,7 +58,8 @@ const FullScreenModal: FC<SelectModalProps> = ({
     setAllDataForPost,
     AllDataOfPost,
 }) => {
-    const SelectModalRef: LegacyRef<HTMLDivElement> = React.createRef();
+    const SelectModalRef: RefObject<HTMLDivElement> = React.createRef();
+
     function deleteMode() {
         if (ResultObject?.id !== 0) {
             setAllDataForPost(
@@ -67,7 +69,8 @@ const FullScreenModal: FC<SelectModalProps> = ({
                 type: ModsOfWritePost.text,
                 id: 0,
             });
-            closePopup();
+
+            closePopup(SelectModalRef, Styles.SelectModalClose, setIsModalOpen);
         }
     }
 
@@ -84,15 +87,8 @@ const FullScreenModal: FC<SelectModalProps> = ({
             id: 0,
         });
 
-        closePopup();
+        closePopup(SelectModalRef, Styles.SelectModalClose, setIsModalOpen);
     }
-
-    const closePopup = () => {
-        SelectModalRef.current?.classList.add(Styles.SelectModalClose);
-        setTimeout(() => {
-            setIsModalOpen(false);
-        }, 300);
-    };
 
     return (
         <div className={Styles.SelectModal} ref={SelectModalRef}>
@@ -114,7 +110,13 @@ const FullScreenModal: FC<SelectModalProps> = ({
                     title="Удалить"
                 ></ButtonVoid>
                 <ButtonVoid
-                    clickHandler={closePopup}
+                    clickHandler={() =>
+                        closePopup(
+                            SelectModalRef,
+                            Styles.SelectModalClose,
+                            setIsModalOpen
+                        )
+                    }
                     title="Закрыть"
                     classes={Styles.ButtonClose}
                 ></ButtonVoid>
