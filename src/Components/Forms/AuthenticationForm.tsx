@@ -2,6 +2,7 @@ import FormsStyles from './FormsStyles.module.scss';
 import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ButtonVoid from '../minicops/B-void';
+import AuthWhithGoogle from './AuthWhithGoogle';
 
 interface AuthenticationFromProps {
     title: string;
@@ -93,6 +94,7 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({
                         undefined
                     }
                 ></ButtonVoid>
+                <AuthWhithGoogle />
             </div>
             <div className={FormsStyles.nextForm}>
                 {title === 'Регистрация' ? (

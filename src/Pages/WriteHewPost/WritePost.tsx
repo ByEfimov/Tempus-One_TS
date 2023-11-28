@@ -9,11 +9,6 @@ import TextMode from './Mods/TextMode';
 import KodMode from './Mods/KodMode';
 import ImageMode from './Mods/ImageMode';
 import ButtonVoid from '../../Components/minicops/B-void';
-import { usePosts } from '../../Hooks/usePosts';
-import { useAppDispatch } from '../../Hooks/redus-hooks';
-import { addPost } from '../../Store/slices/PostsSlice';
-import { useNavigate } from 'react-router-dom';
-import { checkArrayIsFull } from '../../Utils/CheckValidPost';
 
 interface TitleForPostProps {
     TitleOfPost: string;
@@ -40,18 +35,14 @@ const TitleForPost: FC<TitleForPostProps> = ({
 
 export type PostData = {
     text: string;
-    id: string;
+    id: number;
     type: string;
     title?: string;
 }[];
 
 const WritePost = () => {
-    const { Posts } = usePosts();
     const { UserIsAuth, UserId } = useAuth();
     const [TitleOfPost, setTitleOfPost] = useState('');
-
-    const dispatch = useAppDispatch();
-    const navigate = useNavigate();
 
     const [AllDataOfPost, setAllDataForPost] = useState<PostData>([
         { text: '', id: 0, type: 'text' },
@@ -64,17 +55,13 @@ const WritePost = () => {
     function sendNewPost() {
         const ToDay = new Date().getTime();
         const NewPost = {
-            PostId: Posts.length,
+            Postid: 0, // ПОСТАВИТЬ ID
             PostDataBlocks: AllDataOfPost,
             PostTitle: TitleOfPost,
-            PostAuthorId: UserId || 0,
+            PostAuthorid: UserId,
             PostDate: ToDay,
         };
-
-        if (checkArrayIsFull(NewPost)) {
-            dispatch(addPost({ NewPost }));
-            navigate('/');
-        }
+        console.log(NewPost);
     }
 
     const openSelectMode = () => {

@@ -2,7 +2,7 @@ import { Navigate } from 'react-router-dom';
 import AuthenticationFrom from '../../Components/Forms/AuthenticationForm';
 import { useAuth } from '../../Hooks/useAuth';
 import { useAppDispatch } from '../../Hooks/redus-hooks';
-import { setUser } from '../../Store/slices/UserSlice';
+import { setCurrentUser } from '../../Store/slices/UserSlice';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function LoginPage() {
@@ -14,14 +14,10 @@ export default function LoginPage() {
         signInWithEmailAndPassword(auth, inputEmail, inputPass)
             .then((userCredential) => {
                 const user = userCredential.user;
-                console.log(user);
                 dispatch(
-                    setUser({
+                    setCurrentUser({
                         email: user.email,
                         id: user.uid,
-                        name: user.displayName,
-                        photo: user.photoURL,
-                        age: 0,
                     })
                 );
             })

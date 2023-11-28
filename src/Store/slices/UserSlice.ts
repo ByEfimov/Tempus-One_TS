@@ -36,6 +36,13 @@ const UserSlice = createSlice({
             state.age = action.payload.age;
             state.photo = action.payload.photo || null;
         },
+        setCurrentUser(
+            state,
+            action: PayloadAction<{ email: string | null; id: string | null }>
+        ) {
+            state.email = action.payload.email || null;
+            state.id = action.payload.id || null;
+        },
         removeUser(state) {
             state.email = null;
             state.id = null;
@@ -43,12 +50,8 @@ const UserSlice = createSlice({
             state.age = null;
             state.photo = null;
         },
-
-        UpdateUserName(state, action) {
-            state.name = action.payload.name || null;
-        },
     },
 });
-export const { setUser, removeUser, UpdateUserName } = UserSlice.actions;
+export const { setUser, removeUser, setCurrentUser } = UserSlice.actions;
 
 export default UserSlice.reducer;

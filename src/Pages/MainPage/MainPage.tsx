@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import ButtonVoid from '../../Components/minicops/B-void';
 import Styles from './MainPage.module.scss';
-import ShowPosts from '../../Components/ShowPosts/PostRender.tsx';
 
 export default function MainPage() {
     const navigate = useNavigate();
@@ -15,7 +14,6 @@ export default function MainPage() {
                     navigate('WriteNewPost');
                 }}
             ></ButtonVoid>
-            <ShowPosts />
         </>
     );
 }

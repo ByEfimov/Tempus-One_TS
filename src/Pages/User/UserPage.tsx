@@ -10,7 +10,7 @@ import { getUserFromId } from '../../Api/Utils/getUserdataFromId';
 
 export default function UserPage() {
     const { id } = useParams();
-    const [OpenUser, setOpenUser] = useState<OpenUserType>();
+    const [OpenUser, setOpenUser] = useState<OpenUserType | null>();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { UserId } = useAuth();

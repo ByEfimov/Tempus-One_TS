@@ -10,25 +10,27 @@ interface ListenerFC {
 
 export default function ListenerFB({ children }: ListenerFC) {
     const db = getDatabase();
-    const { UserId } = useAuth();
-    const starCountRef = ref(db, '/users/' + UserId);
+    const { UserId, UserIsAuth } = useAuth();
     const dispatch = useAppDispatch();
     useEffect(() => {
-        onValue(starCountRef, (snapshot) => {
-            const data = snapshot.val();
-            if (data) {
-                console.log(data);
-                dispatch(
-                    setUser({
-                        email: data.email,
-                        id: data.id,
-                        name: data.name,
-                        photo: data.photo,
-                        age: data.age,
-                    })
-                );
-            }
-        });
+        if (UserIsAuth) {
+            const starCountRef = ref(db, '/users/' + UserId);
+            onValue(starCountRef, (snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    console.log(data);
+                    dispatch(
+                        setUser({
+                            email: data.email,
+                            id: data.id,
+                            name: data.name,
+                            photo: data.photo,
+                            age: data.age,
+                        })
+                    );
+                }
+            });
+        }
     }, []);
 
     return children;

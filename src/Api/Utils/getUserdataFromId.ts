@@ -1,7 +1,9 @@
 import { getDatabase, ref, child, get } from 'firebase/database';
 import { OpenUserType } from '../../Pages/User/UserPage';
 
-export function getUserFromId(id: string | undefined): Promise<OpenUserType> {
+export function getUserFromId(
+    id: string | undefined
+): Promise<OpenUserType | null> {
     const dbRef = ref(getDatabase());
     return new Promise((resolve, reject) => {
         get(child(dbRef, 'users/' + id))
@@ -9,6 +11,8 @@ export function getUserFromId(id: string | undefined): Promise<OpenUserType> {
                 if (snapshot.exists()) {
                     resolve(snapshot.val());
                     console.log(snapshot.val());
+                } else {
+                    resolve(null);
                 }
             })
             .catch((error) => {

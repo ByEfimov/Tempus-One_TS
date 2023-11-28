@@ -12,11 +12,11 @@ interface SelectModalProps {
     ResultObject?: {
         text: string;
         type: string;
-        id: string;
+        id: number;
         title?: string;
     };
     AllDataOfPost: Array<{
-        id: string;
+        id: number;
         type: string;
         text: string;
         title?: string;
@@ -25,12 +25,14 @@ interface SelectModalProps {
     setAllDataForPost: React.Dispatch<React.SetStateAction<PostData>>;
 }
 interface ShowResultProps {
-    ResultObject?: {
-        text: string;
-        type: string;
-        id: string;
-        title?: string;
-    };
+    ResultObject:
+        | {
+              text: string;
+              type: string;
+              id: number;
+              title?: string;
+          }
+        | undefined;
 }
 
 const ShowResult: FC<ShowResultProps> = ({ ResultObject }) => {

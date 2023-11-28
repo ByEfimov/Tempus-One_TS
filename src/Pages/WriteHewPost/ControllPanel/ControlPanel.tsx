@@ -11,7 +11,7 @@ import ShowImage from '../../../Components/ShowPosts/postsComp/ShowImage';
 
 interface ControlPanelProps {
     AllDataOfPost: Array<{
-        id: string;
+        id: number;
         type: string;
         text: string;
         title?: string;
@@ -32,7 +32,7 @@ const ControlBlocksPanel: FC<ControlPanelProps> = ({
     const [selectBlockForModal, setSelectBlockForModal] = useState<{
         text: string;
         type: string;
-        id: string;
+        id: number;
         title?: string;
     }>();
 
@@ -53,11 +53,11 @@ const ControlBlocksPanel: FC<ControlPanelProps> = ({
         }
     }
 
-    let TimeHoldOnButton: number;
+    let TimeHoldOnButton: undefined | ReturnType<typeof setTimeout>;
     const handleInteractionStart = (blockData: {
         text: string;
         type: string;
-        id: string;
+        id: number;
         title?: string;
     }) => {
         TimeHoldOnButton = setTimeout(() => {

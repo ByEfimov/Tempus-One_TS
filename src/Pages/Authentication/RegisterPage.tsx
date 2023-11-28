@@ -3,28 +3,13 @@ import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../Hooks/useAuth';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { useAppDispatch } from '../../Hooks/redus-hooks';
-import { setUser } from '../../Store/slices/UserSlice';
-import { getDatabase, set, ref } from '@firebase/database';
+import { setCurrentUser } from '../../Store/slices/UserSlice';
+import { addUserToRealtimeDB } from '../../Api/Utils/addUserToRealtimeDB';
 
 export default function RegisterPage() {
     const { UserIsAuth } = useAuth();
     const dispatch = useAppDispatch();
     const auth = getAuth();
-    const db = getDatabase();
-
-    function addUserToRealtimeDB(user, inputAge: number) {
-        const NewUser = {
-            email: user.email,
-            experience: 0,
-            id: user.uid,
-            level: 1,
-            name: user.displayName,
-            photo: user.photoURL,
-            age: inputAge,
-        };
-        console.log(NewUser);
-        set(ref(db, 'users/' + user.uid + '/'), NewUser);
-    }
 
     function registerUser(
         inputEmail: string,
@@ -35,20 +20,19 @@ export default function RegisterPage() {
         createUserWithEmailAndPassword(auth, inputEmail, inputPass)
             .then((userCredential) => {
                 const user = userCredential.user;
-                console.log(user);
+                addUserToRealtimeDB(
+                    user.email,
+                    user.uid,
+                    inputName,
+                    user.photoURL,
+                    inputAge
+                );
                 dispatch(
-                    setUser({
+                    setCurrentUser({
                         email: user.email,
                         id: user.uid,
-                        name: user.displayName,
-                        photo: user.photoURL,
-                        age: inputAge,
                     })
                 );
-                setTimeout(() => {
-                    addUserToRealtimeDB(user, inputAge);
-                    changeNameUser(inputName);
-                }, 1000);
             })
             .catch((error) => {
                 console.error(error);

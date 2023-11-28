@@ -8,7 +8,7 @@ import closePopup from '../../../Utils/anims/closePopup';
 interface ShowSelectModeProps {
     setAllDataForPost: React.Dispatch<React.SetStateAction<PostData>>;
     AllDataOfPost: Array<{
-        id: string;
+        id: number;
         type: string;
         text: string;
         title?: string;
@@ -61,7 +61,7 @@ interface ShowModalProps {
     setIsModalOpen: (open: boolean) => void;
     setAllDataForPost: React.Dispatch<React.SetStateAction<PostData>>;
     AllDataOfPost: Array<{
-        id: string;
+        id: number;
         type: string;
         text: string;
         title?: string;

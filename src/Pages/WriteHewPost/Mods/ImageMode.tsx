@@ -11,7 +11,7 @@ import { reverceBlock } from '../../../Utils/anims/reverceBlock';
 
 interface ModsProps {
     AllDataOfPost: Array<{
-        id: string;
+        id: number;
         type: string;
         text: string;
         title?: string;
