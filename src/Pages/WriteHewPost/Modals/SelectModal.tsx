@@ -69,7 +69,7 @@ interface ShowModalProps {
     openMod: (blockData: { type: string; id: number }) => void;
 }
 
-const SelectModal: FC<ShowModalProps> = ({
+const ModalAddNewMode: FC<ShowModalProps> = ({
     setIsModalOpen,
     setAllDataForPost,
     AllDataOfPost,
@@ -108,4 +108,4 @@ const SelectModal: FC<ShowModalProps> = ({
     );
 };
 
-export default SelectModal;
+export default ModalAddNewMode;

@@ -1,37 +1,14 @@
 import { useAuth } from '../../Hooks/useAuth';
-import React, { useState, FC } from 'react';
+import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { ModsOfWritePost, ModsOfInput } from '../../Utils/ModsOfComps';
+import { ModsOfWritePost } from '../../Utils/ModsOfComps';
 import Styles from './Styles.module.scss';
-import ControlBlocksPanel from './ControllPanel/ControlPanel';
-import CustomInput from '../../Components/minicops/input';
+import { ControlBlocksPanel } from './ControllPanel/ControlBlocksPanel';
 import TextMode from './Mods/TextMode';
 import KodMode from './Mods/KodMode';
 import ImageMode from './Mods/ImageMode';
 import ButtonVoid from '../../Components/minicops/B-void';
-
-interface TitleForPostProps {
-    TitleOfPost: string;
-    setTitleOfPost: (title: string) => void;
-}
-
-const TitleForPost: FC<TitleForPostProps> = ({
-    TitleOfPost,
-    setTitleOfPost,
-}) => {
-    function changeTitle(e: React.ChangeEvent<HTMLInputElement>) {
-        setTitleOfPost(e.target.value);
-    }
-
-    return (
-        <CustomInput
-            placeholder="Название поста"
-            value={TitleOfPost}
-            changeFunction={changeTitle}
-            mode={ModsOfInput.default}
-        ></CustomInput>
-    );
-};
+import TitleForPost from './Mods/TitleForPost';
 
 export type PostData = {
     text: string;
@@ -64,7 +41,7 @@ const WritePost = () => {
         console.log(NewPost);
     }
 
-    const openSelectMode = () => {
+    const showSelectMode = () => {
         switch (SelectMode.type) {
             case ModsOfWritePost.text:
                 return (
@@ -100,11 +77,11 @@ const WritePost = () => {
                 setTitleOfPost={setTitleOfPost}
             ></TitleForPost>
 
-            {openSelectMode()}
+            {showSelectMode()}
 
             <ControlBlocksPanel
-                SelectMode={SelectMode}
                 AllDataOfPost={AllDataOfPost}
+                SelectMode={SelectMode}
                 setAllDataForPost={setAllDataForPost}
                 setSelectMode={setSelectMode}
             ></ControlBlocksPanel>

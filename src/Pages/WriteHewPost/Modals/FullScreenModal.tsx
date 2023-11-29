@@ -53,7 +53,7 @@ const ShowResult: FC<ShowResultProps> = ({ ResultObject }) => {
     );
 };
 
-const FullScreenModal: FC<SelectModalProps> = ({
+const FullDataModal: FC<SelectModalProps> = ({
     setIsModalOpen,
     ResultObject,
     setSelectMode,
@@ -126,4 +126,4 @@ const FullScreenModal: FC<SelectModalProps> = ({
         </div>
     );
 };
-export default FullScreenModal;
+export default FullDataModal;
