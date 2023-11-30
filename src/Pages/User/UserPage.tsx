@@ -8,6 +8,14 @@ import ButtonVoid from '../../Components/minicops/B-void';
 import { FC, useEffect, useState } from 'react';
 import { getUserFromId } from '../../Api/Utils/getUserdataFromId';
 
+export type OpenUserType = {
+    photo: string;
+    name: string;
+    email: string;
+    id: string;
+    age: number;
+};
+
 export default function UserPage() {
     const { id } = useParams();
     const [OpenUser, setOpenUser] = useState<OpenUserType | null>();
@@ -46,14 +54,6 @@ export default function UserPage() {
         )
     );
 }
-
-export type OpenUserType = {
-    photo: string;
-    name: string;
-    email: string;
-    id: string;
-    age: number;
-};
 
 interface UserDataProps {
     OpenUser: OpenUserType;

@@ -13,12 +13,17 @@ import TitleForPost from './Mods/TitleForPost';
 import { v4 as uuidv4 } from 'uuid';
 import { countEmptyValues } from '../../Utils/countEmptyValues';
 
-export type PostData = {
+export type AllDataOfPost = {
     text: string;
     id: number;
     type: string;
     title?: string;
-}[];
+};
+
+export type SelectMode = {
+    type: string;
+    id: number;
+};
 
 const WritePost = () => {
     const { UserIsAuth, UserId } = useAuth();
@@ -26,10 +31,10 @@ const WritePost = () => {
     const db = getDatabase();
 
     const [TitleOfPost, setTitleOfPost] = useState('');
-    const [AllDataOfPost, setAllDataForPost] = useState<PostData>([
+    const [AllDataOfPost, setAllDataForPost] = useState<AllDataOfPost[]>([
         { text: '', id: 0, type: 'text' },
     ]);
-    const [SelectMode, setSelectMode] = useState({
+    const [SelectMode, setSelectMode] = useState<SelectMode>({
         type: ModsOfWritePost.text,
         id: 0,
     });

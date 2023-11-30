@@ -4,30 +4,15 @@ import ShowImage from '../../../Components/ShowPosts/postsComp/ShowImage';
 import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
 import Styles from '../Styles.module.scss';
 import { FC } from 'react';
+import { SelectMode, AllDataOfPost } from '../WritePost';
 
 interface ControlBlockRenderProps {
-    blockData: {
-        id: number;
-        type: string;
-        text: string;
-        title?: string | undefined;
-    };
-    openMod: (blockData: { type: string; id: number }) => void;
+    blockData: AllDataOfPost;
+    openMod: (blockData: SelectMode) => void;
     setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    SelectMode: {
-        type: string;
-        id: number;
-    };
+    SelectMode: SelectMode;
     setSelectBlockForModal: React.Dispatch<
-        React.SetStateAction<
-            | {
-                  text: string;
-                  type: string;
-                  id: number;
-                  title?: string | undefined;
-              }
-            | undefined
-        >
+        React.SetStateAction<AllDataOfPost | undefined>
     >;
 }
 
@@ -40,12 +25,7 @@ const ControlBlockRender: FC<ControlBlockRenderProps> = ({
 }) => {
     let TimeHoldOnButton: undefined | ReturnType<typeof setTimeout>;
 
-    const handleInteractionStart = (blockData: {
-        text: string;
-        type: string;
-        id: number;
-        title?: string;
-    }) => {
+    const handleInteractionStart = (blockData: AllDataOfPost) => {
         TimeHoldOnButton = setTimeout(() => {
             setIsModalOpen(true);
             window.navigator.vibrate(100);

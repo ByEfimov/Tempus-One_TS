@@ -4,19 +4,14 @@ import FeatherIcon from 'feather-icons-react';
 import { FC, useState } from 'react';
 import FullDataModal from '../Modals/FullScreenModal';
 import ModalAddNewMode from '../Modals/SelectModal';
-import { PostData } from '../WritePost';
+import { AllDataOfPost, SelectMode } from '../WritePost';
 import ControlBlockRender from './ControlBlockRender';
 
 interface ControlPanelProps {
-    AllDataOfPost: Array<{
-        id: number;
-        type: string;
-        text: string;
-        title?: string;
-    }>;
-    SelectMode: { type: string; id: number };
-    setAllDataForPost: React.Dispatch<React.SetStateAction<PostData>>;
-    setSelectMode: (mode: { type: string; id: number }) => void;
+    AllDataOfPost: AllDataOfPost[];
+    SelectMode: SelectMode;
+    setAllDataForPost: React.Dispatch<React.SetStateAction<AllDataOfPost[]>>;
+    setSelectMode: (mode: SelectMode) => void;
 }
 
 export const ControlBlocksPanel: FC<ControlPanelProps> = ({
@@ -27,14 +22,10 @@ export const ControlBlocksPanel: FC<ControlPanelProps> = ({
 }) => {
     const [isModalFullOpen, setIsModalFullOpen] = useState(false);
     const [isModalAddOpen, setIsModalAddOpen] = useState(false);
-    const [selectBlockForModal, setSelectBlockForModal] = useState<{
-        text: string;
-        type: string;
-        id: number;
-        title?: string;
-    }>();
+    const [selectBlockForModal, setSelectBlockForModal] =
+        useState<AllDataOfPost>();
 
-    function openMod(blockData: { type: string; id: number }) {
+    function openMod(blockData: SelectMode) {
         if (blockData.type === ModsOfWritePost.text) {
             document
                 .getElementById('topBlock')

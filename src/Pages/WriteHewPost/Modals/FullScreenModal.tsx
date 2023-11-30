@@ -6,33 +6,17 @@ import { PostData } from '../WritePost';
 import ShowCode from '../../../Components/ShowPosts/postsComp/ShowCode';
 import closePopup from '../../../Utils/anims/closePopup';
 import ShowImage from '../../../Components/ShowPosts/postsComp/ShowImage';
+import { AllDataOfPost } from '../ControllPanel/ControlBlocksPanel';
 
 interface SelectModalProps {
     setIsModalOpen: (open: boolean) => void;
-    ResultObject?: {
-        text: string;
-        type: string;
-        id: number;
-        title?: string;
-    };
-    AllDataOfPost: Array<{
-        id: number;
-        type: string;
-        text: string;
-        title?: string;
-    }>;
+    ResultObject?: AllDataOfPost;
+    AllDataOfPost: PostData;
     setSelectMode: (mode: { type: string; id: number }) => void;
     setAllDataForPost: React.Dispatch<React.SetStateAction<PostData>>;
 }
 interface ShowResultProps {
-    ResultObject:
-        | {
-              text: string;
-              type: string;
-              id: number;
-              title?: string;
-          }
-        | undefined;
+    ResultObject: AllDataOfPost | undefined;
 }
 
 const ShowResult: FC<ShowResultProps> = ({ ResultObject }) => {
