@@ -7,3 +7,4 @@ declare module '*.module.scss' {
     export default content;
 }
 declare module 'feather-icons-react';
+declare module 'uuid';
