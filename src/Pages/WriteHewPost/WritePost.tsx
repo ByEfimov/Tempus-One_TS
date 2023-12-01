@@ -1,5 +1,4 @@
 import { useAuth } from '../../Hooks/useAuth';
-import { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { ModsOfWritePost } from '../../Utils/ModsOfComps';
 import Styles from './Styles.module.scss';
@@ -12,6 +11,9 @@ import ButtonVoid from '../../Components/minicops/B-void';
 import TitleForPost from './Mods/TitleForPost';
 import { v4 as uuidv4 } from 'uuid';
 import { countEmptyValues } from '../../Utils/countEmptyValues';
+import { useWritePost } from '../../Hooks/useWritePost';
+import { useAppDispatch } from '../../Hooks/redus-hooks';
+import { removePost } from '../../Store/slices/WritePostSlice';
 
 export type AllDataOfPost = {
     text: string;
@@ -25,25 +27,26 @@ export type SelectMode = {
     id: number;
 };
 
+export type PostData = {
+    text: string;
+    id: number;
+    type: string;
+    title?: string;
+}[];
+
 const WritePost = () => {
     const { UserIsAuth, UserId } = useAuth();
+    const { TitleOfPost, selectMode, BlocksOfPost } = useWritePost();
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const db = getDatabase();
-
-    const [TitleOfPost, setTitleOfPost] = useState('');
-    const [AllDataOfPost, setAllDataForPost] = useState<AllDataOfPost[]>([
-        { text: '', id: 0, type: 'text' },
-    ]);
-    const [SelectMode, setSelectMode] = useState<SelectMode>({
-        type: ModsOfWritePost.text,
-        id: 0,
-    });
+    console.log(BlocksOfPost);
 
     function sendNewPost() {
         const ToDay = new Date().getTime();
         const NewPost = {
             PostId: uuidv4(),
-            PostDataBlocks: AllDataOfPost,
+            PostDataBlocks: BlocksOfPost,
             PostTitle: TitleOfPost,
             PostAuthorId: UserId,
             PostDate: ToDay,
@@ -52,61 +55,43 @@ const WritePost = () => {
             PostComments: {},
         };
 
-        if (countEmptyValues(NewPost) - 3 === 0) {
+        if (countEmptyValues(NewPost) - 4 === 0) {
             set(ref(db, 'posts/' + NewPost.PostId), NewPost);
+            dispatch(removePost());
             navigate('/');
         }
     }
 
     const showSelectMode = () => {
-        switch (SelectMode.type) {
+        switch (selectMode.type) {
             case ModsOfWritePost.text:
-                return (
-                    <TextMode
-                        setAllDataForPost={setAllDataForPost}
-                        AllDataOfPost={AllDataOfPost}
-                        SelectMode={SelectMode}
-                    ></TextMode>
-                );
+                return <TextMode></TextMode>;
             case ModsOfWritePost.kod:
-                return (
-                    <KodMode
-                        setAllDataForPost={setAllDataForPost}
-                        AllDataOfPost={AllDataOfPost}
-                        SelectMode={SelectMode}
-                    />
-                );
+                return <KodMode />;
             case ModsOfWritePost.image:
-                return (
-                    <ImageMode
-                        setAllDataForPost={setAllDataForPost}
-                        AllDataOfPost={AllDataOfPost}
-                        SelectMode={SelectMode}
-                    />
-                );
+                return <ImageMode />;
         }
     };
 
     return UserIsAuth ? (
         <div className={Styles.WritePost}>
-            <TitleForPost
-                TitleOfPost={TitleOfPost}
-                setTitleOfPost={setTitleOfPost}
-            ></TitleForPost>
+            <TitleForPost></TitleForPost>
 
             {showSelectMode()}
 
-            <ControlBlocksPanel
-                AllDataOfPost={AllDataOfPost}
-                SelectMode={SelectMode}
-                setAllDataForPost={setAllDataForPost}
-                setSelectMode={setSelectMode}
-            ></ControlBlocksPanel>
+            <ControlBlocksPanel></ControlBlocksPanel>
 
             <ButtonVoid
                 classes={Styles.ButtonWrite}
                 title="Отправить пост"
                 clickHandler={sendNewPost}
+            ></ButtonVoid>
+            <ButtonVoid
+                classes={Styles.ButtonWrite}
+                title="Очистить пост"
+                clickHandler={() => {
+                    dispatch(removePost());
+                }}
             ></ButtonVoid>
         </div>
     ) : (

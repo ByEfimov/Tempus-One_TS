@@ -1,34 +1,25 @@
 import React, { FC, LegacyRef } from 'react';
 import Styles from './SelectModal.module.scss';
 import ButtonVoid from '../../../Components/minicops/B-void';
-import { PostData } from '../WritePost';
 import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
 import closePopup from '../../../Utils/anims/closePopup';
+import { useAppDispatch } from '../../../Hooks/redus-hooks';
+import {
+    addBlockToPost,
+    setSelectMode,
+} from '../../../Store/slices/WritePostSlice';
+import { useWritePost } from '../../../Hooks/useWritePost';
 
-interface ShowSelectModeProps {
-    setAllDataForPost: React.Dispatch<React.SetStateAction<PostData>>;
-    AllDataOfPost: PostData;
-    openMod: (blockData: { type: string; id: number }) => void;
+interface ShowSelectMode {
     closePopup: () => void;
 }
 
-const ShowSelectMode: FC<ShowSelectModeProps> = ({
-    setAllDataForPost,
-    AllDataOfPost,
-    openMod,
-    closePopup,
-}) => {
-    function createNewMode(type: string, text = '', title = '') {
-        setAllDataForPost([
-            ...AllDataOfPost,
-            {
-                text: text,
-                type: type,
-                id: AllDataOfPost.length,
-                title: title,
-            },
-        ]);
-        openMod({ type: type, id: AllDataOfPost.length });
+const ShowSelectMode: FC<ShowSelectMode> = ({ closePopup }) => {
+    const dispatch = useAppDispatch();
+    const { BlocksOfPost } = useWritePost();
+    function createNewMode(type: string) {
+        dispatch(addBlockToPost({ type }));
+        dispatch(setSelectMode({ id: BlocksOfPost.length, type }));
         closePopup();
     }
 
@@ -37,12 +28,7 @@ const ShowSelectMode: FC<ShowSelectModeProps> = ({
             <h1 className={Styles.Title}>Выбери что ты хочешь добавить:</h1>
             <ButtonVoid
                 title="Код"
-                clickHandler={() =>
-                    createNewMode(
-                        ModsOfWritePost.kod,
-                        '<div>Пиши свой код здесь.</div>'
-                    )
-                }
+                clickHandler={() => createNewMode(ModsOfWritePost.kod)}
             ></ButtonVoid>
             <ButtonVoid
                 title="Картинка"
@@ -54,26 +40,15 @@ const ShowSelectMode: FC<ShowSelectModeProps> = ({
 
 interface ShowModalProps {
     setIsModalOpen: (open: boolean) => void;
-    setAllDataForPost: React.Dispatch<React.SetStateAction<PostData>>;
-    AllDataOfPost: PostData;
-    openMod: (blockData: { type: string; id: number }) => void;
 }
 
-const ModalAddNewMode: FC<ShowModalProps> = ({
-    setIsModalOpen,
-    setAllDataForPost,
-    AllDataOfPost,
-    openMod,
-}) => {
+const ModalAddNewMode: FC<ShowModalProps> = ({ setIsModalOpen }) => {
     const SelectModalRef: LegacyRef<HTMLDivElement> = React.createRef();
 
     return (
         <div className={Styles.SelectModal} ref={SelectModalRef}>
             <div className={Styles.content}>
                 <ShowSelectMode
-                    openMod={openMod}
-                    setAllDataForPost={setAllDataForPost}
-                    AllDataOfPost={AllDataOfPost}
                     closePopup={() =>
                         closePopup(
                             SelectModalRef,

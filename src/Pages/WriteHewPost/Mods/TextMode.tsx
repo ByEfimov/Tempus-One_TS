@@ -1,31 +1,21 @@
-import { FC } from 'react';
 import CustomTextarea from '../../../Components/minicops/textarea';
-import { UpdateData } from '../../../Utils/UpdatePostData';
-import { PostData } from '../WritePost';
+import { useWritePost } from '../../../Hooks/useWritePost';
+import { useAppDispatch } from '../../../Hooks/redus-hooks';
+import { changeTextOfBlock } from '../../../Store/slices/WritePostSlice';
 
-interface TextOfPostProps {
-    AllDataOfPost: Array<{
-        id: number;
-        type: string;
-        text: string;
-        title?: string;
-    }>;
-    SelectMode: { type: string; id: number };
-    setAllDataForPost: React.Dispatch<React.SetStateAction<PostData>>;
-}
+const TextMode = () => {
+    const { selectMode, BlocksOfPost } = useWritePost();
+    const dispatch = useAppDispatch();
 
-const TextMode: FC<TextOfPostProps> = ({
-    AllDataOfPost,
-    SelectMode,
-    setAllDataForPost,
-}) => {
     function changeMainText(e: React.ChangeEvent<HTMLTextAreaElement>) {
-        UpdateData(setAllDataForPost, SelectMode, AllDataOfPost, 'text', e);
+        dispatch(
+            changeTextOfBlock({ id: selectMode.id, text: e.target.value })
+        );
     }
 
     return (
         <CustomTextarea
-            value={AllDataOfPost[SelectMode.id].text}
+            value={BlocksOfPost[selectMode.id].text}
             placeholder="Основной текст блока"
             changeFunction={changeMainText}
         ></CustomTextarea>

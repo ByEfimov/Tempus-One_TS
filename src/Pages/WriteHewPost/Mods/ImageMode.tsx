@@ -1,32 +1,26 @@
-import { FC, ChangeEvent } from 'react';
+import { ChangeEvent } from 'react';
 import { ModsOfInput } from '../../../Utils/ModsOfComps';
 import CustomInput from '../../../Components/minicops/input';
 import Styles from '../Styles.module.scss';
 import classNames from 'classnames';
-import { UpdateData } from '../../../Utils/UpdatePostData';
-import { PostData } from '../WritePost';
 import ActiveButton from '../../../Components/ShowPosts/postsComp/activeButton';
 import ShowImage from '../../../Components/ShowPosts/postsComp/ShowImage';
 import { reverceBlock } from '../../../Utils/anims/reverceBlock';
+import {
+    changeTextOfBlock,
+    changeTitleOfBlock,
+} from '../../../Store/slices/WritePostSlice';
+import { useWritePost } from '../../../Hooks/useWritePost';
+import { useAppDispatch } from '../../../Hooks/redus-hooks';
 
-interface ModsProps {
-    AllDataOfPost: Array<{
-        id: number;
-        type: string;
-        text: string;
-        title?: string;
-    }>;
-    SelectMode: { type: string; id: number };
-    setAllDataForPost: React.Dispatch<React.SetStateAction<PostData>>;
-}
+const ImageMode = () => {
+    const { selectMode, BlocksOfPost } = useWritePost();
+    const dispatch = useAppDispatch();
 
-const ImageMode: FC<ModsProps> = ({
-    AllDataOfPost,
-    SelectMode,
-    setAllDataForPost,
-}) => {
     function changeTitle(e: React.ChangeEvent<HTMLInputElement>) {
-        UpdateData(setAllDataForPost, SelectMode, AllDataOfPost, 'title', e);
+        dispatch(
+            changeTitleOfBlock({ id: selectMode.id, title: e.target.value })
+        );
     }
 
     const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
@@ -34,13 +28,12 @@ const ImageMode: FC<ModsProps> = ({
         const reader = new FileReader();
 
         reader.onload = () => {
-            UpdateData(
-                setAllDataForPost,
-                SelectMode,
-                AllDataOfPost,
-                'text',
-                undefined,
-                reader.result as string
+            console.log(selectMode.type);
+            dispatch(
+                changeTextOfBlock({
+                    id: selectMode.id,
+                    text: reader.result as string,
+                })
             );
         };
 
@@ -53,7 +46,7 @@ const ImageMode: FC<ModsProps> = ({
         <>
             <div className={Styles.topBlock} id="topBlock">
                 <CustomInput
-                    value={AllDataOfPost[SelectMode.id].title || ''}
+                    value={BlocksOfPost[selectMode.id].title || ''}
                     placeholder="Название для картинки"
                     changeFunction={changeTitle}
                     mode={ModsOfInput.small}
@@ -75,7 +68,7 @@ const ImageMode: FC<ModsProps> = ({
                 </div>
                 <div className={classNames(Styles.face, Styles.back)}>
                     <ShowImage
-                        imageSrc={AllDataOfPost[SelectMode.id].text}
+                        imageSrc={BlocksOfPost[selectMode.id].text}
                     ></ShowImage>
                 </div>
             </div>

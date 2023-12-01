@@ -1,53 +1,37 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import CustomInput from '../../../Components/minicops/input';
 import { ModsOfInput } from '../../../Utils/ModsOfComps';
-import { FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Styles from '../Styles.module.scss';
-import { PostData } from '../WritePost';
-import { UpdateData } from '../../../Utils/UpdatePostData';
 import classNames from 'classnames';
 import { LiveProvider, LiveEditor } from 'react-live';
 import ShowModal, { ModsForShowModal } from '../Modals/ShowModal';
 import ActiveButton from '../../../Components/ShowPosts/postsComp/activeButton';
 import ShowCode from '../../../Components/ShowPosts/postsComp/ShowCode';
 import { reverceBlock } from '../../../Utils/anims/reverceBlock';
+import { useWritePost } from '../../../Hooks/useWritePost';
+import { useAppDispatch } from '../../../Hooks/redus-hooks';
+import {
+    changeTextOfBlock,
+    changeTitleOfBlock,
+} from '../../../Store/slices/WritePostSlice';
 
-interface ModsProps {
-    AllDataOfPost: Array<{
-        id: number;
-        type: string;
-        text: string;
-        title?: string;
-    }>;
-    SelectMode: { type: string; id: number };
-    setAllDataForPost: React.Dispatch<React.SetStateAction<PostData>>;
-}
+const KodMode = () => {
+    const { selectMode, BlocksOfPost } = useWritePost();
+    const dispatch = useAppDispatch();
 
-const KodMode: FC<ModsProps> = ({
-    AllDataOfPost,
-    SelectMode,
-    setAllDataForPost,
-}) => {
-    const [UserCode, setUserCode] = useState(AllDataOfPost[SelectMode.id].text);
+    const [UserCode, setUserCode] = useState(BlocksOfPost[selectMode.id].text);
     const [isModalClueCodeOpen, setIsModalClueCodeOpen] = useState(false);
     const [isModalErrorsOpen, setIsModalErrorsOpen] = useState(false);
+
     useEffect(() => {
-        UpdateData(
-            setAllDataForPost,
-            SelectMode,
-            AllDataOfPost,
-            'text',
-            undefined,
-            UserCode
-        );
+        dispatch(changeTextOfBlock({ id: selectMode.id, text: UserCode }));
     }, [UserCode]);
 
-    useEffect(() => {
-        setUserCode(AllDataOfPost[SelectMode.id].text);
-    }, [SelectMode]);
-
     function changeTitle(e: React.ChangeEvent<HTMLInputElement>) {
-        UpdateData(setAllDataForPost, SelectMode, AllDataOfPost, 'title', e);
+        dispatch(
+            changeTitleOfBlock({ id: selectMode.id, title: e.target.value })
+        );
     }
 
     return (
@@ -62,14 +46,14 @@ const KodMode: FC<ModsProps> = ({
                 <ShowModal
                     mode={ModsForShowModal.Errors}
                     setIsModalOpen={setIsModalErrorsOpen}
-                    userText={AllDataOfPost[SelectMode.id].text}
+                    userText={BlocksOfPost[selectMode.id - 1].text}
                 ></ShowModal>
             )}
 
             <div className={Styles.topBlock} id="topBlock">
                 <CustomInput
                     mode={ModsOfInput.small}
-                    value={AllDataOfPost[SelectMode.id].title || ''}
+                    value={BlocksOfPost[selectMode.id].title || ''}
                     placeholder="Название для кода"
                     changeFunction={changeTitle}
                 ></CustomInput>

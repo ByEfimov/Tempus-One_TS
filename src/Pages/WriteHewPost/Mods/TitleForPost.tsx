@@ -1,18 +1,14 @@
-import { FC } from 'react';
 import CustomInput from '../../../Components/minicops/input';
+import { useAppDispatch } from '../../../Hooks/redus-hooks';
+import { useWritePost } from '../../../Hooks/useWritePost';
+import { setTitleOfPost } from '../../../Store/slices/WritePostSlice';
 import { ModsOfInput } from '../../../Utils/ModsOfComps';
 
-interface TitleForPostProps {
-    TitleOfPost: string;
-    setTitleOfPost: (title: string) => void;
-}
-
-const TitleForPost: FC<TitleForPostProps> = ({
-    TitleOfPost,
-    setTitleOfPost,
-}) => {
+const TitleForPost = () => {
+    const { TitleOfPost } = useWritePost();
+    const dispatch = useAppDispatch();
     function changeTitle(e: React.ChangeEvent<HTMLInputElement>) {
-        setTitleOfPost(e.target.value);
+        dispatch(setTitleOfPost({ title: e.target.value }));
     }
 
     return (
