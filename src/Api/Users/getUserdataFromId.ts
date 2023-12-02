@@ -10,7 +10,6 @@ export function getUserFromId(
             .then((snapshot) => {
                 if (snapshot.exists()) {
                     resolve(snapshot.val());
-                    console.log(snapshot.val());
                 } else {
                     resolve(null);
                 }

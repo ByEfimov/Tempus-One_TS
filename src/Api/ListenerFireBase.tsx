@@ -1,8 +1,10 @@
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { useAppDispatch } from '../Hooks/redus-hooks';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '../Hooks/useAuth';
-import { setUser } from '../Store/slices/UserSlice';
+import { removeUser, setUser } from '../Store/slices/UserSlice';
+import { getCurrentUserData } from './Users/getCurrentUserData';
+import { getAuth, signOut } from 'firebase/auth';
 
 interface ListenerFC {
     children: React.ReactChild | React.ReactNode;
@@ -11,28 +13,46 @@ interface ListenerFC {
 export default function ListenerFB({ children }: ListenerFC) {
     const db = getDatabase();
     const { UserId, UserIsAuth } = useAuth();
+    const auth = getAuth();
     const dispatch = useAppDispatch();
 
+    const [authUserId, setAuthUserId] = useState<string | null>(null);
+    getCurrentUserData().then((user) => setAuthUserId(user.uid));
+
     useEffect(() => {
-        if (UserIsAuth) {
-            const starCountRef = ref(db, '/users/' + UserId);
-            onValue(starCountRef, (snapshot) => {
-                const data = snapshot.val();
-                if (data) {
-                    console.log(data);
-                    dispatch(
-                        setUser({
-                            email: data.email,
-                            id: data.id,
-                            name: data.name,
-                            photo: data.photo,
-                            age: data.age,
-                        })
-                    );
-                }
-            });
+        function LogoutUser() {
+            signOut(auth)
+                .then(() => {
+                    dispatch(removeUser());
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
         }
-    }, []);
+
+        if (authUserId) {
+            if (UserIsAuth && authUserId === UserId) {
+                const starCountRef = ref(db, '/users/' + UserId);
+                onValue(starCountRef, (snapshot) => {
+                    const data = snapshot.val();
+                    if (data) {
+                        console.log(data);
+                        dispatch(
+                            setUser({
+                                email: data.email,
+                                id: data.id,
+                                name: data.name,
+                                photo: data.photo,
+                                age: data.age,
+                            })
+                        );
+                    }
+                });
+            } else {
+                LogoutUser();
+            }
+        }
+    }, [UserId, UserIsAuth, auth, authUserId, db, dispatch]);
 
     return children;
 }

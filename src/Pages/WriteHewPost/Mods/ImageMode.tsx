@@ -15,7 +15,6 @@ import { useAppDispatch } from '../../../Hooks/redus-hooks';
 
 const ImageMode = () => {
     const { selectMode, BlocksOfPost } = useWritePost();
-    const value = BlocksOfPost[selectMode.id].text;
     const dispatch = useAppDispatch();
 
     function changeTitle(e: React.ChangeEvent<HTMLInputElement>) {
@@ -64,11 +63,7 @@ const ImageMode = () => {
             </div>
             <div className={Styles.card} id="card">
                 <div className={classNames(Styles.face, Styles.front)}>
-                    <input
-                        type="file"
-                        value={value}
-                        onChange={handleImageUpload}
-                    />
+                    <input type="file" onChange={handleImageUpload} />
                 </div>
                 <div className={classNames(Styles.face, Styles.back)}>
                     <ShowImage

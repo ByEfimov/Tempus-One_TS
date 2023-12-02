@@ -6,7 +6,7 @@ import { useAppDispatch } from '../../Hooks/redus-hooks';
 import { removeUser } from '../../Store/slices/UserSlice';
 import ButtonVoid from '../../Components/minicops/B-void';
 import { FC, useEffect, useState } from 'react';
-import { getUserFromId } from '../../Api/Utils/getUserdataFromId';
+import { getUserFromId } from '../../Api/Users/getUserdataFromId';
 import { getAuth, signOut } from 'firebase/auth';
 
 export type OpenUserType = {
@@ -27,7 +27,18 @@ export default function UserPage() {
 
     useEffect(() => {
         getUserFromId(id).then((user) => setOpenUser(user));
-    }, []);
+    }, [id]);
+
+    function LogoutUser() {
+        signOut(auth)
+            .then(() => {
+                dispatch(removeUser());
+                navigate('/Login');
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
 
     return (
         OpenUser && (
@@ -47,14 +58,7 @@ export default function UserPage() {
                         title="Выйти"
                         classes={Styles.ButtonLogout}
                         clickHandler={() => {
-                            signOut(auth)
-                                .then(() => {
-                                    dispatch(removeUser());
-                                    navigate('/Login');
-                                })
-                                .catch((error) => {
-                                    console.error(error);
-                                });
+                            LogoutUser();
                         }}
                     ></ButtonVoid>
                 )}

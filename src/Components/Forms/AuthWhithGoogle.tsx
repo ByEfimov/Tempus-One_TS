@@ -1,9 +1,9 @@
-import { getUserFromId } from '../../Api/Utils/getUserdataFromId';
+import { getUserFromId } from '../../Api/Users/getUserdataFromId';
 import ButtonVoid from '../minicops/B-void';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { useAppDispatch } from '../../Hooks/redus-hooks';
 import { setCurrentUser } from '../../Store/slices/UserSlice';
-import { addUserToRealtimeDB } from '../../Api/Utils/addUserToRealtimeDB';
+import { addUserToRealtimeDB } from '../../Api/Users/addUserToRealtimeDB';
 
 type User = {
     email: string | null;

@@ -7,7 +7,7 @@ type PostBlock = {
     title?: string;
 };
 
-type Post = {
+export type Post = {
     PostAuthorId: string;
     PostDataBlocks: PostBlock[];
     PostDate: number;
