@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ModsOfWritePost } from '../../Utils/ModsOfComps';
 
-type BlockOfPostType = {
+export type BlockOfPostType = {
     text: string;
     id: number;
     type: string;

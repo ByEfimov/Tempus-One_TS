@@ -2,22 +2,22 @@ import React, { FC, RefObject } from 'react';
 import Styles from './SelectModal.module.scss';
 import ButtonVoid from '../../../Components/minicops/B-void';
 import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
-import { AllDataOfPost } from '../WritePost';
 import ShowCode from '../../../Components/ShowPosts/postsComp/ShowCode';
 import closePopup from '../../../Utils/anims/closePopup';
 import ShowImage from '../../../Components/ShowPosts/postsComp/ShowImage';
 import { useAppDispatch } from '../../../Hooks/redus-hooks';
 import {
+    BlockOfPostType,
     clearBlockOfPost,
     removeBlockOfPost,
 } from '../../../Store/slices/WritePostSlice';
 
 interface SelectModalProps {
     setIsModalOpen: (open: boolean) => void;
-    ResultObject?: AllDataOfPost;
+    ResultObject?: BlockOfPostType;
 }
 interface ShowResultProps {
-    ResultObject: AllDataOfPost | undefined;
+    ResultObject: BlockOfPostType | undefined;
 }
 
 const ShowResult: FC<ShowResultProps> = ({ ResultObject }) => {

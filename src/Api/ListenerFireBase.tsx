@@ -10,7 +10,7 @@ interface ListenerFC {
 
 export default function ListenerFB({ children }: ListenerFC) {
     const db = getDatabase();
-    const { UserId, UserIsAuth, UserEmailVarivide } = useAuth();
+    const { UserId, UserIsAuth } = useAuth();
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -22,7 +22,6 @@ export default function ListenerFB({ children }: ListenerFC) {
                     console.log(data);
                     dispatch(
                         setUser({
-                            emailIsConfirmed: data.emailIsConfirmed,
                             email: data.email,
                             id: data.id,
                             name: data.name,

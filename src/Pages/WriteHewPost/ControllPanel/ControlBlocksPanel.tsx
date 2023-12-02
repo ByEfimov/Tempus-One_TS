@@ -7,14 +7,18 @@ import ModalAddNewMode from '../Modals/SelectModal';
 import ControlBlockRender from './ControlBlockRender';
 import { useAppDispatch } from '../../../Hooks/redus-hooks';
 import { useWritePost } from '../../../Hooks/useWritePost';
-import { setSelectMode } from '../../../Store/slices/WritePostSlice';
+import {
+    BlockOfPostType,
+    setSelectMode,
+} from '../../../Store/slices/WritePostSlice';
 
 export const ControlBlocksPanel = () => {
     const { selectMode, BlocksOfPost } = useWritePost();
     const dispatch = useAppDispatch();
     const [isModalFullOpen, setIsModalFullOpen] = useState(false);
     const [isModalAddOpen, setIsModalAddOpen] = useState(false);
-    const [selectBlockForModal, setSelectBlockForModal] = useState();
+    const [selectBlockForModal, setSelectBlockForModal] =
+        useState<BlockOfPostType>();
 
     function openMod(blockData: { type: string; id: number }) {
         if (blockData.type === ModsOfWritePost.text) {
