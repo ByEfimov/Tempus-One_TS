@@ -4,7 +4,6 @@ import FeatherIcon from 'feather-icons-react';
 import { useState } from 'react';
 import FullDataModal from '../Modals/FullScreenModal';
 import ModalAddNewMode from '../Modals/SelectModal';
-import { AllDataOfPost, SelectMode } from '../WritePost';
 import ControlBlockRender from './ControlBlockRender';
 import { useAppDispatch } from '../../../Hooks/redus-hooks';
 import { useWritePost } from '../../../Hooks/useWritePost';
@@ -15,10 +14,9 @@ export const ControlBlocksPanel = () => {
     const dispatch = useAppDispatch();
     const [isModalFullOpen, setIsModalFullOpen] = useState(false);
     const [isModalAddOpen, setIsModalAddOpen] = useState(false);
-    const [selectBlockForModal, setSelectBlockForModal] =
-        useState<AllDataOfPost>();
+    const [selectBlockForModal, setSelectBlockForModal] = useState();
 
-    function openMod(blockData: SelectMode) {
+    function openMod(blockData: { type: string; id: number }) {
         if (blockData.type === ModsOfWritePost.text) {
             document
                 .getElementById('topBlock')
@@ -50,6 +48,7 @@ export const ControlBlocksPanel = () => {
             <div className={Styles.ControlPanel}>
                 {BlocksOfPost.map((blockData) => (
                     <ControlBlockRender
+                        key={blockData.id}
                         blockData={blockData}
                         openMod={openMod}
                         setIsModalOpen={setIsModalFullOpen}

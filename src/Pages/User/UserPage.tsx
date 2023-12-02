@@ -7,6 +7,7 @@ import { removeUser } from '../../Store/slices/UserSlice';
 import ButtonVoid from '../../Components/minicops/B-void';
 import { FC, useEffect, useState } from 'react';
 import { getUserFromId } from '../../Api/Utils/getUserdataFromId';
+import { getAuth, signOut } from 'firebase/auth';
 
 export type OpenUserType = {
     photo: string;
@@ -18,6 +19,7 @@ export type OpenUserType = {
 
 export default function UserPage() {
     const { id } = useParams();
+    const auth = getAuth();
     const [OpenUser, setOpenUser] = useState<OpenUserType | null>();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
@@ -45,8 +47,14 @@ export default function UserPage() {
                         title="Выйти"
                         classes={Styles.ButtonLogout}
                         clickHandler={() => {
-                            dispatch(removeUser());
-                            navigate('/Login');
+                            signOut(auth)
+                                .then(() => {
+                                    dispatch(removeUser());
+                                    navigate('/Login');
+                                })
+                                .catch((error) => {
+                                    console.error(error);
+                                });
                         }}
                     ></ButtonVoid>
                 )}

@@ -46,14 +46,12 @@ const KodMode = () => {
                 <ShowModal
                     mode={ModsForShowModal.Errors}
                     setIsModalOpen={setIsModalErrorsOpen}
-                    userText={BlocksOfPost[selectMode.id - 1].text}
                 ></ShowModal>
             )}
 
             <div className={Styles.topBlock} id="topBlock">
                 <CustomInput
                     mode={ModsOfInput.small}
-                    value={BlocksOfPost[selectMode.id].title || ''}
                     placeholder="Название для кода"
                     changeFunction={changeTitle}
                 ></CustomInput>

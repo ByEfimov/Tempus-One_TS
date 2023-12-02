@@ -4,7 +4,7 @@ import { useAppDispatch } from '../../../Hooks/redus-hooks';
 import { changeTextOfBlock } from '../../../Store/slices/WritePostSlice';
 
 const TextMode = () => {
-    const { selectMode, BlocksOfPost } = useWritePost();
+    const { selectMode } = useWritePost();
     const dispatch = useAppDispatch();
 
     function changeMainText(e: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -15,7 +15,6 @@ const TextMode = () => {
 
     return (
         <CustomTextarea
-            value={BlocksOfPost[selectMode.id].text}
             placeholder="Основной текст блока"
             changeFunction={changeMainText}
         ></CustomTextarea>

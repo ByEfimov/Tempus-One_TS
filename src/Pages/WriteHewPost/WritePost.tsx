@@ -15,32 +15,12 @@ import { useWritePost } from '../../Hooks/useWritePost';
 import { useAppDispatch } from '../../Hooks/redus-hooks';
 import { removePost } from '../../Store/slices/WritePostSlice';
 
-export type AllDataOfPost = {
-    text: string;
-    id: number;
-    type: string;
-    title?: string;
-};
-
-export type SelectMode = {
-    type: string;
-    id: number;
-};
-
-export type PostData = {
-    text: string;
-    id: number;
-    type: string;
-    title?: string;
-}[];
-
 const WritePost = () => {
     const { UserIsAuth, UserId } = useAuth();
     const { TitleOfPost, selectMode, BlocksOfPost } = useWritePost();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const db = getDatabase();
-    console.log(BlocksOfPost);
 
     function sendNewPost() {
         const ToDay = new Date().getTime();
@@ -65,7 +45,7 @@ const WritePost = () => {
     const showSelectMode = () => {
         switch (selectMode.type) {
             case ModsOfWritePost.text:
-                return <TextMode></TextMode>;
+                return <TextMode />;
             case ModsOfWritePost.kod:
                 return <KodMode />;
             case ModsOfWritePost.image:

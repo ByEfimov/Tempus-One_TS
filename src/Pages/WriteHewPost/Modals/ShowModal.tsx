@@ -2,6 +2,7 @@ import React, { FC, LegacyRef } from 'react';
 import Styles from './SelectModal.module.scss';
 import ButtonVoid from '../../../Components/minicops/B-void';
 import { LiveError, LiveProvider } from 'react-live';
+import { useWritePost } from '../../../Hooks/useWritePost';
 
 const ShowClueForWriteCode = () => {
     return (
@@ -34,11 +35,12 @@ const ShowErrorsOfCode: FC<ShowErrorsOfCodeProps> = ({ userText }) => {
 interface ShowModalProps {
     mode: string;
     setIsModalOpen: (open: boolean) => void;
-    userText?: string;
 }
 
-const ShowModal: FC<ShowModalProps> = ({ mode, setIsModalOpen, userText }) => {
+const ShowModal: FC<ShowModalProps> = ({ mode, setIsModalOpen }) => {
+    const { selectMode, BlocksOfPost } = useWritePost();
     const SelectModalRef: LegacyRef<HTMLDivElement> = React.createRef();
+    const userText = BlocksOfPost[selectMode.id].text;
     return (
         <div className={Styles.SelectModal} ref={SelectModalRef}>
             <div className={Styles.content}>

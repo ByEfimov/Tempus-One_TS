@@ -10,8 +10,9 @@ interface ListenerFC {
 
 export default function ListenerFB({ children }: ListenerFC) {
     const db = getDatabase();
-    const { UserId, UserIsAuth } = useAuth();
+    const { UserId, UserIsAuth, UserEmailVarivide } = useAuth();
     const dispatch = useAppDispatch();
+
     useEffect(() => {
         if (UserIsAuth) {
             const starCountRef = ref(db, '/users/' + UserId);
@@ -21,6 +22,7 @@ export default function ListenerFB({ children }: ListenerFC) {
                     console.log(data);
                     dispatch(
                         setUser({
+                            emailIsConfirmed: data.emailIsConfirmed,
                             email: data.email,
                             id: data.id,
                             name: data.name,

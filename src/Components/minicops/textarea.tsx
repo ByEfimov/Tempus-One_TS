@@ -1,16 +1,18 @@
 import { ChangeEvent, FC } from 'react';
 import Styles from './minicomps.module.scss';
+import { useWritePost } from '../../Hooks/useWritePost';
 
 interface CustomTextarea {
-    value: string;
     placeholder: string;
     changeFunction: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 const CustomTextarea: FC<CustomTextarea> = ({
-    value,
     placeholder,
     changeFunction,
 }) => {
+    const { selectMode, BlocksOfPost } = useWritePost();
+    const value = BlocksOfPost[selectMode.id].text;
+
     return (
         <textarea
             className={Styles.CustomTextarea}
