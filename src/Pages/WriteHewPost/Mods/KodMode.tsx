@@ -26,7 +26,7 @@ const KodMode = () => {
 
     useEffect(() => {
         dispatch(changeTextOfBlock({ id: selectMode.id, text: UserCode }));
-    }, [UserCode]);
+    }, []);
 
     function changeTitle(e: React.ChangeEvent<HTMLInputElement>) {
         dispatch(

@@ -52,7 +52,7 @@ export default function ListenerFB({ children }: ListenerFC) {
                 LogoutUser();
             }
         }
-    }, [UserId, UserIsAuth, auth, authUserId, db, dispatch]);
+    }, []);
 
     return children;
 }

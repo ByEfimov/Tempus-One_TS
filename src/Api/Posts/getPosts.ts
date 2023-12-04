@@ -4,15 +4,16 @@ import { PostsType } from '../../Store/slices/PostsSlice';
 export function getPosts() {
     const dbRef = ref(getDatabase());
     return new Promise<PostsType>((resolve, reject) => {
-        get(child(dbRef, 'posts/'))
+        get(child(dbRef, `posts`))
             .then((snapshot) => {
                 if (snapshot.exists()) {
                     resolve(snapshot.val());
+                } else {
+                    reject('No data available');
                 }
             })
             .catch((error) => {
                 console.error(error);
-                reject(error);
             });
     });
 }

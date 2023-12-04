@@ -41,7 +41,7 @@ const PostRender: FC<PostRender> = ({ post }) => {
             block.type === ModsOfWritePost.image &&
                 loadImage(new Image(), block.text);
         });
-    }, [post]);
+    }, []);
 
     return PostLoadIsDone ? (
         <div>

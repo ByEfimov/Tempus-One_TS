@@ -17,6 +17,7 @@ import PostsSlice from './slices/PostsSlice';
 const persistConfig = {
     key: 'root',
     storage,
+    blacklist: ['WritePost'],
 };
 
 const rootReduser = combineReducers({

@@ -17,7 +17,7 @@ export default function ShowPosts() {
                 dispatch(setPosts({ posts: Object.values(posts) }));
             }
         });
-    }, [dispatch, posts]);
+    }, []);
 
     return (
         <div className={Styles.Posts}>
