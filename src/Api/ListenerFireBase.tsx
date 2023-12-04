@@ -35,8 +35,8 @@ export default function ListenerFB({ children }: ListenerFC) {
                 const starCountRef = ref(db, '/users/' + UserId);
                 onValue(starCountRef, (snapshot) => {
                     const data = snapshot.val();
+                    console.log(data);
                     if (data) {
-                        console.log(data);
                         dispatch(
                             setUser({
                                 email: data.email,

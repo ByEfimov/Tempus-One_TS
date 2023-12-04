@@ -1,20 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Styles from './Styles.module.scss';
 import { getPosts } from '../../../Api/Posts/getPosts';
-import { useAppDispatch } from '../../../Hooks/redus-hooks';
-import { setPosts } from '../../../Store/slices/PostsSlice';
-import { usePosts } from '../../../Hooks/UsePosts';
+import { Post, setLastPostKey } from '../../../Store/slices/PostsSlice';
 import PostRender from './PostRender';
+import { useAppDispatch } from '../../../Hooks/redus-hooks';
 
 export default function ShowPosts() {
-    const { posts } = usePosts();
+    const [posts, setPosts] = useState<Post[] | null>(null);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
         getPosts().then((posts) => {
             const scrollPosition = window.scrollY;
             if (scrollPosition === 0) {
-                dispatch(setPosts({ posts: Object.values(posts) }));
+                setPosts(Object.values(posts));
+                dispatch(setLastPostKey(Object.keys(posts).pop()));
             }
         });
     }, []);
@@ -22,7 +22,7 @@ export default function ShowPosts() {
     return (
         <div className={Styles.Posts}>
             {posts &&
-                posts.map((post) => (
+                Object.values(posts).map((post) => (
                     <PostRender key={post.PostId} post={post} />
                 ))}
         </div>

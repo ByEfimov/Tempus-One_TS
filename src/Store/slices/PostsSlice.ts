@@ -17,19 +17,19 @@ export type Post = {
     PostTitle: string;
 };
 
-export type PostsType = { posts: Post[] };
+export type PostsType = { lastPostKey: string | null };
 
-const initialState: PostsType = { posts: [] };
+const initialState: PostsType = { lastPostKey: null };
 
 const PostsSlice = createSlice({
     name: 'posts',
     initialState,
     reducers: {
-        setPosts(state, action) {
-            state.posts = action.payload.posts;
+        setLastPostKey(state, action) {
+            state.lastPostKey = action.payload.lastPostKey;
         },
     },
 });
-export const { setPosts } = PostsSlice.actions;
+export const { setLastPostKey } = PostsSlice.actions;
 
 export default PostsSlice.reducer;

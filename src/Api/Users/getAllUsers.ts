@@ -1,19 +1,20 @@
-import { getDatabase, ref, child, get } from 'firebase/database';
+import { getDatabase, ref, onValue } from 'firebase/database';
 
 export function getAllUsers() {
-    const dbRef = ref(getDatabase());
+    const db = getDatabase();
     return new Promise((resolve, reject) => {
-        get(child(dbRef, 'users/'))
-            .then((snapshot) => {
+        onValue(
+            ref(db, 'users/'),
+            (snapshot) => {
                 if (snapshot.exists()) {
                     resolve(snapshot.val());
                 } else {
-                    resolve(null);
+                    reject(null);
                 }
-            })
-            .catch((error) => {
-                console.error(error);
-                reject(error);
-            });
+            },
+            {
+                onlyOnce: true,
+            }
+        );
     });
 }

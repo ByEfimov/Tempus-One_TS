@@ -1,22 +1,23 @@
-import { getDatabase, ref, child, get } from 'firebase/database';
+import { getDatabase, ref, onValue } from 'firebase/database';
 import { OpenUserType } from '../../Pages/User/UserPage';
 
 export function getUserFromId(
     id: string | undefined
 ): Promise<OpenUserType | null> {
-    const dbRef = ref(getDatabase());
+    const db = getDatabase();
     return new Promise((resolve, reject) => {
-        get(child(dbRef, 'users/' + id))
-            .then((snapshot) => {
+        onValue(
+            ref(db, 'users/' + id),
+            (snapshot) => {
                 if (snapshot.exists()) {
                     resolve(snapshot.val());
                 } else {
-                    resolve(null);
+                    reject(null);
                 }
-            })
-            .catch((error) => {
-                console.error(error);
-                reject(error);
-            });
+            },
+            {
+                onlyOnce: true,
+            }
+        );
     });
 }

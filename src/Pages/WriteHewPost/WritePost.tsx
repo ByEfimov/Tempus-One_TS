@@ -2,7 +2,6 @@ import { useAuth } from '../../Hooks/useAuth';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { ModsOfWritePost } from '../../Utils/ModsOfComps';
 import Styles from './Styles.module.scss';
-import { getDatabase, set, ref } from '@firebase/database';
 import { ControlBlocksPanel } from './ControllPanel/ControlBlocksPanel';
 import TextMode from './Mods/TextMode';
 import KodMode from './Mods/KodMode';
@@ -13,18 +12,29 @@ import { v4 as uuidv4 } from 'uuid';
 import { countEmptyValues } from '../../Utils/countEmptyValues';
 import { useWritePost } from '../../Hooks/useWritePost';
 import { useAppDispatch } from '../../Hooks/redus-hooks';
-import { removePost } from '../../Store/slices/WritePostSlice';
+import { BlockOfPostType, removePost } from '../../Store/slices/WritePostSlice';
+import { addNewPost } from '../../Api/Posts/addNewPost';
+
+export type NewPost = {
+    PostId: string;
+    PostDataBlocks: BlockOfPostType[];
+    PostTitle: string;
+    PostAuthorId: string | null;
+    PostDate: number;
+    PostLikes: number;
+    PostShows: number;
+    PostComments: object;
+};
 
 const WritePost = () => {
     const { UserIsAuth, UserId } = useAuth();
     const { TitleOfPost, selectMode, BlocksOfPost } = useWritePost();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const db = getDatabase();
 
     function sendNewPost() {
         const ToDay = new Date().getTime();
-        const NewPost = {
+        const NewPost: NewPost = {
             PostId: uuidv4(),
             PostDataBlocks: BlocksOfPost,
             PostTitle: TitleOfPost,
@@ -36,7 +46,7 @@ const WritePost = () => {
         };
 
         if (countEmptyValues(NewPost) - 4 === 0) {
-            set(ref(db, 'posts/' + NewPost.PostId), NewPost);
+            addNewPost(NewPost);
             dispatch(removePost());
             navigate('/');
         }
