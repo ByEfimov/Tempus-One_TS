@@ -1,13 +1,13 @@
 import { getDatabase, ref, onValue } from 'firebase/database';
-import { OpenUserType } from '../../Pages/OpenUser/UserPage';
+import { OpenTeamType } from '../../Pages/OpenTeam/TeamPage';
 
-export function getUserFromId(
+export function getTeamFromId(
     id: string | undefined
-): Promise<OpenUserType | null> {
+): Promise<OpenTeamType | null> {
     const db = getDatabase();
     return new Promise((resolve, reject) => {
         onValue(
-            ref(db, 'users/' + id),
+            ref(db, 'teams/' + id),
             (snapshot) => {
                 if (snapshot.exists()) {
                     resolve(snapshot.val());

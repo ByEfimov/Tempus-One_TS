@@ -8,7 +8,6 @@ import KodMode from './Mods/KodMode';
 import ImageMode from './Mods/ImageMode';
 import ButtonVoid from '../../Components/minicops/B-void';
 import TitleForPost from './Mods/TitleForPost';
-import { v4 as uuidv4 } from 'uuid';
 import { countEmptyValues } from '../../Utils/countEmptyValues';
 import { useWritePost } from '../../Hooks/useWritePost';
 import { useAppDispatch } from '../../Hooks/redus-hooks';
@@ -16,7 +15,6 @@ import { BlockOfPostType, removePost } from '../../Store/slices/WritePostSlice';
 import { addNewPost } from '../../Api/Posts/addNewPost';
 
 export type NewPost = {
-    PostId: string;
     PostDataBlocks: BlockOfPostType[];
     PostTitle: string;
     PostAuthorId: string | null;
@@ -27,7 +25,7 @@ export type NewPost = {
 };
 
 const WritePost = () => {
-    const { UserIsAuth, UserId } = useAuth();
+    const { UserCanChanging, UserId } = useAuth();
     const { TitleOfPost, selectMode, BlocksOfPost } = useWritePost();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -35,7 +33,6 @@ const WritePost = () => {
     function sendNewPost() {
         const ToDay = new Date().getTime();
         const NewPost: NewPost = {
-            PostId: uuidv4(),
             PostDataBlocks: BlocksOfPost,
             PostTitle: TitleOfPost,
             PostAuthorId: UserId,
@@ -63,7 +60,7 @@ const WritePost = () => {
         }
     };
 
-    return UserIsAuth ? (
+    return UserCanChanging ? (
         <div className={Styles.WritePost}>
             <TitleForPost></TitleForPost>
 

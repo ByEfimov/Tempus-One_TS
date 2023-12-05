@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { Post } from '../../../Store/slices/PostsSlice';
 import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
 import { getUserFromId } from '../../../Api/Users/getUserdataFromId';
-import { OpenUserType } from '../../User/UserPage';
+import { OpenUserType } from '../../OpenUser/UserPage';
 import ShowCode from '../../../Components/ShowPosts/postsComp/ShowCode';
 
 interface PostRender {
@@ -22,9 +22,9 @@ const PostRender: FC<PostRender> = ({ post }) => {
 
     useEffect(() => {
         function LoadUser() {
-            getUserFromId(post.PostAuthorId).then((user) =>
-                setUserWhoWrotePost(user)
-            );
+            getUserFromId(post.PostAuthorId)
+                .then((user) => setUserWhoWrotePost(user))
+                .catch(() => console.error('Автор поста не найден.'));
         }
         LoadUser();
 
@@ -34,6 +34,7 @@ const PostRender: FC<PostRender> = ({ post }) => {
             };
             image.onerror = function () {
                 setImageIsLoad(false);
+                console.error('Картинка не была обработана.');
             };
             image.src = url;
         }

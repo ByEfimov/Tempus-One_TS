@@ -10,10 +10,12 @@ type User = {
     uid: string | null;
     displayName: string | null;
     photoURL: string | null;
+    emailVerified: boolean | null;
 };
 
 const AuthWhithGoogle = () => {
     const dispatch = useAppDispatch();
+
     function loginWhihtGoogle(user: User) {
         dispatch(
             setCurrentUser({
@@ -22,13 +24,15 @@ const AuthWhithGoogle = () => {
             })
         );
     }
+
     function registerWhihtGoogle(user: User) {
         addUserToRealtimeDB(
             user.email,
             user.uid,
             user.displayName,
             user.photoURL,
-            0
+            0,
+            user.emailVerified
         );
         dispatch(
             setCurrentUser({
@@ -44,14 +48,14 @@ const AuthWhithGoogle = () => {
         signInWithPopup(auth, provider)
             .then((result) => {
                 const user = result.user;
-
-                getUserFromId(user.uid).then((currentUser) => {
-                    if (currentUser) {
+                console.log(user);
+                getUserFromId(user.uid)
+                    .then(() => {
                         loginWhihtGoogle(user);
-                    } else {
+                    })
+                    .catch(() => {
                         registerWhihtGoogle(user);
-                    }
-                });
+                    });
             })
             .catch((error) => {
                 console.error(error);

@@ -23,7 +23,7 @@ export default function UserPage() {
     const [OpenUser, setOpenUser] = useState<OpenUserType | null>();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const { UserId } = useAuth();
+    const { UserId, UserEmailVerified } = useAuth();
 
     useEffect(() => {
         getUserFromId(id).then((user) => setOpenUser(user));
@@ -52,7 +52,15 @@ export default function UserPage() {
                         clickHandler={() => console.log('da')}
                     ></ButtonVoid>
                 )}
-
+                {OpenUser.id === UserId && !UserEmailVerified && (
+                    <ButtonVoid
+                        title="Подтвердить почту"
+                        classes={Styles.Button}
+                        clickHandler={() => {
+                            navigate('/VerifieEmail');
+                        }}
+                    ></ButtonVoid>
+                )}
                 {OpenUser.id === UserId && (
                     <ButtonVoid
                         title="Выйти"

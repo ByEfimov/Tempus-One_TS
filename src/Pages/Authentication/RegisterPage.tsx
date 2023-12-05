@@ -25,7 +25,8 @@ export default function RegisterPage() {
                     user.uid,
                     inputName,
                     user.photoURL,
-                    inputAge
+                    inputAge,
+                    user.emailVerified
                 );
                 dispatch(
                     setCurrentUser({

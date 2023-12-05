@@ -6,6 +6,7 @@ type UserType = {
     name: string | null;
     age: number | null;
     photo: string | null;
+    emailVerified: boolean | null;
 };
 
 const initialState: UserType = {
@@ -14,6 +15,7 @@ const initialState: UserType = {
     name: null,
     age: null,
     photo: null,
+    emailVerified: null,
 };
 
 const UserSlice = createSlice({
@@ -26,6 +28,7 @@ const UserSlice = createSlice({
             state.name = action.payload.name || null;
             state.age = action.payload.age;
             state.photo = action.payload.photo || null;
+            state.emailVerified = action.payload.emailVerified || null;
         },
         setCurrentUser(
             state,
@@ -40,6 +43,7 @@ const UserSlice = createSlice({
             state.name = null;
             state.age = null;
             state.photo = null;
+            state.emailVerified = null;
         },
     },
 });

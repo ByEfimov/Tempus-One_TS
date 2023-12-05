@@ -6,7 +6,7 @@ import { useAuth } from '../../Hooks/useAuth';
 export default function Header() {
     const navigate = useNavigate();
     const { UserIsAuth, UserId, UserPhoto } = useAuth();
-    console.log(UserPhoto);
+
     function OpenProfile() {
         if (UserIsAuth) {
             navigate(`/User/${UserId}`);
@@ -14,7 +14,6 @@ export default function Header() {
             navigate('/Login');
         }
     }
-
     return (
         <div className={Styles.Header}>
             <Link to="/" className={Styles.Title}>

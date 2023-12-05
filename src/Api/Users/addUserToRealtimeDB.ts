@@ -5,7 +5,8 @@ export function addUserToRealtimeDB(
     uid: string | null,
     displayName: string | null,
     photoURL: string | null,
-    inputAge: number | null
+    inputAge: number | null,
+    emailVerified: boolean | null
 ) {
     const db = getDatabase();
     const NewUser = {
@@ -16,6 +17,7 @@ export function addUserToRealtimeDB(
         name: displayName,
         photo: photoURL,
         age: inputAge,
+        emailVerified: emailVerified,
     };
 
     set(ref(db, 'users/' + uid + '/'), NewUser);

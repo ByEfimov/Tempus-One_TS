@@ -5,9 +5,16 @@ import { Route, Routes } from 'react-router-dom';
 function App() {
     const MainPage = lazy(() => import('./Pages/MainPage/MainPage'));
     const LoginPage = lazy(() => import('./Pages/Authentication/LoginPage'));
-    const UserPage = lazy(() => import('./Pages/User/UserPage'));
+    const UserPage = lazy(() => import('./Pages/OpenUser/UserPage'));
+    const TeamPage = lazy(() => import('./Pages/OpenTeam/TeamPage'));
     const NeedAuth = lazy(() => import('./Pages/NeedAuth/NeedAuth'));
     const WriteNewPost = lazy(() => import('./Pages/WriteHewPost/WritePost'));
+    const CreateNewTeam = lazy(
+        () => import('./Pages/CreateNewTeam/CreateTeam')
+    );
+    const VerifiedingEmail = lazy(
+        () => import('./Pages/VerifiedingEmail/VerifiedingEmail')
+    );
     const RegisterPage = lazy(
         () => import('./Pages/Authentication/RegisterPage')
     );
@@ -25,7 +32,13 @@ function App() {
                     <Route path="/Login" element={<LoginPage />} />
                     <Route path="/Register" element={<RegisterPage />} />
                     <Route path="/WriteNewPost" element={<WriteNewPost />} />
+                    <Route path="/CreateNewTeam" element={<CreateNewTeam />} />
+                    <Route
+                        path="/VerifieEmail"
+                        element={<VerifiedingEmail />}
+                    />
                     <Route path="/User/:id" element={<UserPage />} />
+                    <Route path="/Team/:id" element={<TeamPage />} />
                     <Route
                         path="/Forgout-Password"
                         element={<ForgoutPasswordPage />}

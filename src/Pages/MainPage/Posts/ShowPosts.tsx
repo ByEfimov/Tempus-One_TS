@@ -13,7 +13,7 @@ export default function ShowPosts() {
         getPosts().then((posts) => {
             const scrollPosition = window.scrollY;
             if (scrollPosition === 0) {
-                setPosts(Object.values(posts));
+                setPosts(posts);
                 dispatch(setLastPostKey(Object.keys(posts).pop()));
             }
         });
@@ -22,7 +22,7 @@ export default function ShowPosts() {
     return (
         <div className={Styles.Posts}>
             {posts &&
-                Object.values(posts).map((post) => (
+                posts.map((post) => (
                     <PostRender key={post.PostId} post={post} />
                 ))}
         </div>
