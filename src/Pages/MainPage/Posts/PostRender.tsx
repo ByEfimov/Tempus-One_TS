@@ -2,29 +2,40 @@ import { FC, useEffect, useState } from 'react';
 import { Post } from '../../../Store/slices/PostsSlice';
 import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
 import { getUserFromId } from '../../../Api/Users/getUserdataFromId';
-import { OpenUserType } from '../../OpenUser/UserPage';
 import ShowCode from '../../../Components/ShowPosts/postsComp/ShowCode';
+import { useNavigate } from 'react-router-dom';
+import { getTeamFromId } from '../../../Api/Teams/getTeamdataFromId';
 
 interface PostRender {
     post: Post;
 }
 
+interface WhoWrotePost {
+    name?: string;
+    title?: string;
+}
+
 const PostRender: FC<PostRender> = ({ post }) => {
-    const [UserWhoWrotePost, setUserWhoWrotePost] =
-        useState<OpenUserType | null>(null);
+    const [WhoWrotePost, setWhoWrotePost] = useState<WhoWrotePost | null>(null);
+    const navigate = useNavigate();
+
     const [ImageIsLoad, setImageIsLoad] = useState(false);
 
     const PostLoadIsDone = post.PostDataBlocks.some(
         (block) => block.type === ModsOfWritePost.image
     )
-        ? !!UserWhoWrotePost && !!ImageIsLoad
-        : !!UserWhoWrotePost;
+        ? !!WhoWrotePost && !!ImageIsLoad
+        : !!WhoWrotePost;
 
     useEffect(() => {
         function LoadUser() {
             getUserFromId(post.PostAuthorId)
-                .then((user) => setUserWhoWrotePost(user))
-                .catch(() => console.error('Автор поста не найден.'));
+                .then((user) => setWhoWrotePost(user))
+                .catch(() =>
+                    getTeamFromId(post.PostAuthorId).then((team) =>
+                        setWhoWrotePost(team)
+                    )
+                );
         }
         LoadUser();
 
@@ -45,8 +56,8 @@ const PostRender: FC<PostRender> = ({ post }) => {
     }, []);
 
     return PostLoadIsDone ? (
-        <div>
-            {UserWhoWrotePost?.name}
+        <div onClick={() => navigate('Post/' + post.PostId)}>
+            {WhoWrotePost?.name || WhoWrotePost?.title}
             {post.PostTitle}
             {post.PostDate}
             {post.PostDataBlocks.map((block) =>

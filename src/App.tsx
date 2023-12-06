@@ -8,6 +8,9 @@ function App() {
     const UserPage = lazy(() => import('./Pages/OpenUser/UserPage'));
     const TeamPage = lazy(() => import('./Pages/OpenTeam/TeamPage'));
     const NeedAuth = lazy(() => import('./Pages/NeedAuth/NeedAuth'));
+    const AllUsers = lazy(() => import('./Pages/AllUsers/AllUsers'));
+    const AllTeams = lazy(() => import('./Pages/AllTeams/AllTeams'));
+    const PostPage = lazy(() => import('./Pages/OpenPost/PostPage'));
     const WriteNewPost = lazy(() => import('./Pages/WriteHewPost/WritePost'));
     const CreateNewTeam = lazy(
         () => import('./Pages/CreateNewTeam/CreateTeam')
@@ -32,12 +35,15 @@ function App() {
                     <Route path="/Login" element={<LoginPage />} />
                     <Route path="/Register" element={<RegisterPage />} />
                     <Route path="/WriteNewPost" element={<WriteNewPost />} />
+                    <Route path="/Users" element={<AllUsers />} />
+                    <Route path="/Teams" element={<AllTeams />} />
                     <Route path="/CreateNewTeam" element={<CreateNewTeam />} />
                     <Route
                         path="/VerifieEmail"
                         element={<VerifiedingEmail />}
                     />
                     <Route path="/User/:id" element={<UserPage />} />
+                    <Route path="/Post/:id" element={<PostPage />} />
                     <Route path="/Team/:id" element={<TeamPage />} />
                     <Route
                         path="/Forgout-Password"

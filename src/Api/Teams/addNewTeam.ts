@@ -10,8 +10,15 @@ type NewTeam = {
 };
 
 export function addNewTeam(NewTeam: NewTeam) {
-    const db = getDatabase();
-    const postListRef = ref(db, 'teams/');
-    const newPostRef = push(postListRef);
-    set(newPostRef, NewTeam);
+    return new Promise<string | null>((resolve, reject) => {
+        const db = getDatabase();
+        const postListRef = ref(db, 'teams/');
+        const newPostRef = push(postListRef);
+
+        set(newPostRef, NewTeam)
+            .then(() => {
+                resolve(newPostRef.key);
+            })
+            .catch((error) => reject(error));
+    });
 }

@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getTeamFromId } from '../../Api/Teams/getUserdataFromId';
+import { getTeamFromId } from '../../Api/Teams/getTeamdataFromId';
 
 export type OpenTeamType = {
     desc: string;
     image: string;
     projectDesc: string;
     projectTitle: string;
-    teamMembers: { UserId: string; UserRole: string };
+    teamMembers: { UserId: string; UserRole: string }[];
     title: string;
+    id: string;
 };
 
 export default function TeamPage() {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Styles from './Styles.module.scss';
-import { getPosts } from '../../../Api/Posts/getPosts';
+import { getPosts } from '../../../Api/Posts/getALLPosts';
 import { Post, setLastPostKey } from '../../../Store/slices/PostsSlice';
 import PostRender from './PostRender';
 import { useAppDispatch } from '../../../Hooks/redus-hooks';

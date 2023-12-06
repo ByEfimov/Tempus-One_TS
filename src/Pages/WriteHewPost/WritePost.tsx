@@ -13,6 +13,7 @@ import { useWritePost } from '../../Hooks/useWritePost';
 import { useAppDispatch } from '../../Hooks/redus-hooks';
 import { BlockOfPostType, removePost } from '../../Store/slices/WritePostSlice';
 import { addNewPost } from '../../Api/Posts/addNewPost';
+import PostForWhom from './Mods/PostForWhom';
 
 export type NewPost = {
     PostDataBlocks: BlockOfPostType[];
@@ -25,8 +26,9 @@ export type NewPost = {
 };
 
 const WritePost = () => {
-    const { UserCanChanging, UserId } = useAuth();
-    const { TitleOfPost, selectMode, BlocksOfPost } = useWritePost();
+    const { UserCanChanging } = useAuth();
+    const { TitleOfPost, selectMode, BlocksOfPost, postForWhom } =
+        useWritePost();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -35,7 +37,7 @@ const WritePost = () => {
         const NewPost: NewPost = {
             PostDataBlocks: BlocksOfPost,
             PostTitle: TitleOfPost,
-            PostAuthorId: UserId,
+            PostAuthorId: postForWhom,
             PostDate: ToDay,
             PostLikes: 0,
             PostShows: 0,
@@ -62,6 +64,8 @@ const WritePost = () => {
 
     return UserCanChanging ? (
         <div className={Styles.WritePost}>
+            <PostForWhom></PostForWhom>
+
             <TitleForPost></TitleForPost>
 
             {showSelectMode()}

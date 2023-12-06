@@ -18,6 +18,124 @@
     justify-content: space-between;
     align-items: center;
     box-shadow: var(--mainBoxShadow);
+    .NavPanel {
+        position: absolute;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100%;
+        .blocks {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 16px;
+            gap: 20px;
+            z-index: 1000;
+            position: absolute;
+            animation: OpenNavBarBlocks 0.4s forwards;
+            .block {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                border: 1px solid var(--accentTextColor);
+                background-color: var(--mainBorderColor);
+                animation: OpenNavBarBlock 0.4s forwards;
+            }
+        }
+        @keyframes OpenNavBarBlocks {
+            0% {
+                gap: 0px;
+            }
+            100% {
+                gap: 20px;
+            }
+        }
+        @keyframes OpenNavBarBlock {
+            0% {
+                opacity: 0;
+                width: 1px;
+                height: 1px;
+                border-radius: 0px;
+            }
+            100% {
+                opacity: 1;
+                width: 20%;
+                height: 70px;
+                border-radius: 10px;
+            }
+        }
+        .back {
+            background-color: var(--mainBackGroudColor);
+            position: absolute;
+            height: 100vh;
+            width: 100%;
+            animation: OpenNavBar 0.3s forwards;
+        }
+        @keyframes OpenNavBar {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 0.6;
+            }
+        }
+    }
+    .NavPanelClose {
+        .blocks {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 16px;
+            gap: 20px;
+            z-index: 1000;
+            position: absolute;
+            animation: CloseNavBarBlocks 0.4s forwards;
+            .block {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                border: 1px solid var(--accentTextColor);
+                background-color: var(--mainBorderColor);
+                animation: CloseNavBarBlock 0.4s forwards;
+            }
+        }
+        @keyframes CloseNavBarBlocks {
+            0% {
+                gap: 20px;
+            }
+            100% {
+                gap: 0px;
+            }
+        }
+        @keyframes CloseNavBarBlock {
+            0% {
+                opacity: 1;
+                width: 20%;
+                height: 70px;
+                border-radius: 10px;
+            }
+            100% {
+                opacity: 0;
+                width: 0px;
+                height: 0px;
+                border-radius: 0px;
+            }
+        }
+        .back {
+            animation: CloseNavBar 0.3s forwards;
+            @keyframes CloseNavBar {
+                0% {
+                    opacity: 0.6;
+                }
+                100% {
+                    opacity: 0;
+                }
+            }
+        }
+    }
     .Title {
         font-family: 'Mairy';
         font-weight: 500;

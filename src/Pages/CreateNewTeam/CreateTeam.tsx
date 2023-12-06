@@ -6,6 +6,7 @@ import { ChangeEvent, useState } from 'react';
 import CustomTextarea from '../../Components/minicops/textarea';
 import ButtonVoid from '../../Components/minicops/B-void';
 import { addNewTeam } from '../../Api/Teams/addNewTeam';
+import { addToSubscriptions } from '../../Api/Users/addToSubscriptions';
 
 const CreateTeam = () => {
     const { UserCanChanging, UserId } = useAuth();
@@ -47,9 +48,11 @@ const CreateTeam = () => {
                 image: selectImage,
                 teamMembers: [{ UserId: UserId, UserRole: 'Administrator' }],
             };
-            addNewTeam(NewTeam);
-            clearInputs();
-            navigate('/');
+            addNewTeam(NewTeam).then((teamId) => {
+                addToSubscriptions('team', teamId, UserId);
+                clearInputs();
+                navigate('/');
+            });
         }
     }
     function clearInputs() {

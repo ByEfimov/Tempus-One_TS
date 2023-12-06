@@ -1,21 +1,23 @@
 import FeatherIcon from 'feather-icons-react';
 import Styles from './Header.module.scss';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../Hooks/useAuth';
+import { useState } from 'react';
+import NavPanel from './NavPanel';
 
 export default function Header() {
-    const navigate = useNavigate();
-    const { UserIsAuth, UserId, UserPhoto } = useAuth();
+    const [openNavPanel, setOpenNavPanel] = useState(false);
+    const { UserIsAuth, UserPhoto } = useAuth();
 
-    function OpenProfile() {
-        if (UserIsAuth) {
-            navigate(`/User/${UserId}`);
-        } else {
-            navigate('/Login');
-        }
+    function OpenNav() {
+        setOpenNavPanel(!openNavPanel);
     }
+
     return (
         <div className={Styles.Header}>
+            {openNavPanel && (
+                <NavPanel setOpenNavPanel={setOpenNavPanel}></NavPanel>
+            )}
             <Link to="/" className={Styles.Title}>
                 Tempus-One
             </Link>
@@ -23,7 +25,7 @@ export default function Header() {
                 <div className={Styles.notifications}>
                     <FeatherIcon icon="bell" className={Styles.Img} />
                 </div>
-                <button className={Styles.ProfileIcon} onClick={OpenProfile}>
+                <button className={Styles.ProfileIcon} onClick={OpenNav}>
                     {UserIsAuth ? (
                         <img src={UserPhoto || undefined}></img>
                     ) : (

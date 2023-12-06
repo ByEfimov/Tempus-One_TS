@@ -15,6 +15,9 @@ export type OpenUserType = {
     email: string;
     id: string;
     age: number;
+    emailVerified: boolean;
+    experience: number;
+    level: number;
 };
 
 export default function UserPage() {

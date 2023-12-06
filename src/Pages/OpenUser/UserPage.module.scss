@@ -24,6 +24,7 @@
     .UserTexts {
         display: flex;
         flex-direction: column;
+
         width: 70%;
         justify-content: space-between;
         .UserName {
@@ -37,6 +38,7 @@
         .UserStats {
             margin-top: 2px;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             svg {
                 width: 20px;

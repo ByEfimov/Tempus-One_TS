@@ -39,6 +39,7 @@ export default function ListenerFB({ children }: ListenerFC) {
                             photo: data.photo,
                             age: data.age,
                             emailVerified: data.emailVerified,
+                            subscriptions: data.subscriptions,
                         })
                     );
                 }

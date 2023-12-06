@@ -15,6 +15,7 @@ type WritePostType = {
     TitleOfPost: string;
     BlocksOfPost: BlockOfPostType[];
     selectMode: SelectModeType;
+    PostForWhom: string | null;
 };
 
 const initialState: WritePostType = {
@@ -24,6 +25,7 @@ const initialState: WritePostType = {
         type: ModsOfWritePost.text,
         id: 0,
     },
+    PostForWhom: null,
 };
 
 const WritePostSlice = createSlice({
@@ -32,6 +34,9 @@ const WritePostSlice = createSlice({
     reducers: {
         setTitleOfPost(state, action: PayloadAction<{ title: string }>) {
             state.TitleOfPost = action.payload.title;
+        },
+        setPostForWhom(state, action) {
+            state.PostForWhom = action.payload.PostForWhom;
         },
         addBlockToPost(state, action: PayloadAction<{ type: string }>) {
             const NewBlock: BlockOfPostType =
@@ -144,6 +149,7 @@ export const {
     changeTextOfBlock,
     changeTitleOfBlock,
     removePost,
+    setPostForWhom,
 } = WritePostSlice.actions;
 
 export default WritePostSlice.reducer;
