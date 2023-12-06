@@ -30,6 +30,9 @@ export default function UserPage() {
 
     useEffect(() => {
         getUserFromId(id).then((user) => setOpenUser(user));
+        if (!id) {
+            navigate('/Login');
+        }
     }, []);
 
     function LogoutUser() {
