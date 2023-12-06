@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { Post } from '../../../Store/slices/PostsSlice';
 import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
 import { getUserFromId } from '../../../Api/Users/getUserdataFromId';
-import ShowCode from '../../../Components/ShowPosts/postsComp/ShowCode';
+import ShowCode from '../postsComp/ShowCode';
 import { useNavigate } from 'react-router-dom';
 import { getTeamFromId } from '../../../Api/Teams/getTeamdataFromId';
 
@@ -56,7 +56,7 @@ const PostRender: FC<PostRender> = ({ post }) => {
     }, []);
 
     return PostLoadIsDone ? (
-        <div onClick={() => navigate('Post/' + post.PostId)}>
+        <div onClick={() => navigate('/Post/' + post.PostId)}>
             {WhoWrotePost?.name || WhoWrotePost?.title}
             {post.PostTitle}
             {post.PostDate}

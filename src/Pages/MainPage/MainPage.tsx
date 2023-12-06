@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import ButtonVoid from '../../Components/minicops/B-void';
 import Styles from './MainPage.module.scss';
-import ShowPosts from './Posts/ShowPosts';
+import ShowPosts from '../../Components/ShowPosts/Posts/ShowPosts';
 
 export default function MainPage() {
     const navigate = useNavigate();

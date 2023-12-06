@@ -1,16 +1,20 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Styles from './Styles.module.scss';
-import { getPosts } from '../../../Api/Posts/getALLPosts';
+import { getPosts } from '../../../Api/Posts/getAllPosts';
 import { Post, setLastPostKey } from '../../../Store/slices/PostsSlice';
 import PostRender from './PostRender';
 import { useAppDispatch } from '../../../Hooks/redus-hooks';
 
-export default function ShowPosts() {
+interface ShowPosts {
+    filter?: string;
+}
+
+const ShowPosts: FC<ShowPosts> = ({ filter }) => {
     const [posts, setPosts] = useState<Post[] | null>(null);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        getPosts().then((posts) => {
+        getPosts(filter || null).then((posts) => {
             const scrollPosition = window.scrollY;
             if (scrollPosition === 0) {
                 setPosts(posts);
@@ -27,4 +31,5 @@ export default function ShowPosts() {
                 ))}
         </div>
     );
-}
+};
+export default ShowPosts;

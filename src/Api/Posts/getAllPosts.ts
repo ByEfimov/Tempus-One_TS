@@ -4,17 +4,22 @@ import {
     onValue,
     query,
     orderByKey,
+    orderByChild,
+    equalTo,
 } from 'firebase/database';
 import { Post } from '../../Store/slices/PostsSlice';
 
-export function getPosts() {
+export function getPosts(filter: string | null) {
     const db = getDatabase();
     const postsRef = ref(db, '/posts/');
-    const lastTenPostsQuery = query(postsRef, orderByKey()); //Сдесь нужно добавить по последнему ключу
+    let Posts = query(postsRef, orderByKey());
+    if (filter) {
+        Posts = query(postsRef, orderByChild('PostAuthorId'), equalTo(filter));
+    }
 
     return new Promise<Post[]>((resolve, reject) => {
         onValue(
-            lastTenPostsQuery,
+            Posts,
             (snapshot) => {
                 if (snapshot.exists()) {
                     const posts = snapshot.val();

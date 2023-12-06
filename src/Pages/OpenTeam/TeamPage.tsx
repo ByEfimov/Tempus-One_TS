@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getTeamFromId } from '../../Api/Teams/getTeamdataFromId';
+import ShowPosts from '../../Components/ShowPosts/Posts/ShowPosts';
 
 export type OpenTeamType = {
     desc: string;
@@ -20,9 +21,12 @@ export default function TeamPage() {
     }, []);
     return (
         team && (
-            <h1 style={{ marginTop: '100px' }}>
-                <img src={team.image}></img> {team.title}
-            </h1>
+            <>
+                <h1 style={{ marginTop: '100px' }}>
+                    <img src={team.image}></img> {team.title}
+                </h1>
+                <ShowPosts filter={team.id}></ShowPosts>
+            </>
         )
     );
 }
