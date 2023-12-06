@@ -55,7 +55,12 @@ const NavPanel: FC<NavPanelType> = ({ setOpenNavPanel }) => {
                 <div
                     className={Styles.block}
                     onClick={() => {
-                        navigate('/User/' + UserId);
+                        if (UserId) {
+                            navigate('/User/' + UserId);
+                        } else {
+                            navigate('/Login');
+                        }
+
                         closeNav();
                     }}
                 >
