@@ -12,7 +12,7 @@ export default function MainPage() {
                 classes={Styles.button}
                 title="Написать пост"
                 clickHandler={() => {
-                    navigate('WriteNewPost');
+                    navigate('/WriteNewPost');
                 }}
             ></ButtonVoid>
             <ShowPosts></ShowPosts>
