@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
 import Styles from './UserPage.module.scss';
 import { useAuth } from '../../Hooks/useAuth';
@@ -23,16 +23,13 @@ export type OpenUserType = {
 export default function UserPage() {
     const { id } = useParams();
     const auth = getAuth();
-    const [OpenUser, setOpenUser] = useState<OpenUserType | null>();
+    const [OpenUser, setOpenUser] = useState<OpenUserType | null>(null);
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { UserId, UserEmailVerified } = useAuth();
 
     useEffect(() => {
         getUserFromId(id).then((user) => setOpenUser(user));
-        if (!id) {
-            navigate('/Login');
-        }
     }, []);
 
     function LogoutUser() {
@@ -46,38 +43,38 @@ export default function UserPage() {
             });
     }
 
-    return (
-        OpenUser && (
-            <>
-                <UserData OpenUser={OpenUser} />
+    return OpenUser ? (
+        <>
+            <UserData OpenUser={OpenUser} />
 
-                {OpenUser.id === UserId && (
-                    <ButtonVoid
-                        title="Редактировать профиль"
-                        classes={Styles.Button}
-                        clickHandler={() => console.log('da')}
-                    ></ButtonVoid>
-                )}
-                {OpenUser.id === UserId && !UserEmailVerified && (
-                    <ButtonVoid
-                        title="Подтвердить почту"
-                        classes={Styles.Button}
-                        clickHandler={() => {
-                            navigate('/VerifieEmail');
-                        }}
-                    ></ButtonVoid>
-                )}
-                {OpenUser.id === UserId && (
-                    <ButtonVoid
-                        title="Выйти"
-                        classes={Styles.ButtonLogout}
-                        clickHandler={() => {
-                            LogoutUser();
-                        }}
-                    ></ButtonVoid>
-                )}
-            </>
-        )
+            {OpenUser.id === UserId && (
+                <ButtonVoid
+                    title="Редактировать профиль"
+                    classes={Styles.Button}
+                    clickHandler={() => console.log('da')}
+                ></ButtonVoid>
+            )}
+            {OpenUser.id === UserId && !UserEmailVerified && (
+                <ButtonVoid
+                    title="Подтвердить почту"
+                    classes={Styles.Button}
+                    clickHandler={() => {
+                        navigate('/VerifieEmail');
+                    }}
+                ></ButtonVoid>
+            )}
+            {OpenUser.id === UserId && (
+                <ButtonVoid
+                    title="Выйти"
+                    classes={Styles.ButtonLogout}
+                    clickHandler={() => {
+                        LogoutUser();
+                    }}
+                ></ButtonVoid>
+            )}
+        </>
+    ) : (
+        <Navigate to="/Login"></Navigate>
     );
 }
 
