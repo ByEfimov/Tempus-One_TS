@@ -20,6 +20,7 @@ export default function LoginPage() {
                         id: user.uid,
                     })
                 );
+                location.reload();
             })
             .catch((error) => {
                 console.error(error);

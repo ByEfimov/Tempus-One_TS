@@ -34,6 +34,7 @@ export default function RegisterPage() {
                         id: user.uid,
                     })
                 );
+                location.reload();
             })
             .catch((error) => {
                 console.error(error);

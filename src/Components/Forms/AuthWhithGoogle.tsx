@@ -23,6 +23,7 @@ const AuthWhithGoogle = () => {
                 id: user.uid,
             })
         );
+        location.reload();
     }
 
     function registerWhihtGoogle(user: User) {
@@ -40,6 +41,7 @@ const AuthWhithGoogle = () => {
                 id: user.uid,
             })
         );
+        location.reload();
     }
 
     function startAuth() {
