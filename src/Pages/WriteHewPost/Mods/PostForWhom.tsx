@@ -1,35 +1,20 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { getTeamFromId } from '../../../Api/Teams/getTeamdataFromId';
 import { useAuth } from '../../../Hooks/useAuth';
 import { useAppDispatch } from '../../../Hooks/redus-hooks';
 import { setPostForWhom } from '../../../Store/slices/WritePostSlice';
+import getUserAdmins from '../../../Api/Teams/GetUserAdmins';
 
 const PostForWhom = () => {
     const { UserId, UserSubscriptions } = useAuth();
+    const dispatch = useAppDispatch();
     const [teamsAdmin, setTeamsAdmin] = useState<
         { TeamName: string; TeamId: string }[]
     >([]);
-    const dispatch = useAppDispatch();
 
     useEffect(() => {
         if (UserSubscriptions?.teams) {
-            Object.values(UserSubscriptions?.teams).map((teamId) =>
-                getTeamFromId(teamId).then((team) => {
-                    if (
-                        Array.isArray(team?.teamMembers) &&
-                        team?.teamMembers.some(
-                            (Member) =>
-                                Member.UserId === UserId &&
-                                Member.UserRole === 'Administrator'
-                        )
-                    ) {
-                        setTeamsAdmin([
-                            ...teamsAdmin,
-                            { TeamName: team.title, TeamId: team.id },
-                        ]);
-                    }
-                })
-            );
+            getUserAdmins(UserId).then((teams) => setTeamsAdmin(teams));
         }
         dispatch(setPostForWhom({ PostForWhom: UserId }));
     }, []);

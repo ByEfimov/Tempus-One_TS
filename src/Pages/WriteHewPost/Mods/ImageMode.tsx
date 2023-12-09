@@ -1,4 +1,3 @@
-import { ChangeEvent } from 'react';
 import { ModsOfInput } from '../../../Utils/ModsOfComps';
 import CustomInput from '../../../Components/minicops/input';
 import Styles from '../Styles.module.scss';
@@ -12,6 +11,7 @@ import {
 } from '../../../Store/slices/WritePostSlice';
 import { useWritePost } from '../../../Hooks/useWritePost';
 import { useAppDispatch } from '../../../Hooks/redus-hooks';
+import { LoadImage } from '../../../Api/Posts/Loaders/ImageUpload';
 
 const ImageMode = () => {
     const { selectMode, BlocksOfPost } = useWritePost();
@@ -23,24 +23,16 @@ const ImageMode = () => {
         );
     }
 
-    const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        const reader = new FileReader();
-
-        reader.onload = () => {
-            console.log(selectMode.type);
+    function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
+        LoadImage(e.target).then((imageUrl) =>
             dispatch(
                 changeTextOfBlock({
                     id: selectMode.id,
-                    text: reader.result as string,
+                    text: imageUrl,
                 })
-            );
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        }
-    };
+            )
+        );
+    }
 
     return (
         <>

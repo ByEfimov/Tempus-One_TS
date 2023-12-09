@@ -19,6 +19,7 @@ const VerifiedingEmail = () => {
     }
 
     function Verifieding() {
+        location.reload();
         getCurrentUserData().then((currentUser) => {
             if (currentUser.emailVerified === true) {
                 set(ref(db, 'users/' + UserId + '/emailVerified'), true);

@@ -16,27 +16,6 @@ interface SelectModalProps {
     setIsModalOpen: (open: boolean) => void;
     ResultObject?: BlockOfPostType;
 }
-interface ShowResultProps {
-    ResultObject: BlockOfPostType | undefined;
-}
-
-const ShowResult: FC<ShowResultProps> = ({ ResultObject }) => {
-    return (
-        <div className={Styles.ResultBlock}>
-            {ResultObject?.type === ModsOfWritePost.text ? (
-                ResultObject?.text || 'Здесь будет результат.'
-            ) : ResultObject?.type === ModsOfWritePost.kod ? (
-                <ShowCode UserCode={ResultObject.text} />
-            ) : (
-                ResultObject?.type === ModsOfWritePost.image && (
-                    <div className={Styles.image}>
-                        <ShowImage imageSrc={ResultObject.text} />
-                    </div>
-                )
-            )}
-        </div>
-    );
-};
 
 const FullDataModal: FC<SelectModalProps> = ({
     setIsModalOpen,
@@ -94,4 +73,27 @@ const FullDataModal: FC<SelectModalProps> = ({
         </div>
     );
 };
+
+interface ShowResultProps {
+    ResultObject: BlockOfPostType | undefined;
+}
+
+const ShowResult: FC<ShowResultProps> = ({ ResultObject }) => {
+    return (
+        <div className={Styles.ResultBlock}>
+            {ResultObject?.type === ModsOfWritePost.text ? (
+                ResultObject?.text || 'Здесь будет результат.'
+            ) : ResultObject?.type === ModsOfWritePost.kod ? (
+                <ShowCode UserCode={ResultObject.text} />
+            ) : (
+                ResultObject?.type === ModsOfWritePost.image && (
+                    <div className={Styles.image}>
+                        <ShowImage imageSrc={ResultObject.text} />
+                    </div>
+                )
+            )}
+        </div>
+    );
+};
+
 export default FullDataModal;

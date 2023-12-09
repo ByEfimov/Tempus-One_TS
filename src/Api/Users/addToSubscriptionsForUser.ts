@@ -1,6 +1,6 @@
 import { getDatabase, push, ref, set } from '@firebase/database';
 
-export function addToSubscriptions(
+export function addToSubscriptionsForUser(
     type: string,
     SubscribingId: string | null,
     UserId: string

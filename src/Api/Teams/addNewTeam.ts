@@ -6,7 +6,7 @@ type NewTeam = {
     projectTitle: string;
     projectDesc: string;
     image: string;
-    teamMembers: { UserId: string; UserRole: string }[];
+    teamMembers: { [key: string]: { UserId: string; UserRole: string } };
 };
 
 export function addNewTeam(NewTeam: NewTeam) {

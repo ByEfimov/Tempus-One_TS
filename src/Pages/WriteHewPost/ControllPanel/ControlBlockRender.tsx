@@ -31,7 +31,7 @@ const ControlBlockRender: FC<ControlBlockRenderProps> = ({
     const handleInteractionStart = (blockData: BlockOfPostType) => {
         TimeHoldOnButton = setTimeout(() => {
             setIsModalOpen(true);
-            window.navigator.vibrate(100);
+            window.navigator.vibrate(50);
             clearTimeout(TimeHoldOnButton);
             setSelectBlockForModal(blockData);
         }, 700);

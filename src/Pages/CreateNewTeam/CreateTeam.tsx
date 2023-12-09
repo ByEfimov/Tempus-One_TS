@@ -6,7 +6,7 @@ import { ChangeEvent, useState } from 'react';
 import CustomTextarea from '../../Components/minicops/textarea';
 import ButtonVoid from '../../Components/minicops/B-void';
 import { addNewTeam } from '../../Api/Teams/addNewTeam';
-import { addToSubscriptions } from '../../Api/Users/addToSubscriptions';
+import { addToSubscriptionsForUser } from '../../Api/Users/addToSubscriptionsForUser';
 
 const CreateTeam = () => {
     const { UserCanChanging, UserId } = useAuth();
@@ -14,20 +14,17 @@ const CreateTeam = () => {
 
     const [inputTitle, setTitle] = useState('');
     const [inputDescript, setDescript] = useState('');
-
     const [inputProjectName, setProjectName] = useState('');
     const [inputProjectDesc, setProjectDescript] = useState('');
-
     const [selectImage, setSelectImage] = useState('');
 
     const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
         const reader = new FileReader();
         reader.onload = () => {
             setSelectImage(reader.result as string);
         };
-        if (file) {
-            reader.readAsDataURL(file);
+        if (e.target.files?.[0]) {
+            reader.readAsDataURL(e.target.files?.[0]);
         }
     };
 
@@ -46,10 +43,12 @@ const CreateTeam = () => {
                 projectTitle: inputProjectName,
                 projectDesc: inputProjectDesc,
                 image: selectImage,
-                teamMembers: [{ UserId: UserId, UserRole: 'Administrator' }],
+                teamMembers: {
+                    [UserId]: { UserId: UserId, UserRole: 'Administrator' },
+                },
             };
             addNewTeam(NewTeam).then((teamId) => {
-                addToSubscriptions('team', teamId, UserId);
+                addToSubscriptionsForUser('team', teamId, UserId);
                 clearInputs();
                 navigate('/');
             });

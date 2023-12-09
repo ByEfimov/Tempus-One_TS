@@ -12,12 +12,7 @@ export function getAllTeams() {
                     const outputArray =
                         teams &&
                         Object.keys(teams).map((key) => ({
-                            desc: teams[key].desc,
-                            image: teams[key].image,
-                            projectDesc: teams[key].projectDesc,
-                            projectTitle: teams[key].projectTitle,
-                            teamMembers: teams[key].teamMembers,
-                            title: teams[key].title,
+                            ...teams[key],
                             id: key,
                         }));
 

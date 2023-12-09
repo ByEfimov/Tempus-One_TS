@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FC, useEffect, useState } from 'react';
 import { Post } from '../../../Store/slices/PostsSlice';
 import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
@@ -39,20 +40,18 @@ const PostRender: FC<PostRender> = ({ post }) => {
         }
         LoadUser();
 
-        function loadImage(image: HTMLImageElement, url: string) {
-            image.onload = function () {
-                setImageIsLoad(true);
-            };
-            image.onerror = function () {
-                setImageIsLoad(false);
-                console.error('Картинка не была обработана.');
-            };
-            image.src = url;
+        function loadImages() {
+            post.PostDataBlocks.map((block) => {
+                const image = new Image();
+                if (block.type === ModsOfWritePost.image) {
+                    image.src = block.text;
+                    image.onload = () => {
+                        setImageIsLoad(true);
+                    };
+                }
+            });
         }
-        post.PostDataBlocks.map((block) => {
-            block.type === ModsOfWritePost.image &&
-                loadImage(new Image(), block.text);
-        });
+        loadImages();
     }, []);
 
     return PostLoadIsDone ? (

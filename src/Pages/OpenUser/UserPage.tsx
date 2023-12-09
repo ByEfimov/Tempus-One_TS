@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useNavigate, useParams } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
 import Styles from './UserPage.module.scss';
@@ -30,9 +31,6 @@ export default function UserPage() {
 
     useEffect(() => {
         getUserFromId(id).then((user) => setOpenUser(user));
-        if (!id) {
-            navigate('/Login');
-        }
     }, []);
 
     function LogoutUser() {

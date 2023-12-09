@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getTeamFromId } from '../../Api/Teams/getTeamdataFromId';
@@ -16,9 +17,11 @@ export type OpenTeamType = {
 export default function TeamPage() {
     const { id } = useParams();
     const [team, setTeam] = useState<OpenTeamType | null>(null);
+
     useEffect(() => {
         getTeamFromId(id).then((team) => setTeam(team));
     }, []);
+
     return (
         team && (
             <>
