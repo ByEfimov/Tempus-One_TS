@@ -10,7 +10,7 @@ import {
     BlockOfPostType,
     clearBlockOfPost,
     removeBlockOfPost,
-} from '../../../Store/slices/WritePostSlice';
+} from '../../../Store/slices/WritePost/WritePostSlice';
 
 interface SelectModalProps {
     setIsModalOpen: (open: boolean) => void;

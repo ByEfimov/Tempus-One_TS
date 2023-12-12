@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ModsOfWritePost } from '../../Utils/ModsOfComps';
+import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
+import NewBlocks from './NewBlocks';
 
 export type BlockOfPostType = {
     text: string;
@@ -38,23 +39,12 @@ const WritePostSlice = createSlice({
         setPostForWhom(state, action) {
             state.PostForWhom = action.payload.PostForWhom;
         },
+
         addBlockToPost(state, action: PayloadAction<{ type: string }>) {
-            const NewBlock: BlockOfPostType =
-                action.payload.type == ModsOfWritePost.kod
-                    ? {
-                          text: '<div>Пиши свой код здесь.</div>',
-                          id: state.BlocksOfPost.length,
-                          type: ModsOfWritePost.kod,
-                          title: '',
-                      }
-                    : action.payload.type == ModsOfWritePost.image
-                    ? {
-                          text: '',
-                          id: state.BlocksOfPost.length,
-                          type: ModsOfWritePost.image,
-                          title: '',
-                      }
-                    : { text: '', id: 0, type: 'text', title: '' };
+            const NewBlock: BlockOfPostType = NewBlocks(
+                state.BlocksOfPost.length,
+                action.payload.type
+            );
             state.BlocksOfPost.push(NewBlock);
         },
         changeTitleOfBlock(
@@ -64,9 +54,7 @@ const WritePostSlice = createSlice({
             state.BlocksOfPost.forEach((item, i) => {
                 if (item.id === action.payload.id) {
                     state.BlocksOfPost[i] = {
-                        type: state.BlocksOfPost[i].type,
-                        id: state.BlocksOfPost[i].id,
-                        text: state.BlocksOfPost[i].text,
+                        ...state.BlocksOfPost[i],
                         title: action.payload.title,
                     };
                 }
@@ -79,11 +67,7 @@ const WritePostSlice = createSlice({
             state.BlocksOfPost.forEach((item, i) => {
                 if (item.id === action.payload.id) {
                     state.BlocksOfPost[i] = {
-                        type: state.BlocksOfPost[i].type,
-                        id: state.BlocksOfPost[i].id,
-                        title:
-                            state.BlocksOfPost[i].title &&
-                            state.BlocksOfPost[i].title,
+                        ...state.BlocksOfPost[i],
                         text: action.payload.text,
                     };
                 }
@@ -103,16 +87,12 @@ const WritePostSlice = createSlice({
             const purifiedText =
                 action.payload.type === ModsOfWritePost.kod
                     ? '<div>Пиши свой код здесь.</div>'
-                    : action.payload.type === ModsOfWritePost.image
-                    ? ''
                     : '';
 
             state.BlocksOfPost.forEach((item, i) => {
                 if (item.id === action.payload.id) {
                     state.BlocksOfPost[i] = {
-                        title: state.BlocksOfPost[i].title && '',
-                        type: state.BlocksOfPost[i].type,
-                        id: state.BlocksOfPost[i].id,
+                        ...state.BlocksOfPost[i],
                         text: purifiedText,
                     };
                 }
@@ -129,14 +109,9 @@ const WritePostSlice = createSlice({
             };
         },
         removePost(state) {
-            (state.TitleOfPost = ''),
-                (state.BlocksOfPost = [
-                    { text: '', id: 0, type: 'text', title: '' },
-                ]),
-                (state.selectMode = {
-                    type: ModsOfWritePost.text,
-                    id: 0,
-                });
+            state.TitleOfPost = initialState.TitleOfPost;
+            state.BlocksOfPost = initialState.BlocksOfPost;
+            state.selectMode = initialState.selectMode;
         },
     },
 });

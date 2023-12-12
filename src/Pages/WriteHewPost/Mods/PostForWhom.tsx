@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../../Hooks/useAuth';
 import { useAppDispatch } from '../../../Hooks/redus-hooks';
-import { setPostForWhom } from '../../../Store/slices/WritePostSlice';
+import { setPostForWhom } from '../../../Store/slices/WritePost/WritePostSlice';
 import getUserAdmins from '../../../Api/Teams/GetUserAdmins';
 
 const PostForWhom = () => {

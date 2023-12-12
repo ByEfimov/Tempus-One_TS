@@ -1,180 +1,175 @@
-@font-face {
-    font-family: 'Mairy';
-    src: url('../../Assets/Fonts/Gorga-Grotesque-Bold.otf');
-}
-
 .Header {
-    position: fixed;
-    width: 100%;
-    height: 8dvh;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    background-color: var(--mainBackGroudColor);
+    animation: header forwards;
+    animation-timeline: scroll();
+    animation-range: 0 20px;
+    background-color: var(--AccentColor);
+    padding: var(--DefaultPadding);
+    border-radius: var(--DefaultBorderRadius);
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
     display: flex;
-    padding: 1em;
-    font-size: 16px;
-    font-family: 'Golos Text';
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    box-shadow: var(--mainBoxShadow);
-    .NavPanel {
-        position: absolute;
-        z-index: 1000;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        width: 100%;
-        .blocks {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            padding: 16px;
-            gap: 20px;
-            z-index: 1000;
-            position: absolute;
-            animation: OpenNavBarBlocks 0.4s forwards;
-            .block {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                overflow: hidden;
-                border: 1px solid var(--accentTextColor);
-                background-color: var(--mainBorderColor);
-                animation: OpenNavBarBlock 0.4s forwards;
-            }
-        }
-        @keyframes OpenNavBarBlocks {
-            0% {
-                gap: 0px;
-            }
-            100% {
-                gap: 20px;
-            }
-        }
-        @keyframes OpenNavBarBlock {
-            0% {
-                opacity: 0;
-                width: 1px;
-                height: 1px;
-                border-radius: 0px;
-            }
-            100% {
-                opacity: 1;
-                width: 20%;
-                height: 70px;
-                border-radius: 10px;
-            }
-        }
-        .back {
-            background-color: var(--mainBackGroudColor);
-            position: absolute;
-            height: 100vh;
-            width: 100%;
-            animation: OpenNavBar 0.3s forwards;
-        }
-        @keyframes OpenNavBar {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 0.6;
-            }
-        }
-    }
-    .NavPanelClose {
-        .blocks {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            padding: 16px;
-            gap: 20px;
-            z-index: 1000;
-            position: absolute;
-            animation: CloseNavBarBlocks 0.4s forwards;
-            .block {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                overflow: hidden;
-                border: 1px solid var(--accentTextColor);
-                background-color: var(--mainBorderColor);
-                animation: CloseNavBarBlock 0.4s forwards;
-            }
-        }
-        @keyframes CloseNavBarBlocks {
-            0% {
-                gap: 20px;
-            }
-            100% {
-                gap: 0px;
-            }
-        }
-        @keyframes CloseNavBarBlock {
-            0% {
-                opacity: 1;
-                width: 20%;
-                height: 70px;
-                border-radius: 10px;
-            }
-            100% {
-                opacity: 0;
-                width: 0px;
-                height: 0px;
-                border-radius: 0px;
-            }
-        }
-        .back {
-            animation: CloseNavBar 0.3s forwards;
-            @keyframes CloseNavBar {
-                0% {
-                    opacity: 0.6;
-                }
-                100% {
-                    opacity: 0;
-                }
-            }
-        }
-    }
-    .Title {
-        font-family: 'Mairy';
-        font-weight: 500;
-        color: var(--mainTextColor);
-        font-size: 1.5em;
-    }
-    .UseHeader {
+    padding-bottom: 77px;
+    z-index: 1;
+    .TopBar {
         display: flex;
-        gap: 20px;
-        justify-content: center;
         align-items: center;
-        .notifications {
-            border-radius: 50%;
-            border: 1px solid var(--accentTextColor);
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-    }
-    .ProfileIcon {
-        border: 1px solid var(--accentTextColor);
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        overflow: hidden;
-        justify-content: center;
-        align-items: center;
-        display: flex;
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .Img {
-            width: 24px;
-            width: 24px;
+        justify-content: space-between;
+
+        .ButtonWithLines {
+            position: fixed;
+            height: 46px;
+            left: 17px;
+            width: 46px;
+            background-color: var(--AccentColor2);
+            border-radius: var(--DefaultBorderRadius);
+            box-shadow: var(--DarkShadow);
             z-index: 100;
         }
+        .ButtonWithLines::before {
+            top: 17px;
+            left: 10px;
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 3px;
+            background-color: var(--WhiteColor);
+            border-radius: 10px;
+        }
+        .ButtonWithLines::after {
+            bottom: 17px;
+            right: 10px;
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 3px;
+            background-color: var(--WhiteColor);
+            border-radius: 10px;
+        }
+        .Title {
+            animation: opasity forwards;
+            animation-timeline: scroll();
+            animation-range: 0 20px;
+            z-index: 1;
+            height: 46px;
+            color: var(--WhiteTextColor);
+            font-family: Nunito;
+            font-size: var(--BigFontSize);
+            font-weight: 700;
+            letter-spacing: 3.5px;
+            z-index: 100;
+        }
+        .ProfileIcon {
+            height: 46px;
+            width: 46px;
+            background-color: var(--AccentColor2);
+            border-radius: var(--DefaultBorderRadius);
+            box-shadow: var(--DarkShadow);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: center;
+            overflow: hidden;
+            position: fixed;
+            right: 17px;
+            z-index: 100;
+        }
+    }
+    .SearchBar {
+        animation: shrink forwards;
+        animation-timeline: scroll();
+        animation-range: 0 20px;
+        margin-top: 24px;
+        top: 50px;
+        width: 100%;
+        padding-left: 17px;
+        padding-right: 17px;
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+        .SearchIcon {
+            left: 27px;
+            animation: opasity forwards;
+            animation-timeline: scroll();
+            animation-range: 0 20px;
+            position: absolute;
+        }
+        .SlidersIcon {
+            animation: opasity forwards;
+            animation-timeline: scroll();
+            animation-range: 0 20px;
+            right: 27px;
+            position: absolute;
+        }
+        .Input {
+            box-shadow: var(--DarkShadow);
+            animation: shrinkInput forwards;
+            animation-timeline: scroll();
+            animation-range: 0 20px;
+            padding-left: 50px;
+            width: 100%;
+            height: 46px;
+            background-color: var(--AccentColor2);
+            border-radius: var(--DefaultBorderRadius);
+            color: var(--WhiteTextColor);
+            font-size: 20px;
+            font-weight: 600;
+            pointer-events: all;
+        }
+        .Input::placeholder {
+            color: var(--PlaceholderTextColor);
+            animation: colori forwards;
+            animation-timeline: scroll();
+            animation-range: 0 20px;
+        }
+    }
+}
+
+.Header::before {
+    content: '';
+    height: 80px;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    border-radius: var(--DefaultBorderRadius);
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    background-color: var(--AccentColor);
+}
+
+@keyframes shrinkInput {
+    to {
+        pointer-events: none;
+        padding-left: 10px;
+    }
+}
+
+@keyframes colori {
+    to {
+        color: var(--WhiteTextColor);
+    }
+}
+
+@keyframes opasity {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes shrink {
+    to {
+        width: 60%;
+        top: -7px;
+        position: fixed;
+        padding: 0px;
+    }
+}
+@keyframes header {
+    to {
+        padding-bottom: 20px;
     }
 }

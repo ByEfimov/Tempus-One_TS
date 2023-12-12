@@ -1,9 +1,11 @@
-import FeatherIcon from 'feather-icons-react';
 import Styles from './Header.module.scss';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../Hooks/useAuth';
 import { useState } from 'react';
 import NavPanel from './NavPanel';
+import UserIcon from '../../Assets/Icons/user.svg';
+import SearchIcon from '../../Assets/Icons/search.svg';
+import SlidersIcon from '../../Assets/Icons/sliders.svg';
 
 export default function Header() {
     const [openNavPanel, setOpenNavPanel] = useState(false);
@@ -13,26 +15,42 @@ export default function Header() {
         setOpenNavPanel(!openNavPanel);
     }
 
+    const Avatar = UserIsAuth ? (
+        <img src={UserPhoto || undefined}></img>
+    ) : (
+        <img src={UserIcon} alt="" />
+    );
+
     return (
-        <div className={Styles.Header}>
+        <>
             {openNavPanel && (
                 <NavPanel setOpenNavPanel={setOpenNavPanel}></NavPanel>
             )}
-            <Link to="/" className={Styles.Title}>
-                Tempus-One
-            </Link>
-            <div className={Styles.UseHeader}>
-                <div className={Styles.notifications}>
-                    <FeatherIcon icon="bell" className={Styles.Img} />
+            <header className={Styles.Header}>
+                <div className={Styles.TopBar}>
+                    <button
+                        onClick={OpenNav}
+                        className={Styles.ButtonWithLines}
+                    ></button>
+                    <Link to="/" className={Styles.Title}>
+                        TEMPUS
+                    </Link>
+                    <button className={Styles.ProfileIcon}>{Avatar}</button>
                 </div>
-                <button className={Styles.ProfileIcon} onClick={OpenNav}>
-                    {UserIsAuth ? (
-                        <img src={UserPhoto || undefined}></img>
-                    ) : (
-                        <FeatherIcon icon="user" className={Styles.Img} />
-                    )}
-                </button>
-            </div>
-        </div>
+                <div className={Styles.SearchBar}>
+                    <button className={Styles.SearchIcon}>
+                        <img src={SearchIcon} alt="" />
+                    </button>
+                    <input
+                        type="text"
+                        placeholder="Поиск"
+                        className={Styles.Input}
+                    />
+                    <button className={Styles.SlidersIcon}>
+                        <img src={SlidersIcon} alt="" />
+                    </button>
+                </div>
+            </header>
+        </>
     );
 }

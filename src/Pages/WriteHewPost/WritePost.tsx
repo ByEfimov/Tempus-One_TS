@@ -11,7 +11,10 @@ import TitleForPost from './Mods/TitleForPost';
 import { countEmptyValues } from '../../Utils/countEmptyValues';
 import { useWritePost } from '../../Hooks/useWritePost';
 import { useAppDispatch } from '../../Hooks/redus-hooks';
-import { BlockOfPostType, removePost } from '../../Store/slices/WritePostSlice';
+import {
+    BlockOfPostType,
+    removePost,
+} from '../../Store/slices/WritePost/WritePostSlice';
 import { addNewPost } from '../../Api/Posts/addNewPost';
 import PostForWhom from './Mods/PostForWhom';
 

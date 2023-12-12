@@ -7,7 +7,7 @@ import { useAppDispatch } from '../../../Hooks/redus-hooks';
 import {
     addBlockToPost,
     setSelectMode,
-} from '../../../Store/slices/WritePostSlice';
+} from '../../../Store/slices/WritePost/WritePostSlice';
 import { useWritePost } from '../../../Hooks/useWritePost';
 
 interface ShowSelectMode {

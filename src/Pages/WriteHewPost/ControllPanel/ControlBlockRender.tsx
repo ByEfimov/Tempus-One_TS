@@ -7,7 +7,7 @@ import { FC } from 'react';
 import {
     BlockOfPostType,
     SelectModeType,
-} from '../../../Store/slices/WritePostSlice';
+} from '../../../Store/slices/WritePost/WritePostSlice';
 
 interface ControlBlockRenderProps {
     blockData: BlockOfPostType;

@@ -8,7 +8,7 @@ import { reverceBlock } from '../../../Utils/anims/reverceBlock';
 import {
     changeTextOfBlock,
     changeTitleOfBlock,
-} from '../../../Store/slices/WritePostSlice';
+} from '../../../Store/slices/WritePost/WritePostSlice';
 import { useWritePost } from '../../../Hooks/useWritePost';
 import { useAppDispatch } from '../../../Hooks/redus-hooks';
 import { LoadImage } from '../../../Api/Posts/Loaders/ImageUpload';

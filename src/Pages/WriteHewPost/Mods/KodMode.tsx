@@ -14,7 +14,7 @@ import { useAppDispatch } from '../../../Hooks/redus-hooks';
 import {
     changeTextOfBlock,
     changeTitleOfBlock,
-} from '../../../Store/slices/WritePostSlice';
+} from '../../../Store/slices/WritePost/WritePostSlice';
 
 const KodMode = () => {
     const { selectMode, BlocksOfPost } = useWritePost();

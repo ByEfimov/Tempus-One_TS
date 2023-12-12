@@ -1,27 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700&display=swap');
 @import './variables.css';
 
 html {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     overflow-x: hidden;
     overflow-y: scroll;
-    background-color: #191919;
-    font-family: 'Golos Text';
-    color: var(--mainTextColor);
+    background-color: var(--BackgroundColor);
+    font-family: 'Nunito';
+    color: var(--GreyTextColor);
 }
 
 ::-webkit-scrollbar {
     width: 10px;
-    background-color: #191919;
 }
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background-color: #333;
-}
-hrml * {
-    color: #fff;
 }
 
 * {

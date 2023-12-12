@@ -11,7 +11,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import userReduser from './slices/UserSlice';
-import WritePostSlice from './slices/WritePostSlice';
+import WritePostSlice from './slices/WritePost/WritePostSlice';
 import PostsSlice from './slices/PostsSlice';
 
 const persistConfig = {

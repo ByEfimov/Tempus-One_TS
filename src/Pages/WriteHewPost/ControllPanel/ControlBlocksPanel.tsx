@@ -10,7 +10,7 @@ import { useWritePost } from '../../../Hooks/useWritePost';
 import {
     BlockOfPostType,
     setSelectMode,
-} from '../../../Store/slices/WritePostSlice';
+} from '../../../Store/slices/WritePost/WritePostSlice';
 
 export const ControlBlocksPanel = () => {
     const { selectMode, BlocksOfPost } = useWritePost();

@@ -8,3 +8,5 @@ declare module '*.module.scss' {
 }
 declare module 'feather-icons-react';
 declare module 'uuid';
+
+declare module '*.svg';

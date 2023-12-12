@@ -1,15 +1,22 @@
 html {
-    --mainTextColor: #f0f0f0;
-    --accentTextColor: #38669b;
-    --activeAccentColor: #2c7c4d;
-    --errorAccentColor: #7c382c;
-    --secondTextColor: #686868;
-    --mainBorderColor: #202020;
-    --mainBackGroudColor: #191919;
-    --secondBackGroudColor: #333;
+    --BackgroundColor: #ffffff;
+    --WhiteColor: #f5f4f3;
+    --GreyColor: #f8f8f8;
 
-    --mainBoxShadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
-    --activeBoxShadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.4);
+    --WhiteTextColor: #f5f4f3;
+    --GreyTextColor: #aab1b5;
+    --DarkTextColor: #505259;
+    --PlaceholderTextColor: rgba(245, 244, 243, 0.7);
 
-    --mainMarginTop: calc(8vh + 20px);
+    --AccentColor: #675ef5;
+    --AccentColor2: #8e89ea;
+
+    --BigBoxShabow: drop-shadow(4px 4px 6px rgba(103, 94, 245, 0.2));
+    --SmollBoxShabow: drop-shadow(2px 2px 5px rgba(103, 94, 245, 0.2));
+    --DarkShadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.25);
+
+    --DefaultPadding: 17px;
+    --DefaultBorderRadius: 20px;
+
+    --BigFontSize: 35px;
 }

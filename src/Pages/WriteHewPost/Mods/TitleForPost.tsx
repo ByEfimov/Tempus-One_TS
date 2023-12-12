@@ -1,6 +1,6 @@
 import CustomInput from '../../../Components/minicops/input';
 import { useAppDispatch } from '../../../Hooks/redus-hooks';
-import { setTitleOfPost } from '../../../Store/slices/WritePostSlice';
+import { setTitleOfPost } from '../../../Store/slices/WritePost/WritePostSlice';
 import { ModsOfInput } from '../../../Utils/ModsOfComps';
 
 const TitleForPost = () => {
