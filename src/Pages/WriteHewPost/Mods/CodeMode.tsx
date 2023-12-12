@@ -16,7 +16,7 @@ import {
     changeTitleOfBlock,
 } from '../../../Store/slices/WritePost/WritePostSlice';
 
-const KodMode = () => {
+const CodeMode = () => {
     const { selectMode, BlocksOfPost } = useWritePost();
     const dispatch = useAppDispatch();
 
@@ -26,7 +26,7 @@ const KodMode = () => {
 
     useEffect(() => {
         dispatch(changeTextOfBlock({ id: selectMode.id, text: UserCode }));
-    }, []);
+    }, [UserCode]);
 
     function changeTitle(e: React.ChangeEvent<HTMLInputElement>) {
         dispatch(
@@ -106,4 +106,4 @@ const KodMode = () => {
     );
 };
 
-export default KodMode;
+export default CodeMode;

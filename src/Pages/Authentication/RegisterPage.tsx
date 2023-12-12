@@ -7,8 +7,7 @@ import { setCurrentUser } from '../../Store/slices/UserSlice';
 import { addUserToRealtimeDB } from '../../Api/Users/addUserToRealtimeDB';
 import {
     TypesOfHeader,
-    setTitleToHeader,
-    setTypeOfHeader,
+    setHeader,
 } from '../../Store/slices/Header/HeaderSlice';
 import { useEffect } from 'react';
 
@@ -19,9 +18,8 @@ export default function RegisterPage() {
 
     useEffect(() => {
         dispatch(
-            setTypeOfHeader({ TypeOfHeader: TypesOfHeader.WithoutSearchBar })
+            setHeader({ Title: 'Группы', Type: TypesOfHeader.WithoutSearchBar })
         );
-        dispatch(setTitleToHeader({ Title: 'Аккаунт' }));
     }, []);
 
     function registerUser(

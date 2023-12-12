@@ -6,8 +6,7 @@ import { setCurrentUser } from '../../Store/slices/UserSlice';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import {
     TypesOfHeader,
-    setTitleToHeader,
-    setTypeOfHeader,
+    setHeader,
 } from '../../Store/slices/Header/HeaderSlice';
 import { useEffect } from 'react';
 
@@ -18,9 +17,11 @@ export default function LoginPage() {
 
     useEffect(() => {
         dispatch(
-            setTypeOfHeader({ TypeOfHeader: TypesOfHeader.WithoutSearchBar })
+            setHeader({
+                Title: 'Аккаунт',
+                Type: TypesOfHeader.WithoutSearchBar,
+            })
         );
-        dispatch(setTitleToHeader({ Title: 'Аккаунт' }));
     }, []);
 
     function handlerSubmit(inputEmail: string, inputPass: string) {

@@ -4,8 +4,7 @@ import { getPostFromId } from '../../Api/Posts/getPostdataFromId';
 import { Post } from '../../Store/slices/PostsSlice';
 import {
     TypesOfHeader,
-    setTitleToHeader,
-    setTypeOfHeader,
+    setHeader,
 } from '../../Store/slices/Header/HeaderSlice';
 import { useAppDispatch } from '../../Hooks/redus-hooks';
 
@@ -17,9 +16,8 @@ export default function PostPage() {
     useEffect(() => {
         getPostFromId(id).then((post) => setPost(post));
         dispatch(
-            setTypeOfHeader({ TypeOfHeader: TypesOfHeader.WithoutSearchBar })
+            setHeader({ Title: 'Пост', Type: TypesOfHeader.WithoutSearchBar })
         );
-        dispatch(setTitleToHeader({ Title: 'Пост' }));
     }, []);
 
     return (

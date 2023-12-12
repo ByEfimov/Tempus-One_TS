@@ -4,8 +4,7 @@ import { OpenUserType } from '../OpenUser/UserPage';
 import { useNavigate } from 'react-router-dom';
 import {
     TypesOfHeader,
-    setTitleToHeader,
-    setTypeOfHeader,
+    setHeader,
 } from '../../Store/slices/Header/HeaderSlice';
 import { useAppDispatch } from '../../Hooks/redus-hooks';
 
@@ -16,9 +15,8 @@ export default function AllUsers() {
 
     useEffect(() => {
         getAllUsers().then((users) => setUsers(users));
-        dispatch(setTitleToHeader({ Title: 'Люди' }));
         dispatch(
-            setTypeOfHeader({ TypeOfHeader: TypesOfHeader.WithSearchBar })
+            setHeader({ Title: 'Люди', Type: TypesOfHeader.WithSearchBar })
         );
     }, []);
 

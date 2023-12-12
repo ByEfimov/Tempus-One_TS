@@ -4,6 +4,7 @@ import { getPosts } from '../../../Api/Posts/getAllPosts';
 import { Post, setLastPostKey } from '../../../Store/slices/PostsSlice';
 import PostRender from './PostRender';
 import { useAppDispatch } from '../../../Hooks/redus-hooks';
+import Preloader from '../../minicops/Preloader';
 
 interface ShowPosts {
     filter?: string;
@@ -25,10 +26,13 @@ const ShowPosts: FC<ShowPosts> = ({ filter }) => {
 
     return (
         <div className={Styles.Posts}>
-            {posts &&
+            {posts ? (
                 posts.map((post) => (
                     <PostRender key={post.PostId} post={post} />
-                ))}
+                ))
+            ) : (
+                <Preloader></Preloader>
+            )}
         </div>
     );
 };

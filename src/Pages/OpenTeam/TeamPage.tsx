@@ -5,8 +5,7 @@ import { getTeamFromId } from '../../Api/Teams/getTeamdataFromId';
 import ShowPosts from '../../Components/ShowPosts/Posts/ShowPosts';
 import {
     TypesOfHeader,
-    setTitleToHeader,
-    setTypeOfHeader,
+    setHeader,
 } from '../../Store/slices/Header/HeaderSlice';
 import { useAppDispatch } from '../../Hooks/redus-hooks';
 
@@ -28,9 +27,11 @@ export default function TeamPage() {
     useEffect(() => {
         getTeamFromId(id).then((team) => setTeam(team));
         dispatch(
-            setTypeOfHeader({ TypeOfHeader: TypesOfHeader.WithoutSearchBar })
+            setHeader({
+                Title: 'Группа',
+                Type: TypesOfHeader.WithoutSearchBar,
+            })
         );
-        dispatch(setTitleToHeader({ Title: 'Группа' }));
     }, []);
 
     return (

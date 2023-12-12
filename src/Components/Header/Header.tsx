@@ -24,7 +24,7 @@ export default function Header() {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    function OpenNav() {
+    function ClickActiveButton() {
         if (
             HeaderTypeOfButton === TypesOfHeaderButton.NavBar ||
             HeaderTypeOfButton === TypesOfHeaderButton.ToLeft
@@ -43,7 +43,7 @@ export default function Header() {
     }
 
     const Avatar = UserIsAuth ? (
-        <img src={UserPhoto || undefined}></img>
+        <img src={UserPhoto || UserIcon}></img>
     ) : (
         <img src={UserIcon} alt="" />
     );
@@ -79,7 +79,7 @@ export default function Header() {
             <header className={Styles.Header}>
                 <div className={Styles.TopBar}>
                     <button
-                        onClick={OpenNav}
+                        onClick={ClickActiveButton}
                         className={classNames(
                             Styles.ButtonWithLines,
                             ClassToButton

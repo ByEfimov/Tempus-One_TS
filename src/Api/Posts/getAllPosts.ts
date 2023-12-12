@@ -26,12 +26,7 @@ export function getPosts(filter: string | null) {
                     const outputArray =
                         posts &&
                         Object.keys(posts).map((key) => ({
-                            PostAuthorId: posts[key].PostAuthorId,
-                            PostDataBlocks: posts[key].PostDataBlocks,
-                            PostDate: posts[key].PostDate,
-                            PostLikes: posts[key].PostLikes,
-                            PostShows: posts[key].PostShows,
-                            PostTitle: posts[key].PostTitle,
+                            ...posts[key],
                             PostId: key,
                         }));
 

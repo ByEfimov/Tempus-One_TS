@@ -5,8 +5,7 @@ import { getAllTeams } from '../../Api/Teams/getAllTeams';
 import ButtonVoid from '../../Components/minicops/B-void';
 import {
     TypesOfHeader,
-    setTitleToHeader,
-    setTypeOfHeader,
+    setHeader,
 } from '../../Store/slices/Header/HeaderSlice';
 import { useAppDispatch } from '../../Hooks/redus-hooks';
 
@@ -17,9 +16,8 @@ export default function AllTeams() {
 
     useEffect(() => {
         getAllTeams().then((teams) => setTeams(teams));
-        dispatch(setTitleToHeader({ Title: 'Группы' }));
         dispatch(
-            setTypeOfHeader({ TypeOfHeader: TypesOfHeader.WithSearchBar })
+            setHeader({ Title: 'Группы', Type: TypesOfHeader.WithSearchBar })
         );
     }, []);
 

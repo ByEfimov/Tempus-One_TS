@@ -28,7 +28,7 @@ const ShowSelectMode: FC<ShowSelectMode> = ({ closePopup }) => {
             <h1 className={Styles.Title}>Выбери что ты хочешь добавить:</h1>
             <ButtonVoid
                 title="Код"
-                clickHandler={() => createNewMode(ModsOfWritePost.kod)}
+                clickHandler={() => createNewMode(ModsOfWritePost.code)}
             ></ButtonVoid>
             <ButtonVoid
                 title="Картинка"

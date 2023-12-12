@@ -1,6 +1,6 @@
 export const ModsOfWritePost = {
     text: 'text',
-    kod: 'kod',
+    code: 'code',
     image: 'image',
 };
 

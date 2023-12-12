@@ -83,7 +83,7 @@ const ShowResult: FC<ShowResultProps> = ({ ResultObject }) => {
         <div className={Styles.ResultBlock}>
             {ResultObject?.type === ModsOfWritePost.text ? (
                 ResultObject?.text || 'Здесь будет результат.'
-            ) : ResultObject?.type === ModsOfWritePost.kod ? (
+            ) : ResultObject?.type === ModsOfWritePost.code ? (
                 <ShowCode UserCode={ResultObject.text} />
             ) : (
                 ResultObject?.type === ModsOfWritePost.image && (

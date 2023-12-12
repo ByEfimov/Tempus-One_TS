@@ -1,6 +1,132 @@
 .Posts {
-    padding: 20px 20px;
+    margin-top: 17px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 7px;
+    .Post {
+        background-color: var(--GreyColor);
+        padding: 17px;
+        border-radius: var(--DefaultBorderRadius);
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        .PostData {
+            margin-top: 11px;
+            .Title {
+                color: var(--DarkTextColor);
+                font-size: 16px;
+                font-weight: 600;
+            }
+            .Text {
+                color: var(--DarkTextColor);
+            }
+        }
+        .BlocksData {
+            display: flex;
+            overflow-x: auto;
+            margin-top: 11px;
+            gap: 17px;
+            .ImageBlock {
+                background-color: var(--WhiteTextColor2);
+                flex-shrink: 0;
+                height: 240px;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: var(--DefaultBorderRadius);
+                img {
+                    width: 100%;
+                    object-fit: cover;
+                    height: 100%;
+                }
+            }
+            .CodeBlock {
+                padding: 10px;
+                background-color: var(--WhiteTextColor2);
+                border-radius: var(--DefaultBorderRadius);
+                flex-shrink: 0;
+                height: 240px;
+                width: 100%;
+            }
+        }
+        .AuthorData {
+            display: flex;
+            justify-content: space-between;
+            .Data {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                .Photo {
+                    overflow: hidden;
+                    width: 46px;
+                    height: 46px;
+                    box-shadow: var(--DarkShadow);
+                    border-radius: var(--DefaultBorderRadius);
+                }
+                .Text {
+                    display: flex;
+                    flex-direction: column;
+                    .Name {
+                        color: var(--AccentColor);
+                        font-size: 17px;
+                        font-weight: 600;
+                    }
+                    .Date {
+                        color: var(--GreyTextColor);
+                        font-size: 14px;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+        .PostActivity {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 11px;
+            .Buttons {
+                display: flex;
+                gap: 20px;
+                align-items: center;
+            }
+            button {
+                justify-content: center;
+                display: flex;
+                color: var(--DarkTextColor);
+                align-items: center;
+                gap: 7px;
+                font-size: 15px;
+                font-weight: 500;
+            }
+        }
+    }
+    .FakePost {
+        margin-bottom: 10px;
+        background-color: var(--GreyColor);
+        padding: 17px;
+        border-radius: var(--DefaultBorderRadius);
+        padding-top: 10px;
+        padding-bottom: 10px;
+        .UserData {
+            height: 46px;
+            width: 100%;
+            background-color: var(--WhiteTextColor2);
+            border-radius: var(--DefaultBorderRadius);
+        }
+        .PostData {
+            margin-top: 11px;
+            width: 100%;
+            height: 44px;
+            background-color: var(--WhiteTextColor2);
+            border-radius: var(--DefaultBorderRadius);
+        }
+        .BlocksData {
+            margin-top: 11px;
+            width: 100%;
+            height: 240px;
+            background-color: var(--WhiteTextColor2);
+            border-radius: var(--DefaultBorderRadius);
+        }
+    }
 }

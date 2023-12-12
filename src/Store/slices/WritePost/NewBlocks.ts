@@ -2,11 +2,11 @@ import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
 import { BlockOfPostType } from './WritePostSlice';
 
 export default function NewBlocks(id: number, type: string): BlockOfPostType {
-    if (type === ModsOfWritePost.kod) {
+    if (type === ModsOfWritePost.code) {
         return {
             text: '<div>Пиши свой код здесь.</div>',
             id: id,
-            type: ModsOfWritePost.kod,
+            type: ModsOfWritePost.code,
             title: '',
         };
     } else if (type === ModsOfWritePost.image) {

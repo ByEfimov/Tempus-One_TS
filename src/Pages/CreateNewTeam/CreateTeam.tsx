@@ -10,8 +10,7 @@ import { addToSubscriptionsForUser } from '../../Api/Users/addToSubscriptionsFor
 import { useAppDispatch } from '../../Hooks/redus-hooks';
 import {
     TypesOfHeader,
-    setTitleToHeader,
-    setTypeOfHeader,
+    setHeader,
 } from '../../Store/slices/Header/HeaderSlice';
 
 const CreateTeam = () => {
@@ -27,9 +26,8 @@ const CreateTeam = () => {
 
     useEffect(() => {
         dispatch(
-            setTypeOfHeader({ TypeOfHeader: TypesOfHeader.WithoutSearchBar })
+            setHeader({ Title: 'Группа', Type: TypesOfHeader.WithoutSearchBar })
         );
-        dispatch(setTitleToHeader({ Title: 'Группа' }));
     }, []);
 
     const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {

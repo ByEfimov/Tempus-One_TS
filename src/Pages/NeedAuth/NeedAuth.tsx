@@ -5,8 +5,7 @@ import { useEffect } from 'react';
 import { useAppDispatch } from '../../Hooks/redus-hooks';
 import {
     TypesOfHeader,
-    setTitleToHeader,
-    setTypeOfHeader,
+    setHeader,
 } from '../../Store/slices/Header/HeaderSlice';
 
 export default function NeedAuth() {
@@ -15,9 +14,8 @@ export default function NeedAuth() {
 
     useEffect(() => {
         dispatch(
-            setTypeOfHeader({ TypeOfHeader: TypesOfHeader.WithoutSearchBar })
+            setHeader({ Title: 'Войди', Type: TypesOfHeader.WithoutSearchBar })
         );
-        dispatch(setTitleToHeader({ Title: 'Войди' }));
     }, []);
 
     return !UserIsAuth ? (

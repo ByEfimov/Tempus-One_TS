@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-type PostBlock = {
+export type PostBlock = {
     id: number;
     text: string;
     type: string;
@@ -15,6 +15,8 @@ export type Post = {
     PostLikes: number;
     PostShows: number;
     PostTitle: string;
+    PostReposts: number;
+    PostComments: [];
 };
 
 export type PostsType = { lastPostKey: string | null };

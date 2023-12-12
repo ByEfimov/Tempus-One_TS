@@ -7,8 +7,7 @@ import { getCurrentUserData } from '../../Api/Users/getCurrentUserData';
 import { getDatabase, ref, set } from '@firebase/database';
 import {
     TypesOfHeader,
-    setTitleToHeader,
-    setTypeOfHeader,
+    setHeader,
 } from '../../Store/slices/Header/HeaderSlice';
 import { useAppDispatch } from '../../Hooks/redus-hooks';
 import { useEffect } from 'react';
@@ -21,9 +20,8 @@ const VerifiedingEmail = () => {
 
     useEffect(() => {
         dispatch(
-            setTypeOfHeader({ TypeOfHeader: TypesOfHeader.WithoutSearchBar })
+            setHeader({ Title: 'Подтверди', Type: TypesOfHeader.WithSearchBar })
         );
-        dispatch(setTitleToHeader({ Title: 'Подтверди' }));
     }, []);
 
     function sendMailForVerifieding() {

@@ -11,8 +11,7 @@ import { getUserFromId } from '../../Api/Users/getUserdataFromId';
 import { getAuth, signOut } from 'firebase/auth';
 import {
     TypesOfHeader,
-    setTitleToHeader,
-    setTypeOfHeader,
+    setHeader,
 } from '../../Store/slices/Header/HeaderSlice';
 
 export type OpenUserType = {
@@ -37,9 +36,11 @@ export default function UserPage() {
     useEffect(() => {
         getUserFromId(id).then((user) => setOpenUser(user));
         dispatch(
-            setTypeOfHeader({ TypeOfHeader: TypesOfHeader.WithoutSearchBar })
+            setHeader({
+                Title: 'Человек',
+                Type: TypesOfHeader.WithoutSearchBar,
+            })
         );
-        dispatch(setTitleToHeader({ Title: 'Аккаунт' }));
     }, []);
 
     function LogoutUser() {

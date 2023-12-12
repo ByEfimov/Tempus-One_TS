@@ -85,7 +85,7 @@ const WritePostSlice = createSlice({
             action: PayloadAction<{ id: number; type: string }>
         ) {
             const purifiedText =
-                action.payload.type === ModsOfWritePost.kod
+                action.payload.type === ModsOfWritePost.code
                     ? '<div>Пиши свой код здесь.</div>'
                     : '';
 

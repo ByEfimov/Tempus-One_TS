@@ -4,7 +4,7 @@ import { ModsOfWritePost } from '../../Utils/ModsOfComps';
 import Styles from './Styles.module.scss';
 import { ControlBlocksPanel } from './ControllPanel/ControlBlocksPanel';
 import TextMode from './Mods/TextMode';
-import KodMode from './Mods/KodMode';
+import CodeMode from './Mods/CodeMode';
 import ImageMode from './Mods/ImageMode';
 import ButtonVoid from '../../Components/minicops/B-void';
 import TitleForPost from './Mods/TitleForPost';
@@ -20,8 +20,7 @@ import PostForWhom from './Mods/PostForWhom';
 import { useEffect } from 'react';
 import {
     TypesOfHeader,
-    setTitleToHeader,
-    setTypeOfHeader,
+    setHeader,
 } from '../../Store/slices/Header/HeaderSlice';
 
 export type NewPost = {
@@ -32,6 +31,7 @@ export type NewPost = {
     PostLikes: number;
     PostShows: number;
     PostComments: object;
+    PostReposts: number;
 };
 
 const WritePost = () => {
@@ -43,9 +43,11 @@ const WritePost = () => {
 
     useEffect(() => {
         dispatch(
-            setTypeOfHeader({ TypeOfHeader: TypesOfHeader.WithoutSearchBar })
+            setHeader({
+                Type: TypesOfHeader.WithoutSearchBar,
+                Title: 'Пост',
+            })
         );
-        dispatch(setTitleToHeader({ Title: 'Пост' }));
     }, []);
 
     function sendNewPost() {
@@ -58,7 +60,9 @@ const WritePost = () => {
             PostLikes: 0,
             PostShows: 0,
             PostComments: {},
+            PostReposts: 0,
         };
+        console.log(NewPost);
 
         if (countEmptyValues(NewPost) - 4 === 0) {
             addNewPost(NewPost);
@@ -71,8 +75,8 @@ const WritePost = () => {
         switch (selectMode.type) {
             case ModsOfWritePost.text:
                 return <TextMode />;
-            case ModsOfWritePost.kod:
-                return <KodMode />;
+            case ModsOfWritePost.code:
+                return <CodeMode />;
             case ModsOfWritePost.image:
                 return <ImageMode />;
         }

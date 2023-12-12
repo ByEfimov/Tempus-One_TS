@@ -62,7 +62,7 @@ const ControlBlockRender: FC<ControlBlockRenderProps> = ({
                     >
                         {blockData.text}
                     </div>
-                ) : blockData.type === ModsOfWritePost.kod ? (
+                ) : blockData.type === ModsOfWritePost.code ? (
                     <div
                         onClick={() => openMod(blockData)}
                         className={Styles.OneceMode}

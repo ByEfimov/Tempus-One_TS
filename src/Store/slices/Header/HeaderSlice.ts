@@ -28,25 +28,19 @@ const HeaderSlice = createSlice({
     name: 'header',
     initialState,
     reducers: {
-        setTypeOfHeader(state, action) {
-            state.Type = action.payload.TypeOfHeader;
-        },
-        setTitleToHeader(state, action) {
-            state.Title = action.payload.Title;
-        },
         setInputSearchBar(state, action) {
             state.SearchBar = action.payload.SearchBar;
         },
         setTypeOfButtonHeader(state, action) {
             state.TypeOfButton = action.payload.TypeOfButton;
         },
+        setHeader(state, action) {
+            state.Title = action.payload.Title;
+            state.Type = action.payload.Type;
+        },
     },
 });
-export const {
-    setTypeOfHeader,
-    setTitleToHeader,
-    setInputSearchBar,
-    setTypeOfButtonHeader,
-} = HeaderSlice.actions;
+export const { setInputSearchBar, setTypeOfButtonHeader, setHeader } =
+    HeaderSlice.actions;
 
 export default HeaderSlice.reducer;
