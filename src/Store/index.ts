@@ -13,17 +13,19 @@ import storage from 'redux-persist/lib/storage';
 import userReduser from './slices/UserSlice';
 import WritePostSlice from './slices/WritePost/WritePostSlice';
 import PostsSlice from './slices/PostsSlice';
+import HeaderSlice from './slices/Header/HeaderSlice';
 
 const persistConfig = {
     key: 'root',
     storage,
-    blacklist: ['WritePost'],
+    blacklist: ['WritePost', 'Header'],
 };
 
 const rootReduser = combineReducers({
     user: userReduser,
     WritePost: WritePostSlice,
     Posts: PostsSlice,
+    Header: HeaderSlice,
 });
 const persistedReduser = persistReducer(persistConfig, rootReduser);
 

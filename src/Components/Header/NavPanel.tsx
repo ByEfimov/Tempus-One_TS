@@ -1,30 +1,58 @@
 import { FC } from 'react';
 import Styles from './Header.module.scss';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../Hooks/useAuth';
 import React from 'react';
-
+import { useAppDispatch } from '../../Hooks/redus-hooks';
+import {
+    TypesOfHeaderButton,
+    setTypeOfButtonHeader,
+} from '../../Store/slices/Header/HeaderSlice';
+import { useHeader } from '../../Hooks/useHeader';
+import WritePostIcon from '../../Assets/Icons/NavBar/edit.svg';
+import MainPageIcon from '../../Assets/Icons/NavBar/clipboard.svg';
+import UsersIcon from '../../Assets/Icons/NavBar/users-alt.svg';
+import TeamsIcon from '../../Assets/Icons/NavBar/channel.svg';
+import MessagesIcon from '../../Assets/Icons/NavBar/comments-alt.svg';
+import StatisticIcon from '../../Assets/Icons/NavBar/game-structure.svg';
 interface NavPanelType {
     setOpenNavPanel: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const NavPanel: FC<NavPanelType> = ({ setOpenNavPanel }) => {
     const navigate = useNavigate();
-    const { UserId } = useAuth();
+    const dispatch = useAppDispatch();
+    const { HeaderTitle } = useHeader();
 
     const NavBarRef = React.createRef<HTMLDivElement>();
 
     function closeNav() {
         NavBarRef.current?.classList.add(Styles.NavPanelClose);
+        document.body.style.overflowY = 'auto';
+        dispatch(
+            setTypeOfButtonHeader({
+                TypeOfButton: TypesOfHeaderButton.NavBar,
+            })
+        );
         setTimeout(() => {
             setOpenNavPanel(false);
-        }, 300);
+        }, 500);
     }
 
     return (
         <div className={Styles.NavPanel} ref={NavBarRef}>
             <div className={Styles.back} onClick={() => closeNav()}></div>
             <div className={Styles.blocks}>
+                <div className={Styles.Title}>{HeaderTitle}</div>
+                <div
+                    className={Styles.block}
+                    onClick={() => {
+                        navigate('/WriteNewPost');
+                        closeNav();
+                    }}
+                >
+                    <img src={WritePostIcon} alt="" />
+                    Написать пост
+                </div>
                 <div
                     className={Styles.block}
                     onClick={() => {
@@ -32,6 +60,7 @@ const NavPanel: FC<NavPanelType> = ({ setOpenNavPanel }) => {
                         closeNav();
                     }}
                 >
+                    <img src={MainPageIcon} alt="" />
                     Главная
                 </div>
                 <div
@@ -41,6 +70,7 @@ const NavPanel: FC<NavPanelType> = ({ setOpenNavPanel }) => {
                         closeNav();
                     }}
                 >
+                    <img src={UsersIcon} alt="" />
                     Люди
                 </div>
                 <div
@@ -50,21 +80,28 @@ const NavPanel: FC<NavPanelType> = ({ setOpenNavPanel }) => {
                         closeNav();
                     }}
                 >
-                    Команды
+                    <img src={TeamsIcon} alt="" />
+                    Группы
                 </div>
                 <div
                     className={Styles.block}
                     onClick={() => {
-                        if (UserId) {
-                            navigate('/User/' + UserId);
-                        } else {
-                            navigate('/Login');
-                        }
-
+                        navigate('/');
                         closeNav();
                     }}
                 >
-                    Я
+                    <img src={MessagesIcon} alt="" />
+                    Сообщения
+                </div>
+                <div
+                    className={Styles.block}
+                    onClick={() => {
+                        navigate('/');
+                        closeNav();
+                    }}
+                >
+                    <img src={StatisticIcon} alt="" />
+                    Статистика
                 </div>
             </div>
         </div>

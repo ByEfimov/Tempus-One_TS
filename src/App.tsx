@@ -46,7 +46,7 @@ function App() {
                     <Route path="/Post/:id" element={<PostPage />} />
                     <Route path="/Team/:id" element={<TeamPage />} />
                     <Route
-                        path="/Forgout-Password"
+                        path="/ForgoutPassword"
                         element={<ForgoutPasswordPage />}
                     />
                 </Routes>

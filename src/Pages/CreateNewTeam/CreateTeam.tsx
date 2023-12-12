@@ -2,21 +2,35 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Hooks/useAuth';
 import Styles from './Styles.module.scss';
 import CustomInput from '../../Components/minicops/input';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import CustomTextarea from '../../Components/minicops/textarea';
 import ButtonVoid from '../../Components/minicops/B-void';
 import { addNewTeam } from '../../Api/Teams/addNewTeam';
 import { addToSubscriptionsForUser } from '../../Api/Users/addToSubscriptionsForUser';
+import { useAppDispatch } from '../../Hooks/redus-hooks';
+import {
+    TypesOfHeader,
+    setTitleToHeader,
+    setTypeOfHeader,
+} from '../../Store/slices/Header/HeaderSlice';
 
 const CreateTeam = () => {
     const { UserCanChanging, UserId } = useAuth();
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const [inputTitle, setTitle] = useState('');
     const [inputDescript, setDescript] = useState('');
     const [inputProjectName, setProjectName] = useState('');
     const [inputProjectDesc, setProjectDescript] = useState('');
     const [selectImage, setSelectImage] = useState('');
+
+    useEffect(() => {
+        dispatch(
+            setTypeOfHeader({ TypeOfHeader: TypesOfHeader.WithoutSearchBar })
+        );
+        dispatch(setTitleToHeader({ Title: 'Группа' }));
+    }, []);
 
     const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
         const reader = new FileReader();
@@ -122,7 +136,7 @@ const CreateTeam = () => {
             </form>
         </div>
     ) : (
-        <Navigate to={'/'}></Navigate>
+        <Navigate to={'/NeedAuth'}></Navigate>
     );
 };
 

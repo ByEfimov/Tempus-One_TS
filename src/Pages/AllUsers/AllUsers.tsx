@@ -2,13 +2,24 @@ import { useEffect, useState } from 'react';
 import { getAllUsers } from '../../Api/Users/getAllUsers';
 import { OpenUserType } from '../OpenUser/UserPage';
 import { useNavigate } from 'react-router-dom';
+import {
+    TypesOfHeader,
+    setTitleToHeader,
+    setTypeOfHeader,
+} from '../../Store/slices/Header/HeaderSlice';
+import { useAppDispatch } from '../../Hooks/redus-hooks';
 
 export default function AllUsers() {
     const [users, setUsers] = useState<OpenUserType[] | null>(null);
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
         getAllUsers().then((users) => setUsers(users));
+        dispatch(setTitleToHeader({ Title: 'Люди' }));
+        dispatch(
+            setTypeOfHeader({ TypeOfHeader: TypesOfHeader.WithSearchBar })
+        );
     }, []);
 
     return (

@@ -9,6 +9,11 @@ import ButtonVoid from '../../Components/minicops/B-void';
 import { FC, useEffect, useState } from 'react';
 import { getUserFromId } from '../../Api/Users/getUserdataFromId';
 import { getAuth, signOut } from 'firebase/auth';
+import {
+    TypesOfHeader,
+    setTitleToHeader,
+    setTypeOfHeader,
+} from '../../Store/slices/Header/HeaderSlice';
 
 export type OpenUserType = {
     photo: string;
@@ -31,6 +36,10 @@ export default function UserPage() {
 
     useEffect(() => {
         getUserFromId(id).then((user) => setOpenUser(user));
+        dispatch(
+            setTypeOfHeader({ TypeOfHeader: TypesOfHeader.WithoutSearchBar })
+        );
+        dispatch(setTitleToHeader({ Title: 'Аккаунт' }));
     }, []);
 
     function LogoutUser() {

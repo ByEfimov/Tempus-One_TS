@@ -17,6 +17,12 @@ import {
 } from '../../Store/slices/WritePost/WritePostSlice';
 import { addNewPost } from '../../Api/Posts/addNewPost';
 import PostForWhom from './Mods/PostForWhom';
+import { useEffect } from 'react';
+import {
+    TypesOfHeader,
+    setTitleToHeader,
+    setTypeOfHeader,
+} from '../../Store/slices/Header/HeaderSlice';
 
 export type NewPost = {
     PostDataBlocks: BlockOfPostType[];
@@ -34,6 +40,13 @@ const WritePost = () => {
         useWritePost();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        dispatch(
+            setTypeOfHeader({ TypeOfHeader: TypesOfHeader.WithoutSearchBar })
+        );
+        dispatch(setTitleToHeader({ Title: 'Пост' }));
+    }, []);
 
     function sendNewPost() {
         const ToDay = new Date().getTime();

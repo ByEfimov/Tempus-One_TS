@@ -5,11 +5,24 @@ import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { useAppDispatch } from '../../Hooks/redus-hooks';
 import { setCurrentUser } from '../../Store/slices/UserSlice';
 import { addUserToRealtimeDB } from '../../Api/Users/addUserToRealtimeDB';
+import {
+    TypesOfHeader,
+    setTitleToHeader,
+    setTypeOfHeader,
+} from '../../Store/slices/Header/HeaderSlice';
+import { useEffect } from 'react';
 
 export default function RegisterPage() {
     const { UserIsAuth } = useAuth();
     const dispatch = useAppDispatch();
     const auth = getAuth();
+
+    useEffect(() => {
+        dispatch(
+            setTypeOfHeader({ TypeOfHeader: TypesOfHeader.WithoutSearchBar })
+        );
+        dispatch(setTitleToHeader({ Title: 'Аккаунт' }));
+    }, []);
 
     function registerUser(
         inputEmail: string,
