@@ -32,6 +32,7 @@ export function getPosts(filter: string | null) {
 
                     resolve(outputArray);
                 } else {
+                    console.error('Посты не были получены.');
                     reject(null);
                 }
             },

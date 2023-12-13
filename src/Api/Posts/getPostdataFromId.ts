@@ -10,6 +10,7 @@ export function getPostFromId(id: string | undefined): Promise<Post | null> {
                 if (snapshot.exists()) {
                     resolve(snapshot.val());
                 } else {
+                    console.error('Пост не найден.');
                     reject(null);
                 }
             },

@@ -1,0 +1,42 @@
+.FakePost {
+    margin-bottom: 10px;
+    background-color: var(--GreyColor);
+    padding: 17px;
+    border-radius: var(--DefaultBorderRadius);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    .UserData {
+        height: 46px;
+        width: 100%;
+        background-color: var(--WhiteTextColor2);
+        border-radius: var(--DefaultBorderRadius);
+    }
+    .PostData {
+        margin-top: 11px;
+        width: 100%;
+        height: 44px;
+        background-color: var(--WhiteTextColor2);
+        border-radius: var(--DefaultBorderRadius);
+    }
+    .BlocksData {
+        margin-top: 11px;
+        width: 100%;
+        height: 240px;
+        background-color: var(--WhiteTextColor2);
+        border-radius: var(--DefaultBorderRadius);
+    }
+}
+.FakeUser {
+    margin-bottom: 10px;
+    background-color: var(--GreyColor);
+    padding: 17px;
+    border-radius: var(--DefaultBorderRadius);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    .User {
+        border-radius: var(--DefaultBorderRadius);
+        height: 46px;
+        width: 100%;
+        background-color: var(--WhiteTextColor2);
+    }
+}

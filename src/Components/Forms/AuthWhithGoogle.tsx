@@ -1,5 +1,5 @@
 import { getUserFromId } from '../../Api/Users/getUserdataFromId';
-import ButtonVoid from '../minicops/B-void';
+import ButtonVoid from '../minicops/buton';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { useAppDispatch } from '../../Hooks/redus-hooks';
 import { setCurrentUser } from '../../Store/slices/UserSlice';

@@ -7,6 +7,7 @@ export function getCurrentUserData() {
             if (user) {
                 resolve(user);
             } else {
+                console.error('Пользователь не найден.');
                 reject(null);
             }
         });

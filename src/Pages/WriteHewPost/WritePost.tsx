@@ -6,7 +6,7 @@ import { ControlBlocksPanel } from './ControllPanel/ControlBlocksPanel';
 import TextMode from './Mods/TextMode';
 import CodeMode from './Mods/CodeMode';
 import ImageMode from './Mods/ImageMode';
-import ButtonVoid from '../../Components/minicops/B-void';
+import ButtonVoid from '../../Components/minicops/buton';
 import TitleForPost from './Mods/TitleForPost';
 import { countEmptyValues } from '../../Utils/countEmptyValues';
 import { useWritePost } from '../../Hooks/useWritePost';

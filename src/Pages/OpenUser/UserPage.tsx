@@ -5,7 +5,7 @@ import Styles from './UserPage.module.scss';
 import { useAuth } from '../../Hooks/useAuth';
 import { useAppDispatch } from '../../Hooks/redus-hooks';
 import { removeUser } from '../../Store/slices/UserSlice';
-import ButtonVoid from '../../Components/minicops/B-void';
+import ButtonVoid from '../../Components/minicops/buton';
 import { FC, useEffect, useState } from 'react';
 import { getUserFromId } from '../../Api/Users/getUserdataFromId';
 import { getAuth, signOut } from 'firebase/auth';

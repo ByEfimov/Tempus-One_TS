@@ -167,6 +167,7 @@
             letter-spacing: 3.5px;
         }
         .block {
+            box-shadow: var(--DarkShadow);
             width: 100%;
             display: flex;
             align-items: center;

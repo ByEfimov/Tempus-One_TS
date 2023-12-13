@@ -1,7 +1,7 @@
-import FakePost from '../ShowPosts/Posts/FakePost';
+import FakePost from '../FakeDatas/FakePost';
 import Styles from './minicomps.module.scss';
 
-export default function Preloader() {
+export default function PreloaderPosts() {
     return (
         <div className={Styles.Preloader}>
             <FakePost></FakePost>

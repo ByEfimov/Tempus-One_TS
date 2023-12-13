@@ -1,6 +1,4 @@
 import classNames from 'classnames';
-import ShowCode from '../../../Components/ShowPosts/postsComp/ShowCode';
-import ShowImage from '../../../Components/ShowPosts/postsComp/ShowImage';
 import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
 import Styles from '../Styles.module.scss';
 import { FC } from 'react';
@@ -8,6 +6,9 @@ import {
     BlockOfPostType,
     SelectModeType,
 } from '../../../Store/slices/WritePost/WritePostSlice';
+import ImageMode from './Mods/ImageMode';
+import CodeMode from './Mods/CodeMode';
+import TextMode from './Mods/TextMode';
 
 interface ControlBlockRenderProps {
     blockData: BlockOfPostType;
@@ -54,36 +55,45 @@ const ControlBlockRender: FC<ControlBlockRenderProps> = ({
                     blockData.id === SelectMode.id && Styles.wrapperActive
                 )}
             >
-                {blockData.type === ModsOfWritePost.text ? (
-                    <div
-                        onClick={() => openMod(blockData)}
-                        className={Styles.OneceMode}
-                        key={blockData.id}
-                    >
-                        {blockData.text}
-                    </div>
-                ) : blockData.type === ModsOfWritePost.code ? (
-                    <div
-                        onClick={() => openMod(blockData)}
-                        className={Styles.OneceMode}
-                        key={blockData.id}
-                    >
-                        <div>
-                            <ShowCode UserCode={blockData.text} />
-                        </div>
-                    </div>
-                ) : (
-                    blockData.type === ModsOfWritePost.image && (
-                        <div
-                            onClick={() => openMod(blockData)}
-                            className={Styles.OneceMode}
-                            key={blockData.id}
-                        >
-                            <ShowImage imageSrc={blockData.text}></ShowImage>
-                        </div>
-                    )
-                )}
+                <WhatTheBlock
+                    blockData={blockData}
+                    openMod={openMod}
+                ></WhatTheBlock>
             </div>
+        )
+    );
+};
+
+interface WhatTheBlock {
+    blockData: BlockOfPostType;
+    openMod: (blockData: SelectModeType) => void;
+}
+
+const WhatTheBlock: FC<WhatTheBlock> = ({ blockData, openMod }) => {
+    const OpenMode = () => openMod(blockData);
+
+    return blockData.type === ModsOfWritePost.text ? (
+        <TextMode
+            className={Styles.OneceMode}
+            openMode={OpenMode}
+            id={blockData.id}
+            Text={blockData.text}
+        ></TextMode>
+    ) : blockData.type === ModsOfWritePost.code ? (
+        <CodeMode
+            className={Styles.OneceMode}
+            openMode={OpenMode}
+            id={blockData.id}
+            Code={blockData.text}
+        ></CodeMode>
+    ) : (
+        blockData.type === ModsOfWritePost.image && (
+            <ImageMode
+                className={Styles.OneceMode}
+                imageUrl={blockData.text}
+                openMode={OpenMode}
+                id={blockData.id}
+            ></ImageMode>
         )
     );
 };

@@ -13,7 +13,7 @@ import ShareIcon from '../../../Assets/Icons/Post/share.svg';
 import EyeIcon from '../../../Assets/Icons/Post/eye.svg';
 import Styles from './Styles.module.scss';
 import BlocksRender from './BlocksRender';
-import FakePost from './FakePost';
+import FakePost from '../../FakeDatas/FakePost';
 
 interface PostRender {
     post: Post;

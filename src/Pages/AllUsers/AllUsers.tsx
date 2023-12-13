@@ -7,6 +7,10 @@ import {
     setHeader,
 } from '../../Store/slices/Header/HeaderSlice';
 import { useAppDispatch } from '../../Hooks/redus-hooks';
+import PreloaderUsers from '../../Components/minicops/PreloaderUsers';
+import Styles from './Styles.module.scss';
+import PlussIcon from '../../Assets/Icons/Post/plus-circle.svg';
+import UserIcon from '../../Assets/Icons/Header/user.svg';
 
 export default function AllUsers() {
     const [users, setUsers] = useState<OpenUserType[] | null>(null);
@@ -20,26 +24,34 @@ export default function AllUsers() {
         );
     }, []);
 
-    return (
-        users && (
-            <div
-                style={{
-                    marginTop: 80,
-                    padding: 20,
-                    display: 'flex',
-                    gap: 10,
-                    flexDirection: 'column',
-                }}
-            >
-                {users.map((user) => (
-                    <div
-                        key={user.id}
-                        onClick={() => navigate('/User/' + user.id)}
-                    >
-                        {user.name} {user.email}
+    return users ? (
+        <div className={Styles.Users}>
+            {users.map((user) => (
+                <div
+                    key={user.id}
+                    className={Styles.User}
+                    onClick={() => navigate('/User/' + user.id)}
+                >
+                    <div className={Styles.Data}>
+                        <div className={Styles.Photo}>
+                            <img src={user.photo || UserIcon} alt="" />
+                        </div>
+                        <div className={Styles.Text}>
+                            <div className={Styles.Title}>{user.name}</div>
+                            <div className={Styles.Members}>
+                                {Object.values(user.level).length} уровень
+                            </div>
+                        </div>
                     </div>
-                ))}
-            </div>
-        )
+                    <div className={Styles.Activity}>
+                        <button className={Styles.SubButton}>
+                            <img src={PlussIcon} alt="" />
+                        </button>
+                    </div>
+                </div>
+            ))}
+        </div>
+    ) : (
+        <PreloaderUsers></PreloaderUsers>
     );
 }

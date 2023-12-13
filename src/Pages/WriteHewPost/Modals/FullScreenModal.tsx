@@ -1,6 +1,6 @@
 import React, { FC, RefObject } from 'react';
 import Styles from './SelectModal.module.scss';
-import ButtonVoid from '../../../Components/minicops/B-void';
+import ButtonVoid from '../../../Components/minicops/buton';
 import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
 import ShowCode from '../../../Components/ShowPosts/postsComp/ShowCode';
 import closePopup from '../../../Utils/anims/closePopup';

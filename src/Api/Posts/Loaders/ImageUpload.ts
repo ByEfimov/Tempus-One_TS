@@ -9,6 +9,8 @@ export const LoadImage = (image: EventTarget & HTMLInputElement) => {
 
         if (file) {
             reader.readAsDataURL(file);
+        } else {
+            console.error('Картинка не загрузилась.');
         }
     });
 };

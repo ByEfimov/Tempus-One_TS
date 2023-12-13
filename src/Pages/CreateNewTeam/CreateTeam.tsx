@@ -4,7 +4,7 @@ import Styles from './Styles.module.scss';
 import CustomInput from '../../Components/minicops/input';
 import { ChangeEvent, useEffect, useState } from 'react';
 import CustomTextarea from '../../Components/minicops/textarea';
-import ButtonVoid from '../../Components/minicops/B-void';
+import ButtonVoid from '../../Components/minicops/buton';
 import { addNewTeam } from '../../Api/Teams/addNewTeam';
 import { addToSubscriptionsForUser } from '../../Api/Users/addToSubscriptionsForUser';
 import { useAppDispatch } from '../../Hooks/redus-hooks';

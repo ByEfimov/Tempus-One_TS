@@ -10,6 +10,7 @@ export function getAllUsers() {
                 if (snapshot.exists()) {
                     resolve(Object.values(snapshot.val()));
                 } else {
+                    console.error('Пользователи не были получены.');
                     reject(null);
                 }
             },

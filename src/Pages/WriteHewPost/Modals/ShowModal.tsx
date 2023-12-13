@@ -1,6 +1,6 @@
 import React, { FC, LegacyRef } from 'react';
 import Styles from './SelectModal.module.scss';
-import ButtonVoid from '../../../Components/minicops/B-void';
+import ButtonVoid from '../../../Components/minicops/buton';
 import { LiveError, LiveProvider } from 'react-live';
 import { useWritePost } from '../../../Hooks/useWritePost';
 

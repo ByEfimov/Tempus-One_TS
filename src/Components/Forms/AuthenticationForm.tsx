@@ -1,7 +1,7 @@
 import FormsStyles from './FormsStyles.module.scss';
 import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ButtonVoid from '../minicops/B-void';
+import ButtonVoid from '../minicops/buton';
 import AuthWhithGoogle from './AuthWhithGoogle';
 
 interface AuthenticationFromProps {

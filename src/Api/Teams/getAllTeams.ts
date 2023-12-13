@@ -18,6 +18,7 @@ export function getAllTeams() {
 
                     resolve(outputArray);
                 } else {
+                    console.error('Команды не быди получены.');
                     reject(null);
                 }
             },

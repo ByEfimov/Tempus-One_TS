@@ -17,6 +17,7 @@ export function getTeamFromId(
 
                     resolve(outputObject);
                 } else {
+                    console.error('Команда не найдена.');
                     reject(null);
                 }
             },

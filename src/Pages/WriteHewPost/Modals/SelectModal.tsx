@@ -1,6 +1,6 @@
 import React, { FC, LegacyRef } from 'react';
 import Styles from './SelectModal.module.scss';
-import ButtonVoid from '../../../Components/minicops/B-void';
+import ButtonVoid from '../../../Components/minicops/buton';
 import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
 import closePopup from '../../../Utils/anims/closePopup';
 import { useAppDispatch } from '../../../Hooks/redus-hooks';

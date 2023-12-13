@@ -19,6 +19,9 @@ export function addNewTeam(NewTeam: NewTeam) {
             .then(() => {
                 resolve(newPostRef.key);
             })
-            .catch((error) => reject(error));
+            .catch((error) => {
+                console.error('Ошибка при создании команды.');
+                reject(error);
+            });
     });
 }

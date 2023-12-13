@@ -1,4 +1,4 @@
-import Styles from './Styles.module.scss';
+import Styles from './FakeStyles.module.scss';
 
 export default function FakePost() {
     return (

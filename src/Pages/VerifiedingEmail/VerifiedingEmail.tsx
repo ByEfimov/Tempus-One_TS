@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import ButtonVoid from '../../Components/minicops/B-void';
+import ButtonVoid from '../../Components/minicops/buton';
 import { useAuth } from '../../Hooks/useAuth';
 import { getAuth, sendEmailVerification } from 'firebase/auth';
 import Styles from './Styles.module.scss';
