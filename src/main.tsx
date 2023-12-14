@@ -9,6 +9,7 @@ import store, { persister } from './Store/index.ts';
 import './Api/firebase';
 import { PersistGate } from 'redux-persist/integration/react';
 import ListenerFB from './Api/ListenerFireBase.tsx';
+import HeaderWrapper from './Components/Header/HeaderWrapper.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
@@ -16,7 +17,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <Provider store={store}>
                 <PersistGate persistor={persister} loading={null}>
                     <ListenerFB>
-                        <App />
+                        <HeaderWrapper>
+                            <App />
+                        </HeaderWrapper>
                     </ListenerFB>
                 </PersistGate>
             </Provider>

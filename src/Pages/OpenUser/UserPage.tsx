@@ -9,10 +9,7 @@ import ButtonVoid from '../../Components/minicops/buton';
 import { FC, useEffect, useState } from 'react';
 import { getUserFromId } from '../../Api/Users/getUserdataFromId';
 import { getAuth, signOut } from 'firebase/auth';
-import {
-    TypesOfHeader,
-    setHeader,
-} from '../../Store/slices/Header/HeaderSlice';
+import { setTitleOfHeader } from '../../Store/slices/Header/HeaderSlice';
 
 export type OpenUserType = {
     photo: string;
@@ -23,6 +20,7 @@ export type OpenUserType = {
     emailVerified: boolean;
     experience: number;
     level: number;
+    members: string[];
 };
 
 export default function UserPage() {
@@ -34,13 +32,10 @@ export default function UserPage() {
     const { UserId, UserEmailVerified } = useAuth();
 
     useEffect(() => {
-        getUserFromId(id).then((user) => setOpenUser(user));
-        dispatch(
-            setHeader({
-                Title: 'Человек',
-                Type: TypesOfHeader.WithoutSearchBar,
-            })
-        );
+        getUserFromId(id).then((user) => {
+            setOpenUser(user);
+            dispatch(setTitleOfHeader({ Title: user?.name }));
+        });
     }, []);
 
     function LogoutUser() {

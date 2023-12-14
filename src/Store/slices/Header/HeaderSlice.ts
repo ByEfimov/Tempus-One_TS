@@ -38,9 +38,16 @@ const HeaderSlice = createSlice({
             state.Title = action.payload.Title;
             state.Type = action.payload.Type;
         },
+        setTitleOfHeader(state, action) {
+            state.Title = action.payload.Title;
+        },
     },
 });
-export const { setInputSearchBar, setTypeOfButtonHeader, setHeader } =
-    HeaderSlice.actions;
+export const {
+    setInputSearchBar,
+    setTypeOfButtonHeader,
+    setHeader,
+    setTitleOfHeader,
+} = HeaderSlice.actions;
 
 export default HeaderSlice.reducer;

@@ -3,10 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getTeamFromId } from '../../Api/Teams/getTeamdataFromId';
 import ShowPosts from '../../Components/ShowPosts/Posts/ShowPosts';
-import {
-    TypesOfHeader,
-    setHeader,
-} from '../../Store/slices/Header/HeaderSlice';
+import { setTitleOfHeader } from '../../Store/slices/Header/HeaderSlice';
 import { useAppDispatch } from '../../Hooks/redus-hooks';
 
 export type OpenTeamType = {
@@ -14,7 +11,7 @@ export type OpenTeamType = {
     image: string;
     projectDesc: string;
     projectTitle: string;
-    teamMembers: { UserId: string; UserRole: string }[];
+    members: { UserId: string; UserRole: string }[];
     title: string;
     id: string;
 };
@@ -25,13 +22,10 @@ export default function TeamPage() {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        getTeamFromId(id).then((team) => setTeam(team));
-        dispatch(
-            setHeader({
-                Title: 'Группа',
-                Type: TypesOfHeader.WithoutSearchBar,
-            })
-        );
+        getTeamFromId(id).then((team) => {
+            setTeam(team);
+            dispatch(setTitleOfHeader({ Title: team?.title }));
+        });
     }, []);
 
     return (

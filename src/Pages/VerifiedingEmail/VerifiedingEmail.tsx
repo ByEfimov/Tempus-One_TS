@@ -5,24 +5,11 @@ import { getAuth, sendEmailVerification } from 'firebase/auth';
 import Styles from './Styles.module.scss';
 import { getCurrentUserData } from '../../Api/Users/getCurrentUserData';
 import { getDatabase, ref, set } from '@firebase/database';
-import {
-    TypesOfHeader,
-    setHeader,
-} from '../../Store/slices/Header/HeaderSlice';
-import { useAppDispatch } from '../../Hooks/redus-hooks';
-import { useEffect } from 'react';
 
 const VerifiedingEmail = () => {
     const { UserEmailVerified, UserId } = useAuth();
     const db = getDatabase();
     const auth = getAuth();
-    const dispatch = useAppDispatch();
-
-    useEffect(() => {
-        dispatch(
-            setHeader({ Title: 'Подтверди', Type: TypesOfHeader.WithSearchBar })
-        );
-    }, []);
 
     function sendMailForVerifieding() {
         if (auth.currentUser) {

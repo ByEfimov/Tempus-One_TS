@@ -2,33 +2,21 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Hooks/useAuth';
 import Styles from './Styles.module.scss';
 import CustomInput from '../../Components/minicops/input';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import CustomTextarea from '../../Components/minicops/textarea';
 import ButtonVoid from '../../Components/minicops/buton';
 import { addNewTeam } from '../../Api/Teams/addNewTeam';
 import { addToSubscriptionsForUser } from '../../Api/Users/addToSubscriptionsForUser';
-import { useAppDispatch } from '../../Hooks/redus-hooks';
-import {
-    TypesOfHeader,
-    setHeader,
-} from '../../Store/slices/Header/HeaderSlice';
 
 const CreateTeam = () => {
     const { UserCanChanging, UserId } = useAuth();
     const navigate = useNavigate();
-    const dispatch = useAppDispatch();
 
     const [inputTitle, setTitle] = useState('');
     const [inputDescript, setDescript] = useState('');
     const [inputProjectName, setProjectName] = useState('');
     const [inputProjectDesc, setProjectDescript] = useState('');
     const [selectImage, setSelectImage] = useState('');
-
-    useEffect(() => {
-        dispatch(
-            setHeader({ Title: 'Группа', Type: TypesOfHeader.WithoutSearchBar })
-        );
-    }, []);
 
     const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
         const reader = new FileReader();
@@ -55,7 +43,7 @@ const CreateTeam = () => {
                 projectTitle: inputProjectName,
                 projectDesc: inputProjectDesc,
                 image: selectImage,
-                teamMembers: {
+                members: {
                     [UserId]: { UserId: UserId, UserRole: 'Administrator' },
                 },
             };

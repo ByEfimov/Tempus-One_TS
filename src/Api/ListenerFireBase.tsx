@@ -40,6 +40,7 @@ export default function ListenerFB({ children }: ListenerFC) {
                             age: data.age,
                             emailVerified: data.emailVerified,
                             subscriptions: data.subscriptions,
+                            members: data.members || [],
                         })
                     );
                 }

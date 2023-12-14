@@ -15,7 +15,7 @@ export default function getUserAdmins(UserId: string | null) {
 
             const teamAdmin = query(
                 teamsRef,
-                orderByChild('/teamMembers/' + UserId + '/UserRole'),
+                orderByChild('/members/' + UserId + '/UserRole'),
                 equalTo('Administrator')
             );
             onValue(teamAdmin, (admin) => {

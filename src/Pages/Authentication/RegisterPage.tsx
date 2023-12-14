@@ -5,22 +5,11 @@ import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { useAppDispatch } from '../../Hooks/redus-hooks';
 import { setCurrentUser } from '../../Store/slices/UserSlice';
 import { addUserToRealtimeDB } from '../../Api/Users/addUserToRealtimeDB';
-import {
-    TypesOfHeader,
-    setHeader,
-} from '../../Store/slices/Header/HeaderSlice';
-import { useEffect } from 'react';
 
 export default function RegisterPage() {
     const { UserIsAuth } = useAuth();
     const dispatch = useAppDispatch();
     const auth = getAuth();
-
-    useEffect(() => {
-        dispatch(
-            setHeader({ Title: 'Группы', Type: TypesOfHeader.WithoutSearchBar })
-        );
-    }, []);
 
     function registerUser(
         inputEmail: string,
@@ -28,6 +17,7 @@ export default function RegisterPage() {
         inputName: string,
         inputAge: number
     ) {
+        const UserMembersDefault: number = 0;
         createUserWithEmailAndPassword(auth, inputEmail, inputPass)
             .then((userCredential) => {
                 const user = userCredential.user;
@@ -37,7 +27,8 @@ export default function RegisterPage() {
                     inputName,
                     user.photoURL,
                     inputAge,
-                    user.emailVerified
+                    user.emailVerified,
+                    UserMembersDefault
                 );
                 dispatch(
                     setCurrentUser({

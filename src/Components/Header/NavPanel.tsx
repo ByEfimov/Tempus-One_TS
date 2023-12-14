@@ -81,7 +81,7 @@ const NavPanel: FC<NavPanelType> = ({ setOpenNavPanel }) => {
                     }}
                 >
                     <img src={TeamsIcon} alt="" />
-                    Группы
+                    Сообщества
                 </div>
                 <div
                     className={Styles.block}

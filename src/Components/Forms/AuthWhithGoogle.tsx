@@ -27,13 +27,16 @@ const AuthWhithGoogle = () => {
     }
 
     function registerWhihtGoogle(user: User) {
+        const userAgeDefualt = 0;
+        const UserMembersDefault: number = 0;
         addUserToRealtimeDB(
             user.email,
             user.uid,
             user.displayName,
             user.photoURL,
-            0,
-            user.emailVerified
+            userAgeDefualt,
+            user.emailVerified,
+            UserMembersDefault
         );
         dispatch(
             setCurrentUser({

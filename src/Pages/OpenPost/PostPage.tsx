@@ -2,10 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getPostFromId } from '../../Api/Posts/getPostdataFromId';
 import { Post } from '../../Store/slices/PostsSlice';
-import {
-    TypesOfHeader,
-    setHeader,
-} from '../../Store/slices/Header/HeaderSlice';
+import { setTitleOfHeader } from '../../Store/slices/Header/HeaderSlice';
 import { useAppDispatch } from '../../Hooks/redus-hooks';
 
 export default function PostPage() {
@@ -14,10 +11,10 @@ export default function PostPage() {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        getPostFromId(id).then((post) => setPost(post));
-        dispatch(
-            setHeader({ Title: 'Пост', Type: TypesOfHeader.WithoutSearchBar })
-        );
+        getPostFromId(id).then((post) => {
+            setPost(post);
+            dispatch(setTitleOfHeader({ Title: post?.PostTitle }));
+        });
     }, []);
 
     return (

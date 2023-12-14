@@ -11,6 +11,7 @@ type UserType = {
         teams?: { [key: string]: string };
         users?: { [key: string]: string };
     } | null;
+    members: string[] | null;
 };
 
 const initialState: UserType = {
@@ -21,6 +22,7 @@ const initialState: UserType = {
     photo: null,
     emailVerified: null,
     subscriptions: null,
+    members: null,
 };
 
 const UserSlice = createSlice({
@@ -35,6 +37,7 @@ const UserSlice = createSlice({
             state.photo = action.payload.photo || null;
             state.emailVerified = action.payload.emailVerified || null;
             state.subscriptions = action.payload.subscriptions || null;
+            state.members = action.payload.members || null;
         },
         setCurrentUser(
             state,
@@ -51,6 +54,7 @@ const UserSlice = createSlice({
             state.photo = null;
             state.emailVerified = null;
             state.subscriptions = null;
+            state.members = null;
         },
     },
 });
