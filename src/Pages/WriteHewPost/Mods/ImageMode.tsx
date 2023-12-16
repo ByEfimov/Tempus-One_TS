@@ -1,17 +1,17 @@
-import { ModsOfInput } from '../../../Utils/ModsOfComps';
-import CustomInput from '../../../Components/minicops/input';
+import { ModsOfInput } from 'Utils/ModsOfComps';
+import CustomInput from 'Components/MiniComponents/input';
 import Styles from '../Styles.module.scss';
 import classNames from 'classnames';
-import ActiveButton from '../../../Components/ShowPosts/postsComp/activeButton';
-import ShowImage from '../../../Components/ShowPosts/postsComp/ShowImage';
-import { reverceBlock } from '../../../Utils/anims/reverceBlock';
+import ActiveButton from 'Components/ShowPosts/PostsComponents/activeButton';
+import ShowImage from 'Components/ShowPosts/PostsComponents/ShowImage';
+import { reversBlock } from 'Utils/Animations/reversBlock';
 import {
     changeTextOfBlock,
     changeTitleOfBlock,
-} from '../../../Store/slices/WritePost/WritePostSlice';
-import { useWritePost } from '../../../Hooks/useWritePost';
-import { useAppDispatch } from '../../../Hooks/redus-hooks';
-import { LoadImage } from '../../../Api/Posts/Loaders/ImageUpload';
+} from 'Store/slices/WritePost/WritePostSlice';
+import { useWritePost } from 'Hooks/useWritePost';
+import { useAppDispatch } from 'Hooks/redux-hooks';
+import { LoadImage } from 'Api/Posts/Loaders/ImageUpload';
 
 const ImageMode = () => {
     const { selectMode, BlocksOfPost } = useWritePost();
@@ -45,7 +45,7 @@ const ImageMode = () => {
                 <div className={Styles.buttons}>
                     <ActiveButton
                         clickHandler={() =>
-                            reverceBlock('card', Styles.cardActive)
+                            reversBlock('card', Styles.cardActive)
                         }
                         Styles={Styles}
                         Class={Styles.swapButton}

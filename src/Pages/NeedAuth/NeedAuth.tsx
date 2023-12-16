@@ -1,5 +1,5 @@
 import { Link, Navigate } from 'react-router-dom';
-import { useAuth } from '../../Hooks/useAuth';
+import { useAuth } from 'Hooks/useAuth';
 import style from './style.module.scss';
 
 export default function NeedAuth() {

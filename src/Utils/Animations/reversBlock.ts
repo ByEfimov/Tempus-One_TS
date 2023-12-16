@@ -1,3 +1,3 @@
-export function reverceBlock(title: string, Styles: string) {
+export function reversBlock(title: string, Styles: string) {
     document.getElementById(title)?.classList.toggle(Styles);
 }

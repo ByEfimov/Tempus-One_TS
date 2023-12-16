@@ -1,4 +1,4 @@
-import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
+import { ModsOfWritePost } from 'Utils/ModsOfComps';
 import { BlockOfPostType } from './WritePostSlice';
 
 export default function NewBlocks(id: number, type: string): BlockOfPostType {

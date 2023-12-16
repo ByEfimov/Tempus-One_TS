@@ -1,6 +1,6 @@
 import { ChangeEvent, FC } from 'react';
-import Styles from './minicomps.module.scss';
-import { useWritePost } from '../../Hooks/useWritePost';
+import Styles from './MiniComponents.module.scss';
+import { useWritePost } from 'Hooks/useWritePost';
 
 interface CustomInput {
     changeFunction: (e: ChangeEvent<HTMLInputElement>) => void;

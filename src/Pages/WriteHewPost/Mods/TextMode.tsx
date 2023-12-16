@@ -1,7 +1,7 @@
-import CustomTextarea from '../../../Components/minicops/textarea';
-import { useWritePost } from '../../../Hooks/useWritePost';
-import { useAppDispatch } from '../../../Hooks/redus-hooks';
-import { changeTextOfBlock } from '../../../Store/slices/WritePost/WritePostSlice';
+import CustomTextarea from 'Components/MiniComponents/textarea';
+import { useWritePost } from 'Hooks/useWritePost';
+import { useAppDispatch } from 'Hooks/redux-hooks';
+import { changeTextOfBlock } from 'Store/slices/WritePost/WritePostSlice';
 
 const TextMode = () => {
     const { selectMode } = useWritePost();

@@ -1,20 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import CustomInput from '../../../Components/minicops/input';
-import { ModsOfInput } from '../../../Utils/ModsOfComps';
+import CustomInput from 'Components/MiniComponents/input';
+import { ModsOfInput } from 'Utils/ModsOfComps';
 import { useEffect, useState } from 'react';
 import Styles from '../Styles.module.scss';
 import classNames from 'classnames';
 import { LiveProvider, LiveEditor } from 'react-live';
 import ShowModal, { ModsForShowModal } from '../Modals/ShowModal';
-import ActiveButton from '../../../Components/ShowPosts/postsComp/activeButton';
-import ShowCode from '../../../Components/ShowPosts/postsComp/ShowCode';
-import { reverceBlock } from '../../../Utils/anims/reverceBlock';
-import { useWritePost } from '../../../Hooks/useWritePost';
-import { useAppDispatch } from '../../../Hooks/redus-hooks';
+import ActiveButton from 'Components/ShowPosts/PostsComponents/activeButton';
+import ShowCode from 'Components/ShowPosts/PostsComponents/ShowCode';
+import { reversBlock } from 'Utils/Animations/reversBlock';
+import { useWritePost } from 'Hooks/useWritePost';
+import { useAppDispatch } from 'Hooks/redux-hooks';
 import {
     changeTextOfBlock,
     changeTitleOfBlock,
-} from '../../../Store/slices/WritePost/WritePostSlice';
+} from 'Store/slices/WritePost/WritePostSlice';
 
 const CodeMode = () => {
     const { selectMode, BlocksOfPost } = useWritePost();
@@ -70,7 +70,7 @@ const CodeMode = () => {
                     ></ActiveButton>
                     <ActiveButton
                         clickHandler={() =>
-                            reverceBlock('card', Styles.cardActive)
+                            reversBlock('card', Styles.cardActive)
                         }
                         Styles={Styles}
                         Class={Styles.swapButton}

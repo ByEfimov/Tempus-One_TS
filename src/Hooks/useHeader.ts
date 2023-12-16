@@ -1,4 +1,4 @@
-import { useAppSelector } from './redus-hooks';
+import { useAppSelector } from './redux-hooks';
 
 export function useHeader() {
     const { Title, Type, SearchBar, TypeOfButton } = useAppSelector(

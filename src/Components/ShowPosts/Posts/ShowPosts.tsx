@@ -1,10 +1,10 @@
 import { FC, useEffect, useState } from 'react';
 import Styles from './Styles.module.scss';
-import { getPosts } from '../../../Api/Posts/getAllPosts';
-import { Post, setLastPostKey } from '../../../Store/slices/PostsSlice';
+import { getPosts } from 'Api/Posts/getAllPosts';
+import { Post, setLastPostKey } from 'Store/slices/PostsSlice';
 import PostRender from './PostRender';
-import { useAppDispatch } from '../../../Hooks/redus-hooks';
-import PreloaderPosts from '../../minicops/PreloaderPosts';
+import { useAppDispatch } from 'Hooks/redux-hooks';
+import PreloaderPosts from 'Components/MiniComponents/PreloaderPosts';
 
 interface ShowPosts {
     filter?: string;

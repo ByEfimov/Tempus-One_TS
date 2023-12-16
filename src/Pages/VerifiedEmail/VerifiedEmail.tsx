@@ -1,17 +1,17 @@
 import { Navigate } from 'react-router-dom';
-import ButtonVoid from '../../Components/minicops/buton';
-import { useAuth } from '../../Hooks/useAuth';
+import ButtonVoid from 'Components/MiniComponents/button';
+import { useAuth } from 'Hooks/useAuth';
 import { getAuth, sendEmailVerification } from 'firebase/auth';
 import Styles from './Styles.module.scss';
-import { getCurrentUserData } from '../../Api/Users/getCurrentUserData';
+import { getCurrentUserData } from 'Api/Users/getCurrentUserData';
 import { getDatabase, ref, set } from '@firebase/database';
 
-const VerifiedingEmail = () => {
+const VerifyingEmail = () => {
     const { UserEmailVerified, UserId } = useAuth();
     const db = getDatabase();
     const auth = getAuth();
 
-    function sendMailForVerifieding() {
+    function sendMailForVerifying() {
         if (auth.currentUser) {
             sendEmailVerification(auth.currentUser).then(() => {
                 console.log('Отправлено');
@@ -19,7 +19,7 @@ const VerifiedingEmail = () => {
         }
     }
 
-    function Verifieding() {
+    function Verifying() {
         location.reload();
         getCurrentUserData().then((currentUser) => {
             if (currentUser.emailVerified === true) {
@@ -32,11 +32,11 @@ const VerifiedingEmail = () => {
         <div className={Styles.buttons}>
             <ButtonVoid
                 title="Отправить письмо"
-                clickHandler={() => sendMailForVerifieding()}
+                clickHandler={() => sendMailForVerifying()}
             ></ButtonVoid>
             <ButtonVoid
                 title="Подтвердил"
-                clickHandler={() => Verifieding()}
+                clickHandler={() => Verifying()}
             ></ButtonVoid>
             <div>Обнови страницу если не сработало)</div>
         </div>
@@ -44,4 +44,4 @@ const VerifiedingEmail = () => {
         <Navigate to="/"></Navigate>
     );
 };
-export default VerifiedingEmail;
+export default VerifyingEmail;

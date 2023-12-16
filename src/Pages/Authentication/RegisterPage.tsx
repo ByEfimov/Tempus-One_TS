@@ -1,10 +1,10 @@
-import AuthenticationFrom from '../../Components/Forms/AuthenticationForm';
+import AuthenticationFrom from 'Components/Forms/AuthenticationForm';
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../../Hooks/useAuth';
+import { useAuth } from 'Hooks/useAuth';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { useAppDispatch } from '../../Hooks/redus-hooks';
-import { setCurrentUser } from '../../Store/slices/UserSlice';
-import { addUserToRealtimeDB } from '../../Api/Users/addUserToRealtimeDB';
+import { useAppDispatch } from 'Hooks/redux-hooks';
+import { setCurrentUser } from 'Store/slices/UserSlice';
+import { addUserToRealtimeDB } from 'Api/Users/addUserToRealtimeDB';
 
 export default function RegisterPage() {
     const { UserIsAuth } = useAuth();

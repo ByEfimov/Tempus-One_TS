@@ -1,20 +1,20 @@
 import Styles from './Header.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../Hooks/useAuth';
+import { useAuth } from 'Hooks/useAuth';
 import { useState } from 'react';
 import NavPanel from './NavPanel';
-import UserIcon from '../../Assets/Icons/Header/user.svg';
-import SearchIcon from '../../Assets/Icons/Header/search.svg';
-import SlidersIcon from '../../Assets/Icons/Header/sliders.svg';
-import { useHeader } from '../../Hooks/useHeader';
+import UserIcon from 'Assets/Icons/Header/user.svg';
+import SearchIcon from 'Assets/Icons/Header/search.svg';
+import SlidersIcon from 'Assets/Icons/Header/sliders.svg';
+import { useHeader } from 'Hooks/useHeader';
 import {
     TypesOfHeader,
     TypesOfHeaderButton,
     setInputSearchBar,
     setTypeOfButtonHeader,
-} from '../../Store/slices/Header/HeaderSlice';
+} from 'Store/slices/Header/HeaderSlice';
 import classNames from 'classnames';
-import { useAppDispatch } from '../../Hooks/redus-hooks';
+import { useAppDispatch } from 'Hooks/redux-hooks';
 
 export default function Header() {
     const [openNavPanel, setOpenNavPanel] = useState(false);

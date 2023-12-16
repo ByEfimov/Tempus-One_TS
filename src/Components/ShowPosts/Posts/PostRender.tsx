@@ -1,19 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { FC, useEffect, useState } from 'react';
-import { Post } from '../../../Store/slices/PostsSlice';
-import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
-import { getUserFromId } from '../../../Api/Users/getUserdataFromId';
+import { Post } from 'Store/slices/PostsSlice';
+import { ModsOfWritePost } from 'Utils/ModsOfComps';
+import { getUserFromId } from 'Api/Users/getUserDataFromId';
 import { useNavigate } from 'react-router-dom';
-import { getTeamFromId } from '../../../Api/Teams/getTeamdataFromId';
-import UserIcon from '../../../Assets/Icons/Header/user.svg';
-import PlusIcon from '../../../Assets/Icons/Post/plus-circle.svg';
-import HeartIcon from '../../../Assets/Icons/Post/heart.svg';
-import CommentIcon from '../../../Assets/Icons/Post/comment.svg';
-import ShareIcon from '../../../Assets/Icons/Post/share.svg';
-import EyeIcon from '../../../Assets/Icons/Post/eye.svg';
+import UserIcon from 'Assets/Icons/Header/user.svg';
+import PlusIcon from 'Assets/Icons/Post/plus-circle.svg';
+import HeartIcon from 'Assets/Icons/Post/heart.svg';
+import CommentIcon from 'Assets/Icons/Post/comment.svg';
+import ShareIcon from 'Assets/Icons/Post/share.svg';
+import EyeIcon from 'Assets/Icons/Post/eye.svg';
 import Styles from './Styles.module.scss';
 import BlocksRender from './BlocksRender';
-import FakePost from '../../FakeDatas/FakePost';
+import FakePost from 'Components/FakeData/FakePost';
+import { getTeamFromId } from 'Api/Teams/getTeamDataFromId';
 
 interface PostRender {
     post: Post;

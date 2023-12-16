@@ -1,8 +1,8 @@
 import { getDatabase, ref, onValue } from 'firebase/database';
-import { useAppDispatch } from '../Hooks/redus-hooks';
+import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useEffect } from 'react';
-import { useAuth } from '../Hooks/useAuth';
-import { removeUser, setUser } from '../Store/slices/UserSlice';
+import { useAuth } from 'Hooks/useAuth';
+import { removeUser, setUser } from 'Store/slices/UserSlice';
 import { getAuth, signOut } from 'firebase/auth';
 
 interface ListenerFC {

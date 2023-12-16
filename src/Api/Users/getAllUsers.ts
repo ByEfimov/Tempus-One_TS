@@ -1,5 +1,5 @@
 import { getDatabase, ref, onValue } from 'firebase/database';
-import { OpenUserType } from '../../Pages/OpenUser/UserPage';
+import { OpenUserType } from 'Pages/OpenUser/UserPage';
 
 export function getAllUsers() {
     const db = getDatabase();

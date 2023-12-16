@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getTeamFromId } from '../../Api/Teams/getTeamdataFromId';
-import ShowPosts from '../../Components/ShowPosts/Posts/ShowPosts';
-import { setTitleOfHeader } from '../../Store/slices/Header/HeaderSlice';
-import { useAppDispatch } from '../../Hooks/redus-hooks';
+import { getTeamFromId } from 'Api/Teams/getTeamDataFromId';
+import ShowPosts from 'Components/ShowPosts/Posts/ShowPosts';
+import { setTitleOfHeader } from 'Store/slices/Header/HeaderSlice';
+import { useAppDispatch } from 'Hooks/redux-hooks';
 
 export type OpenTeamType = {
     desc: string;

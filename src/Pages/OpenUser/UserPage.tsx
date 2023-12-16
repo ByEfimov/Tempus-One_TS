@@ -2,14 +2,14 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
 import Styles from './UserPage.module.scss';
-import { useAuth } from '../../Hooks/useAuth';
-import { useAppDispatch } from '../../Hooks/redus-hooks';
-import { removeUser } from '../../Store/slices/UserSlice';
-import ButtonVoid from '../../Components/minicops/buton';
+import { useAuth } from 'Hooks/useAuth';
+import { useAppDispatch } from 'Hooks/redux-hooks';
+import { removeUser } from 'Store/slices/UserSlice';
+import ButtonVoid from 'Components/MiniComponents/button';
 import { FC, useEffect, useState } from 'react';
-import { getUserFromId } from '../../Api/Users/getUserdataFromId';
+import { getUserFromId } from 'Api/Users/getUserDataFromId';
 import { getAuth, signOut } from 'firebase/auth';
-import { setTitleOfHeader } from '../../Store/slices/Header/HeaderSlice';
+import { setTitleOfHeader } from 'Store/slices/Header/HeaderSlice';
 
 export type OpenUserType = {
     photo: string;

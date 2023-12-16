@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
+import { ModsOfWritePost } from 'Utils/ModsOfComps';
 import NewBlocks from './NewBlocks';
 
 export type BlockOfPostType = {

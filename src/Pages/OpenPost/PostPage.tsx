@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getPostFromId } from '../../Api/Posts/getPostdataFromId';
-import { Post } from '../../Store/slices/PostsSlice';
-import { setTitleOfHeader } from '../../Store/slices/Header/HeaderSlice';
-import { useAppDispatch } from '../../Hooks/redus-hooks';
+import { Post } from 'Store/slices/PostsSlice';
+import { setTitleOfHeader } from 'Store/slices/Header/HeaderSlice';
+import { useAppDispatch } from 'Hooks/redux-hooks';
+import { getPostFromId } from 'Api/Posts/getPostDataFromId';
 
 export default function PostPage() {
     const { id } = useParams();

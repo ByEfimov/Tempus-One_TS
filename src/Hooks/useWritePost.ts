@@ -1,4 +1,4 @@
-import { useAppSelector } from './redus-hooks';
+import { useAppSelector } from './redux-hooks';
 
 export function useWritePost() {
     const { TitleOfPost, BlocksOfPost, selectMode, PostForWhom } =

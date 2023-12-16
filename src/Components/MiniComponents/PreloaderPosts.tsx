@@ -1,5 +1,5 @@
-import FakePost from '../FakeDatas/FakePost';
-import Styles from './minicomps.module.scss';
+import FakePost from 'Components/FakeData/FakePost';
+import Styles from './MiniComponents.module.scss';
 
 export default function PreloaderPosts() {
     return (

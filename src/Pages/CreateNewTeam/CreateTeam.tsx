@@ -1,12 +1,12 @@
 import { Navigate, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../Hooks/useAuth';
+import { useAuth } from 'Hooks/useAuth';
 import Styles from './Styles.module.scss';
-import CustomInput from '../../Components/minicops/input';
+import CustomInput from 'Components/MiniComponents/input';
 import { ChangeEvent, useState } from 'react';
-import CustomTextarea from '../../Components/minicops/textarea';
-import ButtonVoid from '../../Components/minicops/buton';
-import { addNewTeam } from '../../Api/Teams/addNewTeam';
-import { addToSubscriptionsForUser } from '../../Api/Users/addToSubscriptionsForUser';
+import CustomTextarea from 'Components/MiniComponents/textarea';
+import ButtonVoid from 'Components/MiniComponents/button';
+import { addNewTeam } from 'Api/Teams/addNewTeam';
+import { addToSubscriptionsForUser } from 'Api/Users/addToSubscriptionsForUser';
 
 const CreateTeam = () => {
     const { UserCanChanging, UserId } = useAuth();

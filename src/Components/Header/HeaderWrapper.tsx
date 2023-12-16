@@ -1,10 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useAppDispatch } from '../../Hooks/redus-hooks';
-import {
-    TypesOfHeader,
-    setHeader,
-} from '../../Store/slices/Header/HeaderSlice';
+import { useAppDispatch } from 'Hooks/redux-hooks';
+import { TypesOfHeader, setHeader } from 'Store/slices/Header/HeaderSlice';
 
 const HeaderWrapper = ({
     children,

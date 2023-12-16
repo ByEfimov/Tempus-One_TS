@@ -1,8 +1,8 @@
 import FormsStyles from './FormsStyles.module.scss';
 import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ButtonVoid from '../minicops/buton';
-import AuthWhithGoogle from './AuthWhithGoogle';
+import ButtonVoid from 'Components/MiniComponents/button';
+import AuthWithGoogle from './AuthWithGoogle';
 
 interface AuthenticationFromProps {
     title: string;
@@ -94,7 +94,7 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({
                         undefined
                     }
                 ></ButtonVoid>
-                <AuthWhithGoogle />
+                <AuthWithGoogle />
             </div>
             <div className={FormsStyles.nextForm}>
                 {title === 'Регистрация' ? (

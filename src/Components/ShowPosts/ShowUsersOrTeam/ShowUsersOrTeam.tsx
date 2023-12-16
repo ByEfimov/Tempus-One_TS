@@ -1,7 +1,7 @@
-import { OpenTeamType } from '../../Pages/OpenTeam/TeamPage';
-import { OpenUserType } from '../../Pages/OpenUser/UserPage';
-import PlussIcon from '../../Assets/Icons/Post/plus-circle.svg';
-import UserIcon from '../../Assets/Icons/Header/user.svg';
+import { OpenTeamType } from 'Pages/OpenTeam/TeamPage';
+import { OpenUserType } from 'Pages/OpenUser/UserPage';
+import PlusIcon from 'Assets/Icons/Post/plus-circle.svg';
+import UserIcon from 'Assets/Icons/Header/user.svg';
 import Styles from './Styles.module.scss';
 import { useNavigate } from 'react-router-dom';
 
@@ -32,7 +32,7 @@ export default function ShowUserOrTeam({
             </div>
             <div className={Styles.Activity}>
                 <button className={Styles.SubButton}>
-                    <img src={PlussIcon} alt="" />
+                    <img src={PlusIcon} alt="" />
                 </button>
             </div>
         </div>
@@ -55,7 +55,7 @@ export default function ShowUserOrTeam({
                 </div>
                 <div className={Styles.Activity}>
                     <button className={Styles.SubButton}>
-                        <img src={PlussIcon} alt="" />
+                        <img src={PlusIcon} alt="" />
                     </button>
                 </div>
             </div>

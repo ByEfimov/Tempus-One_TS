@@ -1,8 +1,8 @@
 import React, { FC, LegacyRef } from 'react';
 import Styles from './SelectModal.module.scss';
-import ButtonVoid from '../../../Components/minicops/buton';
+import ButtonVoid from 'Components/MiniComponents/button';
 import { LiveError, LiveProvider } from 'react-live';
-import { useWritePost } from '../../../Hooks/useWritePost';
+import { useWritePost } from 'Hooks/useWritePost';
 
 const ShowClueForWriteCode = () => {
     return (

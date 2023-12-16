@@ -1,9 +1,9 @@
-import { getUserFromId } from '../../Api/Users/getUserdataFromId';
-import ButtonVoid from '../minicops/buton';
+import ButtonVoid from 'Components/MiniComponents/button';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import { useAppDispatch } from '../../Hooks/redus-hooks';
-import { setCurrentUser } from '../../Store/slices/UserSlice';
-import { addUserToRealtimeDB } from '../../Api/Users/addUserToRealtimeDB';
+import { useAppDispatch } from 'Hooks/redux-hooks';
+import { setCurrentUser } from 'Store/slices/UserSlice';
+import { addUserToRealtimeDB } from 'Api/Users/addUserToRealtimeDB';
+import { getUserFromId } from 'Api/Users/getUserDataFromId';
 
 type User = {
     email: string | null;
@@ -13,10 +13,10 @@ type User = {
     emailVerified: boolean | null;
 };
 
-const AuthWhithGoogle = () => {
+const AuthWithGoogle = () => {
     const dispatch = useAppDispatch();
 
-    function loginWhihtGoogle(user: User) {
+    function loginWithGoogle(user: User) {
         dispatch(
             setCurrentUser({
                 email: user.email,
@@ -26,15 +26,15 @@ const AuthWhithGoogle = () => {
         location.reload();
     }
 
-    function registerWhihtGoogle(user: User) {
-        const userAgeDefualt = 0;
+    function registerWithGoogle(user: User) {
+        const userAgeDefault = 0;
         const UserMembersDefault: number = 0;
         addUserToRealtimeDB(
             user.email,
             user.uid,
             user.displayName,
             user.photoURL,
-            userAgeDefualt,
+            userAgeDefault,
             user.emailVerified,
             UserMembersDefault
         );
@@ -56,10 +56,10 @@ const AuthWhithGoogle = () => {
                 console.log(user);
                 getUserFromId(user.uid)
                     .then(() => {
-                        loginWhihtGoogle(user);
+                        loginWithGoogle(user);
                     })
                     .catch(() => {
-                        registerWhihtGoogle(user);
+                        registerWithGoogle(user);
                     });
             })
             .catch((error) => {
@@ -77,4 +77,4 @@ const AuthWhithGoogle = () => {
         ></ButtonVoid>
     );
 };
-export default AuthWhithGoogle;
+export default AuthWithGoogle;

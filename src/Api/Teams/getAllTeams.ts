@@ -1,5 +1,5 @@
 import { getDatabase, ref, onValue } from 'firebase/database';
-import { OpenTeamType } from '../../Pages/OpenTeam/TeamPage';
+import { OpenTeamType } from 'Pages/OpenTeam/TeamPage';
 
 export function getAllTeams() {
     const db = getDatabase();

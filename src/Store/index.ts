@@ -10,7 +10,7 @@ import {
     REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import userReduser from './slices/UserSlice';
+import userReducer from './slices/UserSlice';
 import WritePostSlice from './slices/WritePost/WritePostSlice';
 import PostsSlice from './slices/PostsSlice';
 import HeaderSlice from './slices/Header/HeaderSlice';
@@ -21,16 +21,16 @@ const persistConfig = {
     blacklist: ['WritePost', 'Header'],
 };
 
-const rootReduser = combineReducers({
-    user: userReduser,
+const rootReducer = combineReducers({
+    user: userReducer,
     WritePost: WritePostSlice,
     Posts: PostsSlice,
     Header: HeaderSlice,
 });
-const persistedReduser = persistReducer(persistConfig, rootReduser);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-    reducer: persistedReduser,
+    reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: {

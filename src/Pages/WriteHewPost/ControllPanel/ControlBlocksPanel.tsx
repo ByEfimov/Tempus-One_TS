@@ -1,16 +1,16 @@
-import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
+import { ModsOfWritePost } from 'Utils/ModsOfComps';
 import Styles from '../Styles.module.scss';
 import FeatherIcon from 'feather-icons-react';
 import { useState } from 'react';
 import FullDataModal from '../Modals/FullScreenModal';
 import ModalAddNewMode from '../Modals/SelectModal';
 import ControlBlockRender from './ControlBlockRender';
-import { useAppDispatch } from '../../../Hooks/redus-hooks';
-import { useWritePost } from '../../../Hooks/useWritePost';
+import { useAppDispatch } from 'Hooks/redux-hooks';
+import { useWritePost } from 'Hooks/useWritePost';
 import {
     BlockOfPostType,
     setSelectMode,
-} from '../../../Store/slices/WritePost/WritePostSlice';
+} from 'Store/slices/WritePost/WritePostSlice';
 
 export const ControlBlocksPanel = () => {
     const { selectMode, BlocksOfPost } = useWritePost();

@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom';
-import AuthenticationFrom from '../../Components/Forms/AuthenticationForm';
-import { useAuth } from '../../Hooks/useAuth';
-import { useAppDispatch } from '../../Hooks/redus-hooks';
-import { setCurrentUser } from '../../Store/slices/UserSlice';
+import AuthenticationFrom from 'Components/Forms/AuthenticationForm';
+import { useAuth } from 'Hooks/useAuth';
+import { useAppDispatch } from 'Hooks/redux-hooks';
+import { setCurrentUser } from 'Store/slices/UserSlice';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function LoginPage() {

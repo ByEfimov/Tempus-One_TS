@@ -1,14 +1,14 @@
 import React, { FC, LegacyRef } from 'react';
 import Styles from './SelectModal.module.scss';
-import ButtonVoid from '../../../Components/minicops/buton';
-import { ModsOfWritePost } from '../../../Utils/ModsOfComps';
-import closePopup from '../../../Utils/anims/closePopup';
-import { useAppDispatch } from '../../../Hooks/redus-hooks';
+import ButtonVoid from 'Components/MiniComponents/button';
+import { ModsOfWritePost } from 'Utils/ModsOfComps';
+import closePopup from 'Utils/Animations/closePopup';
+import { useAppDispatch } from 'Hooks/redux-hooks';
 import {
     addBlockToPost,
     setSelectMode,
-} from '../../../Store/slices/WritePost/WritePostSlice';
-import { useWritePost } from '../../../Hooks/useWritePost';
+} from 'Store/slices/WritePost/WritePostSlice';
+import { useWritePost } from 'Hooks/useWritePost';
 
 interface ShowSelectMode {
     closePopup: () => void;

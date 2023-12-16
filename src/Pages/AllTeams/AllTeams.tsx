@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { OpenTeamType } from '../OpenTeam/TeamPage';
-import { getAllTeams } from '../../Api/Teams/getAllTeams';
-import ButtonVoid from '../../Components/minicops/buton';
-import PreloaderUsers from '../../Components/minicops/PreloaderUsers';
+import { OpenTeamType } from 'Pages/OpenTeam/TeamPage';
+import { getAllTeams } from 'Api/Teams/getAllTeams';
+import ButtonVoid from 'Components/MiniComponents/button';
+import PreloaderUsers from 'Components/MiniComponents/PreloaderUsers';
 import Styles from './Styles.module.scss';
-import ShowUserOrTeam from '../../Components/ShowUsersOrTeam/ShowUsersOrTeam';
+import ShowUserOrTeam from 'Components/ShowPosts/ShowUsersOrTeam/ShowUsersOrTeam';
 
 export default function AllTeams() {
     const [teams, setTeams] = useState<OpenTeamType[] | null>(null);
