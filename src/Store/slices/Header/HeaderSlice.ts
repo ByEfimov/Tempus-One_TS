@@ -13,7 +13,7 @@ export const TypesOfHeaderButton = {
 
 const initialState: HeaderType = {
     Title: 'TEMPUS',
-    Animation: '',
+    Animation: 'Open',
     SearchBar: '',
     Type: TypesOfHeader.WithSearchBar,
     TypeOfButton: TypesOfHeaderButton.NavBar,
