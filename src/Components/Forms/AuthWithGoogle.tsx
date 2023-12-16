@@ -27,16 +27,12 @@ const AuthWithGoogle = () => {
     }
 
     function registerWithGoogle(user: User) {
-        const userAgeDefault = 0;
-        const UserMembersDefault: number = 0;
         addUserToRealtimeDB(
             user.email,
             user.uid,
             user.displayName,
             user.photoURL,
-            userAgeDefault,
-            user.emailVerified,
-            UserMembersDefault
+            user.emailVerified
         );
         dispatch(
             setCurrentUser({

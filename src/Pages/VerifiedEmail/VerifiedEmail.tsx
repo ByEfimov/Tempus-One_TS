@@ -28,20 +28,22 @@ const VerifyingEmail = () => {
         });
     }
 
-    return !UserEmailVerified ? (
-        <div className={Styles.buttons}>
-            <ButtonVoid
-                title="Отправить письмо"
-                clickHandler={() => sendMailForVerifying()}
-            ></ButtonVoid>
-            <ButtonVoid
-                title="Подтвердил"
-                clickHandler={() => Verifying()}
-            ></ButtonVoid>
-            <div>Обнови страницу если не сработало)</div>
-        </div>
-    ) : (
-        <Navigate to="/"></Navigate>
-    );
+    if (!UserEmailVerified) {
+        return (
+            <div className={Styles.buttons}>
+                <ButtonVoid
+                    title="Отправить письмо"
+                    clickHandler={() => sendMailForVerifying()}
+                ></ButtonVoid>
+                <ButtonVoid
+                    title="Подтвердил"
+                    clickHandler={() => Verifying()}
+                ></ButtonVoid>
+                <div>Обнови страницу если не сработало)</div>
+            </div>
+        );
+    } else {
+        return <Navigate to="/"></Navigate>;
+    }
 };
 export default VerifyingEmail;

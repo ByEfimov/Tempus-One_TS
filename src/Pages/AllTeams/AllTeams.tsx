@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { OpenTeamType } from 'Pages/OpenTeam/TeamPage';
+import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
 import { getAllTeams } from 'Api/Teams/getAllTeams';
 import ButtonVoid from 'Components/MiniComponents/button';
 import PreloaderUsers from 'Components/MiniComponents/PreloaderUsers';

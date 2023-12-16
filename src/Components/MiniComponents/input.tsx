@@ -16,6 +16,7 @@ const CustomInput: FC<CustomInput> = ({
 }) => {
     const { selectMode, BlocksOfPost, TitleOfPost } = useWritePost();
     const value = BlocksOfPost[selectMode.id].title;
+
     return (
         <input
             className={

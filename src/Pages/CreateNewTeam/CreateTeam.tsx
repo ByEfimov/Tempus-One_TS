@@ -12,10 +12,10 @@ const CreateTeam = () => {
     const { UserCanChanging, UserId } = useAuth();
     const navigate = useNavigate();
 
-    const [inputTitle, setTitle] = useState('');
-    const [inputDescript, setDescript] = useState('');
-    const [inputProjectName, setProjectName] = useState('');
-    const [inputProjectDesc, setProjectDescript] = useState('');
+    const [Title, setTitle] = useState('');
+    const [Description, setDescription] = useState('');
+    const [ProjectName, setProjectName] = useState('');
+    const [ProjectDescription, setProjectDescription] = useState('');
     const [selectImage, setSelectImage] = useState('');
 
     const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
@@ -30,18 +30,18 @@ const CreateTeam = () => {
 
     function createNewTeam() {
         if (
-            inputTitle &&
-            inputDescript &&
-            inputProjectName &&
-            inputProjectDesc &&
+            Title &&
+            Description &&
+            ProjectName &&
+            ProjectDescription &&
             selectImage &&
             UserId
         ) {
             const NewTeam = {
-                title: inputTitle,
-                desc: inputDescript,
-                projectTitle: inputProjectName,
-                projectDesc: inputProjectDesc,
+                title: Title,
+                desc: Description,
+                projectTitle: ProjectName,
+                projectDesc: ProjectDescription,
                 image: selectImage,
                 members: {
                     [UserId]: { UserId: UserId, UserRole: 'Administrator' },
@@ -56,74 +56,80 @@ const CreateTeam = () => {
     }
     function clearInputs() {
         setTitle('');
-        setDescript('');
+        setDescription('');
         setProjectName('');
-        setProjectDescript('');
+        setProjectDescription('');
         setSelectImage('');
     }
 
-    return UserCanChanging ? (
-        <div className={Styles.Container}>
-            <h1 className={Styles.title}>Создать команду</h1>
+    if (UserCanChanging) {
+        return (
+            <div className={Styles.Container}>
+                <h1 className={Styles.title}>Создать команду</h1>
 
-            <form onSubmit={(e) => e.preventDefault()}>
-                <div className={Styles.HeadInputs}>
-                    {selectImage ? (
-                        <img
-                            src={selectImage}
-                            alt=""
-                            className={Styles.image}
-                        />
-                    ) : (
-                        <input
-                            type="file"
-                            onChange={(e) => handleImageUpload(e)}
-                            className={Styles.image}
-                        />
-                    )}
+                <form onSubmit={(e) => e.preventDefault()}>
+                    <div className={Styles.HeadInputs}>
+                        {selectImage ? (
+                            <img
+                                src={selectImage}
+                                alt=""
+                                className={Styles.image}
+                            />
+                        ) : (
+                            <input
+                                type="file"
+                                onChange={(e) => handleImageUpload(e)}
+                                className={Styles.image}
+                            />
+                        )}
 
-                    <div>
-                        <CustomInput
-                            changeFunction={(e) => setTitle(e.target.value)}
-                            placeholder="Название"
-                            mode="large"
-                            stateValue={inputTitle}
-                        ></CustomInput>
-                        <CustomInput
-                            changeFunction={(e) => setDescript(e.target.value)}
-                            placeholder="Описание"
-                            mode="large"
-                            stateValue={inputDescript}
-                        ></CustomInput>
+                        <div>
+                            <CustomInput
+                                changeFunction={(e) => setTitle(e.target.value)}
+                                placeholder="Название"
+                                mode="large"
+                                stateValue={Title}
+                            ></CustomInput>
+                            <CustomInput
+                                changeFunction={(e) =>
+                                    setDescription(e.target.value)
+                                }
+                                placeholder="Описание"
+                                mode="large"
+                                stateValue={Description}
+                            ></CustomInput>
+                        </div>
                     </div>
-                </div>
-                <div className={Styles.aboutProject}>
-                    <CustomInput
-                        changeFunction={(e) => setProjectName(e.target.value)}
-                        placeholder="Проект над которым работаете"
-                        mode="large"
-                        stateValue={inputProjectName}
-                    ></CustomInput>
-                    <CustomTextarea
-                        changeFunction={(e) =>
-                            setProjectDescript(e.target.value)
-                        }
-                        placeholder="Дайте описание своему проекту"
-                        mode="large"
-                        stateValue={inputProjectDesc}
-                    ></CustomTextarea>
-                </div>
-                <ButtonVoid
-                    title="Создать"
-                    clickHandler={() => {
-                        createNewTeam();
-                    }}
-                ></ButtonVoid>
-            </form>
-        </div>
-    ) : (
-        <Navigate to={'/NeedAuth'}></Navigate>
-    );
+                    <div className={Styles.aboutProject}>
+                        <CustomInput
+                            changeFunction={(e) =>
+                                setProjectName(e.target.value)
+                            }
+                            placeholder="Проект над которым работаете"
+                            mode="large"
+                            stateValue={ProjectName}
+                        ></CustomInput>
+                        <CustomTextarea
+                            changeFunction={(e) =>
+                                setProjectDescription(e.target.value)
+                            }
+                            placeholder="Дайте описание своему проекту"
+                            mode="large"
+                            stateValue={ProjectDescription}
+                        ></CustomTextarea>
+                    </div>
+                    <ButtonVoid
+                        title="Создать"
+                        clickHandler={() => {
+                            createNewTeam();
+                        }}
+                    ></ButtonVoid>
+                </form>
+            </div>
+        );
+    } else if (!UserCanChanging) {
+        return <Navigate to={'/NeedAuth'}></Navigate>;
+    }
 };
 
 export default CreateTeam;

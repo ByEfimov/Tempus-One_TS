@@ -1,7 +1,12 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAppDispatch } from 'Hooks/redux-hooks';
-import { TypesOfHeader, setHeader } from 'Store/slices/Header/HeaderSlice';
+import {
+    TypesOfHeader,
+    setAnimOfHeader,
+    setHeader,
+    setTitleOfHeader,
+} from 'Store/slices/Header/HeaderSlice';
 
 const HeaderWrapper = ({
     children,
@@ -14,8 +19,11 @@ const HeaderWrapper = ({
     useEffect(() => {
         const Path = location.split('/')[1];
 
-        function HeaderHaveSearchbar() {
-            if (Path === '' || Path === 'Users' || Path === 'Teams') {
+        const ThenHaveSearchBar =
+            Path === '' || Path === 'Users' || Path === 'Teams';
+
+        function HeaderHaveSearchBar() {
+            if (ThenHaveSearchBar) {
                 return true;
             } else {
                 return false;
@@ -36,7 +44,7 @@ const HeaderWrapper = ({
             case 'WriteNewPost':
                 TitleOfHeader = 'Новый пост';
                 break;
-            case 'СreateNewTeam':
+            case 'CreateNewTeam':
                 TitleOfHeader = 'Новое сообщество';
                 break;
             case 'Team':
@@ -57,12 +65,14 @@ const HeaderWrapper = ({
             case 'NeedAuth':
                 TitleOfHeader = 'Нужен вход';
                 break;
-            case 'VerifieEmail':
+            case 'VerifyingEmail':
                 TitleOfHeader = 'Подтверждение почты';
                 break;
         }
 
-        if (HeaderHaveSearchbar()) {
+        if (HeaderHaveSearchBar()) {
+            dispatch(setAnimOfHeader({ Animation: 'Open' }));
+
             dispatch(
                 setHeader({
                     Type: TypesOfHeader.WithSearchBar,
@@ -70,12 +80,16 @@ const HeaderWrapper = ({
                 })
             );
         } else {
-            dispatch(
-                setHeader({
-                    Type: TypesOfHeader.WithoutSearchBar,
-                    Title: TitleOfHeader,
-                })
-            );
+            dispatch(setAnimOfHeader({ Animation: 'Close' }));
+            dispatch(setTitleOfHeader({ Title: TitleOfHeader }));
+            setTimeout(() => {
+                dispatch(
+                    setHeader({
+                        Type: TypesOfHeader.WithoutSearchBar,
+                        Title: TitleOfHeader,
+                    })
+                );
+            }, 500);
         }
     }, [location]);
 

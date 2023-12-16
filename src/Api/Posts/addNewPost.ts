@@ -1,7 +1,7 @@
 import { getDatabase, push, ref, set } from '@firebase/database';
-import { NewPost } from 'Pages/WriteHewPost/WritePost';
+import { NewPostType } from 'Types/TypesOfData/Post/NewPostType';
 
-export function addNewPost(NewPost: NewPost) {
+export function addNewPost(NewPost: NewPostType) {
     const db = getDatabase();
     const postListRef = ref(db, 'posts/');
     const newPostRef = push(postListRef);

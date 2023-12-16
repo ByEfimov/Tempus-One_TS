@@ -2,13 +2,13 @@ import classNames from 'classnames';
 import { ModsOfWritePost } from 'Utils/ModsOfComps';
 import Styles from '../Styles.module.scss';
 import { FC } from 'react';
-import {
-    BlockOfPostType,
-    SelectModeType,
-} from 'Store/slices/WritePost/WritePostSlice';
 import ImageMode from './Mods/ImageMode';
 import CodeMode from './Mods/CodeMode';
 import TextMode from './Mods/TextMode';
+import {
+    BlockOfPostType,
+    SelectModeType,
+} from 'Types/TypesOfData/Post/WritePost';
 
 interface ControlBlockRenderProps {
     blockData: BlockOfPostType;

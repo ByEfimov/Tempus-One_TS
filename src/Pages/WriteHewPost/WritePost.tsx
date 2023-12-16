@@ -11,23 +11,10 @@ import TitleForPost from './Mods/TitleForPost';
 import { countEmptyValues } from 'Utils/countEmptyValues';
 import { useWritePost } from 'Hooks/useWritePost';
 import { useAppDispatch } from 'Hooks/redux-hooks';
-import {
-    BlockOfPostType,
-    removePost,
-} from 'Store/slices/WritePost/WritePostSlice';
+import { removePost } from 'Store/slices/WritePost/WritePostSlice';
 import { addNewPost } from 'Api/Posts/addNewPost';
 import PostForWhom from './Mods/PostForWhom';
-
-export type NewPost = {
-    PostDataBlocks: BlockOfPostType[];
-    PostTitle: string;
-    PostAuthorId: string | null;
-    PostDate: number;
-    PostLikes: number;
-    PostShows: number;
-    PostComments: object;
-    PostReposts: number;
-};
+import { NewPostType } from 'Types/TypesOfData/Post/NewPostType';
 
 const WritePost = () => {
     const { UserCanChanging } = useAuth();
@@ -38,7 +25,7 @@ const WritePost = () => {
 
     function sendNewPost() {
         const ToDay = new Date().getTime();
-        const NewPost: NewPost = {
+        const NewPost: NewPostType = {
             PostDataBlocks: BlocksOfPost,
             PostTitle: TitleOfPost,
             PostAuthorId: postForWhom,
@@ -68,32 +55,34 @@ const WritePost = () => {
         }
     };
 
-    return UserCanChanging ? (
-        <div className={Styles.WritePost}>
-            <PostForWhom></PostForWhom>
+    if (UserCanChanging) {
+        return (
+            <div className={Styles.WritePost}>
+                <PostForWhom></PostForWhom>
 
-            <TitleForPost></TitleForPost>
+                <TitleForPost></TitleForPost>
 
-            {showSelectMode()}
+                {showSelectMode()}
 
-            <ControlBlocksPanel></ControlBlocksPanel>
+                <ControlBlocksPanel></ControlBlocksPanel>
 
-            <ButtonVoid
-                classes={Styles.ButtonWrite}
-                title="Отправить пост"
-                clickHandler={sendNewPost}
-            ></ButtonVoid>
-            <ButtonVoid
-                classes={Styles.ButtonWrite}
-                title="Очистить пост"
-                clickHandler={() => {
-                    dispatch(removePost());
-                }}
-            ></ButtonVoid>
-        </div>
-    ) : (
-        <Navigate to="/NeedAuth" />
-    );
+                <ButtonVoid
+                    classes={Styles.ButtonWrite}
+                    title="Отправить пост"
+                    clickHandler={sendNewPost}
+                ></ButtonVoid>
+                <ButtonVoid
+                    classes={Styles.ButtonWrite}
+                    title="Очистить пост"
+                    clickHandler={() => {
+                        dispatch(removePost());
+                    }}
+                ></ButtonVoid>
+            </div>
+        );
+    } else if (!UserCanChanging) {
+        return <Navigate to="/NeedAuth" />;
+    }
 };
 
 export default WritePost;

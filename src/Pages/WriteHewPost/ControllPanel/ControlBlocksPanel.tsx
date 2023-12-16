@@ -7,10 +7,8 @@ import ModalAddNewMode from '../Modals/SelectModal';
 import ControlBlockRender from './ControlBlockRender';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useWritePost } from 'Hooks/useWritePost';
-import {
-    BlockOfPostType,
-    setSelectMode,
-} from 'Store/slices/WritePost/WritePostSlice';
+import { setSelectMode } from 'Store/slices/WritePost/WritePostSlice';
+import { BlockOfPostType } from 'Types/TypesOfData/Post/WritePost';
 
 export const ControlBlocksPanel = () => {
     const { selectMode, BlocksOfPost } = useWritePost();

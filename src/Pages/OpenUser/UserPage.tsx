@@ -10,18 +10,7 @@ import { FC, useEffect, useState } from 'react';
 import { getUserFromId } from 'Api/Users/getUserDataFromId';
 import { getAuth, signOut } from 'firebase/auth';
 import { setTitleOfHeader } from 'Store/slices/Header/HeaderSlice';
-
-export type OpenUserType = {
-    photo: string;
-    name: string;
-    email: string;
-    id: string;
-    age: number;
-    emailVerified: boolean;
-    experience: number;
-    level: number;
-    members: string[];
-};
+import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
 
 export default function UserPage() {
     const { id } = useParams();
@@ -66,7 +55,7 @@ export default function UserPage() {
                         title="Подтвердить почту"
                         classes={Styles.Button}
                         clickHandler={() => {
-                            navigate('/VerifieEmail');
+                            navigate('/VerifyingEmail');
                         }}
                     ></ButtonVoid>
                 )}

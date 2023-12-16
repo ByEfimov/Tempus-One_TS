@@ -7,7 +7,7 @@ import {
     orderByChild,
     equalTo,
 } from 'firebase/database';
-import { Post } from 'Store/slices/PostsSlice';
+import { Post } from 'Types/TypesOfData/Post/Post';
 
 export function getPosts(filter: string | null) {
     const db = getDatabase();

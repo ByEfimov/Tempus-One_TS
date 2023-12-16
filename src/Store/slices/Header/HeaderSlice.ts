@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { HeaderType } from 'Types/TypesOfData/Header/HeaderType';
 
 export const TypesOfHeader = {
     WithSearchBar: 'WithSearchBar',
@@ -10,15 +11,9 @@ export const TypesOfHeaderButton = {
     NavBar: 'NavBar',
 };
 
-export type HeaderType = {
-    Title: string;
-    SearchBar: string;
-    Type: string;
-    TypeOfButton: string;
-};
-
 const initialState: HeaderType = {
     Title: 'TEMPUS',
+    Animation: '',
     SearchBar: '',
     Type: TypesOfHeader.WithSearchBar,
     TypeOfButton: TypesOfHeaderButton.NavBar,
@@ -41,6 +36,9 @@ const HeaderSlice = createSlice({
         setTitleOfHeader(state, action) {
             state.Title = action.payload.Title;
         },
+        setAnimOfHeader(state, action) {
+            state.Animation = action.payload.Animation;
+        },
     },
 });
 export const {
@@ -48,6 +46,7 @@ export const {
     setTypeOfButtonHeader,
     setHeader,
     setTitleOfHeader,
+    setAnimOfHeader,
 } = HeaderSlice.actions;
 
 export default HeaderSlice.reducer;

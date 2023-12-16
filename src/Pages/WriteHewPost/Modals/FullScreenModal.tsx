@@ -7,10 +7,10 @@ import closePopup from 'Utils/Animations/closePopup';
 import ShowImage from 'Components/ShowPosts/PostsComponents/ShowImage';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import {
-    BlockOfPostType,
     clearBlockOfPost,
     removeBlockOfPost,
 } from '../../../Store/slices/WritePost/WritePostSlice';
+import { BlockOfPostType } from 'Types/TypesOfData/Post/WritePost';
 
 interface SelectModalProps {
     setIsModalOpen: (open: boolean) => void;

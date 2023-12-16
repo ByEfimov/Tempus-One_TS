@@ -3,14 +3,16 @@ import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ButtonVoid from 'Components/MiniComponents/button';
 import AuthWithGoogle from './AuthWithGoogle';
+import validatePassword from 'Utils/ValidateData/ValidatePassword';
+import validateEmail from 'Utils/ValidateData/ValidateEmail';
 
 interface AuthenticationFromProps {
     title: string;
     handlerSubmit: (
-        inputEmail: string,
-        inputPass: string,
-        inputName: string,
-        inputAge: number
+        Email: string,
+        Pass: string,
+        Name: string,
+        Age: number
     ) => void;
 }
 
@@ -18,32 +20,18 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({
     title,
     handlerSubmit,
 }) => {
-    const [inputEmail, setInputEmail] = useState('');
-    const [inputPass, setInputPass] = useState('');
-    const [inputName, setInputName] = useState('');
-    const [inputAge, setInputAge] = useState(0);
-
-    function validatePassword(password: string) {
-        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/;
-        return regex.test(password);
-    }
-    function validateEmail(email: string) {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regex.test(email);
-    }
+    const [Email, setEmail] = useState('');
+    const [Pass, setPass] = useState('');
+    const [Name, setName] = useState('');
+    const [Age, setAge] = useState(0);
 
     return (
         <form
             className={FormsStyles.Container}
             onSubmit={(e) => {
                 e.preventDefault();
-                if (validatePassword(inputPass) && validateEmail(inputEmail)) {
-                    handlerSubmit(
-                        inputEmail,
-                        inputPass,
-                        inputName && inputName,
-                        inputAge && inputAge
-                    );
+                if (validatePassword(Pass) && validateEmail(Email)) {
+                    handlerSubmit(Email, Pass, Name && Name, Age && Age);
                 }
             }}
         >
@@ -52,20 +40,19 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({
                 <input
                     type="email"
                     className={
-                        (validateEmail(inputEmail) && FormsStyles.validInput) ||
+                        (validateEmail(Email) && FormsStyles.validInput) ||
                         undefined
                     }
-                    onChange={(e) => setInputEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="Почта"
                 />
                 <input
                     type="password"
                     className={
-                        (validatePassword(inputPass) &&
-                            FormsStyles.validInput) ||
+                        (validatePassword(Pass) && FormsStyles.validInput) ||
                         undefined
                     }
-                    onChange={(e) => setInputPass(e.target.value)}
+                    onChange={(e) => setPass(e.target.value)}
                     placeholder="Пароль"
                 />
                 {title === 'Регистрация' && (
@@ -73,14 +60,12 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({
                         <input
                             type="text"
                             placeholder="Имя"
-                            onChange={(e) => setInputName(e.target.value)}
+                            onChange={(e) => setName(e.target.value)}
                         />
                         <input
                             type="number"
                             placeholder="Возраст"
-                            onChange={(e) =>
-                                setInputAge(parseInt(e.target.value))
-                            }
+                            onChange={(e) => setAge(parseInt(e.target.value))}
                         />
                     </div>
                 )}
@@ -88,8 +73,8 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({
                     title="Продолжить"
                     clickHandler={() => {}}
                     classes={
-                        (validateEmail(inputEmail) &&
-                            validatePassword(inputPass) &&
+                        (validateEmail(Email) &&
+                            validatePassword(Pass) &&
                             FormsStyles.ActiveButton) ||
                         undefined
                     }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Post } from 'Store/slices/PostsSlice';
+import { Post } from 'Types/TypesOfData/Post/Post';
 import { setTitleOfHeader } from 'Store/slices/Header/HeaderSlice';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { getPostFromId } from 'Api/Posts/getPostDataFromId';

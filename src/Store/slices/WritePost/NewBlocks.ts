@@ -1,5 +1,5 @@
 import { ModsOfWritePost } from 'Utils/ModsOfComps';
-import { BlockOfPostType } from './WritePostSlice';
+import { BlockOfPostType } from 'Types/TypesOfData/Post/WritePost';
 
 export default function NewBlocks(id: number, type: string): BlockOfPostType {
     if (type === ModsOfWritePost.code) {

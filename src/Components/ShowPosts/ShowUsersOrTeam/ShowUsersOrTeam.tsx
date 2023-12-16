@@ -1,5 +1,5 @@
-import { OpenTeamType } from 'Pages/OpenTeam/TeamPage';
-import { OpenUserType } from 'Pages/OpenUser/UserPage';
+import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
+import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
 import PlusIcon from 'Assets/Icons/Post/plus-circle.svg';
 import UserIcon from 'Assets/Icons/Header/user.svg';
 import Styles from './Styles.module.scss';
@@ -14,30 +14,32 @@ export default function ShowUserOrTeam({
 }) {
     const navigate = useNavigate();
 
-    return User ? (
-        <div
-            className={Styles.Obj}
-            onClick={() => navigate('/User/' + User.id)}
-        >
-            <div className={Styles.Data}>
-                <div className={Styles.Photo}>
-                    <img src={User.photo || UserIcon} alt="" />
-                </div>
-                <div className={Styles.Text}>
-                    <div className={Styles.Title}>{User.name}</div>
-                    <div className={Styles.Members}>
-                        {User.members.length | 0} подписчиков
+    if (User) {
+        return (
+            <div
+                className={Styles.Obj}
+                onClick={() => navigate('/User/' + User.id)}
+            >
+                <div className={Styles.Data}>
+                    <div className={Styles.Photo}>
+                        <img src={User.photo || UserIcon} alt="" />
+                    </div>
+                    <div className={Styles.Text}>
+                        <div className={Styles.Title}>{User.name}</div>
+                        <div className={Styles.Members}>
+                            {User.members.length | 0} подписчиков
+                        </div>
                     </div>
                 </div>
+                <div className={Styles.Activity}>
+                    <button className={Styles.SubButton}>
+                        <img src={PlusIcon} alt="" />
+                    </button>
+                </div>
             </div>
-            <div className={Styles.Activity}>
-                <button className={Styles.SubButton}>
-                    <img src={PlusIcon} alt="" />
-                </button>
-            </div>
-        </div>
-    ) : (
-        Team && (
+        );
+    } else if (Team) {
+        return (
             <div
                 className={Styles.Obj}
                 onClick={() => navigate('/Team/' + Team.id)}
@@ -59,6 +61,6 @@ export default function ShowUserOrTeam({
                     </button>
                 </div>
             </div>
-        )
-    );
+        );
+    }
 }

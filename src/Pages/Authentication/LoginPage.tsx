@@ -10,8 +10,8 @@ export default function LoginPage() {
     const auth = getAuth();
     const dispatch = useAppDispatch();
 
-    function handlerSubmit(inputEmail: string, inputPass: string) {
-        signInWithEmailAndPassword(auth, inputEmail, inputPass)
+    function handlerSubmit(Email: string, Pass: string) {
+        signInWithEmailAndPassword(auth, Email, Pass)
             .then((userCredential) => {
                 const user = userCredential.user;
                 dispatch(

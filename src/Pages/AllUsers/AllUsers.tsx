@@ -3,7 +3,7 @@ import { getAllUsers } from 'Api/Users/getAllUsers';
 import PreloaderUsers from 'Components/MiniComponents/PreloaderUsers';
 import Styles from './Styles.module.scss';
 import ShowUserOrTeam from 'Components/ShowPosts/ShowUsersOrTeam/ShowUsersOrTeam';
-import { OpenUserType } from 'Pages/OpenUser/UserPage';
+import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
 
 export default function AllUsers() {
     const [users, setUsers] = useState<OpenUserType[] | null>(null);

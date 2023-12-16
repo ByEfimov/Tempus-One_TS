@@ -1,7 +1,7 @@
 import Styles from './Header.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from 'Hooks/useAuth';
-import { useState } from 'react';
+import { LegacyRef, useEffect, useState } from 'react';
 import NavPanel from './NavPanel';
 import UserIcon from 'Assets/Icons/Header/user.svg';
 import SearchIcon from 'Assets/Icons/Header/search.svg';
@@ -15,14 +15,29 @@ import {
 } from 'Store/slices/Header/HeaderSlice';
 import classNames from 'classnames';
 import { useAppDispatch } from 'Hooks/redux-hooks';
+import React from 'react';
 
 export default function Header() {
     const [openNavPanel, setOpenNavPanel] = useState(false);
     const { UserIsAuth, UserPhoto, UserId } = useAuth();
-    const { HeaderTitle, HeaderType, HeaderSearchBar, HeaderTypeOfButton } =
-        useHeader();
+    const {
+        HeaderTitle,
+        HeaderType,
+        HeaderSearchBar,
+        HeaderTypeOfButton,
+        HeaderAnim,
+    } = useHeader();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const SearchBar: LegacyRef<HTMLDivElement> = React.createRef();
+
+    useEffect(() => {
+        if (HeaderAnim === 'Open') {
+            SearchBar.current?.classList.toggle(Styles.openSearchBar);
+        } else {
+            SearchBar.current?.classList.toggle(Styles.closeSearchBar);
+        }
+    }, [HeaderAnim]);
 
     function ClickActiveButton() {
         if (
@@ -100,7 +115,7 @@ export default function Header() {
                     </button>
                 </div>
                 {HeaderType === TypesOfHeader.WithSearchBar && (
-                    <div className={Styles.SearchBar}>
+                    <div className={Styles.SearchBar} ref={SearchBar}>
                         <button className={Styles.SearchIcon}>
                             <img src={SearchIcon} alt="" />
                         </button>

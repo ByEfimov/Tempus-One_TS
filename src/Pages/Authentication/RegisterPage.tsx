@@ -12,23 +12,21 @@ export default function RegisterPage() {
     const auth = getAuth();
 
     function registerUser(
-        inputEmail: string,
-        inputPass: string,
-        inputName: string,
-        inputAge: number
+        Email: string,
+        Pass: string,
+        Name: string,
+        Age: number
     ) {
-        const UserMembersDefault: number = 0;
-        createUserWithEmailAndPassword(auth, inputEmail, inputPass)
+        createUserWithEmailAndPassword(auth, Email, Pass)
             .then((userCredential) => {
                 const user = userCredential.user;
                 addUserToRealtimeDB(
                     user.email,
                     user.uid,
-                    inputName,
+                    Name,
                     user.photoURL,
-                    inputAge,
                     user.emailVerified,
-                    UserMembersDefault
+                    Age
                 );
                 dispatch(
                     setCurrentUser({
@@ -44,12 +42,12 @@ export default function RegisterPage() {
     }
 
     function handlerSubmit(
-        inputEmail: string,
-        inputPass: string,
-        inputName: string,
-        inputAge: number
+        Email: string,
+        Pass: string,
+        Name: string,
+        Age: number
     ) {
-        registerUser(inputEmail, inputPass, inputName, inputAge);
+        registerUser(Email, Pass, Name, Age);
     }
 
     return !UserIsAuth ? (

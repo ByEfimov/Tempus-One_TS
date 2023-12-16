@@ -80,9 +80,26 @@
             height: 46px;
             color: var(--WhiteTextColor);
             font-family: Nunito;
-            font-size: var(--BigFontSize);
+            font-size: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-weight: 700;
             letter-spacing: 3.5px;
+        }
+        .TitleChange {
+            animation: changeTitle 1s forwards;
+        }
+        @keyframes changeTitle {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
         .ProfileIcon {
             position: relative;
@@ -99,10 +116,10 @@
         }
     }
     .SearchBar {
-        margin-top: 24px;
         top: 50px;
         width: 100%;
         display: flex;
+        animation: 0.5s forwards openSearchBar;
         justify-content: center;
         align-items: center;
         z-index: 100;
@@ -131,6 +148,9 @@
         .Input::placeholder {
             color: var(--PlaceholderTextColor);
         }
+    }
+    .closeSearchBar {
+        animation: 0.5s forwards clipSearchBar;
     }
 }
 
@@ -224,5 +244,23 @@
     }
     to {
         opacity: 0;
+    }
+}
+
+@keyframes clipSearchBar {
+    from {
+        margin-top: 24px;
+    }
+    to {
+        margin-top: -43px;
+    }
+}
+
+@keyframes openSearchBar {
+    from {
+        margin-top: -43px;
+    }
+    to {
+        margin-top: 24px;
     }
 }

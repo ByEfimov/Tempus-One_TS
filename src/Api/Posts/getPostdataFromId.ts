@@ -1,5 +1,5 @@
 import { getDatabase, ref, onValue } from 'firebase/database';
-import { Post } from 'Store/slices/PostsSlice';
+import { Post } from 'Types/TypesOfData/Post/Post';
 
 export function getPostFromId(id: string | undefined): Promise<Post | null> {
     const db = getDatabase();

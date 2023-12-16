@@ -5,16 +5,7 @@ import { getTeamFromId } from 'Api/Teams/getTeamDataFromId';
 import ShowPosts from 'Components/ShowPosts/Posts/ShowPosts';
 import { setTitleOfHeader } from 'Store/slices/Header/HeaderSlice';
 import { useAppDispatch } from 'Hooks/redux-hooks';
-
-export type OpenTeamType = {
-    desc: string;
-    image: string;
-    projectDesc: string;
-    projectTitle: string;
-    members: { UserId: string; UserRole: string }[];
-    title: string;
-    id: string;
-};
+import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
 
 export default function TeamPage() {
     const { id } = useParams();

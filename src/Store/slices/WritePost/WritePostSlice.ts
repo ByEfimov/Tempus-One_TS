@@ -1,17 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ModsOfWritePost } from 'Utils/ModsOfComps';
 import NewBlocks from './NewBlocks';
+import {
+    BlockOfPostType,
+    SelectModeType,
+} from 'Types/TypesOfData/Post/WritePost';
 
-export type BlockOfPostType = {
-    text: string;
-    id: number;
-    type: string;
-    title?: string;
-};
-export type SelectModeType = {
-    type: string;
-    id: number;
-};
 type WritePostType = {
     TitleOfPost: string;
     BlocksOfPost: BlockOfPostType[];

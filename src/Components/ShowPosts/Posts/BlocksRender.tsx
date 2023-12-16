@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { PostBlock } from 'Store/slices/PostsSlice';
+import { PostBlock } from 'Types/TypesOfData/Post/Post';
 import { ModsOfWritePost } from 'Utils/ModsOfComps';
 import ShowCode from '../PostsComponents/ShowCode';
 import Styles from './Styles.module.scss';

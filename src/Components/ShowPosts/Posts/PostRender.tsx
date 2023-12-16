@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { FC, useEffect, useState } from 'react';
-import { Post } from 'Store/slices/PostsSlice';
+import { Post } from 'Types/TypesOfData/Post/Post';
 import { ModsOfWritePost } from 'Utils/ModsOfComps';
 import { getUserFromId } from 'Api/Users/getUserDataFromId';
 import { useNavigate } from 'react-router-dom';
@@ -64,73 +64,77 @@ const PostRender: FC<PostRender> = ({ post }) => {
         loadImages();
     }, []);
 
-    return PostLoadIsDone ? (
-        <div
-            onClick={() => {
-                navigate('/Post/' + post.PostId);
-            }}
-            className={Styles.Post}
-        >
-            <div className={Styles.AuthorData}>
-                <div className={Styles.Data}>
-                    <div className={Styles.Photo}>
-                        <img
-                            src={
-                                WhoWrotePost?.image ||
-                                WhoWrotePost?.photo ||
-                                UserIcon
-                            }
-                            alt=""
-                        />
-                    </div>
-                    <div className={Styles.Text}>
-                        <div className={Styles.Name}>
-                            {WhoWrotePost?.name || WhoWrotePost?.title}
+    if (PostLoadIsDone) {
+        return (
+            <div
+                onClick={() => {
+                    navigate('/Post/' + post.PostId);
+                }}
+                className={Styles.Post}
+            >
+                <div className={Styles.AuthorData}>
+                    <div className={Styles.Data}>
+                        <div className={Styles.Photo}>
+                            <img
+                                src={
+                                    WhoWrotePost?.image ||
+                                    WhoWrotePost?.photo ||
+                                    UserIcon
+                                }
+                                alt=""
+                            />
                         </div>
-                        <div className={Styles.Date}>{post.PostDate}</div>
+                        <div className={Styles.Text}>
+                            <div className={Styles.Name}>
+                                {WhoWrotePost?.name || WhoWrotePost?.title}
+                            </div>
+                            <div className={Styles.Date}>{post.PostDate}</div>
+                        </div>
                     </div>
+                    <button className={Styles.ActiveButton}>
+                        <img src={PlusIcon} alt="" />
+                    </button>
                 </div>
-                <button className={Styles.ActiveButton}>
-                    <img src={PlusIcon} alt="" />
-                </button>
-            </div>
-            <div className={Styles.PostData}>
-                <div className={Styles.Title}>{post.PostTitle}</div>
-                {!post.PostDataBlocks[1] && (
-                    <div className={Styles.Text}>
-                        {post.PostDataBlocks[0].text}
+                <div className={Styles.PostData}>
+                    <div className={Styles.Title}>{post.PostTitle}</div>
+                    {!post.PostDataBlocks[1] && (
+                        <div className={Styles.Text}>
+                            {post.PostDataBlocks[0].text}
+                        </div>
+                    )}
+                </div>
+                {post.PostDataBlocks[1] && (
+                    <div className={Styles.BlocksData}>
+                        <BlocksRender
+                            Blocks={post.PostDataBlocks}
+                        ></BlocksRender>
                     </div>
                 )}
-            </div>
-            {post.PostDataBlocks[1] && (
-                <div className={Styles.BlocksData}>
-                    <BlocksRender Blocks={post.PostDataBlocks}></BlocksRender>
+                <div className={Styles.PostActivity}>
+                    <div className={Styles.Buttons}>
+                        <button>
+                            <img src={HeartIcon} alt="" />
+                            <h1>{post.PostLikes}</h1>
+                        </button>
+                        <button>
+                            <img src={CommentIcon} alt="" />
+                            <h1>{post.PostComments?.length || 0}</h1>
+                        </button>
+                        <button>
+                            <img src={ShareIcon} alt="" />
+                            <h1>{post.PostReposts}</h1>
+                        </button>
+                    </div>
+                    <button className={Styles.Shows}>
+                        <img src={EyeIcon} alt="" />
+                        <h1> {post.PostShows}</h1>
+                    </button>
                 </div>
-            )}
-            <div className={Styles.PostActivity}>
-                <div className={Styles.Buttons}>
-                    <button>
-                        <img src={HeartIcon} alt="" />
-                        <h1>{post.PostLikes}</h1>
-                    </button>
-                    <button>
-                        <img src={CommentIcon} alt="" />
-                        <h1>{post.PostComments?.length || 0}</h1>
-                    </button>
-                    <button>
-                        <img src={ShareIcon} alt="" />
-                        <h1>{post.PostReposts}</h1>
-                    </button>
-                </div>
-                <button className={Styles.Shows}>
-                    <img src={EyeIcon} alt="" />
-                    <h1> {post.PostShows}</h1>
-                </button>
             </div>
-        </div>
-    ) : (
-        <FakePost></FakePost>
-    );
+        );
+    } else if (!PostLoadIsDone) {
+        return <FakePost></FakePost>;
+    }
 };
 
 export default PostRender;
