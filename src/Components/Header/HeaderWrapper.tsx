@@ -6,6 +6,7 @@ import {
     setAnimOfHeader,
     setHeader,
     setTitleOfHeader,
+    setTypeOfHeader,
 } from 'Store/slices/Header/HeaderSlice';
 
 const HeaderWrapper = ({
@@ -84,9 +85,8 @@ const HeaderWrapper = ({
             dispatch(setTitleOfHeader({ Title: TitleOfHeader }));
             setTimeout(() => {
                 dispatch(
-                    setHeader({
+                    setTypeOfHeader({
                         Type: TypesOfHeader.WithoutSearchBar,
-                        Title: TitleOfHeader,
                     })
                 );
             }, 500);
