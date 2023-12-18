@@ -6,27 +6,30 @@ import ShowPosts from 'Components/ShowPosts/Posts/ShowPosts';
 import { setTitleOfHeader } from 'Store/slices/Header/HeaderSlice';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
+import FakeOpenUser from 'Components/FakeData/FakeOpenUser';
 
 export default function TeamPage() {
     const { id } = useParams();
-    const [team, setTeam] = useState<OpenTeamType | null>(null);
+    const [OpenTeam, setOpenTeam] = useState<OpenTeamType | null>(null);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
         getTeamFromId(id).then((team) => {
-            setTeam(team);
+            setOpenTeam(team);
             dispatch(setTitleOfHeader({ Title: team?.title }));
         });
     }, []);
 
-    return (
-        team && (
+    if (OpenTeam) {
+        return (
             <>
                 <h1 style={{ marginTop: '100px' }}>
-                    <img src={team.image}></img> {team.title}
+                    <img src={OpenTeam.image}></img> {OpenTeam.title}
                 </h1>
-                <ShowPosts filter={team.id}></ShowPosts>
+                <ShowPosts filter={OpenTeam.id}></ShowPosts>
             </>
-        )
-    );
+        );
+    } else if (!OpenTeam) {
+        return <FakeOpenUser></FakeOpenUser>;
+    }
 }

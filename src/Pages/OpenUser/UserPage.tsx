@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useNavigate, useParams } from 'react-router-dom';
-import FeatherIcon from 'feather-icons-react';
 import Styles from './UserPage.module.scss';
 import { useAuth } from 'Hooks/useAuth';
 import { useAppDispatch } from 'Hooks/redux-hooks';
@@ -11,6 +10,13 @@ import { getUserFromId } from 'Api/Users/getUserDataFromId';
 import { getAuth, signOut } from 'firebase/auth';
 import { setTitleOfHeader } from 'Store/slices/Header/HeaderSlice';
 import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
+import FakeOpenUser from 'Components/FakeData/FakeOpenUser';
+import ShowPosts from 'Components/ShowPosts/Posts/ShowPosts';
+import UserIcon from 'Assets/Icons/User/user.svg';
+import GiftIcon from 'Assets/Icons/User/gift.svg';
+import UsersIcon from 'Assets/Icons/User/users.svg';
+import PlusIcon from 'Assets/Icons/Post/plus-circle.svg';
+import PreloaderPosts from 'Components/MiniComponents/PreloaderPosts';
 
 export default function UserPage() {
     const { id } = useParams();
@@ -37,23 +43,20 @@ export default function UserPage() {
                 console.error(error);
             });
     }
-
-    return (
-        OpenUser && (
+    if (OpenUser) {
+        return (
             <>
                 <UserData OpenUser={OpenUser} />
 
                 {OpenUser.id === UserId && (
                     <ButtonVoid
-                        title="Редактировать профиль"
-                        classes={Styles.Button}
+                        title="Настройки"
                         clickHandler={() => console.log('da')}
                     ></ButtonVoid>
                 )}
                 {OpenUser.id === UserId && !UserEmailVerified && (
                     <ButtonVoid
                         title="Подтвердить почту"
-                        classes={Styles.Button}
                         clickHandler={() => {
                             navigate('/VerifyingEmail');
                         }}
@@ -68,9 +71,17 @@ export default function UserPage() {
                         }}
                     ></ButtonVoid>
                 )}
+
+                <ShowPosts filter={OpenUser.id}></ShowPosts>
             </>
-        )
-    );
+        );
+    } else if (!OpenUser) {
+        return (
+            <>
+                <FakeOpenUser></FakeOpenUser> <PreloaderPosts></PreloaderPosts>
+            </>
+        );
+    }
 }
 
 interface UserDataProps {
@@ -78,30 +89,35 @@ interface UserDataProps {
 }
 
 const UserData: FC<UserDataProps> = ({ OpenUser }) => {
+    console.log(OpenUser);
     return (
         <div className={Styles.UserData}>
-            <div className={Styles.UserPhoto}>
-                <img src={OpenUser.photo} alt="UserPhoto" />
+            <div className={Styles.TopBar}>
+                <div className={Styles.UserPhoto}>
+                    <img src={OpenUser.photo || UserIcon} alt="UserPhoto" />
+                </div>
+                <div className={Styles.UserLevel}>{OpenUser.level}</div>
             </div>
+
             <div className={Styles.UserTexts}>
-                <div className={Styles.UserName}>{OpenUser.name}</div>
-                <div className={Styles.UserStatus}>{OpenUser.email}</div>
-                <div className={Styles.UserStats}>
-                    <div className={Styles.UserLevel}>
-                        <FeatherIcon
-                            icon="trending-up"
-                            className={Styles.Img}
-                        />
-                        {OpenUser.id}
+                <div className={Styles.left}>
+                    <div className={Styles.UserName}>
+                        <img src={UserIcon} alt="" />
+                        {OpenUser.name}
+                    </div>
+                    <div className={Styles.UserMembers}>
+                        <img src={UsersIcon} alt="" />
+                        {OpenUser.members.length || 0} подписчиков
                     </div>
                     <div className={Styles.UserAge}>
-                        <FeatherIcon icon="users" className={Styles.Img} />
-                        {OpenUser.age}
+                        <img src={GiftIcon} alt="" />
+                        {OpenUser.age} лет
                     </div>
-                    <div className={Styles.UserLikes}>
-                        <FeatherIcon icon="thumbs-up" className={Styles.Img} />
-                        {OpenUser.id}
-                    </div>
+                </div>
+                <div className={Styles.ActiveButton}>
+                    <button className={Styles.SubButton}>
+                        <img src={PlusIcon} alt="" />
+                    </button>
                 </div>
             </div>
         </div>
