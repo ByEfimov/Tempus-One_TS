@@ -8,7 +8,12 @@ export function getPostFromId(id: string | undefined): Promise<Post | null> {
             ref(db, 'posts/' + id),
             (snapshot) => {
                 if (snapshot.exists()) {
-                    resolve(snapshot.val());
+                    const Post = {
+                        ...snapshot.val(),
+                        PostId: snapshot.key,
+                    };
+
+                    resolve(Post);
                 } else {
                     console.error('Пост не найден.');
                     reject(null);

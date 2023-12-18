@@ -3,102 +3,87 @@
 
 .Container {
     display: flex;
-    align-items: center;
+    align-items: left;
     justify-content: center;
     flex-direction: column;
     position: relative;
     height: 92dvh;
-    margin-top: calc(var(--mainMarginTop) - 20px);
-    font-family: 'Golos Text';
+    margin-top: 17px;
     .nextForm {
         margin-top: 10px;
         display: flex;
         font-size: 1.1em;
         gap: 5px;
         position: absolute;
-        bottom: 20px;
+        bottom: 40px;
+        justify-content: center;
+        display: flex;
+        width: 100%;
+        color: var(--DarkTextColor);
         a {
-            color: var(--accentTextColor);
+            color: var(--AccentColor);
         }
     }
     .AuthForm {
-        animation: forwards 0.3s OpenBlock;
         margin-top: -30px;
-        padding: 2em;
-        border-radius: 1em;
-        border: 1px solid var(--mainBorderColor);
-        box-shadow: var(--mainBoxShadow);
-        background-color: var(--mainBackGroudColor);
+        padding: 17px;
+        border-radius: var(--DefaultBorderRadius);
+        background-color: var(--GreyColor);
         display: flex;
-        width: 85vw;
+        width: 100%;
         align-items: center;
         flex-direction: column;
-        font-size: 16px;
-        padding-top: 50px;
-        padding-bottom: 50px;
 
         button {
-            transition: all 0.3s;
-            color: var(--mainTextColor);
-            width: 70vw;
-            margin-top: 10px;
-            padding: 0.6em;
-            background: var(--accentTextColor);
-            border-radius: 0.5em;
-            border: 1px solid var(--mainBorderColor);
-        }
-        .ActiveButton {
-            box-shadow: var(--activeBoxShadow);
-            transform: scale(1.005);
+            margin-top: -17px;
+            padding: 8px;
+            width: 90%;
+            background-color: var(--AccentColor);
+            border-radius: 15px;
+            color: var(--WhiteTextColor);
+            text-align: center;
+            font-size: 19px;
+            font-weight: 600;
         }
         .Title {
-            margin-bottom: 40px;
-            font-weight: 500;
-            font-size: 1.8em;
+            color: var(--AccentColor);
+            font-size: 35px;
+            font-weight: 700;
+            letter-spacing: 3.5px;
+            margin-bottom: 20px;
         }
         input::placeholder {
             transition: all 0.3s;
-            color: var(--secondTextColor);
+            color: var(--GreyTextColor);
         }
-        input:focus {
-            background: var(--secondBackGroudColor);
-            border-bottom: 1px solid var(--errorAccentColor);
-        }
+
         input:focus::placeholder {
             color: var(--mainTextColor);
         }
+        .InputWrapper {
+            padding-left: 17px;
+            padding-right: 17px;
+            width: 92.3%;
+        }
         input {
-            transition: all 0.3s;
-            border: 1px solid transparent;
-            margin-bottom: 0.8em;
-            width: 70vw;
-            padding: 0.6em;
-            font-size: 1em;
-            border-radius: 0.5em;
-            color: var(--mainTextColor);
-            box-sizing: border-box;
-            background: var(--mainBorderColor);
+            color: var(--WhiteTextColor);
+            padding: 10px;
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: var(--DarkShadow);
+            margin-bottom: 25px;
+            background-color: var(--AccentColor2);
         }
 
-        .validInput {
-            border-bottom: 1px solid var(--activeAccentColor);
-        }
-        .validInput:focus {
-            border-bottom: 1px solid var(--activeAccentColor);
-        }
         .moreInputs {
             display: flex;
-            gap: 0.9vw;
-            border-radius: 0.5em;
-            overflow: hidden;
+            gap: 10px;
             margin-bottom: 20px;
             input {
+                box-shadow: var(--DarkShadow);
                 margin-bottom: 0px;
-                border-radius: 0px;
-                width: 35vw;
-            }
-            input:focus {
-                border: 1px solid transparent;
+                border-radius: 15px;
+                width: 50%;
             }
         }
     }

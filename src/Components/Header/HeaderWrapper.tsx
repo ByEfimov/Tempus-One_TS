@@ -58,10 +58,10 @@ const HeaderWrapper = ({
                 TitleOfHeader = 'Пост';
                 break;
             case 'Login':
-                TitleOfHeader = 'Вход';
+                TitleOfHeader = 'Авторизация';
                 break;
             case 'Register':
-                TitleOfHeader = 'Регистрация';
+                TitleOfHeader = 'Авторизация';
                 break;
             case 'NeedAuth':
                 TitleOfHeader = 'Нужен вход';

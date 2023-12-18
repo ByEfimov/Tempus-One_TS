@@ -37,47 +37,49 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({
         >
             <div className={FormsStyles.AuthForm}>
                 <div className={FormsStyles.Title}>{title}</div>
-                <input
-                    type="email"
-                    className={
-                        (validateEmail(Email) && FormsStyles.validInput) ||
-                        undefined
-                    }
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Почта"
-                />
-                <input
-                    type="password"
-                    className={
-                        (validatePassword(Pass) && FormsStyles.validInput) ||
-                        undefined
-                    }
-                    onChange={(e) => setPass(e.target.value)}
-                    placeholder="Пароль"
-                />
-                {title === 'Регистрация' && (
-                    <div className={FormsStyles.moreInputs}>
-                        <input
-                            type="text"
-                            placeholder="Имя"
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                        <input
-                            type="number"
-                            placeholder="Возраст"
-                            onChange={(e) => setAge(parseInt(e.target.value))}
-                        />
-                    </div>
-                )}
+                <div className={FormsStyles.InputWrapper}>
+                    <input
+                        type="email"
+                        className={
+                            (validateEmail(Email) && FormsStyles.validInput) ||
+                            undefined
+                        }
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Почта"
+                    />
+                    <input
+                        type="password"
+                        className={
+                            (validatePassword(Pass) &&
+                                FormsStyles.validInput) ||
+                            undefined
+                        }
+                        onChange={(e) => setPass(e.target.value)}
+                        placeholder="Пароль"
+                    />
+                    {title === 'Регистрация' && (
+                        <div className={FormsStyles.moreInputs}>
+                            <input
+                                type="text"
+                                placeholder="Имя"
+                                maxLength={12}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                            <input
+                                type="number"
+                                placeholder="Возраст"
+                                onChange={(e) =>
+                                    setAge(parseInt(e.target.value))
+                                }
+                            />
+                        </div>
+                    )}
+                </div>
+
                 <ButtonVoid
                     title="Продолжить"
                     clickHandler={() => {}}
-                    classes={
-                        (validateEmail(Email) &&
-                            validatePassword(Pass) &&
-                            FormsStyles.ActiveButton) ||
-                        undefined
-                    }
+                    classes={FormsStyles.button}
                 ></ButtonVoid>
                 <AuthWithGoogle />
             </div>

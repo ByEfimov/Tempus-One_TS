@@ -31,6 +31,9 @@ const VerifyingEmail = () => {
     if (!UserEmailVerified) {
         return (
             <div className={Styles.buttons}>
+                <div className={Styles.Title}>
+                    Отправь письмо и подтверди почту!
+                </div>
                 <ButtonVoid
                     title="Отправить письмо"
                     clickHandler={() => sendMailForVerifying()}

@@ -89,7 +89,6 @@ interface UserDataProps {
 }
 
 const UserData: FC<UserDataProps> = ({ OpenUser }) => {
-    console.log(OpenUser);
     return (
         <div className={Styles.UserData}>
             <div className={Styles.TopBar}>

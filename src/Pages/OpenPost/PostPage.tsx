@@ -4,20 +4,28 @@ import { Post } from 'Types/TypesOfData/Post/Post';
 import { setTitleOfHeader } from 'Store/slices/Header/HeaderSlice';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { getPostFromId } from 'Api/Posts/getPostDataFromId';
+import PostRender from 'Components/ShowPosts/Posts/PostRender';
+import FakePost from 'Components/FakeData/FakePost';
 
 export default function PostPage() {
     const { id } = useParams();
-    const [post, setPost] = useState<Post | null>(null);
+    const [OpenPost, setOpenPost] = useState<Post | null>(null);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        getPostFromId(id).then((post) => {
-            setPost(post);
-            dispatch(setTitleOfHeader({ Title: post?.PostTitle }));
+        getPostFromId(id).then((OpenPost) => {
+            setOpenPost(OpenPost);
+            dispatch(setTitleOfHeader({ Title: OpenPost?.PostTitle }));
         });
     }, []);
 
-    return (
-        post && <h1 style={{ marginTop: 80, padding: 20 }}>{post.PostTitle}</h1>
-    );
+    if (OpenPost) {
+        return (
+            <div style={{ marginTop: 17 }}>
+                <PostRender post={OpenPost}></PostRender>
+            </div>
+        );
+    } else {
+        return <FakePost></FakePost>;
+    }
 }

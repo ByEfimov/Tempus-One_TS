@@ -16,13 +16,9 @@ const ShowPosts: FC<ShowPosts> = ({ filter }) => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        const startPosition = 0;
         getPosts(filter || null).then((posts) => {
-            const scrollPosition = window.scrollY;
-            if (scrollPosition === startPosition) {
-                setPosts(posts);
-                dispatch(setLastPostKey(Object.keys(posts).pop()));
-            }
+            setPosts(posts);
+            dispatch(setLastPostKey(Object.keys(posts).pop()));
         });
     }, []);
 
