@@ -11,7 +11,7 @@ import CommentIcon from 'Assets/Icons/Post/comment.svg';
 import ShareIcon from 'Assets/Icons/Post/share.svg';
 import EyeIcon from 'Assets/Icons/Post/eye.svg';
 import Styles from './Styles.module.scss';
-import BlocksRender from './BlocksRender';
+import BlocksRender from '../PostComponents/BlocksRender';
 import FakePost from 'Components/FakeData/FakePost';
 import { getTeamFromId } from 'Api/Teams/getTeamDataFromId';
 

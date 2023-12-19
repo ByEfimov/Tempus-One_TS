@@ -1,7 +1,6 @@
 import MainPage from 'Pages/MainPage/MainPage';
 import Header from './Components/Header/Header';
 import { Route, Routes } from 'react-router-dom';
-import NeedAuth from 'Pages/NeedAuth/NeedAuth';
 import LoginPage from 'Pages/Authentication/LoginPage';
 import RegisterPage from 'Pages/Authentication/RegisterPage';
 import WritePost from 'Pages/WriteHewPost/WritePost';
@@ -13,14 +12,15 @@ import UserPage from 'Pages/OpenUser/UserPage';
 import PostPage from 'Pages/OpenPost/PostPage';
 import TeamPage from 'Pages/OpenTeam/TeamPage';
 import ForgotPasswordPage from 'Pages/Authentication/ForgotPasswordPage';
+import { Notifications } from 'Components/Notifications/Notifications';
 
 function App() {
     return (
         <>
-            <Header></Header>
+            <Header />
+            <Notifications />
             <Routes>
                 <Route path="/" element={<MainPage />} />
-                <Route path="/NeedAuth" element={<NeedAuth />} />
                 <Route path="/Login" element={<LoginPage />} />
                 <Route path="/Register" element={<RegisterPage />} />
                 <Route path="/WriteNewPost" element={<WritePost />} />

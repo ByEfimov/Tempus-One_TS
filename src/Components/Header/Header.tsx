@@ -8,14 +8,16 @@ import SearchIcon from 'Assets/Icons/Header/search.svg';
 import SlidersIcon from 'Assets/Icons/Header/sliders.svg';
 import { useHeader } from 'Hooks/useHeader';
 import {
-    TypesOfHeader,
-    TypesOfHeaderButton,
     setInputSearchBar,
     setTypeOfButtonHeader,
 } from 'Store/slices/Header/HeaderSlice';
 import classNames from 'classnames';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import React from 'react';
+import {
+    TypesOfHeader,
+    TypesOfHeaderButton,
+} from 'Types/TypesOfData/Header/HeaderType';
 
 export default function Header() {
     const [openNavPanel, setOpenNavPanel] = useState(false);

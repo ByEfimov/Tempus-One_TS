@@ -6,6 +6,7 @@ import { useAppDispatch } from 'Hooks/redux-hooks';
 import { getPostFromId } from 'Api/Posts/getPostDataFromId';
 import PostRender from 'Components/ShowPosts/Posts/PostRender';
 import FakePost from 'Components/FakeData/FakePost';
+import { ErrorNotification } from 'Components/Notifications/Notifications';
 
 export default function PostPage() {
     const { id } = useParams();
@@ -13,10 +14,12 @@ export default function PostPage() {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        getPostFromId(id).then((OpenPost) => {
-            setOpenPost(OpenPost);
-            dispatch(setTitleOfHeader({ Title: OpenPost?.PostTitle }));
-        });
+        getPostFromId(id)
+            .then((OpenPost) => {
+                setOpenPost(OpenPost);
+                dispatch(setTitleOfHeader({ Title: OpenPost?.PostTitle }));
+            })
+            .catch(() => ErrorNotification('Пост не найден.'));
     }, []);
 
     if (OpenPost) {

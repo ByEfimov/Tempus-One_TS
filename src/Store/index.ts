@@ -14,18 +14,20 @@ import userReducer from './slices/UserSlice';
 import WritePostSlice from './slices/WritePost/WritePostSlice';
 import PostsSlice from './slices/PostsSlice';
 import HeaderSlice from './slices/Header/HeaderSlice';
+import NotifySlice from './slices/Notifications/NotifySlice';
 
 const persistConfig = {
     key: 'root',
     storage,
-    blacklist: ['WritePost', 'Header'],
+    blacklist: ['WritePost', 'Header', 'Notify'],
 };
 
 const rootReducer = combineReducers({
     user: userReducer,
-    WritePost: WritePostSlice,
     Posts: PostsSlice,
+    WritePost: WritePostSlice,
     Header: HeaderSlice,
+    Notify: NotifySlice,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import ShowCode from 'Components/ShowPosts/PostsComponents/ShowCode';
+import ShowCode from 'Components/ShowPosts/PostComponents/ShowCode';
 
 interface CodeMode {
     openMode: () => void;

@@ -2,8 +2,8 @@ import { ModsOfInput } from 'Utils/ModsOfComps';
 import CustomInput from 'Components/MiniComponents/input';
 import Styles from '../Styles.module.scss';
 import classNames from 'classnames';
-import ActiveButton from 'Components/ShowPosts/PostsComponents/activeButton';
-import ShowImage from 'Components/ShowPosts/PostsComponents/ShowImage';
+import ActiveButton from 'Components/ShowPosts/PostComponents/activeButton';
+import ShowImage from 'Components/ShowPosts/PostComponents/ShowImage';
 import { reversBlock } from 'Utils/Animations/reversBlock';
 import {
     changeTextOfBlock,

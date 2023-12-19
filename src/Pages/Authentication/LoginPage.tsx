@@ -4,6 +4,7 @@ import { useAuth } from 'Hooks/useAuth';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { setCurrentUser } from 'Store/slices/UserSlice';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { ErrorNotification } from 'Components/Notifications/Notifications';
 
 export default function LoginPage() {
     const { UserIsAuth } = useAuth();
@@ -22,8 +23,8 @@ export default function LoginPage() {
                 );
                 location.reload();
             })
-            .catch((error) => {
-                console.error(error);
+            .catch(() => {
+                ErrorNotification('Пароль или почта не подходят.');
             });
     }
 

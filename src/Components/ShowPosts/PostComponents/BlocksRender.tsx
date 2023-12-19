@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { PostBlock } from 'Types/TypesOfData/Post/Post';
 import { ModsOfWritePost } from 'Utils/ModsOfComps';
-import ShowCode from '../PostsComponents/ShowCode';
-import Styles from './Styles.module.scss';
+import ShowCode from './ShowCode';
+import Styles from '../Styles.module.scss';
 
 interface BlocksRender {
     Blocks: PostBlock[];

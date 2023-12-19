@@ -1,5 +1,5 @@
 import { useAuth } from 'Hooks/useAuth';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ModsOfWritePost } from 'Utils/ModsOfComps';
 import Styles from './Styles.module.scss';
 import { ControlBlocksPanel } from './ControllPanel/ControlBlocksPanel';
@@ -15,9 +15,10 @@ import { removePost } from 'Store/slices/WritePost/WritePostSlice';
 import { addNewPost } from 'Api/Posts/addNewPost';
 import PostForWhom from './Mods/PostForWhom';
 import { NewPostType } from 'Types/TypesOfData/Post/NewPostType';
+import { ErrorNotification } from 'Components/Notifications/Notifications';
 
 const WritePost = () => {
-    const { UserCanChanging } = useAuth();
+    const { UserCanChanging, UserIsAuth } = useAuth();
     const { TitleOfPost, selectMode, BlocksOfPost, postForWhom } =
         useWritePost();
     const dispatch = useAppDispatch();
@@ -81,7 +82,11 @@ const WritePost = () => {
             </div>
         );
     } else if (!UserCanChanging) {
-        return <Navigate to="/NeedAuth" />;
+        if (!UserIsAuth) {
+            ErrorNotification('Нужно войти в аккаунт.');
+        } else {
+            ErrorNotification('Нужно подтвердить почту.');
+        }
     }
 };
 

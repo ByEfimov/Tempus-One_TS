@@ -2,9 +2,9 @@ import React, { FC, RefObject } from 'react';
 import Styles from './SelectModal.module.scss';
 import ButtonVoid from 'Components/MiniComponents/button';
 import { ModsOfWritePost } from 'Utils/ModsOfComps';
-import ShowCode from 'Components/ShowPosts/PostsComponents/ShowCode';
+import ShowCode from 'Components/ShowPosts/PostComponents/ShowCode';
 import closePopup from 'Utils/Animations/closePopup';
-import ShowImage from 'Components/ShowPosts/PostsComponents/ShowImage';
+import ShowImage from 'Components/ShowPosts/PostComponents/ShowImage';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import {
     clearBlockOfPost,

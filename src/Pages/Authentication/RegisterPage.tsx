@@ -5,6 +5,7 @@ import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { setCurrentUser } from 'Store/slices/UserSlice';
 import { addUserToRealtimeDB } from 'Api/Users/addUserToRealtimeDB';
+import { ErrorNotification } from 'Components/Notifications/Notifications';
 
 export default function RegisterPage() {
     const { UserIsAuth } = useAuth();
@@ -36,24 +37,15 @@ export default function RegisterPage() {
                 );
                 location.reload();
             })
-            .catch((error) => {
-                console.error(error);
+            .catch(() => {
+                ErrorNotification('Ошибка при регистрации.');
             });
-    }
-
-    function handlerSubmit(
-        Email: string,
-        Pass: string,
-        Name: string,
-        Age: number
-    ) {
-        registerUser(Email, Pass, Name, Age);
     }
 
     return !UserIsAuth ? (
         <AuthenticationFrom
             title="Регистрация"
-            handlerSubmit={handlerSubmit}
+            handlerSubmit={registerUser}
         ></AuthenticationFrom>
     ) : (
         <Navigate to="/"></Navigate>

@@ -5,6 +5,7 @@ import { getAuth, sendEmailVerification } from 'firebase/auth';
 import Styles from './Styles.module.scss';
 import { getCurrentUserData } from 'Api/Users/getCurrentUserData';
 import { getDatabase, ref, set } from '@firebase/database';
+import { MassageNotification } from 'Components/Notifications/Notifications';
 
 const VerifyingEmail = () => {
     const { UserEmailVerified, UserId } = useAuth();
@@ -14,7 +15,7 @@ const VerifyingEmail = () => {
     function sendMailForVerifying() {
         if (auth.currentUser) {
             sendEmailVerification(auth.currentUser).then(() => {
-                console.log('Отправлено');
+                MassageNotification('Письмо отправлено.');
             });
         }
     }

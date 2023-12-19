@@ -6,13 +6,16 @@ import ButtonVoid from 'Components/MiniComponents/button';
 import PreloaderUsers from 'Components/MiniComponents/PreloaderUsers';
 import Styles from './Styles.module.scss';
 import ShowUserOrTeam from 'Components/ShowPosts/ShowUsersOrTeam/ShowUsersOrTeam';
+import { ErrorNotification } from 'Components/Notifications/Notifications';
 
 export default function AllTeams() {
     const [teams, setTeams] = useState<OpenTeamType[] | null>(null);
     const navigate = useNavigate();
 
     useEffect(() => {
-        getAllTeams().then((teams) => setTeams(teams));
+        getAllTeams()
+            .then((teams) => setTeams(teams))
+            .catch(() => ErrorNotification('Сообщества не найдены.'));
     }, []);
 
     return (

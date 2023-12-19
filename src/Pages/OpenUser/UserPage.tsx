@@ -17,6 +17,7 @@ import GiftIcon from 'Assets/Icons/User/gift.svg';
 import UsersIcon from 'Assets/Icons/User/users.svg';
 import PlusIcon from 'Assets/Icons/Post/plus-circle.svg';
 import PreloaderPosts from 'Components/MiniComponents/PreloaderPosts';
+import { ErrorNotification } from 'Components/Notifications/Notifications';
 
 export default function UserPage() {
     const { id } = useParams();
@@ -27,10 +28,12 @@ export default function UserPage() {
     const { UserId, UserEmailVerified } = useAuth();
 
     useEffect(() => {
-        getUserFromId(id).then((user) => {
-            setOpenUser(user);
-            dispatch(setTitleOfHeader({ Title: user?.name }));
-        });
+        getUserFromId(id)
+            .then((user) => {
+                setOpenUser(user);
+                dispatch(setTitleOfHeader({ Title: user?.name }));
+            })
+            .catch(() => ErrorNotification('Пользователь не найден.'));
     }, []);
 
     function LogoutUser() {

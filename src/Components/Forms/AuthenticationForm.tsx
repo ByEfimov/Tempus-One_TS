@@ -5,6 +5,7 @@ import ButtonVoid from 'Components/MiniComponents/button';
 import AuthWithGoogle from './AuthWithGoogle';
 import validatePassword from 'Utils/ValidateData/ValidatePassword';
 import validateEmail from 'Utils/ValidateData/ValidateEmail';
+import { validateAuthenticationForm } from 'Utils/ValidateData/validateAuthenticationForm';
 
 interface AuthenticationFromProps {
     title: string;
@@ -30,9 +31,14 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({
             className={FormsStyles.Container}
             onSubmit={(e) => {
                 e.preventDefault();
-                if (validatePassword(Pass) && validateEmail(Email)) {
-                    handlerSubmit(Email, Pass, Name && Name, Age && Age);
-                }
+                validateAuthenticationForm(
+                    Pass,
+                    Email,
+                    Name,
+                    Age,
+                    title,
+                    handlerSubmit
+                );
             }}
         >
             <div className={FormsStyles.AuthForm}>

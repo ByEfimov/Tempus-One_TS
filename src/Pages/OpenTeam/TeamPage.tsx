@@ -7,6 +7,7 @@ import { setTitleOfHeader } from 'Store/slices/Header/HeaderSlice';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
 import FakeOpenUser from 'Components/FakeData/FakeOpenUser';
+import { ErrorNotification } from 'Components/Notifications/Notifications';
 
 export default function TeamPage() {
     const { id } = useParams();
@@ -14,10 +15,12 @@ export default function TeamPage() {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        getTeamFromId(id).then((team) => {
-            setOpenTeam(team);
-            dispatch(setTitleOfHeader({ Title: team?.title }));
-        });
+        getTeamFromId(id)
+            .then((team) => {
+                setOpenTeam(team);
+                dispatch(setTitleOfHeader({ Title: team?.title }));
+            })
+            .catch(() => ErrorNotification('Сообщество не найдено.'));
     }, []);
 
     if (OpenTeam) {

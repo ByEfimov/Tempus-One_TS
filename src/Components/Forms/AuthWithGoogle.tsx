@@ -4,6 +4,7 @@ import { useAppDispatch } from 'Hooks/redux-hooks';
 import { setCurrentUser } from 'Store/slices/UserSlice';
 import { addUserToRealtimeDB } from 'Api/Users/addUserToRealtimeDB';
 import { getUserFromId } from 'Api/Users/getUserDataFromId';
+import { ErrorNotification } from 'Components/Notifications/Notifications';
 
 type User = {
     email: string | null;
@@ -49,7 +50,6 @@ const AuthWithGoogle = () => {
         signInWithPopup(auth, provider)
             .then((result) => {
                 const user = result.user;
-                console.log(user);
                 getUserFromId(user.uid)
                     .then(() => {
                         loginWithGoogle(user);
@@ -58,8 +58,8 @@ const AuthWithGoogle = () => {
                         registerWithGoogle(user);
                     });
             })
-            .catch((error) => {
-                console.error(error);
+            .catch(() => {
+                ErrorNotification('Вход не выполнен.');
             });
     }
 

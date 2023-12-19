@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import ShowImage from 'Components/ShowPosts/PostsComponents/ShowImage';
+import ShowImage from 'Components/ShowPosts/PostComponents/ShowImage';
 
 interface ImageMode {
     openMode: () => void;

@@ -1,15 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { HeaderType } from 'Types/TypesOfData/Header/HeaderType';
-
-export const TypesOfHeader = {
-    WithSearchBar: 'WithSearchBar',
-    WithoutSearchBar: 'WithoutSearchBar',
-};
-export const TypesOfHeaderButton = {
-    ToTop: 'ToTop',
-    ToLeft: 'ToLeft',
-    NavBar: 'NavBar',
-};
+import {
+    HeaderType,
+    TypesOfHeader,
+    TypesOfHeaderButton,
+} from 'Types/TypesOfData/Header/HeaderType';
 
 const initialState: HeaderType = {
     Title: 'TEMPUS',

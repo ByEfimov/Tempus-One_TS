@@ -1,19 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import {
-    TypesOfHeader,
     setAnimOfHeader,
     setHeader,
     setTitleOfHeader,
     setTypeOfHeader,
 } from 'Store/slices/Header/HeaderSlice';
+import { TypesOfHeader } from 'Types/TypesOfData/Header/HeaderType';
 
-const HeaderWrapper = ({
-    children,
-}: {
-    children: React.ReactChild | React.ReactNode;
-}) => {
+export default function HeaderReducer() {
     const location = useLocation().pathname;
     const dispatch = useAppDispatch();
 
@@ -93,6 +90,5 @@ const HeaderWrapper = ({
         }
     }, [location]);
 
-    return children;
-};
-export default HeaderWrapper;
+    return <></>;
+}

@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from 'Hooks/useAuth';
 import Styles from './Styles.module.scss';
 import CustomInput from 'Components/MiniComponents/input';
@@ -7,9 +7,10 @@ import CustomTextarea from 'Components/MiniComponents/textarea';
 import ButtonVoid from 'Components/MiniComponents/button';
 import { addNewTeam } from 'Api/Teams/addNewTeam';
 import { addToSubscriptionsForUser } from 'Api/Users/addToSubscriptionsForUser';
+import { ErrorNotification } from 'Components/Notifications/Notifications';
 
 const CreateTeam = () => {
-    const { UserCanChanging, UserId } = useAuth();
+    const { UserCanChanging, UserId, UserIsAuth } = useAuth();
     const navigate = useNavigate();
 
     const [Title, setTitle] = useState('');
@@ -128,7 +129,11 @@ const CreateTeam = () => {
             </div>
         );
     } else if (!UserCanChanging) {
-        return <Navigate to={'/NeedAuth'}></Navigate>;
+        if (!UserIsAuth) {
+            ErrorNotification('Нужно войти в аккаунт.');
+        } else {
+            ErrorNotification('Нужно подтвердить почту.');
+        }
     }
 };
 
