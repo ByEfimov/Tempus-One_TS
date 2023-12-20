@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { PostBlock } from 'Types/TypesOfData/Post/Post';
 import { ModsOfWritePost } from 'Utils/ModsOfComps';
 import ShowCode from './ShowCode';
+import Styles from '../Styles.module.scss';
 // import Styles from '../Styles.module.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -23,10 +24,19 @@ const BlocksRender: FC<BlocksRender> = ({ Blocks }) => {
                     return (
                         <SwiperSlide key={block.id}>
                             {block.type === ModsOfWritePost.image ? (
-                                <img src={block.text}></img>
+                                <div className={Styles.ImageBlock}>
+                                    <img src={block.text}></img>
+                                </div>
                             ) : (
                                 block.type === ModsOfWritePost.code && (
-                                    <ShowCode UserCode={block.text}></ShowCode>
+                                    <div
+                                        key={block.id}
+                                        className={Styles.CodeBlock}
+                                    >
+                                        <ShowCode
+                                            UserCode={block.text}
+                                        ></ShowCode>
+                                    </div>
                                 )
                             )}
                         </SwiperSlide>

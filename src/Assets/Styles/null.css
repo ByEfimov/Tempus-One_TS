@@ -24,6 +24,10 @@ body {
 .swiper-slide {
     border-radius: var(--DefaultBorderRadius);
     overflow: hidden;
+    img {
+        border-radius: var(--DefaultBorderRadius);
+        overflow: hidden;
+    }
 }
 
 * {
