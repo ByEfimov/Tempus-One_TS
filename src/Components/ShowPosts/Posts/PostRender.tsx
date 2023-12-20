@@ -6,14 +6,11 @@ import { getUserFromId } from 'Api/Users/getUserDataFromId';
 import { useNavigate } from 'react-router-dom';
 import UserIcon from 'Assets/Icons/Header/user.svg';
 import PlusIcon from 'Assets/Icons/Post/plus-circle.svg';
-import HeartIcon from 'Assets/Icons/Post/heart.svg';
-import CommentIcon from 'Assets/Icons/Post/comment.svg';
-import ShareIcon from 'Assets/Icons/Post/share.svg';
-import EyeIcon from 'Assets/Icons/Post/eye.svg';
 import Styles from './Styles.module.scss';
 import BlocksRender from '../PostComponents/BlocksRender';
 import FakePost from 'Components/FakeData/FakePost';
 import { getTeamFromId } from 'Api/Teams/getTeamDataFromId';
+import Activities from '../PostComponents/Activities';
 
 interface PostRender {
     post: Post;
@@ -110,26 +107,7 @@ const PostRender: FC<PostRender> = ({ post }) => {
                         ></BlocksRender>
                     </div>
                 )}
-                <div className={Styles.PostActivity}>
-                    <div className={Styles.Buttons}>
-                        <button>
-                            <img src={HeartIcon} alt="" />
-                            <h1>{post.PostLikes}</h1>
-                        </button>
-                        <button>
-                            <img src={CommentIcon} alt="" />
-                            <h1>{post.PostComments?.length || 0}</h1>
-                        </button>
-                        <button>
-                            <img src={ShareIcon} alt="" />
-                            <h1>{post.PostReposts}</h1>
-                        </button>
-                    </div>
-                    <button className={Styles.Shows}>
-                        <img src={EyeIcon} alt="" />
-                        <h1> {post.PostShows}</h1>
-                    </button>
-                </div>
+                <Activities post={post} />
             </div>
         );
     } else if (!PostLoadIsDone) {

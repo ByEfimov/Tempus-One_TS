@@ -21,6 +21,11 @@ body {
     border-radius: 10px;
 }
 
+.swiper-slide {
+    border-radius: var(--DefaultBorderRadius);
+    overflow: hidden;
+}
+
 * {
     padding: 0px;
     margin: 0px;

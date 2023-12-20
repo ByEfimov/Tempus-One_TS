@@ -23,10 +23,10 @@
         }
     }
     .BlocksData {
-        display: flex;
         overflow-x: auto;
         margin-top: 11px;
         gap: 17px;
+
         .ImageBlock {
             background-color: var(--WhiteTextColor2);
             flex-shrink: 0;
