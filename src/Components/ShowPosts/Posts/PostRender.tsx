@@ -4,19 +4,20 @@ import { Post } from 'Types/TypesOfData/Post/Post';
 import { ModsOfWritePost } from 'Utils/ModsOfComps';
 import { getUserFromId } from 'Api/Users/getUserDataFromId';
 import { useNavigate } from 'react-router-dom';
-import UserIcon from 'Assets/Icons/Header/user.svg';
-import PlusIcon from 'Assets/Icons/Post/plus-circle.svg';
 import Styles from './Styles.module.scss';
 import BlocksRender from '../PostComponents/BlocksRender';
 import FakePost from 'Components/FakeData/FakePost';
 import { getTeamFromId } from 'Api/Teams/getTeamDataFromId';
 import Activities from '../PostComponents/Activities';
+import AuthorDataRender from '../PostComponents/AuthorDataRender';
+import PostDataRender from '../PostComponents/PostDataRender';
+import CommentsModal from 'Components/Modals/CommentsModal/CommentsModal';
 
 interface PostRender {
     post: Post;
 }
 
-interface WhoWrotePost {
+export interface WhoWrotePost {
     name?: string;
     title?: string;
     photo?: string;
@@ -26,6 +27,7 @@ interface WhoWrotePost {
 
 const PostRender: FC<PostRender> = ({ post }) => {
     const [WhoWrotePost, setWhoWrotePost] = useState<WhoWrotePost | null>(null);
+    const [CommentsOpen, setCommentsOpen] = useState(false);
     const navigate = useNavigate();
 
     const [ImageIsLoad, setImageIsLoad] = useState(false);
@@ -64,58 +66,31 @@ const PostRender: FC<PostRender> = ({ post }) => {
 
     if (PostLoadIsDone) {
         return (
-            <div
-                onClick={() => {
-                    navigate('/Post/' + post.PostId);
-                }}
-                className={Styles.Post}
-            >
+            <>
+                {CommentsOpen && (
+                    <CommentsModal
+                        PostId={post.PostId}
+                        setModalOpen={setCommentsOpen}
+                    ></CommentsModal>
+                )}
                 <div
-                    className={Styles.AuthorData}
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        navigate('/User/' + WhoWrotePost?.id);
+                    onClick={() => {
+                        navigate('/Post/' + post.PostId);
                     }}
+                    className={Styles.Post}
                 >
-                    <div className={Styles.Data}>
-                        <div className={Styles.Photo}>
-                            <img
-                                src={
-                                    WhoWrotePost?.image ||
-                                    WhoWrotePost?.photo ||
-                                    UserIcon
-                                }
-                                alt=""
-                            />
-                        </div>
-                        <div className={Styles.Text}>
-                            <div className={Styles.Name}>
-                                {WhoWrotePost?.name || WhoWrotePost?.title}
-                            </div>
-                            <div className={Styles.Date}>{post.PostDate}</div>
-                        </div>
-                    </div>
-                    <button className={Styles.ActiveButton}>
-                        <img src={PlusIcon} alt="" />
-                    </button>
-                </div>
-                <div className={Styles.PostData}>
-                    <div className={Styles.Title}>{post.PostTitle}</div>
-                    {!post.PostDataBlocks[1] && (
-                        <div className={Styles.Text}>
-                            {post.PostDataBlocks[0].text}
+                    <AuthorDataRender post={post} WhoWrotePost={WhoWrotePost} />
+                    <PostDataRender post={post} />
+                    {post.PostDataBlocks[1] && (
+                        <div className={Styles.BlocksData}>
+                            <BlocksRender
+                                Blocks={post.PostDataBlocks}
+                            ></BlocksRender>
                         </div>
                     )}
+                    <Activities setCommentsOpen={setCommentsOpen} post={post} />
                 </div>
-                {post.PostDataBlocks[1] && (
-                    <div className={Styles.BlocksData}>
-                        <BlocksRender
-                            Blocks={post.PostDataBlocks}
-                        ></BlocksRender>
-                    </div>
-                )}
-                <Activities post={post} />
-            </div>
+            </>
         );
     } else if (!PostLoadIsDone) {
         return <FakePost></FakePost>;

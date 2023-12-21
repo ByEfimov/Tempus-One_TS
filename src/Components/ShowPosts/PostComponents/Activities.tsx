@@ -13,11 +13,15 @@ import { RemoveLikePost } from 'Api/Posts/Activities/RemoveLikePost';
 
 interface ActivitiesProps {
     post: Post;
+    setCommentsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Activities: FC<ActivitiesProps> = ({ post }) => {
+const Activities: FC<ActivitiesProps> = ({ post, setCommentsOpen }) => {
     const { UserId, UserPostsLiked, UserCanChanging } = useAuth();
     const [PostLikes, setPostLikes] = useState(post.PostLikes);
+
+    const PostComments = Object.keys(post.PostComments || []).length;
+
     const ItPostLiked = Object.keys(UserPostsLiked || [])?.includes(
         post.PostId
     );
@@ -49,9 +53,15 @@ const Activities: FC<ActivitiesProps> = ({ post }) => {
                     <img src={ItPostLiked ? FillHeartIcon : HeartIcon} alt="" />
                     <h1>{PostLikes}</h1>
                 </button>
-                <button>
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        document.body.style.overflowY = 'hidden';
+                        setCommentsOpen(true);
+                    }}
+                >
                     <img src={CommentIcon} alt="" />
-                    <h1>{post.PostComments?.length || 0}</h1>
+                    <h1>{PostComments}</h1>
                 </button>
                 <button>
                     <img src={ShareIcon} alt="" />

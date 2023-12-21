@@ -1,3 +1,5 @@
+import { Comments } from './Comments';
+
 export type PostBlock = {
     id: number;
     text: string;
@@ -14,5 +16,5 @@ export type Post = {
     PostShows: number;
     PostTitle: string;
     PostReposts: number;
-    PostComments: [];
+    PostComments: { [key: string]: Comments };
 };
