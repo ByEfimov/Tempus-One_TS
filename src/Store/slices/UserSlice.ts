@@ -12,6 +12,7 @@ type UserType = {
         users?: { [key: string]: string };
     } | null;
     members: string[] | null;
+    postsLiked: Record<string, string> | null;
 };
 
 const initialState: UserType = {
@@ -23,6 +24,7 @@ const initialState: UserType = {
     emailVerified: null,
     subscriptions: null,
     members: null,
+    postsLiked: null,
 };
 
 const UserSlice = createSlice({
@@ -38,6 +40,7 @@ const UserSlice = createSlice({
             state.emailVerified = action.payload.emailVerified || null;
             state.subscriptions = action.payload.subscriptions || null;
             state.members = action.payload.members || null;
+            state.postsLiked = action.payload.postsLiked || null;
         },
         setCurrentUser(
             state,
@@ -55,6 +58,7 @@ const UserSlice = createSlice({
             state.emailVerified = null;
             state.subscriptions = null;
             state.members = null;
+            state.postsLiked = null;
         },
     },
 });

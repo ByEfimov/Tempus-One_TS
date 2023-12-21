@@ -38,10 +38,12 @@ const WritePost = () => {
         };
         console.log(countEmptyValues(NewPost));
 
-        if (countEmptyValues(NewPost) - 5 === 0) {
+        if (countEmptyValues(NewPost) - 4 === 0) {
             addNewPost(NewPost);
             dispatch(removePost());
             navigate('/');
+        } else {
+            ErrorNotification('Не все поля заполнены.');
         }
     }
 

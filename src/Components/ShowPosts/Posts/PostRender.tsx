@@ -21,6 +21,7 @@ interface WhoWrotePost {
     title?: string;
     photo?: string;
     image?: string;
+    id?: string;
 }
 
 const PostRender: FC<PostRender> = ({ post }) => {
@@ -69,7 +70,13 @@ const PostRender: FC<PostRender> = ({ post }) => {
                 }}
                 className={Styles.Post}
             >
-                <div className={Styles.AuthorData}>
+                <div
+                    className={Styles.AuthorData}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        navigate('/User/' + WhoWrotePost?.id);
+                    }}
+                >
                     <div className={Styles.Data}>
                         <div className={Styles.Photo}>
                             <img

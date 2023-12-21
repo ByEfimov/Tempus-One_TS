@@ -2,9 +2,10 @@ import { FC } from 'react';
 import { PostBlock } from 'Types/TypesOfData/Post/Post';
 import { ModsOfWritePost } from 'Utils/ModsOfComps';
 import ShowCode from './ShowCode';
-import Styles from '../Styles.module.scss';
+import Styles from '../Posts/Styles.module.scss';
 // import Styles from '../Styles.module.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 
 interface BlocksRender {
@@ -12,10 +13,15 @@ interface BlocksRender {
 }
 
 const BlocksRender: FC<BlocksRender> = ({ Blocks }) => {
-    console.log(Blocks);
-
     return (
-        <Swiper spaceBetween={20} slidesPerView={1}>
+        <Swiper
+            spaceBetween={20}
+            slidesPerView={1}
+            pagination={{
+                type: 'fraction',
+            }}
+            modules={[Pagination]}
+        >
             {Blocks.map((block) => {
                 if (
                     block.type === ModsOfWritePost.image ||
@@ -31,7 +37,7 @@ const BlocksRender: FC<BlocksRender> = ({ Blocks }) => {
                                 block.type === ModsOfWritePost.code && (
                                     <div
                                         key={block.id}
-                                        className={Styles.CodeBlock}
+                                        className={Styles.CodePostBlock}
                                     >
                                         <ShowCode
                                             UserCode={block.text}

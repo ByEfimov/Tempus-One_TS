@@ -41,6 +41,7 @@ export default function ListenerFB({ children }: ListenerFC) {
                             emailVerified: data.emailVerified,
                             subscriptions: data.subscriptions,
                             members: data.members || [],
+                            postsLiked: data.postsLiked || [],
                         })
                     );
                 }
