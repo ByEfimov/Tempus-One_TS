@@ -1,9 +1,9 @@
 import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
 import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
 import PlusIcon from 'Assets/Icons/Post/plus-circle.svg';
-import UserIcon from 'Assets/Icons/Header/user.svg';
 import Styles from './Styles.module.scss';
 import { useNavigate } from 'react-router-dom';
+import ShowLogo from 'Components/MiniComponents/ShowLogo';
 
 export default function ShowUserOrTeam({
     Team,
@@ -22,7 +22,7 @@ export default function ShowUserOrTeam({
             >
                 <div className={Styles.Data}>
                     <div className={Styles.Photo}>
-                        <img src={User.photo || UserIcon} alt="" />
+                        <ShowLogo ImageUrl={User.photo}></ShowLogo>
                     </div>
                     <div className={Styles.Text}>
                         <div className={Styles.Title}>{User.name}</div>
@@ -46,7 +46,7 @@ export default function ShowUserOrTeam({
             >
                 <div className={Styles.Data}>
                     <div className={Styles.Photo}>
-                        <img src={Team.image} alt="" />
+                        <ShowLogo ImageUrl={Team.image}></ShowLogo>
                     </div>
                     <div className={Styles.Text}>
                         <div className={Styles.Title}>{Team.title}</div>

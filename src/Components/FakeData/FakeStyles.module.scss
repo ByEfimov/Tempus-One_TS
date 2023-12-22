@@ -26,6 +26,12 @@
         border-radius: var(--DefaultBorderRadius);
     }
 }
+.FakeComment {
+    width: 100%;
+    height: 76px;
+    border-radius: var(--DefaultBorderRadius);
+    background-color: var(--WhiteTextColor2);
+}
 
 .FakeUser {
     margin-bottom: 10px;

@@ -3,7 +3,9 @@ import Styles from '../Modal.module.scss';
 import { getUserFromId } from 'Api/Users/getUserDataFromId';
 import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
 import { Comments } from 'Types/TypesOfData/Post/Comments';
-import UserIcon from 'Assets/Icons/Header/user.svg';
+import ShowLogo from 'Components/MiniComponents/ShowLogo';
+import FakeComment from 'Components/FakeData/FakeComment';
+import { useNavigate } from 'react-router-dom';
 
 interface comment {
     comment: Comments;
@@ -11,6 +13,7 @@ interface comment {
 
 const CommentRender: FC<comment> = ({ comment }) => {
     const [commentator, setCommentator] = useState<OpenUserType | null>(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         getUserFromId(comment.CommentatorId).then((user) =>
@@ -21,9 +24,12 @@ const CommentRender: FC<comment> = ({ comment }) => {
     if (commentator) {
         return (
             <div className={Styles.comment}>
-                <div className={Styles.author}>
+                <div
+                    className={Styles.author}
+                    onClick={() => navigate('/User/' + commentator.id)}
+                >
                     <div className={Styles.Photo}>
-                        <img src={commentator.photo || UserIcon} alt="" />
+                        <ShowLogo ImageUrl={commentator.photo}></ShowLogo>
                     </div>
                     <div className={Styles.Data}>
                         {commentator.name} {commentator.level}
@@ -35,6 +41,8 @@ const CommentRender: FC<comment> = ({ comment }) => {
                 </div>
             </div>
         );
+    } else {
+        return <FakeComment></FakeComment>;
     }
 };
 

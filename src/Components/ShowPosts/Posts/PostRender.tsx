@@ -12,6 +12,7 @@ import Activities from '../PostComponents/Activities';
 import AuthorDataRender from '../PostComponents/AuthorDataRender';
 import PostDataRender from '../PostComponents/PostDataRender';
 import CommentsModal from 'Components/Modals/CommentsModal/CommentsModal';
+import { PostLoadIsDone } from 'Utils/Posts/PostLoadIsDone';
 
 interface PostRender {
     post: Post;
@@ -31,12 +32,6 @@ const PostRender: FC<PostRender> = ({ post }) => {
     const navigate = useNavigate();
 
     const [ImageIsLoad, setImageIsLoad] = useState(false);
-
-    const PostLoadIsDone = post.PostDataBlocks.some(
-        (block) => block.type === ModsOfWritePost.image
-    )
-        ? !!WhoWrotePost && !!ImageIsLoad
-        : !!WhoWrotePost;
 
     useEffect(() => {
         function LoadUser() {
@@ -64,7 +59,7 @@ const PostRender: FC<PostRender> = ({ post }) => {
         loadImages();
     }, []);
 
-    if (PostLoadIsDone) {
+    if (PostLoadIsDone(WhoWrotePost, ImageIsLoad, post)) {
         return (
             <>
                 {CommentsOpen && (

@@ -39,7 +39,9 @@
             max-height: 450px;
             overflow: auto;
             .comment {
+                max-height: none;
                 padding: 5px;
+                animation: OpenComment 0.3s forwards;
                 border-radius: var(--DefaultBorderRadius);
                 background-color: var(--AccentColor2);
                 .author {
@@ -117,7 +119,7 @@
         bottom: 0px;
     }
     to {
-        bottom: -50%;
+        bottom: -600px;
     }
 }
 
@@ -132,7 +134,7 @@
 
 @keyframes openModal {
     from {
-        bottom: -50%;
+        bottom: -600px;
     }
     to {
         bottom: 0px;
