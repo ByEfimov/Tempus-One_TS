@@ -29,11 +29,11 @@ const SurveyMode = () => {
             setNewVariant('');
         }
     }
-    function removeVariant(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    function removeVariant(e: React.MouseEvent<HTMLDivElement>) {
         dispatch(
             removeVariantForSurvey({
                 BlockId: selectMode.id,
-                VariantId: e.target.id,
+                VariantId: e.currentTarget.id,
             })
         );
     }
