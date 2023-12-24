@@ -1,4 +1,3 @@
-import { ModsOfWritePost } from 'Utils/ModsOfComps';
 import Styles from '../Styles.module.scss';
 import FeatherIcon from 'feather-icons-react';
 import { useState } from 'react';
@@ -19,18 +18,7 @@ export const ControlBlocksPanel = () => {
         useState<BlockOfPostType>();
 
     function openMod(blockData: { type: string; id: number }) {
-        if (blockData.type === ModsOfWritePost.text) {
-            document
-                .getElementById('topBlock')
-                ?.classList.add(Styles.closeTopBlock);
-            setTimeout(() => {
-                dispatch(
-                    setSelectMode({ type: blockData.type, id: blockData.id })
-                );
-            }, 300);
-        } else {
-            dispatch(setSelectMode({ type: blockData.type, id: blockData.id }));
-        }
+        dispatch(setSelectMode({ type: blockData.type, id: blockData.id }));
     }
 
     return (

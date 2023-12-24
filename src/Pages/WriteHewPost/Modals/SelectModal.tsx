@@ -34,6 +34,10 @@ const ShowSelectMode: FC<ShowSelectMode> = ({ closePopup }) => {
                 title="Картинка"
                 clickHandler={() => createNewMode(ModsOfWritePost.image)}
             ></ButtonVoid>
+            <ButtonVoid
+                title="Опрос"
+                clickHandler={() => createNewMode(ModsOfWritePost.survey)}
+            ></ButtonVoid>
         </>
     );
 };

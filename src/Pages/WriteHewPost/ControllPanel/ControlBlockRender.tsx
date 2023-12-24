@@ -5,6 +5,7 @@ import { FC } from 'react';
 import ImageMode from './Mods/ImageMode';
 import CodeMode from './Mods/CodeMode';
 import TextMode from './Mods/TextMode';
+import SurveyMode from './Mods/SurveyMode';
 import {
     BlockOfPostType,
     SelectModeType,
@@ -86,14 +87,21 @@ const WhatTheBlock: FC<WhatTheBlock> = ({ blockData, openMod }) => {
             id={blockData.id}
             Code={blockData.text}
         ></CodeMode>
+    ) : blockData.type === ModsOfWritePost.image ? (
+        <ImageMode
+            className={Styles.OneceMode}
+            imageUrl={blockData.text}
+            openMode={OpenMode}
+            id={blockData.id}
+        ></ImageMode>
     ) : (
-        blockData.type === ModsOfWritePost.image && (
-            <ImageMode
+        blockData.type === ModsOfWritePost.survey && (
+            <SurveyMode
                 className={Styles.OneceMode}
-                imageUrl={blockData.text}
                 openMode={OpenMode}
                 id={blockData.id}
-            ></ImageMode>
+                Text={blockData.text}
+            ></SurveyMode>
         )
     );
 };

@@ -20,116 +20,61 @@ pre::-webkit-scrollbar {
         overflow-y: auto;
     }
 }
-.ButtonWrite {
-    transition: all 0.3s;
-    color: var(--mainTextColor);
-    width: 90vw;
-    padding: 0.6em;
 
-    background: var(--activeAccentColor);
-    border-radius: 0.5em;
-    margin-top: 20px;
-    border: 1px solid var(--mainBorderColor);
-}
-
-.ControlPanel {
-    display: flex;
-    gap: 10px;
-    animation: OpenBlock forwards 0.3s;
-    margin-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-left: -10px;
-    margin-right: -10px;
-    overflow-y: auto;
-    .wrapper {
-        transition: all 0.3s;
-        animation: creteNewModWr 0.3s forwards;
-        min-width: 60px;
-        min-height: 60px;
-        width: 80px;
-        height: 80px;
-        border-radius: 0.4em;
-        cursor: pointer;
-        overflow: hidden;
+.WritePost {
+    padding: 17px;
+    .select {
+        box-shadow: var(--DarkShadow);
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 100%;
+        height: 46px;
+        background-color: var(--AccentColor2);
+        border-radius: var(--DefaultBorderRadius);
+        color: var(--WhiteTextColor);
+        font-size: 18px;
+        font-weight: 600;
+    }
+    .topBlock {
         display: flex;
-        justify-content: center;
         align-items: center;
-        .OneceMode {
-            width: 100%;
-            height: 100%;
-            background: var(--mainBorderColor);
-            padding: 2px;
-            word-wrap: break-word;
-            overflow: hidden;
-            max-height: 80px;
-            font-size: 10px;
-            justify-content: start;
-            align-items: start;
+        margin-top: 17px;
+        gap: 25px;
+        justify-content: space-between;
+        .buttons {
+            gap: 10px;
             display: flex;
-            img {
-                width: 100%;
-                object-fit: contain;
-                border-radius: 0.4em;
-                background-color: var(--mainBorderColor);
+            align-items: center;
+            flex-shrink: 0;
+            .alertButton {
+                width: 25px;
+                height: 24px;
+            }
+            .helpButton {
+                height: 24px;
+                width: 24px;
+            }
+            .swapButton {
+                height: 24px;
+                width: 24px;
             }
         }
     }
-    .wrapper:before {
-        content: '';
-        display: block;
-        padding-top: 100%;
-    }
-    .wrapperActive {
-        border-radius: 0.4em;
-        box-shadow: var(--mainBoxShadow);
-    }
 
-    .ButtonAdd {
-        min-width: 80px;
-        width: 80px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 0.4em;
-        background: var(--mainBorderColor);
-        svg {
-            max-width: 20px;
-            color: var(--mainTextColor);
-        }
-    }
-}
-.WritePost:has(.topBlock) .ControlPanel {
-    padding-top: 4px;
-}
-textarea {
-    height: 100% !important;
-    min-height: 300px !important;
-}
-
-.WritePost {
-    animation: OpenBlock forwards 0.3s;
-    user-select: none;
-    padding: 20px;
-    padding-top: 0px;
-    height: auto;
-    margin-bottom: 20px;
-    margin-top: var(--mainMarginTop);
     .card {
         width: 100%;
         height: 300px;
         position: relative;
-        transform-style: preserve-3d;
     }
     .card .face {
         overflow: hidden;
-        border-radius: 0.5em;
+        box-shadow: var(--DarkShadow);
+        border-radius: var(--DefaultBorderRadius);
         transition: 1s ease-in-out;
-        transform-style: preserve-3d;
         position: absolute;
         top: 0;
         left: 0;
+        border-top-left-radius: 0px;
         width: 100%;
         height: 300px;
         transform: rotateY(0deg);
@@ -141,14 +86,14 @@ textarea {
         }
     }
     .card .face.front {
-        background-color: var(--mainBorderColor);
+        background-color: var(--AccentColor);
     }
     .card .face.back {
         overflow: hidden;
-        padding: 0.6em;
         transform: rotateY(180deg);
-        background-color: var(--mainBorderColor);
+        background-color: var(--AccentColor);
         img {
+            padding: 20px;
             height: 100%;
             width: 100%;
             object-fit: contain;
@@ -161,70 +106,70 @@ textarea {
     .cardActive .face.back {
         transform: rotateY(360deg);
     }
-
-    .topBlock {
-        width: 100%;
-        flex-shrink: 0;
-        animation: openTopBlock 0.3s forwards;
+    .InputVariant {
         display: flex;
+        gap: 17px;
         align-items: center;
-        justify-content: space-between;
-        .buttons {
+        .PlusIcon {
+            flex-shrink: 0;
+            width: 35px;
+            height: 35px;
+            margin-top: 17px;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+    .Survey {
+        margin-top: 17px;
+        .Variants {
+            box-shadow: var(--DarkShadow);
+            width: 100%;
+            padding: 10px;
+            resize: none;
+            background-color: var(--AccentColor);
+            border-radius: var(--DefaultBorderRadius);
+            color: var(--WhiteTextColor);
+            font-size: 18px;
+            font-weight: 600;
             display: flex;
-            gap: 10px;
-            svg {
-                width: 25px;
-            }
-            svg * {
-                color: var(--accentTextColor);
-            }
-            .helpButton {
-                svg * {
-                    color: var(--activeAccentColor);
-                }
-            }
-            .alertButton {
-                svg * {
-                    color: var(--errorAccentColor);
-                }
+            flex-direction: column;
+            gap: 17px;
+            height: 300px;
+            overflow-y: auto;
+            border-top-right-radius: 0px;
+            border-top-left-radius: 0px;
+        }
+        .Variant {
+            justify-content: space-between;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            box-shadow: var(--DarkShadow);
+            padding: 10px;
+            width: 100%;
+            background-color: var(--AccentColor2);
+            border-radius: var(--DefaultBorderRadius);
+            color: var(--WhiteTextColor);
+            font-size: 18px;
+            font-weight: 600;
+            img {
+                height: 24px;
+                width: 24px;
             }
         }
     }
 }
-.closeTopBlock {
-    animation: closeTopBlock 0.3s forwards !important;
-}
 
-@keyframes openTopBlock {
-    0% {
-        max-height: 0px;
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-        max-height: 34px;
-    }
-}
-@keyframes closeTopBlock {
-    0% {
-        opacity: 1;
-        max-height: 34px;
-    }
-    100% {
-        max-height: 0px;
-        opacity: 0;
-    }
-}
-
-@keyframes creteNewModWr {
-    0% {
-        min-width: 0px;
-        width: 0px;
-        max-width: 0px;
-    }
-    100% {
-        min-width: 80px;
-        width: 80px;
-        max-width: 80px;
-    }
+.ButtonClear {
+    padding: 8px;
+    width: 100%;
+    background-color: var(--DarkTextColor);
+    border-radius: 15px;
+    color: var(--WhiteTextColor);
+    text-align: center;
+    font-size: 20px;
+    margin-top: -20px;
+    font-weight: 600;
 }

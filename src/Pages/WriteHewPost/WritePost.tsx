@@ -16,6 +16,7 @@ import { addNewPost } from 'Api/Posts/addNewPost';
 import PostForWhom from './Mods/PostForWhom';
 import { NewPostType } from 'Types/TypesOfData/Post/NewPostType';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
+import SurveyMode from './Mods/SurveyMode';
 
 const WritePost = () => {
     const { UserCanChanging, UserIsAuth } = useAuth();
@@ -47,6 +48,9 @@ const WritePost = () => {
         }
     }
 
+    console.log(BlocksOfPost);
+    console.log(selectMode);
+
     const showSelectMode = () => {
         switch (selectMode.type) {
             case ModsOfWritePost.text:
@@ -55,6 +59,8 @@ const WritePost = () => {
                 return <CodeMode />;
             case ModsOfWritePost.image:
                 return <ImageMode />;
+            case ModsOfWritePost.survey:
+                return <SurveyMode />;
         }
     };
 
@@ -75,7 +81,7 @@ const WritePost = () => {
                     clickHandler={sendNewPost}
                 ></ButtonVoid>
                 <ButtonVoid
-                    classes={Styles.ButtonWrite}
+                    classes={Styles.ButtonClear}
                     title="Очистить пост"
                     clickHandler={() => {
                         dispatch(removePost());

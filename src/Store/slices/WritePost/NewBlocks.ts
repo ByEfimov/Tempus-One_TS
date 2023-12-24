@@ -16,6 +16,14 @@ export default function NewBlocks(id: number, type: string): BlockOfPostType {
             type: ModsOfWritePost.image,
             title: '',
         };
+    } else if (type === ModsOfWritePost.survey) {
+        return {
+            text: '',
+            id: id,
+            type: 'survey',
+            title: '',
+            variants: [],
+        };
     } else {
         return { text: '', id: 0, type: 'text', title: '' };
     }

@@ -27,13 +27,28 @@ const WritePostSlice = createSlice({
     name: 'WritePost',
     initialState,
     reducers: {
+        addNewVariantForSurvey(state, action) {
+            state.BlocksOfPost[action.payload.BlockId].variants?.push({
+                id: state.BlocksOfPost[action.payload.BlockId].variants?.length,
+                text: action.payload.newVariant,
+            });
+        },
+        removeVariantForSurvey(state, action) {
+            const removeVariant =
+                state.BlocksOfPost[action.payload.BlockId].variants?.findIndex(
+                    (n) => n.id === action.payload.VariantId
+                ) || 0;
+            state.BlocksOfPost[action.payload.BlockId].variants?.splice(
+                removeVariant,
+                1
+            );
+        },
         setTitleOfPost(state, action: PayloadAction<{ title: string }>) {
             state.TitleOfPost = action.payload.title;
         },
         setPostForWhom(state, action) {
             state.PostForWhom = action.payload.PostForWhom;
         },
-
         addBlockToPost(state, action: PayloadAction<{ type: string }>) {
             const NewBlock: BlockOfPostType = NewBlocks(
                 state.BlocksOfPost.length,
@@ -119,6 +134,8 @@ export const {
     changeTitleOfBlock,
     removePost,
     setPostForWhom,
+    addNewVariantForSurvey,
+    removeVariantForSurvey,
 } = WritePostSlice.actions;
 
 export default WritePostSlice.reducer;

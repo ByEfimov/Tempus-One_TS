@@ -17,3 +17,51 @@
         font-weight: 600;
     }
 }
+
+.CustomInput {
+    box-shadow: var(--DarkShadow);
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    height: 46px;
+    background-color: var(--AccentColor2);
+    border-radius: var(--DefaultBorderRadius);
+    color: var(--WhiteTextColor);
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 17px;
+}
+input::placeholder {
+    color: var(--GreyTextColor);
+}
+
+.CustomInputSmall {
+    box-shadow: var(--DarkShadow);
+    padding: 8px;
+    width: 100%;
+    background-color: var(--AccentColor);
+    border-radius: var(--DefaultBorderRadius);
+    color: var(--WhiteTextColor);
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.CustomTextarea {
+    box-shadow: var(--DarkShadow);
+    width: 100%;
+    padding: 10px;
+    resize: none;
+    background-color: var(--AccentColor);
+    border-radius: var(--DefaultBorderRadius);
+    color: var(--WhiteTextColor);
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 17px;
+    height: 300px;
+}
+
+.CustomTextarea::placeholder {
+    color: var(--GreyTextColor);
+}

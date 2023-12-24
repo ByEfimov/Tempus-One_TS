@@ -4,6 +4,7 @@ import { useAuth } from 'Hooks/useAuth';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { setPostForWhom } from 'Store/slices/WritePost/WritePostSlice';
 import getUserAdmins from 'Api/Teams/GetUserAdmins';
+import Styles from '../Styles.module.scss';
 
 const PostForWhom = () => {
     const { UserId, UserSubscriptions } = useAuth();
@@ -22,6 +23,7 @@ const PostForWhom = () => {
     return (
         UserId && (
             <select
+                className={Styles.select}
                 defaultValue={UserId}
                 onChange={(e) =>
                     dispatch(setPostForWhom({ PostForWhom: e.target.value }))
