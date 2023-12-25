@@ -5,6 +5,7 @@ export type PostBlock = {
     text: string;
     type: string;
     title?: string;
+    variants?: { id: number | undefined; text: string }[];
 };
 
 export type Post = {

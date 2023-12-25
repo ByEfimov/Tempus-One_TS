@@ -40,7 +40,7 @@
             overflow: hidden;
             img {
                 width: 100%;
-                object-fit: cover;
+                object-fit: contain;
                 height: 100%;
             }
         }
@@ -51,6 +51,34 @@
             flex-shrink: 0;
             height: 240px;
             width: 100%;
+        }
+        .SurveyMode {
+            padding: 10px;
+            background-color: var(--WhiteTextColor2);
+            border-radius: var(--DefaultBorderRadius);
+            flex-shrink: 0;
+            height: 240px;
+            width: 100%;
+            .title {
+                font-weight: 600;
+                color: var(--DarkTextColor);
+                font-size: 22px;
+            }
+            .variants {
+                margin-top: 12px;
+                display: flex;
+                gap: 10px;
+                flex-direction: column;
+                .variant {
+                    font-weight: 600;
+                    font-size: 18px;
+                    color: var(--WhiteTextColor);
+                    padding: 10px;
+                    width: 100%;
+                    border-radius: var(--DefaultBorderRadius);
+                    background-color: var(--AccentColor);
+                }
+            }
         }
     }
     .AuthorData {

@@ -56,10 +56,12 @@ const ControlBlockRender: FC<ControlBlockRenderProps> = ({
                     blockData.id === SelectMode.id && Styles.wrapperActive
                 )}
             >
-                <WhatTheBlock
-                    blockData={blockData}
-                    openMod={openMod}
-                ></WhatTheBlock>
+                <div className={Styles.Content}>
+                    <WhatTheBlock
+                        blockData={blockData}
+                        openMod={openMod}
+                    ></WhatTheBlock>
+                </div>
             </div>
         )
     );
@@ -71,7 +73,10 @@ interface WhatTheBlock {
 }
 
 const WhatTheBlock: FC<WhatTheBlock> = ({ blockData, openMod }) => {
-    const OpenMode = () => openMod(blockData);
+    const OpenMode = () => {
+        console.log(blockData);
+        openMod(blockData);
+    };
 
     return blockData.type === ModsOfWritePost.text ? (
         <TextMode
@@ -89,7 +94,7 @@ const WhatTheBlock: FC<WhatTheBlock> = ({ blockData, openMod }) => {
         ></CodeMode>
     ) : blockData.type === ModsOfWritePost.image ? (
         <ImageMode
-            className={Styles.OneceMode}
+            className={Styles.ImageMode}
             imageUrl={blockData.text}
             openMode={OpenMode}
             id={blockData.id}
@@ -99,8 +104,7 @@ const WhatTheBlock: FC<WhatTheBlock> = ({ blockData, openMod }) => {
             <SurveyMode
                 className={Styles.OneceMode}
                 openMode={OpenMode}
-                id={blockData.id}
-                Text={blockData.text}
+                blockData={blockData}
             ></SurveyMode>
         )
     );

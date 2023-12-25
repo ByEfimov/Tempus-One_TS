@@ -37,9 +37,8 @@ const WritePost = () => {
             PostComments: {},
             PostReposts: 0,
         };
-        console.log(countEmptyValues(NewPost));
 
-        if (countEmptyValues(NewPost) - 4 === 0) {
+        if (countEmptyValues(NewPost) - 6 === 0) {
             addNewPost(NewPost);
             dispatch(removePost());
             navigate('/');
@@ -47,9 +46,6 @@ const WritePost = () => {
             ErrorNotification('Не все поля заполнены.');
         }
     }
-
-    console.log(BlocksOfPost);
-    console.log(selectMode);
 
     const showSelectMode = () => {
         switch (selectMode.type) {

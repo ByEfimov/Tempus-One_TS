@@ -25,7 +25,8 @@ const BlocksRender: FC<BlocksRender> = ({ Blocks }) => {
             {Blocks.map((block) => {
                 if (
                     block.type === ModsOfWritePost.image ||
-                    block.type === ModsOfWritePost.code
+                    block.type === ModsOfWritePost.code ||
+                    block.type === ModsOfWritePost.survey
                 ) {
                     return (
                         <SwiperSlide key={block.id}>
@@ -33,17 +34,29 @@ const BlocksRender: FC<BlocksRender> = ({ Blocks }) => {
                                 <div className={Styles.ImageBlock}>
                                     <img src={block.text}></img>
                                 </div>
+                            ) : block.type === ModsOfWritePost.code ? (
+                                <div
+                                    key={block.id}
+                                    className={Styles.CodePostBlock}
+                                >
+                                    <ShowCode UserCode={block.text}></ShowCode>
+                                </div>
                             ) : (
-                                block.type === ModsOfWritePost.code && (
-                                    <div
-                                        key={block.id}
-                                        className={Styles.CodePostBlock}
-                                    >
-                                        <ShowCode
-                                            UserCode={block.text}
-                                        ></ShowCode>
+                                <div className={Styles.SurveyMode}>
+                                    <div className={Styles.title}>
+                                        {block.title}
                                     </div>
-                                )
+                                    <div className={Styles.variants}>
+                                        {block.variants?.map((variant) => (
+                                            <div
+                                                className={Styles.variant}
+                                                key={variant.id}
+                                            >
+                                                {variant.text}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
                             )}
                         </SwiperSlide>
                     );
