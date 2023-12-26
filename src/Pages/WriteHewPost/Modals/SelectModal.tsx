@@ -7,7 +7,7 @@ import {
     setSelectMode,
 } from 'Store/slices/WritePost/WritePostSlice';
 import { useWritePost } from 'Hooks/useWritePost';
-import IsModal from 'Components/Modals/isModal';
+import { CloseModal, IsModal } from 'Components/Modals/isModal';
 import Styles from '../Styles.module.scss';
 
 const ButtonsSelectMode = () => {
@@ -16,6 +16,7 @@ const ButtonsSelectMode = () => {
     function createNewMode(type: string) {
         dispatch(addBlockToPost({ type }));
         dispatch(setSelectMode({ id: BlocksOfPost.length, type }));
+        CloseModal();
     }
 
     return (

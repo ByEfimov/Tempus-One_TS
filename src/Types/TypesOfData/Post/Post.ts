@@ -18,4 +18,5 @@ export type Post = {
     PostTitle: string;
     PostReposts: number;
     PostComments: { [key: string]: Comments };
+    PostWithRepostUs?: string;
 };

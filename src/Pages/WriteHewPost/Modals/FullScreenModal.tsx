@@ -7,7 +7,7 @@ import {
     removeBlockOfPost,
 } from '../../../Store/slices/WritePost/WritePostSlice';
 import { BlockOfPostType } from 'Types/TypesOfData/Post/WritePost';
-import IsModal from 'Components/Modals/isModal';
+import { CloseModal, IsModal } from 'Components/Modals/isModal';
 import ShowResultBlock from '../ShowResultBlock/ShowResultBlock';
 import Styles from '../Styles.module.scss';
 import { useWritePost } from 'Hooks/useWritePost';
@@ -26,6 +26,7 @@ const ActivityModal: FC<SelectModalProps> = ({
 
     function deleteMode() {
         dispatch(removeBlockOfPost({ id: ResultObject?.id || 0 }));
+        CloseModal();
     }
 
     function clearMode() {
@@ -35,6 +36,7 @@ const ActivityModal: FC<SelectModalProps> = ({
                 type: ResultObject?.type || ModsOfWritePost.text,
             })
         );
+        CloseModal();
     }
 
     return (

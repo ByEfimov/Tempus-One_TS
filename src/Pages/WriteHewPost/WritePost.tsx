@@ -38,7 +38,7 @@ const WritePost = () => {
             PostReposts: 0,
         };
 
-        if (countEmptyValues(NewPost) - 6 === 0) {
+        if (countEmptyValues(NewPost) - 4 === 0) {
             addNewPost(NewPost);
             dispatch(removePost());
             navigate('/');

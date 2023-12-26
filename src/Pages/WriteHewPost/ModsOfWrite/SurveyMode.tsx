@@ -9,7 +9,7 @@ import CustomInput from 'Components/MiniComponents/input';
 import Styles from '../Styles.module.scss';
 import PlusIcon from 'Assets/Icons/Post/plus-circle.svg';
 import { useState } from 'react';
-import TrashIcon from 'Assets/Icons/Post/eye.svg';
+import TrashIcon from 'Assets/Icons/Post/trash-alt.svg';
 
 const SurveyMode = () => {
     const { selectMode, BlocksOfPost } = useWritePost();

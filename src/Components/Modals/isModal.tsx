@@ -7,6 +7,8 @@ interface isModalProps {
     title: string;
 }
 
+let CloseModal: () => void;
+
 const IsModal: FC<isModalProps> = ({ children, setModalOpen, title }) => {
     const ModalRef = React.createRef<HTMLDivElement>();
 
@@ -18,6 +20,7 @@ const IsModal: FC<isModalProps> = ({ children, setModalOpen, title }) => {
             setModalOpen(false);
         }, 500);
     }
+    CloseModal = closeModal;
 
     return (
         <div className={Styles.Modal} ref={ModalRef}>
@@ -30,4 +33,4 @@ const IsModal: FC<isModalProps> = ({ children, setModalOpen, title }) => {
         </div>
     );
 };
-export default IsModal;
+export { IsModal, CloseModal };

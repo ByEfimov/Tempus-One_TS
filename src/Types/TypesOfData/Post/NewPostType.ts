@@ -9,4 +9,6 @@ export type NewPostType = {
     PostShows: number;
     PostComments: object;
     PostReposts: number;
+    PostId?: string | null;
+    PostWithRepostUs?: string;
 };

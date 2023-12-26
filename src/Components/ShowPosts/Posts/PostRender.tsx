@@ -13,6 +13,7 @@ import AuthorDataRender from '../PostComponents/AuthorDataRender';
 import PostDataRender from '../PostComponents/PostDataRender';
 import CommentsModal from 'Components/Modals/CommentsModal/CommentsModal';
 import { PostLoadIsDone } from 'Utils/Posts/PostLoadIsDone';
+import RepostModal from 'Components/Modals/RepostModal/RepostModal';
 
 interface PostRender {
     post: Post;
@@ -29,6 +30,7 @@ export interface WhoWrotePost {
 const PostRender: FC<PostRender> = ({ post }) => {
     const [WhoWrotePost, setWhoWrotePost] = useState<WhoWrotePost | null>(null);
     const [CommentsOpen, setCommentsOpen] = useState(false);
+    const [RepostModalOpen, setRepostModalOpen] = useState(false);
     const navigate = useNavigate();
 
     const [ImageIsLoad, setImageIsLoad] = useState(false);
@@ -68,6 +70,12 @@ const PostRender: FC<PostRender> = ({ post }) => {
                         setModalOpen={setCommentsOpen}
                     ></CommentsModal>
                 )}
+                {RepostModalOpen && (
+                    <RepostModal
+                        post={post}
+                        setModalOpen={setRepostModalOpen}
+                    ></RepostModal>
+                )}
                 <div
                     onClick={() => {
                         navigate('/Post/' + post.PostId);
@@ -83,7 +91,23 @@ const PostRender: FC<PostRender> = ({ post }) => {
                             ></BlocksRender>
                         </div>
                     )}
-                    <Activities setCommentsOpen={setCommentsOpen} post={post} />
+                    {post.PostWithRepostUs && (
+                        <div
+                            className={Styles.repost}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                navigate('/Post/' + post.PostWithRepostUs);
+                                location.reload();
+                            }}
+                        >
+                            Этот пост запосщен.
+                        </div>
+                    )}
+                    <Activities
+                        setCommentsOpen={setCommentsOpen}
+                        setRepostModalOpen={setRepostModalOpen}
+                        post={post}
+                    />
                 </div>
             </>
         );

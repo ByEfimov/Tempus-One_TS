@@ -83,11 +83,13 @@ const WritePostSlice = createSlice({
             });
         },
         removeBlockOfPost(state, action: PayloadAction<{ id: number }>) {
-            const removeBlockIndex = state.BlocksOfPost.findIndex(
-                (n) => n.id === action.payload.id
-            );
-            state.BlocksOfPost.splice(removeBlockIndex, 1);
-            state.selectMode = { type: ModsOfWritePost.text, id: 0 };
+            if (action.payload.id !== 0) {
+                const removeBlockIndex = state.BlocksOfPost.findIndex(
+                    (n) => n.id === action.payload.id
+                );
+                state.BlocksOfPost.splice(removeBlockIndex, 1);
+                state.selectMode = { type: ModsOfWritePost.text, id: 0 };
+            }
         },
         clearBlockOfPost(
             state,

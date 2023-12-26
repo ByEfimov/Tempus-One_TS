@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import IsModal from '../isModal';
+import { IsModal } from '../isModal';
 import Styles from '../Modal.module.scss';
 import SendIcon from 'Assets/Icons/Post/message.svg';
 import { getComments } from 'Api/Posts/Activities/getComments';
