@@ -1,41 +1,41 @@
-import React, { FC, LegacyRef } from 'react';
-import Styles from './SelectModal.module.scss';
+import React, { FC } from 'react';
 import ButtonVoid from 'Components/MiniComponents/button';
 import { ModsOfWritePost } from 'Utils/ModsOfComps';
-import closePopup from 'Utils/Animations/closePopup';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import {
     addBlockToPost,
     setSelectMode,
 } from 'Store/slices/WritePost/WritePostSlice';
 import { useWritePost } from 'Hooks/useWritePost';
+import IsModal from 'Components/Modals/isModal';
+import Styles from '../Styles.module.scss';
 
-interface ShowSelectMode {
-    closePopup: () => void;
-}
-
-const ShowSelectMode: FC<ShowSelectMode> = ({ closePopup }) => {
+const ButtonsSelectMode = () => {
     const dispatch = useAppDispatch();
     const { BlocksOfPost } = useWritePost();
     function createNewMode(type: string) {
         dispatch(addBlockToPost({ type }));
         dispatch(setSelectMode({ id: BlocksOfPost.length, type }));
-        closePopup();
     }
 
     return (
         <>
-            <h1 className={Styles.Title}>Выбери что ты хочешь добавить:</h1>
             <ButtonVoid
                 title="Код"
+                classes={Styles.PopupButton}
                 clickHandler={() => createNewMode(ModsOfWritePost.code)}
+                padding={false}
             ></ButtonVoid>
             <ButtonVoid
                 title="Картинка"
+                padding={false}
+                classes={Styles.PopupButton}
                 clickHandler={() => createNewMode(ModsOfWritePost.image)}
             ></ButtonVoid>
             <ButtonVoid
                 title="Опрос"
+                classes={Styles.PopupButton}
+                padding={false}
                 clickHandler={() => createNewMode(ModsOfWritePost.survey)}
             ></ButtonVoid>
         </>
@@ -43,37 +43,14 @@ const ShowSelectMode: FC<ShowSelectMode> = ({ closePopup }) => {
 };
 
 interface ShowModalProps {
-    setIsModalOpen: (open: boolean) => void;
+    setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ModalAddNewMode: FC<ShowModalProps> = ({ setIsModalOpen }) => {
-    const SelectModalRef: LegacyRef<HTMLDivElement> = React.createRef();
-
     return (
-        <div className={Styles.SelectModal} ref={SelectModalRef}>
-            <div className={Styles.content}>
-                <ShowSelectMode
-                    closePopup={() =>
-                        closePopup(
-                            SelectModalRef,
-                            Styles.SelectModalClose,
-                            setIsModalOpen
-                        )
-                    }
-                ></ShowSelectMode>
-                <ButtonVoid
-                    clickHandler={() =>
-                        closePopup(
-                            SelectModalRef,
-                            Styles.SelectModalClose,
-                            setIsModalOpen
-                        )
-                    }
-                    title="Закрыть"
-                    classes={Styles.ButtonClose}
-                ></ButtonVoid>
-            </div>
-        </div>
+        <IsModal setModalOpen={setIsModalOpen} title="Выбери что добавить:">
+            <ButtonsSelectMode></ButtonsSelectMode>
+        </IsModal>
     );
 };
 

@@ -1,6 +1,7 @@
 .Modal {
     position: fixed;
     width: 100%;
+    left: 0;
     height: 100%;
     z-index: 10000;
     top: 0;
@@ -24,6 +25,7 @@
         position: fixed;
         animation: openModal 0.5s forwards;
         z-index: 1000;
+        padding-bottom: 20px;
         .Title {
             text-align: center;
             color: var(--WhiteTextColor);

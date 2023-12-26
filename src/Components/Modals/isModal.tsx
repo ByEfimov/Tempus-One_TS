@@ -12,9 +12,9 @@ const IsModal: FC<isModalProps> = ({ children, setModalOpen, title }) => {
 
     function closeModal() {
         ModalRef.current?.classList.add(Styles.NavPanelClose);
-        document.body.style.overflowY = 'auto';
 
         setTimeout(() => {
+            document.body.style.overflowY = 'auto';
             setModalOpen(false);
         }, 500);
     }

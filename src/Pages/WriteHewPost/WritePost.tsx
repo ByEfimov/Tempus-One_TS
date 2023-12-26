@@ -3,20 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import { ModsOfWritePost } from 'Utils/ModsOfComps';
 import Styles from './Styles.module.scss';
 import { ControlBlocksPanel } from './ControllPanel/ControlBlocksPanel';
-import TextMode from './Mods/TextMode';
-import CodeMode from './Mods/CodeMode';
-import ImageMode from './Mods/ImageMode';
+import TextMode from './ModsOfWrite/TextMode';
+import CodeMode from './ModsOfWrite/CodeMode';
+import ImageMode from './ModsOfWrite/ImageMode';
 import ButtonVoid from 'Components/MiniComponents/button';
-import TitleForPost from './Mods/TitleForPost';
+import TitleForPost from './Components/TitleForPost';
 import { countEmptyValues } from 'Utils/countEmptyValues';
 import { useWritePost } from 'Hooks/useWritePost';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { removePost } from 'Store/slices/WritePost/WritePostSlice';
 import { addNewPost } from 'Api/Posts/addNewPost';
-import PostForWhom from './Mods/PostForWhom';
+import PostForWhom from './Components/PostForWhom';
 import { NewPostType } from 'Types/TypesOfData/Post/NewPostType';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
-import SurveyMode from './Mods/SurveyMode';
+import SurveyMode from './ModsOfWrite/SurveyMode';
 
 const WritePost = () => {
     const { UserCanChanging, UserIsAuth } = useAuth();
@@ -75,8 +75,10 @@ const WritePost = () => {
                     classes={Styles.ButtonWrite}
                     title="Отправить пост"
                     clickHandler={sendNewPost}
+                    padding={false}
                 ></ButtonVoid>
                 <ButtonVoid
+                    padding={false}
                     classes={Styles.ButtonClear}
                     title="Очистить пост"
                     clickHandler={() => {

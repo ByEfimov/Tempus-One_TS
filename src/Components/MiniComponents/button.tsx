@@ -1,20 +1,31 @@
 import { FC } from 'react';
 import Styles from './MiniComponents.module.scss';
+import classNames from 'classnames';
 
 interface ButtonVoid {
     clickHandler: () => void;
     title: string;
     classes?: string;
+    padding?: boolean;
 }
 const ButtonVoid: FC<ButtonVoid> = ({
     clickHandler,
     title,
-    classes = Styles.Button,
+    classes,
+    padding = true,
 }) => {
     return (
-        <div className={Styles.ButtonWrapper}>
+        <div
+            className={Styles.ButtonWrapper}
+            style={
+                (padding && { padding: 17 }) || {
+                    padding: 0,
+                    paddingTop: 17,
+                }
+            }
+        >
             <button
-                className={classes}
+                className={classNames(Styles.Button, classes)}
                 type="submit"
                 onClick={() => clickHandler()}
             >

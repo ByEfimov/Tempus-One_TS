@@ -1,18 +1,18 @@
 import Styles from '../Styles.module.scss';
 import FeatherIcon from 'feather-icons-react';
 import { useState } from 'react';
-import FullDataModal from '../Modals/FullScreenModal';
 import ModalAddNewMode from '../Modals/SelectModal';
 import ControlBlockRender from './ControlBlockRender';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useWritePost } from 'Hooks/useWritePost';
 import { setSelectMode } from 'Store/slices/WritePost/WritePostSlice';
 import { BlockOfPostType } from 'Types/TypesOfData/Post/WritePost';
+import ActivityModal from '../Modals/FullScreenModal';
 
 export const ControlBlocksPanel = () => {
     const { selectMode, BlocksOfPost } = useWritePost();
     const dispatch = useAppDispatch();
-    const [isModalFullOpen, setIsModalFullOpen] = useState(false);
+    const [ActivityModalOpen, setActivityModalOpen] = useState(false);
     const [isModalAddOpen, setIsModalAddOpen] = useState(false);
     const [selectBlockForModal, setSelectBlockForModal] =
         useState<BlockOfPostType>();
@@ -23,11 +23,11 @@ export const ControlBlocksPanel = () => {
 
     return (
         <>
-            {isModalFullOpen && (
-                <FullDataModal
-                    setIsModalOpen={setIsModalFullOpen}
+            {ActivityModalOpen && (
+                <ActivityModal
+                    setIsModalOpen={setActivityModalOpen}
                     ResultObject={selectBlockForModal}
-                ></FullDataModal>
+                ></ActivityModal>
             )}
             {isModalAddOpen && (
                 <ModalAddNewMode
@@ -41,7 +41,7 @@ export const ControlBlocksPanel = () => {
                         key={blockData.id}
                         blockData={blockData}
                         openMod={openMod}
-                        setIsModalOpen={setIsModalFullOpen}
+                        setIsModalOpen={setActivityModalOpen}
                         SelectMode={selectMode}
                         setSelectBlockForModal={setSelectBlockForModal}
                     />

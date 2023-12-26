@@ -102,6 +102,7 @@ const WritePostSlice = createSlice({
                 if (item.id === action.payload.id) {
                     state.BlocksOfPost[i] = {
                         ...state.BlocksOfPost[i],
+                        title: '',
                         text: purifiedText,
                     };
                 }

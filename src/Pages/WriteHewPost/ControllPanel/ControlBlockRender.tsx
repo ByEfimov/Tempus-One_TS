@@ -1,15 +1,11 @@
 import classNames from 'classnames';
-import { ModsOfWritePost } from 'Utils/ModsOfComps';
 import Styles from '../Styles.module.scss';
 import { FC } from 'react';
-import ImageMode from './Mods/ImageMode';
-import CodeMode from './Mods/CodeMode';
-import TextMode from './Mods/TextMode';
-import SurveyMode from './Mods/SurveyMode';
 import {
     BlockOfPostType,
     SelectModeType,
 } from 'Types/TypesOfData/Post/WritePost';
+import ShowResultBlock from '../ShowResultBlock/ShowResultBlock';
 
 interface ControlBlockRenderProps {
     blockData: BlockOfPostType;
@@ -57,55 +53,12 @@ const ControlBlockRender: FC<ControlBlockRenderProps> = ({
                 )}
             >
                 <div className={Styles.Content}>
-                    <WhatTheBlock
+                    <ShowResultBlock
                         blockData={blockData}
-                        openMod={openMod}
-                    ></WhatTheBlock>
+                        ClickFunction={() => openMod(blockData)}
+                    ></ShowResultBlock>
                 </div>
             </div>
-        )
-    );
-};
-
-interface WhatTheBlock {
-    blockData: BlockOfPostType;
-    openMod: (blockData: SelectModeType) => void;
-}
-
-const WhatTheBlock: FC<WhatTheBlock> = ({ blockData, openMod }) => {
-    const OpenMode = () => {
-        console.log(blockData);
-        openMod(blockData);
-    };
-
-    return blockData.type === ModsOfWritePost.text ? (
-        <TextMode
-            className={Styles.OneceMode}
-            openMode={OpenMode}
-            id={blockData.id}
-            Text={blockData.text}
-        ></TextMode>
-    ) : blockData.type === ModsOfWritePost.code ? (
-        <CodeMode
-            className={Styles.OneceMode}
-            openMode={OpenMode}
-            id={blockData.id}
-            Code={blockData.text}
-        ></CodeMode>
-    ) : blockData.type === ModsOfWritePost.image ? (
-        <ImageMode
-            className={Styles.ImageMode}
-            imageUrl={blockData.text}
-            openMode={OpenMode}
-            id={blockData.id}
-        ></ImageMode>
-    ) : (
-        blockData.type === ModsOfWritePost.survey && (
-            <SurveyMode
-                className={Styles.OneceMode}
-                openMode={OpenMode}
-                blockData={blockData}
-            ></SurveyMode>
         )
     );
 };

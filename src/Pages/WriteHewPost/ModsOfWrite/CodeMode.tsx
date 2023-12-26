@@ -1,11 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import CustomInput from 'Components/MiniComponents/input';
 import { ModsOfInput } from 'Utils/ModsOfComps';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Styles from '../Styles.module.scss';
 import classNames from 'classnames';
 import { LiveProvider, LiveEditor } from 'react-live';
-import ShowModal, { ModsForShowModal } from '../Modals/ShowModal';
+import ShowErrorsOrAlert, {
+    ModsForShowModal,
+} from '../Modals/ShowErrorsOrAlert';
 import ActiveButton from 'Components/ShowPosts/PostComponents/activeButton';
 import ShowCode from 'Components/ShowPosts/PostComponents/ShowCode';
 import { reversBlock } from 'Utils/Animations/reversBlock';
@@ -20,13 +22,9 @@ const CodeMode = () => {
     const { selectMode, BlocksOfPost } = useWritePost();
     const dispatch = useAppDispatch();
 
-    const [UserCode, setUserCode] = useState(BlocksOfPost[selectMode.id].text);
+    const UserCode = BlocksOfPost[selectMode.id].text;
     const [isModalClueCodeOpen, setIsModalClueCodeOpen] = useState(false);
     const [isModalErrorsOpen, setIsModalErrorsOpen] = useState(false);
-
-    useEffect(() => {
-        dispatch(changeTextOfBlock({ id: selectMode.id, text: UserCode }));
-    }, [UserCode]);
 
     function changeTitle(e: React.ChangeEvent<HTMLInputElement>) {
         dispatch(
@@ -37,16 +35,16 @@ const CodeMode = () => {
     return (
         <>
             {isModalClueCodeOpen && (
-                <ShowModal
+                <ShowErrorsOrAlert
                     mode={ModsForShowModal.ClueCode}
                     setIsModalOpen={setIsModalClueCodeOpen}
-                ></ShowModal>
+                ></ShowErrorsOrAlert>
             )}
             {isModalErrorsOpen && (
-                <ShowModal
+                <ShowErrorsOrAlert
                     mode={ModsForShowModal.Errors}
                     setIsModalOpen={setIsModalErrorsOpen}
-                ></ShowModal>
+                ></ShowErrorsOrAlert>
             )}
 
             <div className={Styles.topBlock} id="topBlock">
@@ -85,20 +83,21 @@ const CodeMode = () => {
                         <LiveProvider enableTypeScript={true} code={UserCode}>
                             <LiveEditor
                                 className={Styles.LiveEdit}
-                                onChange={(e) => setUserCode(e)}
+                                onChange={(e) =>
+                                    dispatch(
+                                        changeTextOfBlock({
+                                            id: selectMode.id,
+                                            text: e,
+                                        })
+                                    )
+                                }
                             />
                         </LiveProvider>
                     </div>
                 </div>
                 <div className={classNames(Styles.face, Styles.back)}>
                     <h1>
-                        {UserCode ? (
-                            <div>
-                                <ShowCode UserCode={UserCode} />
-                            </div>
-                        ) : (
-                            'Здесь будет результат.'
-                        )}
+                        <ShowCode UserCode={UserCode} />
                     </h1>
                 </div>
             </div>

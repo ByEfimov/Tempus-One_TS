@@ -1,32 +1,31 @@
-import React, { FC, RefObject } from 'react';
-import Styles from './SelectModal.module.scss';
+import React, { FC } from 'react';
 import ButtonVoid from 'Components/MiniComponents/button';
 import { ModsOfWritePost } from 'Utils/ModsOfComps';
-import ShowCode from 'Components/ShowPosts/PostComponents/ShowCode';
-import closePopup from 'Utils/Animations/closePopup';
-import ShowImage from 'Components/ShowPosts/PostComponents/ShowImage';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import {
     clearBlockOfPost,
     removeBlockOfPost,
 } from '../../../Store/slices/WritePost/WritePostSlice';
 import { BlockOfPostType } from 'Types/TypesOfData/Post/WritePost';
+import IsModal from 'Components/Modals/isModal';
+import ShowResultBlock from '../ShowResultBlock/ShowResultBlock';
+import Styles from '../Styles.module.scss';
+import { useWritePost } from 'Hooks/useWritePost';
 
 interface SelectModalProps {
-    setIsModalOpen: (open: boolean) => void;
+    setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
     ResultObject?: BlockOfPostType;
 }
 
-const FullDataModal: FC<SelectModalProps> = ({
+const ActivityModal: FC<SelectModalProps> = ({
     setIsModalOpen,
     ResultObject,
 }) => {
     const dispatch = useAppDispatch();
-    const SelectModalRef: RefObject<HTMLDivElement> = React.createRef();
+    const { TitleOfPost } = useWritePost();
 
     function deleteMode() {
         dispatch(removeBlockOfPost({ id: ResultObject?.id || 0 }));
-        closePopup(SelectModalRef, Styles.SelectModalClose, setIsModalOpen);
     }
 
     function clearMode() {
@@ -36,64 +35,28 @@ const FullDataModal: FC<SelectModalProps> = ({
                 type: ResultObject?.type || ModsOfWritePost.text,
             })
         );
-        closePopup(SelectModalRef, Styles.SelectModalClose, setIsModalOpen);
     }
 
     return (
-        <div className={Styles.SelectModal} ref={SelectModalRef}>
-            <div className={Styles.content}>
-                <>
-                    {ResultObject?.title && (
-                        <div className={Styles.Title}>{ResultObject.title}</div>
-                    )}
-
-                    <ShowResult ResultObject={ResultObject} />
-                </>
-
-                <ButtonVoid
-                    clickHandler={clearMode}
-                    title="Очистить"
-                ></ButtonVoid>
-                <ButtonVoid
-                    clickHandler={deleteMode}
-                    title="Удалить"
-                ></ButtonVoid>
-                <ButtonVoid
-                    clickHandler={() =>
-                        closePopup(
-                            SelectModalRef,
-                            Styles.SelectModalClose,
-                            setIsModalOpen
-                        )
-                    }
-                    title="Закрыть"
-                    classes={Styles.ButtonClose}
-                ></ButtonVoid>
-            </div>
-        </div>
+        <IsModal
+            setModalOpen={setIsModalOpen}
+            title={ResultObject?.title || TitleOfPost}
+        >
+            <ShowResultBlock blockData={ResultObject} />
+            <ButtonVoid
+                clickHandler={clearMode}
+                title="Очистить"
+                classes={Styles.BadButton}
+                padding={false}
+            ></ButtonVoid>
+            <ButtonVoid
+                clickHandler={deleteMode}
+                title="Удалить"
+                classes={Styles.BadButton}
+                padding={false}
+            ></ButtonVoid>
+        </IsModal>
     );
 };
 
-interface ShowResultProps {
-    ResultObject: BlockOfPostType | undefined;
-}
-
-const ShowResult: FC<ShowResultProps> = ({ ResultObject }) => {
-    return (
-        <div className={Styles.ResultBlock}>
-            {ResultObject?.type === ModsOfWritePost.text ? (
-                ResultObject?.text || 'Здесь будет результат.'
-            ) : ResultObject?.type === ModsOfWritePost.code ? (
-                <ShowCode UserCode={ResultObject.text} />
-            ) : (
-                ResultObject?.type === ModsOfWritePost.image && (
-                    <div className={Styles.image}>
-                        <ShowImage imageSrc={ResultObject.text} />
-                    </div>
-                )
-            )}
-        </div>
-    );
-};
-
-export default FullDataModal;
+export default ActivityModal;

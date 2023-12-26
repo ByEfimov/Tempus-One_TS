@@ -163,15 +163,7 @@ pre::-webkit-scrollbar {
 }
 
 .ButtonClear {
-    padding: 8px;
-    width: 100%;
-    background-color: var(--DarkTextColor);
-    border-radius: 15px;
-    color: var(--WhiteTextColor);
-    text-align: center;
-    font-size: 20px;
-    margin-top: -20px;
-    font-weight: 600;
+    background-color: var(--DarkTextColor) !important;
 }
 
 .ControlPanel {
@@ -221,4 +213,18 @@ pre::-webkit-scrollbar {
         border-radius: var(--DefaultBorderRadius);
         background-color: var(--AccentColor);
     }
+}
+
+.ShowResultBlock {
+    width: 100%;
+    min-height: 76px;
+    overflow: hidden;
+}
+
+.BadButton {
+    background-color: var(--DarkTextColor) !important;
+}
+
+.PopupButton {
+    background-color: var(--AccentColor2) !important;
 }
