@@ -1,6 +1,6 @@
 import { getDatabase, ref, set } from '@firebase/database';
 
-export function addToSubscriptionsForUser(
+export function removeSubscription(
     type: string,
     SubscribingId: string | null | undefined,
     UserId: string | null
@@ -12,13 +12,13 @@ export function addToSubscriptionsForUser(
             'users/' + UserId + '/subscriptions/users/' + SubscribingId
         );
 
-        set(subListRef, SubscribingId);
+        set(subListRef, null);
     } else if (type === 'team') {
         const subListRef = ref(
             db,
             'users/' + UserId + '/subscriptions/teams/' + SubscribingId
         );
 
-        set(subListRef, SubscribingId);
+        set(subListRef, null);
     }
 }

@@ -7,5 +7,5 @@ export type OpenUserType = {
     emailVerified: boolean;
     experience: number;
     level: number;
-    members: string[];
+    members: { UserId: string; UserRole: string }[];
 };

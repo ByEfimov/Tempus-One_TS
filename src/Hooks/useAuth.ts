@@ -10,6 +10,7 @@ export function useAuth() {
         emailVerified,
         subscriptions,
         postsLiked,
+        members,
     } = useAppSelector((state) => state.user);
 
     return {
@@ -23,5 +24,6 @@ export function useAuth() {
         UserName: name,
         UserAge: age,
         UserPostsLiked: postsLiked,
+        UserMembers: members,
     };
 }

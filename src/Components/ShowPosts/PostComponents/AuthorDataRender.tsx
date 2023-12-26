@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import Styles from '../Posts/Styles.module.scss';
-import PlusIcon from 'Assets/Icons/Post/plus-circle.svg';
 import { Post } from 'Types/TypesOfData/Post/Post';
 import { WhoWrotePost } from '../Posts/PostRender';
 import { useNavigate } from 'react-router-dom';
 import ShowLogo from 'Components/MiniComponents/ShowLogo';
 import ItsUser from 'Utils/UsersOrTeams/ItsUser';
+import SubscribeButton from 'Components/MiniComponents/SubscribeButton';
 
 interface AuthorDataRenderProps {
     post: Post;
@@ -17,7 +17,7 @@ const AuthorDataRender: FC<AuthorDataRenderProps> = ({
     WhoWrotePost,
 }) => {
     const navigate = useNavigate();
-    ItsUser(WhoWrotePost?.id);
+
     return (
         <div
             className={Styles.AuthorData}
@@ -43,9 +43,8 @@ const AuthorDataRender: FC<AuthorDataRenderProps> = ({
                     <div className={Styles.Date}>{post.PostDate}</div>
                 </div>
             </div>
-            <button className={Styles.ActiveButton}>
-                <img src={PlusIcon} alt="" />
-            </button>
+
+            <SubscribeButton WhoWrotePost={WhoWrotePost}></SubscribeButton>
         </div>
     );
 };

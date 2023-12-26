@@ -83,6 +83,7 @@
     }
     .AuthorData {
         display: flex;
+        align-items: center;
         justify-content: space-between;
         .Data {
             display: flex;
@@ -92,6 +93,7 @@
                 overflow: hidden;
                 width: 46px;
                 height: 46px;
+                background-color: var(--AccentColor2);
                 box-shadow: var(--DarkShadow);
                 border-radius: var(--DefaultBorderRadius);
             }

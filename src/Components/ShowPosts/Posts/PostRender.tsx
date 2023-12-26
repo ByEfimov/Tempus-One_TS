@@ -25,6 +25,7 @@ export interface WhoWrotePost {
     photo?: string;
     image?: string;
     id?: string;
+    members: { UserId: string; UserRole: string }[];
 }
 
 const PostRender: FC<PostRender> = ({ post }) => {

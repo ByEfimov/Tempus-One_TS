@@ -12,6 +12,7 @@ import { addNewPost } from 'Api/Posts/addNewPost';
 import { countEmptyValues } from 'Utils/countEmptyValues';
 import { addNewCountOfReposts } from 'Api/Posts/Activities/addNewCountOfRepost';
 import { useNavigate } from 'react-router-dom';
+import ShowLogo from 'Components/MiniComponents/ShowLogo';
 
 interface RepostModal {
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -50,7 +51,7 @@ const RepostModal: FC<RepostModal> = ({ setModalOpen, post }) => {
     return (
         <IsModal title="Куда отправить?" setModalOpen={setModalOpen}>
             <button onClick={repostToYou} className={Styles.RepostToYou}>
-                <img src={UserPhoto || ''} alt="" />
+                <ShowLogo ImageUrl={UserPhoto}></ShowLogo>
                 Себе
             </button>
         </IsModal>
