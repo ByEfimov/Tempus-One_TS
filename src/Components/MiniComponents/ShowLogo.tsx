@@ -1,12 +1,13 @@
 import { FC } from 'react';
 import UserIcon from 'Assets/Icons/Header/user.svg';
+import Styles from './MiniComponents.module.scss';
 
 const ShowLogo: FC<{ ImageUrl: string | undefined | null }> = ({
     ImageUrl,
 }) => {
     if (ImageUrl) {
         return (
-            <div className="Logo">
+            <div className={Styles.Logo}>
                 <img src={ImageUrl} alt="" />
             </div>
         );

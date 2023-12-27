@@ -1,6 +1,6 @@
 import { getDatabase, ref, set } from '@firebase/database';
 
-export function removeSubscription(
+export function removeSubscriptionForSub(
     type: string,
     SubscribingId: string | null | undefined,
     UserId: string | null
@@ -9,14 +9,14 @@ export function removeSubscription(
     if (type === 'user') {
         const subListRef = ref(
             db,
-            'users/' + UserId + '/subscriptions/users/' + SubscribingId
+            'users/' + SubscribingId + '/members/' + UserId
         );
 
         set(subListRef, null);
     } else if (type === 'team') {
         const subListRef = ref(
             db,
-            'users/' + UserId + '/subscriptions/teams/' + SubscribingId
+            'teams/' + SubscribingId + '/members/' + UserId
         );
 
         set(subListRef, null);

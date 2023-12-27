@@ -1,8 +1,24 @@
 .Posts {
-    margin-top: 17px;
     display: flex;
     flex-direction: column;
     gap: 7px;
+    .Filters {
+        display: flex;
+        gap: 17px;
+        padding: 17px;
+        padding-bottom: 10px;
+        .Filter {
+            padding: 5px;
+            border-radius: var(--DefaultBorderRadius);
+            padding-left: 8px;
+            box-shadow: var(--DarkShadow);
+            padding-right: 8px;
+            color: var(--WhiteTextColor);
+            font-size: 16px;
+            font-weight: 600;
+            background-color: var(--AccentColor2);
+        }
+    }
 }
 .Post {
     background-color: var(--GreyColor);

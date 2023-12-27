@@ -29,6 +29,13 @@
     }
 }
 
+.Logo {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .CustomInput {
     box-shadow: var(--DarkShadow);
     padding-left: 10px;

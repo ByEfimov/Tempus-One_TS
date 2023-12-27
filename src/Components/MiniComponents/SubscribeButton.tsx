@@ -5,8 +5,10 @@ import { FC } from 'react';
 import Styles from './MiniComponents.module.scss';
 import { WhoWrotePost } from 'Components/ShowPosts/Posts/PostRender';
 import { addToSubscriptionsForUser } from 'Api/Users/addToSubscriptionsForUser';
-import { removeSubscription } from 'Api/Users/RemoveSubscription';
+import { removeSubscriptionForUser } from 'Api/Users/RemoveSubscriptionForUser';
 import { MassageNotification } from 'Components/Notifications/Notifications';
+import { addToSubscriptionsForSub } from 'Api/Users/addToSubscriptionForSub';
+import { removeSubscriptionForSub } from 'Api/Users/RemoveSubscriptionForSub';
 
 interface SubscribeButton {
     WhoWrotePost: WhoWrotePost | null;
@@ -24,6 +26,12 @@ const SubscribeButton: FC<SubscribeButton> = ({ WhoWrotePost }) => {
         (UserSubscriptions?.teams &&
             Object.values(UserSubscriptions?.teams).some(
                 (member) => member === WhoWrotePost?.id
+            )) ||
+        (WhoWrotePost?.members &&
+            Object.values(WhoWrotePost?.members).some(
+                (member) =>
+                    member.UserId === UserId &&
+                    member.UserRole === 'Administrator'
             ));
 
     const isTeam = WhoWrotePost?.id && WhoWrotePost?.id[0] === '-';
@@ -35,9 +43,19 @@ const SubscribeButton: FC<SubscribeButton> = ({ WhoWrotePost }) => {
                 WhoWrotePost?.id,
                 UserId
             );
+            addToSubscriptionsForSub(
+                isTeam ? 'team' : 'user',
+                WhoWrotePost?.id,
+                UserId
+            );
             MassageNotification('Вы успешно подписались!');
         } else {
-            removeSubscription(
+            removeSubscriptionForUser(
+                isTeam ? 'team' : 'user',
+                WhoWrotePost?.id,
+                UserId
+            );
+            removeSubscriptionForSub(
                 isTeam ? 'team' : 'user',
                 WhoWrotePost?.id,
                 UserId

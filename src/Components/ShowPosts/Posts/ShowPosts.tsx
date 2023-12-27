@@ -7,6 +7,7 @@ import { useAppDispatch } from 'Hooks/redux-hooks';
 import PreloaderPosts from 'Components/MiniComponents/PreloaderPosts';
 import { Post } from 'Types/TypesOfData/Post/Post';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
+import FiltersPost from '../PostComponents/FiltersPosts';
 
 interface ShowPosts {
     filter?: string;
@@ -29,6 +30,7 @@ const ShowPosts: FC<ShowPosts> = ({ filter }) => {
 
     return (
         <div className={Styles.Posts}>
+            <FiltersPost setPosts={setPosts}></FiltersPost>
             {posts ? (
                 posts.map((post) => (
                     <PostRender key={post.PostId} post={post} />

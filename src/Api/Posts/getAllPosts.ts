@@ -9,11 +9,11 @@ import {
 } from 'firebase/database';
 import { Post } from 'Types/TypesOfData/Post/Post';
 
-export function getPosts(filter: string | null) {
+export function getPosts(filter: string | null | string[]) {
     const db = getDatabase();
     const postsRef = ref(db, '/posts/');
     let Posts = query(postsRef, orderByKey());
-    if (filter) {
+    if (filter && typeof filter === 'string') {
         Posts = query(postsRef, orderByChild('PostAuthorId'), equalTo(filter));
     }
 
@@ -23,14 +23,23 @@ export function getPosts(filter: string | null) {
             (snapshot) => {
                 if (snapshot.exists()) {
                     const posts = snapshot.val();
-                    const outputArray =
+
+                    const outputArray: Post[] =
                         posts &&
                         Object.keys(posts).map((key) => ({
                             ...posts[key],
                             PostId: key,
                         }));
 
-                    resolve(outputArray);
+                    const filteredData = outputArray.filter(
+                        (item) => filter?.includes(item.PostAuthorId)
+                    );
+
+                    if (filteredData.length > 0) {
+                        resolve(filteredData);
+                    } else {
+                        resolve(outputArray);
+                    }
                 } else {
                     console.error('Посты не были получены.');
                     reject(null);
