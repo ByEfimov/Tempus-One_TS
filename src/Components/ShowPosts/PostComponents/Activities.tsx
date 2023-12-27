@@ -15,12 +15,14 @@ interface ActivitiesProps {
     post: Post;
     setCommentsOpen: React.Dispatch<React.SetStateAction<boolean>>;
     setRepostModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setViewsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Activities: FC<ActivitiesProps> = ({
     post,
     setCommentsOpen,
     setRepostModalOpen,
+    setViewsModalOpen,
 }) => {
     const { UserId, UserPostsLiked, UserCanChanging } = useAuth();
     const [PostLikes, setPostLikes] = useState(post.PostLikes);
@@ -79,9 +81,16 @@ const Activities: FC<ActivitiesProps> = ({
                     <h1>{post.PostReposts}</h1>
                 </button>
             </div>
-            <button className={Styles.Shows}>
+            <button
+                onClick={(e) => {
+                    e.stopPropagation();
+                    document.body.style.overflowY = 'hidden';
+                    setViewsModalOpen(true);
+                }}
+                className={Styles.Shows}
+            >
                 <img src={EyeIcon} alt="" />
-                <h1> {post.PostShows}</h1>
+                <h1> {Object.keys(post.PostShows).length}</h1>
             </button>
         </div>
     );

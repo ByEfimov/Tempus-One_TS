@@ -14,6 +14,10 @@ import PostDataRender from '../PostComponents/PostDataRender';
 import CommentsModal from 'Components/Modals/CommentsModal/CommentsModal';
 import { PostLoadIsDone } from 'Utils/Posts/PostLoadIsDone';
 import RepostModal from 'Components/Modals/RepostModal/RepostModal';
+import { useAuth } from 'Hooks/useAuth';
+import { viewPostForPost } from 'Api/Posts/Activities/viewPost';
+import { viewPostForUser } from 'Api/Users/viewPost';
+import ViewsModal from 'Components/Modals/ViewsModal/ViewsModal';
 
 interface PostRender {
     post: Post;
@@ -32,6 +36,8 @@ const PostRender: FC<PostRender> = ({ post }) => {
     const [WhoWrotePost, setWhoWrotePost] = useState<WhoWrotePost | null>(null);
     const [CommentsOpen, setCommentsOpen] = useState(false);
     const [RepostModalOpen, setRepostModalOpen] = useState(false);
+    const [ViewsModalOpen, setViewsModalOpen] = useState(false);
+    const { UserViewings, UserId } = useAuth();
     const navigate = useNavigate();
 
     const [ImageIsLoad, setImageIsLoad] = useState(false);
@@ -60,6 +66,14 @@ const PostRender: FC<PostRender> = ({ post }) => {
             });
         }
         loadImages();
+
+        function ViewingPost() {
+            if (!UserViewings?.includes(post.PostId)) {
+                viewPostForPost(post.PostId, UserId);
+                viewPostForUser(post.PostId, UserId);
+            }
+        }
+        ViewingPost();
     }, []);
 
     if (PostLoadIsDone(WhoWrotePost, ImageIsLoad, post)) {
@@ -77,6 +91,13 @@ const PostRender: FC<PostRender> = ({ post }) => {
                         setModalOpen={setRepostModalOpen}
                     ></RepostModal>
                 )}
+                {ViewsModalOpen && (
+                    <ViewsModal
+                        post={post}
+                        setModalOpen={setViewsModalOpen}
+                    ></ViewsModal>
+                )}
+
                 <div
                     onClick={() => {
                         navigate('/Post/' + post.PostId);
@@ -107,6 +128,7 @@ const PostRender: FC<PostRender> = ({ post }) => {
                     <Activities
                         setCommentsOpen={setCommentsOpen}
                         setRepostModalOpen={setRepostModalOpen}
+                        setViewsModalOpen={setViewsModalOpen}
                         post={post}
                     />
                 </div>

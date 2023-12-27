@@ -13,6 +13,7 @@ type UserType = {
     } | null;
     members: string[] | null;
     postsLiked: Record<string, string> | null;
+    viewings: string[] | null;
 };
 
 const initialState: UserType = {
@@ -25,6 +26,7 @@ const initialState: UserType = {
     subscriptions: null,
     members: null,
     postsLiked: null,
+    viewings: null,
 };
 
 const UserSlice = createSlice({
@@ -41,6 +43,7 @@ const UserSlice = createSlice({
             state.subscriptions = action.payload.subscriptions || null;
             state.members = action.payload.members || null;
             state.postsLiked = action.payload.postsLiked || null;
+            state.viewings = action.payload.viewings || null;
         },
         setCurrentUser(
             state,

@@ -109,7 +109,10 @@ const UserData: FC<UserDataProps> = ({ OpenUser }) => {
                     </div>
                     <div className={Styles.UserMembers}>
                         <img src={UsersIcon} alt="" />
-                        {OpenUser.members.length || 0} подписчиков
+                        {(OpenUser?.members &&
+                            Object.values(OpenUser?.members).length) ||
+                            0}{' '}
+                        подписчиков
                     </div>
                     <div className={Styles.UserAge}>
                         <img src={GiftIcon} alt="" />

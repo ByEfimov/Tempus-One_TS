@@ -37,8 +37,8 @@ const WritePost = () => {
             PostComments: {},
             PostReposts: 0,
         };
-
-        if (countEmptyValues(NewPost) - 4 === 0) {
+        console.log(NewPost);
+        if (countEmptyValues(NewPost) - 4 >= 0) {
             addNewPost(NewPost);
             dispatch(removePost());
             navigate('/');

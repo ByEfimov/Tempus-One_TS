@@ -10,7 +10,7 @@ export default function ShowUserOrTeam({
     User,
 }: {
     Team?: OpenTeamType;
-    User?: OpenUserType;
+    User?: OpenUserType | null;
 }) {
     const navigate = useNavigate();
 
@@ -27,7 +27,10 @@ export default function ShowUserOrTeam({
                     <div className={Styles.Text}>
                         <div className={Styles.Title}>{User.name}</div>
                         <div className={Styles.Members}>
-                            {User.members.length | 0} подписчиков
+                            {(User?.members &&
+                                Object.values(User?.members).length) ||
+                                0}{' '}
+                            подписчиков
                         </div>
                     </div>
                 </div>

@@ -14,7 +14,7 @@ export type Post = {
     PostDate: number;
     PostId: string;
     PostLikes: number;
-    PostShows: number;
+    PostShows: string[];
     PostTitle: string;
     PostReposts: number;
     PostComments: { [key: string]: Comments };

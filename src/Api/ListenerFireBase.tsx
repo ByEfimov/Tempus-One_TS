@@ -42,6 +42,7 @@ export default function ListenerFB({ children }: ListenerFC) {
                             subscriptions: data.subscriptions,
                             members: data.members || [],
                             postsLiked: data.postsLiked || [],
+                            viewings: data.viewings || [],
                         })
                     );
                 }
