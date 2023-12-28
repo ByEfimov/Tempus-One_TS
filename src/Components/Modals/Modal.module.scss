@@ -129,6 +129,18 @@
     font-size: 20px;
 }
 
+.ButtonModal {
+    padding: 8px;
+    width: 100%;
+    background-color: var(--AccentColor2) !important;
+    border-radius: 15px;
+    box-shadow: var(--DarkShadow);
+    color: var(--WhiteTextColor);
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+
 @keyframes closeNav {
     from {
         bottom: 0px;

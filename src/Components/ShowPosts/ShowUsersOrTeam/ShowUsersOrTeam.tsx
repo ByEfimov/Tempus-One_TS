@@ -1,9 +1,9 @@
 import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
 import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
-import PlusIcon from 'Assets/Icons/Post/plus-circle.svg';
 import Styles from './Styles.module.scss';
 import { useNavigate } from 'react-router-dom';
 import ShowLogo from 'Components/MiniComponents/ShowLogo';
+import SubscribeButton from 'Components/MiniComponents/SubscribeButton';
 
 export default function ShowUserOrTeam({
     Team,
@@ -27,7 +27,7 @@ export default function ShowUserOrTeam({
                     <div className={Styles.Text}>
                         <div className={Styles.Title}>{User.name}</div>
                         <div className={Styles.Members}>
-                            {(User?.members &&
+                            {(User.members &&
                                 Object.values(User?.members).length) ||
                                 0}{' '}
                             подписчиков
@@ -35,9 +35,7 @@ export default function ShowUserOrTeam({
                     </div>
                 </div>
                 <div className={Styles.Activity}>
-                    <button className={Styles.SubButton}>
-                        <img src={PlusIcon} alt="" />
-                    </button>
+                    <SubscribeButton WhoWrotePost={User}></SubscribeButton>
                 </div>
             </div>
         );
@@ -54,14 +52,15 @@ export default function ShowUserOrTeam({
                     <div className={Styles.Text}>
                         <div className={Styles.Title}>{Team.title}</div>
                         <div className={Styles.Members}>
-                            {Object.values(Team.members).length | 0} подписчиков
+                            {(Team.members &&
+                                Object.values(Team.members).length) ||
+                                0}{' '}
+                            подписчиков
                         </div>
                     </div>
                 </div>
                 <div className={Styles.Activity}>
-                    <button className={Styles.SubButton}>
-                        <img src={PlusIcon} alt="" />
-                    </button>
+                    <SubscribeButton WhoWrotePost={Team}></SubscribeButton>
                 </div>
             </div>
         );

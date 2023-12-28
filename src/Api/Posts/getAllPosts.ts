@@ -9,12 +9,25 @@ import {
 } from 'firebase/database';
 import { Post } from 'Types/TypesOfData/Post/Post';
 
-export function getPosts(filter: string | null | string[]) {
+export function getPosts(
+    filter:
+        | string
+        | null
+        | string[]
+        | { orderBy: string; equalTo: string | undefined }
+) {
     const db = getDatabase();
     const postsRef = ref(db, '/posts/');
     let Posts = query(postsRef, orderByKey());
     if (filter && typeof filter === 'string') {
         Posts = query(postsRef, orderByChild('PostAuthorId'), equalTo(filter));
+    }
+    if (filter && typeof filter === 'object' && !Array.isArray(filter)) {
+        Posts = query(
+            postsRef,
+            orderByChild(filter.orderBy),
+            equalTo(filter.equalTo || '')
+        );
     }
 
     return new Promise<Post[]>((resolve, reject) => {
@@ -32,7 +45,9 @@ export function getPosts(filter: string | null | string[]) {
                         }));
 
                     const filteredData = outputArray.filter(
-                        (item) => filter?.includes(item.PostAuthorId)
+                        (item) =>
+                            Array.isArray(filter) &&
+                            filter?.includes(item.PostAuthorId)
                     );
 
                     if (filteredData.length > 0) {

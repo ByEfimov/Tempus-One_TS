@@ -15,14 +15,16 @@ import ShowPosts from 'Components/ShowPosts/Posts/ShowPosts';
 import UserIcon from 'Assets/Icons/User/user.svg';
 import GiftIcon from 'Assets/Icons/User/gift.svg';
 import UsersIcon from 'Assets/Icons/User/users.svg';
-import PlusIcon from 'Assets/Icons/Post/plus-circle.svg';
 import PreloaderPosts from 'Components/MiniComponents/PreloaderPosts';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
+import SubscribeButton from 'Components/MiniComponents/SubscribeButton';
+import SettingsUserModal from 'Components/Modals/SettingsUserModal/SettingsUserModal';
 
 export default function UserPage() {
     const { id } = useParams();
     const auth = getAuth();
     const [OpenUser, setOpenUser] = useState<OpenUserType | null>(null);
+    const [settingsModalOpen, setSettingsModalOpen] = useState(false);
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { UserId, UserEmailVerified } = useAuth();
@@ -49,12 +51,18 @@ export default function UserPage() {
     if (OpenUser) {
         return (
             <>
+                {settingsModalOpen && (
+                    <SettingsUserModal
+                        setModalOpen={setSettingsModalOpen}
+                    ></SettingsUserModal>
+                )}
+
                 <UserData OpenUser={OpenUser} />
 
                 {OpenUser.id === UserId && (
                     <ButtonVoid
                         title="Настройки"
-                        clickHandler={() => console.log('da')}
+                        clickHandler={() => setSettingsModalOpen(true)}
                     ></ButtonVoid>
                 )}
                 {OpenUser.id === UserId && !UserEmailVerified && (
@@ -120,9 +128,7 @@ const UserData: FC<UserDataProps> = ({ OpenUser }) => {
                     </div>
                 </div>
                 <div className={Styles.ActiveButton}>
-                    <button className={Styles.SubButton}>
-                        <img src={PlusIcon} alt="" />
-                    </button>
+                    <SubscribeButton WhoWrotePost={OpenUser}></SubscribeButton>
                 </div>
             </div>
         </div>

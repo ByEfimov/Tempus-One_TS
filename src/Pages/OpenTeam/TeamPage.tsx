@@ -8,6 +8,7 @@ import { useAppDispatch } from 'Hooks/redux-hooks';
 import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
 import FakeOpenUser from 'Components/FakeData/FakeOpenUser';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
+import SubscribeButton from 'Components/MiniComponents/SubscribeButton';
 
 export default function TeamPage() {
     const { id } = useParams();
@@ -29,6 +30,7 @@ export default function TeamPage() {
                 <h1 style={{ marginTop: '100px' }}>
                     <img src={OpenTeam.image}></img> {OpenTeam.title}
                 </h1>
+                <SubscribeButton WhoWrotePost={OpenTeam}></SubscribeButton>
                 <ShowPosts filter={OpenTeam.id}></ShowPosts>
             </>
         );

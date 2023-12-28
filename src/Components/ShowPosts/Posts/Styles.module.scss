@@ -5,6 +5,7 @@
     .Filters {
         display: flex;
         gap: 17px;
+        overflow-x: auto;
         padding: 17px;
         padding-bottom: 10px;
         .Filter {

@@ -1,19 +1,14 @@
 import Styles from './Header.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from 'Hooks/useAuth';
-import { LegacyRef, useEffect, useState } from 'react';
+import { useState } from 'react';
 import NavPanel from './NavPanel';
 import UserIcon from 'Assets/Icons/Header/user.svg';
-import SearchIcon from 'Assets/Icons/Header/search.svg';
-import SlidersIcon from 'Assets/Icons/Header/sliders.svg';
 import { useHeader } from 'Hooks/useHeader';
-import {
-    setInputSearchBar,
-    setTypeOfButtonHeader,
-} from 'Store/slices/Header/HeaderSlice';
+import { setTypeOfButtonHeader } from 'Store/slices/Header/HeaderSlice';
 import classNames from 'classnames';
 import { useAppDispatch } from 'Hooks/redux-hooks';
-import React from 'react';
+import SearchBarComp from './SearchBar';
 import {
     TypesOfHeader,
     TypesOfHeaderButton,
@@ -22,24 +17,9 @@ import {
 export default function Header() {
     const [openNavPanel, setOpenNavPanel] = useState(false);
     const { UserIsAuth, UserPhoto, UserId } = useAuth();
-    const {
-        HeaderTitle,
-        HeaderType,
-        HeaderSearchBar,
-        HeaderTypeOfButton,
-        HeaderAnim,
-    } = useHeader();
+    const { HeaderTitle, HeaderType, HeaderTypeOfButton } = useHeader();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const SearchBar: LegacyRef<HTMLDivElement> = React.createRef();
-
-    useEffect(() => {
-        if (HeaderAnim === 'Open') {
-            SearchBar.current?.classList.toggle(Styles.openSearchBar);
-        } else {
-            SearchBar.current?.classList.toggle(Styles.closeSearchBar);
-        }
-    }, [HeaderAnim]);
 
     function ClickActiveButton() {
         if (
@@ -117,27 +97,7 @@ export default function Header() {
                     </button>
                 </div>
                 {HeaderType === TypesOfHeader.WithSearchBar && (
-                    <div className={Styles.SearchBar} ref={SearchBar}>
-                        <button className={Styles.SearchIcon}>
-                            <img src={SearchIcon} alt="" />
-                        </button>
-                        <input
-                            onChange={(e) =>
-                                dispatch(
-                                    setInputSearchBar({
-                                        SearchBar: e.target.value,
-                                    })
-                                )
-                            }
-                            type="text"
-                            placeholder="Поиск"
-                            className={Styles.Input}
-                            value={HeaderSearchBar}
-                        />
-                        <button className={Styles.SlidersIcon}>
-                            <img src={SlidersIcon} alt="" />
-                        </button>
-                    </div>
+                    <SearchBarComp></SearchBarComp>
                 )}
             </header>
         </>

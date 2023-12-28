@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Styles from '../Posts/Styles.module.scss';
 import { Post } from 'Types/TypesOfData/Post/Post';
 import { getPosts } from 'Api/Posts/getAllPosts';
@@ -6,29 +6,48 @@ import { setLastPostKey } from 'Store/slices/PostsSlice';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';
+import { useHeader } from 'Hooks/useHeader';
 
 interface FiltersProps {
     setPosts: React.Dispatch<React.SetStateAction<Post[] | null>>;
+    filter?: string;
 }
 
-const FiltersPost: FC<FiltersProps> = ({ setPosts }) => {
-    const [filter, setFilter] = useState<string | string[] | undefined | null>(
-        ''
+const FiltersPost: FC<FiltersProps> = ({ setPosts, filter }) => {
+    const [Filter, setFilter] = useState<string | string[] | undefined | null>(
+        filter
     );
     const { UserSubscriptions, UserId } = useAuth();
+    const { HeaderSearchBar } = useHeader();
     const dispatch = useAppDispatch();
 
-    function getPostsDefault() {
+    function getPostsDefault(
+        filter:
+            | string
+            | undefined
+            | null
+            | string[]
+            | { orderBy: string; equalTo: string | undefined }
+    ) {
         getPosts(filter || null)
             .then((posts) => {
                 setPosts(posts);
                 dispatch(setLastPostKey(Object.keys(posts).pop()));
-                console.log('get');
             })
             .catch(() => {
                 ErrorNotification('Посты не найдены.');
             });
     }
+
+    useEffect(() => {
+        getPostsDefault(Filter);
+    }, [Filter]);
+
+    useEffect(() => {
+        if (HeaderSearchBar !== '') {
+            getPostsDefault({ orderBy: 'PostTitle', equalTo: HeaderSearchBar });
+        }
+    }, [HeaderSearchBar]);
 
     const teams =
         (UserSubscriptions?.teams && Object.values(UserSubscriptions?.teams)) ||
@@ -44,7 +63,7 @@ const FiltersPost: FC<FiltersProps> = ({ setPosts }) => {
             <button
                 className={Styles.Filter}
                 onClick={() => {
-                    setFilter(''), getPostsDefault();
+                    setFilter('');
                 }}
             >
                 Все посты
@@ -52,7 +71,7 @@ const FiltersPost: FC<FiltersProps> = ({ setPosts }) => {
             <button
                 className={Styles.Filter}
                 onClick={() => {
-                    setFilter(FilterInteresting), getPostsDefault();
+                    setFilter(FilterInteresting);
                 }}
             >
                 Интересное
@@ -60,7 +79,7 @@ const FiltersPost: FC<FiltersProps> = ({ setPosts }) => {
             <button
                 className={Styles.Filter}
                 onClick={() => {
-                    setFilter(UserId), getPostsDefault();
+                    setFilter(UserId);
                 }}
             >
                 Только Мои
