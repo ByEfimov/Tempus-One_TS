@@ -17,9 +17,10 @@ import PostForWhom from './Components/PostForWhom';
 import { NewPostType } from 'Types/TypesOfData/Post/NewPostType';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
 import SurveyMode from './ModsOfWrite/SurveyMode';
+import changeUserData from 'Api/Users/changeUserData';
 
 const WritePost = () => {
-    const { UserCanChanging, UserIsAuth } = useAuth();
+    const { UserCanChanging, UserIsAuth, UserExperience, UserId } = useAuth();
     const { TitleOfPost, selectMode, BlocksOfPost, postForWhom } =
         useWritePost();
     const dispatch = useAppDispatch();
@@ -37,8 +38,9 @@ const WritePost = () => {
             PostComments: {},
             PostReposts: 0,
         };
-        console.log(NewPost);
+
         if (countEmptyValues(NewPost) - 4 >= 0) {
+            changeUserData('experience', UserExperience + 40, UserId);
             addNewPost(NewPost);
             dispatch(removePost());
             navigate('/');

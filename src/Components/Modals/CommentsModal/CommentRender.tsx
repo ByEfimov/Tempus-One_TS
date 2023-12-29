@@ -6,6 +6,7 @@ import { Comments } from 'Types/TypesOfData/Post/Comments';
 import ShowLogo from 'Components/MiniComponents/ShowLogo';
 import FakeComment from 'Components/FakeData/FakeComment';
 import { useNavigate } from 'react-router-dom';
+import { CloseModal } from '../isModal';
 
 interface comment {
     comment: Comments;
@@ -26,7 +27,10 @@ const CommentRender: FC<comment> = ({ comment }) => {
             <div className={Styles.comment}>
                 <div
                     className={Styles.author}
-                    onClick={() => navigate('/User/' + commentator.id)}
+                    onClick={() => {
+                        navigate('/User/' + commentator.id);
+                        CloseModal();
+                    }}
                 >
                     <div className={Styles.Photo}>
                         <ShowLogo ImageUrl={commentator.photo}></ShowLogo>

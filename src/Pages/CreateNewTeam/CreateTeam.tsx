@@ -8,9 +8,10 @@ import ButtonVoid from 'Components/MiniComponents/button';
 import { addNewTeam } from 'Api/Teams/addNewTeam';
 import { addToSubscriptionsForUser } from 'Api/Users/addToSubscriptionsForUser';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
+import changeUserData from 'Api/Users/changeUserData';
 
 const CreateTeam = () => {
-    const { UserCanChanging, UserId, UserIsAuth } = useAuth();
+    const { UserCanChanging, UserId, UserIsAuth, UserExperience } = useAuth();
     const navigate = useNavigate();
 
     const [Title, setTitle] = useState('');
@@ -50,6 +51,7 @@ const CreateTeam = () => {
             };
             addNewTeam(NewTeam).then((teamId) => {
                 addToSubscriptionsForUser('team', teamId, UserId);
+                changeUserData('experience', UserExperience + 80, UserId);
                 clearInputs();
                 navigate('/');
             });

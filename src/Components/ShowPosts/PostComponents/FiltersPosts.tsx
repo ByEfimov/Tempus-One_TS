@@ -11,9 +11,10 @@ import { useHeader } from 'Hooks/useHeader';
 interface FiltersProps {
     setPosts: React.Dispatch<React.SetStateAction<Post[] | null>>;
     filter?: string;
+    filterIsOpen: boolean;
 }
 
-const FiltersPost: FC<FiltersProps> = ({ setPosts, filter }) => {
+const FiltersPost: FC<FiltersProps> = ({ setPosts, filter, filterIsOpen }) => {
     const [Filter, setFilter] = useState<string | string[] | undefined | null>(
         filter
     );
@@ -59,32 +60,34 @@ const FiltersPost: FC<FiltersProps> = ({ setPosts, filter }) => {
         UserSubscriptions?.users) && [...teams, ...users];
 
     return (
-        <div className={Styles.Filters}>
-            <button
-                className={Styles.Filter}
-                onClick={() => {
-                    setFilter('');
-                }}
-            >
-                Все посты
-            </button>
-            <button
-                className={Styles.Filter}
-                onClick={() => {
-                    setFilter(FilterInteresting);
-                }}
-            >
-                Интересное
-            </button>
-            <button
-                className={Styles.Filter}
-                onClick={() => {
-                    setFilter(UserId);
-                }}
-            >
-                Только Мои
-            </button>
-        </div>
+        filterIsOpen && (
+            <div className={Styles.Filters}>
+                <button
+                    className={Styles.Filter}
+                    onClick={() => {
+                        setFilter('');
+                    }}
+                >
+                    Все посты
+                </button>
+                <button
+                    className={Styles.Filter}
+                    onClick={() => {
+                        setFilter(FilterInteresting);
+                    }}
+                >
+                    Интересное
+                </button>
+                <button
+                    className={Styles.Filter}
+                    onClick={() => {
+                        setFilter(UserId);
+                    }}
+                >
+                    Только Мои
+                </button>
+            </div>
+        )
     );
 };
 export default FiltersPost;

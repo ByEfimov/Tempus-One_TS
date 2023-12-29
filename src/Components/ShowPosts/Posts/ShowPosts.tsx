@@ -7,20 +7,26 @@ import FiltersPost from '../PostComponents/FiltersPosts';
 
 interface ShowPosts {
     filter?: string;
+    filterIsOpen?: boolean;
 }
 
-const ShowPosts: FC<ShowPosts> = ({ filter }) => {
+const ShowPosts: FC<ShowPosts> = ({ filter, filterIsOpen = false }) => {
     const [posts, setPosts] = useState<Post[] | null>(null);
 
     return (
         <div className={Styles.Posts}>
-            <FiltersPost setPosts={setPosts} filter={filter}></FiltersPost>
+            <FiltersPost
+                setPosts={setPosts}
+                filter={filter}
+                filterIsOpen={filterIsOpen}
+            />
+
             {posts ? (
                 posts.map((post) => (
                     <PostRender key={post.PostId} post={post} />
                 ))
             ) : (
-                <PreloaderPosts></PreloaderPosts>
+                <PreloaderPosts />
             )}
         </div>
     );

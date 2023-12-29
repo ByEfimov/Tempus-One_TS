@@ -9,13 +9,14 @@ import { removeSubscriptionForUser } from 'Api/Users/RemoveSubscriptionForUser';
 import { MassageNotification } from 'Components/Notifications/Notifications';
 import { addToSubscriptionsForSub } from 'Api/Users/addToSubscriptionForSub';
 import { removeSubscriptionForSub } from 'Api/Users/RemoveSubscriptionForSub';
+import changeUserData from 'Api/Users/changeUserData';
 
 interface SubscribeButton {
     WhoWrotePost: WhoWrotePost | null;
 }
 
 const SubscribeButton: FC<SubscribeButton> = ({ WhoWrotePost }) => {
-    const { UserId, UserSubscriptions } = useAuth();
+    const { UserId, UserSubscriptions, UserExperience } = useAuth();
 
     const isMember =
         WhoWrotePost?.id === UserId ||
@@ -48,6 +49,7 @@ const SubscribeButton: FC<SubscribeButton> = ({ WhoWrotePost }) => {
                 WhoWrotePost?.id,
                 UserId
             );
+            changeUserData('experience', UserExperience + 10, UserId);
             MassageNotification('Вы успешно подписались!');
         } else {
             removeSubscriptionForUser(
@@ -60,6 +62,7 @@ const SubscribeButton: FC<SubscribeButton> = ({ WhoWrotePost }) => {
                 WhoWrotePost?.id,
                 UserId
             );
+            changeUserData('experience', UserExperience - 10, UserId);
             MassageNotification('Вы успешно отписались!');
         }
     }

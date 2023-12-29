@@ -19,6 +19,7 @@ import PreloaderPosts from 'Components/MiniComponents/PreloaderPosts';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
 import SubscribeButton from 'Components/MiniComponents/SubscribeButton';
 import SettingsUserModal from 'Components/Modals/SettingsUserModal/SettingsUserModal';
+import MaxXpToNextLevel from 'Utils/UsersOrTeams/MaxXpToNextLevel';
 
 export default function UserPage() {
     const { id } = useParams();
@@ -106,7 +107,13 @@ const UserData: FC<UserDataProps> = ({ OpenUser }) => {
                 <div className={Styles.UserPhoto}>
                     <img src={OpenUser.photo || UserIcon} alt="UserPhoto" />
                 </div>
-                <div className={Styles.UserLevel}>{OpenUser.level}</div>
+                <div className={Styles.UserLevel}>
+                    {OpenUser.level}
+                    <progress
+                        value={OpenUser.experience}
+                        max={MaxXpToNextLevel(OpenUser.level)}
+                    ></progress>
+                </div>
             </div>
 
             <div className={Styles.UserTexts}>

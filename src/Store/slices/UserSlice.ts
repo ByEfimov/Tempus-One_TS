@@ -14,6 +14,8 @@ type UserType = {
     members: string[] | null;
     postsLiked: Record<string, string> | null;
     viewings: string[] | null;
+    experience: number | null;
+    level: number | null;
 };
 
 const initialState: UserType = {
@@ -27,6 +29,8 @@ const initialState: UserType = {
     members: null,
     postsLiked: null,
     viewings: null,
+    experience: null,
+    level: null,
 };
 
 const UserSlice = createSlice({
@@ -44,6 +48,8 @@ const UserSlice = createSlice({
             state.members = action.payload.members || null;
             state.postsLiked = action.payload.postsLiked || null;
             state.viewings = action.payload.viewings || null;
+            state.experience = action.payload.experience || null;
+            state.level = action.payload.level || null;
         },
         setCurrentUser(
             state,
@@ -62,6 +68,7 @@ const UserSlice = createSlice({
             state.subscriptions = null;
             state.members = null;
             state.postsLiked = null;
+            state.experience = null;
         },
     },
 });

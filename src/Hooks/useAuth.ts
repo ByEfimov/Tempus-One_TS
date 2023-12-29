@@ -12,6 +12,8 @@ export function useAuth() {
         postsLiked,
         members,
         viewings,
+        experience,
+        level,
     } = useAppSelector((state) => state.user);
 
     return {
@@ -27,5 +29,7 @@ export function useAuth() {
         UserPostsLiked: postsLiked,
         UserMembers: members,
         UserViewings: viewings,
+        UserExperience: experience || 0,
+        UserLevel: level || 1,
     };
 }

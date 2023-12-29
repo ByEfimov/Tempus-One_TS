@@ -23,14 +23,28 @@
             }
         }
         .UserLevel {
-            width: 150px;
-            height: 150px;
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
+            width: 150px;
             color: var(--AccentColor);
             font-size: 40px;
             font-weight: 700;
+            progress {
+                transition: all 0.5s;
+                width: 150px;
+                height: 20px;
+            }
+            progress::-webkit-progress-bar {
+                background-color: var(--AccentColor2);
+                overflow: hidden;
+                border-radius: var(--DefaultBorderRadius);
+            }
+            progress::-webkit-progress-value {
+                transition: all 0.5s ease-in-out;
+                background-color: var(--AccentColor);
+            }
         }
     }
     .UserTexts {
@@ -82,7 +96,7 @@
     margin-top: -17px;
     padding: 8px;
     width: 100%;
-    background-color: var(--DarkTextColor);
+    background-color: var(--DarkTextColor) !important;
     border-radius: 15px;
     color: var(--WhiteTextColor);
     text-align: center;

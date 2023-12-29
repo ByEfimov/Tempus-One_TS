@@ -2,7 +2,7 @@ import { getDatabase, ref, set } from '@firebase/database';
 
 export default function changeUserData(
     type: string,
-    data: string,
+    data: string | number,
     UserId: string | null
 ) {
     const db = getDatabase();
