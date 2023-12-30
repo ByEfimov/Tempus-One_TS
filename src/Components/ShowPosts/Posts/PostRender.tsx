@@ -110,6 +110,7 @@ const PostRender: FC<PostRender> = ({ post }) => {
                         <div className={Styles.BlocksData}>
                             <BlocksRender
                                 Blocks={post.PostDataBlocks}
+                                postId={post.PostId}
                             ></BlocksRender>
                         </div>
                     )}

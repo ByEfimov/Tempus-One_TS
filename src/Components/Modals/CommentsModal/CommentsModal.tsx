@@ -7,6 +7,7 @@ import CommentRender from './CommentRender';
 import { Comments } from 'Types/TypesOfData/Post/Comments';
 import { useAuth } from 'Hooks/useAuth';
 import { addNewComment } from 'Api/Posts/Activities/addNewComment';
+import { getUnixTime } from 'date-fns';
 
 interface CommentsModalProps {
     PostId: string;
@@ -31,12 +32,13 @@ const CommentsModal: FC<CommentsModalProps> = ({ setModalOpen, PostId }) => {
     }, []);
 
     const sendComment = () => {
-        const ToDay = new Date().getTime();
+        const currentDate = new Date();
+        const currentUnixTime = getUnixTime(currentDate);
         if (commentText) {
             const NewComment = {
                 CommentatorId: UserId,
                 CommentText: commentText,
-                CommentDate: ToDay,
+                CommentDate: currentUnixTime,
             };
             addNewComment(NewComment, PostId);
             getCommentsThis();

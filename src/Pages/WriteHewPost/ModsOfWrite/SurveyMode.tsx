@@ -24,7 +24,11 @@ const SurveyMode = () => {
     function addNewVariant() {
         if (newVariant) {
             dispatch(
-                addNewVariantForSurvey({ BlockId: selectMode.id, newVariant })
+                addNewVariantForSurvey({
+                    BlockId: selectMode.id,
+                    newVariant,
+                    selected: 0,
+                })
             );
             setNewVariant('');
         }

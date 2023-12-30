@@ -7,12 +7,15 @@ import Styles from '../Posts/Styles.module.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
+import ShowImage from './ShowImage';
+import ShowSurvey from './ShowSurvey';
 
 interface BlocksRender {
     Blocks: PostBlock[];
+    postId: string;
 }
 
-const BlocksRender: FC<BlocksRender> = ({ Blocks }) => {
+const BlocksRender: FC<BlocksRender> = ({ Blocks, postId }) => {
     return (
         <Swiper
             spaceBetween={20}
@@ -32,7 +35,9 @@ const BlocksRender: FC<BlocksRender> = ({ Blocks }) => {
                         <SwiperSlide key={block.id}>
                             {block.type === ModsOfWritePost.image ? (
                                 <div className={Styles.ImageBlock}>
-                                    <img src={block.text}></img>
+                                    <ShowImage
+                                        imageSrc={block.text}
+                                    ></ShowImage>
                                 </div>
                             ) : block.type === ModsOfWritePost.code ? (
                                 <div
@@ -42,21 +47,10 @@ const BlocksRender: FC<BlocksRender> = ({ Blocks }) => {
                                     <ShowCode UserCode={block.text}></ShowCode>
                                 </div>
                             ) : (
-                                <div className={Styles.SurveyMode}>
-                                    <div className={Styles.title}>
-                                        {block.title}
-                                    </div>
-                                    <div className={Styles.variants}>
-                                        {block.variants?.map((variant) => (
-                                            <div
-                                                className={Styles.variant}
-                                                key={variant.id}
-                                            >
-                                                {variant.text}
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
+                                <ShowSurvey
+                                    postId={postId}
+                                    block={block}
+                                ></ShowSurvey>
                             )}
                         </SwiperSlide>
                     );

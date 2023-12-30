@@ -31,6 +31,7 @@ const WritePostSlice = createSlice({
             state.BlocksOfPost[action.payload.BlockId].variants?.push({
                 id: state.BlocksOfPost[action.payload.BlockId].variants?.length,
                 text: action.payload.newVariant,
+                selected: action.payload.selected,
             });
         },
         removeVariantForSurvey(state, action) {

@@ -45,6 +45,7 @@ export default function ListenerFB({ children }: ListenerFC) {
                             viewings: data.viewings || [],
                             experience: data.experience || 0,
                             level: data.level | 0,
+                            selectedVariants: data.selectedVariants,
                         })
                     );
                 }

@@ -3,7 +3,7 @@ export type BlockOfPostType = {
     id: number;
     type: string;
     title?: string;
-    variants?: { id: number | undefined; text: string }[];
+    variants?: { id: number | undefined; text: string; selected?: number }[];
 };
 export type SelectModeType = {
     type: string;

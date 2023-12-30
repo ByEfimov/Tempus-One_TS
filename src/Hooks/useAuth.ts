@@ -14,6 +14,7 @@ export function useAuth() {
         viewings,
         experience,
         level,
+        selectedVariants,
     } = useAppSelector((state) => state.user);
 
     return {
@@ -31,5 +32,6 @@ export function useAuth() {
         UserViewings: viewings,
         UserExperience: experience || 0,
         UserLevel: level || 1,
+        UserSelectedVariants: selectedVariants,
     };
 }

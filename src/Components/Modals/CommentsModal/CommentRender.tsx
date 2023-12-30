@@ -7,6 +7,7 @@ import ShowLogo from 'Components/MiniComponents/ShowLogo';
 import FakeComment from 'Components/FakeData/FakeComment';
 import { useNavigate } from 'react-router-dom';
 import { CloseModal } from '../isModal';
+import formatTimeAgo from 'Utils/Posts/FormatTimeAgo';
 
 interface comment {
     comment: Comments;
@@ -40,7 +41,9 @@ const CommentRender: FC<comment> = ({ comment }) => {
                         <div className={Styles.commentText}>
                             {comment.CommentText}
                         </div>
-                        <div className={Styles.date}>{comment.CommentDate}</div>
+                        <div className={Styles.date}>
+                            {formatTimeAgo(comment.CommentDate)}
+                        </div>
                     </div>
                 </div>
             </div>

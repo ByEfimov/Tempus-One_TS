@@ -13,6 +13,7 @@ import { countEmptyValues } from 'Utils/countEmptyValues';
 import { addNewCountOfReposts } from 'Api/Posts/Activities/addNewCountOfRepost';
 import { useNavigate } from 'react-router-dom';
 import ShowLogo from 'Components/MiniComponents/ShowLogo';
+import { getUnixTime } from 'date-fns';
 
 interface RepostModal {
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,12 +25,14 @@ const RepostModal: FC<RepostModal> = ({ setModalOpen, post }) => {
     const navigate = useNavigate();
 
     function repostToYou() {
-        const ToDay = new Date().getTime();
+        const currentDate = new Date();
+        const currentUnixTime = getUnixTime(currentDate);
+
         const NewPost: NewPostType = {
             ...post,
             PostAuthorId: UserId,
             PostId: null,
-            PostDate: ToDay,
+            PostDate: currentUnixTime,
             PostLikes: 0,
             PostShows: 1,
             PostComments: {},

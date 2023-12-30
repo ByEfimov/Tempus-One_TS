@@ -18,6 +18,7 @@ import { NewPostType } from 'Types/TypesOfData/Post/NewPostType';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
 import SurveyMode from './ModsOfWrite/SurveyMode';
 import changeUserData from 'Api/Users/changeUserData';
+import { getUnixTime } from 'date-fns';
 
 const WritePost = () => {
     const { UserCanChanging, UserIsAuth, UserExperience, UserId } = useAuth();
@@ -27,12 +28,14 @@ const WritePost = () => {
     const navigate = useNavigate();
 
     function sendNewPost() {
-        const ToDay = new Date().getTime();
+        const currentDate = new Date();
+        const currentUnixTime = getUnixTime(currentDate);
+
         const NewPost: NewPostType = {
             PostDataBlocks: BlocksOfPost,
             PostTitle: TitleOfPost,
             PostAuthorId: postForWhom,
-            PostDate: ToDay,
+            PostDate: currentUnixTime,
             PostLikes: 0,
             PostShows: 1,
             PostComments: {},
