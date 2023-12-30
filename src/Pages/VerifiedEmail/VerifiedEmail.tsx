@@ -3,7 +3,7 @@ import ButtonVoid from 'Components/MiniComponents/button';
 import { useAuth } from 'Hooks/useAuth';
 import { getAuth, sendEmailVerification } from 'firebase/auth';
 import Styles from './Styles.module.scss';
-import { getCurrentUserData } from 'Api/Users/getCurrentUserData';
+import { getCurrentUserData } from 'Api/Users/getData/getCurrentUserData';
 import { getDatabase, ref, set } from '@firebase/database';
 import { MassageNotification } from 'Components/Notifications/Notifications';
 

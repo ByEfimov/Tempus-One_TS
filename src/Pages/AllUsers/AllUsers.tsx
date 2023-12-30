@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getAllUsers } from 'Api/Users/getAllUsers';
+import { getAllUsers } from 'Api/Users/getData/getAllUsers';
 import PreloaderUsers from 'Components/MiniComponents/PreloaderUsers';
 import Styles from './Styles.module.scss';
 import ShowUserOrTeam from 'Components/ShowPosts/ShowUsersOrTeam/ShowUsersOrTeam';

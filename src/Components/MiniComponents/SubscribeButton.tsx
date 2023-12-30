@@ -4,66 +4,43 @@ import { useAuth } from 'Hooks/useAuth';
 import { FC } from 'react';
 import Styles from './MiniComponents.module.scss';
 import { WhoWrotePost } from 'Components/ShowPosts/Posts/PostRender';
-import { addToSubscriptionsForUser } from 'Api/Users/addToSubscriptionsForUser';
-import { removeSubscriptionForUser } from 'Api/Users/RemoveSubscriptionForUser';
-import { MassageNotification } from 'Components/Notifications/Notifications';
-import { addToSubscriptionsForSub } from 'Api/Users/addToSubscriptionForSub';
-import { removeSubscriptionForSub } from 'Api/Users/RemoveSubscriptionForSub';
+import { Subscription } from 'Api/Users/Interaction/Subscription';
+import {
+    ErrorNotification,
+    MassageNotification,
+} from 'Components/Notifications/Notifications';
 import changeUserData from 'Api/Users/changeUserData';
+import { itsMember } from 'Utils/UsersOrTeams/istMember';
 
 interface SubscribeButton {
     WhoWrotePost: WhoWrotePost | null;
 }
 
 const SubscribeButton: FC<SubscribeButton> = ({ WhoWrotePost }) => {
-    const { UserId, UserSubscriptions, UserExperience } = useAuth();
+    const { UserId, UserSubscriptions, UserExperience, UserIsAuth } = useAuth();
 
-    const isMember =
-        WhoWrotePost?.id === UserId ||
-        (UserSubscriptions?.users &&
-            Object.values(UserSubscriptions?.users).some(
-                (member) => member === WhoWrotePost?.id
-            )) ||
-        (UserSubscriptions?.teams &&
-            Object.values(UserSubscriptions?.teams).some(
-                (member) => member === WhoWrotePost?.id
-            )) ||
-        (WhoWrotePost?.members &&
-            Object.values(WhoWrotePost?.members).some(
-                (member) =>
-                    member.UserId === UserId &&
-                    member.UserRole === 'Administrator'
-            ));
-
+    const isMember = itsMember(WhoWrotePost, UserId, UserSubscriptions);
     const isTeam = WhoWrotePost?.id && WhoWrotePost?.id[0] === '-';
 
     function subbing() {
-        if (!isMember) {
-            addToSubscriptionsForUser(
+        if (UserIsAuth) {
+            const message = isMember
+                ? 'Вы успешно отписались!'
+                : 'Вы успешно подписались';
+
+            const NewXp = isMember ? UserExperience - 10 : UserExperience + 10;
+
+            Subscription(
                 isTeam ? 'team' : 'user',
                 WhoWrotePost?.id,
-                UserId
+                UserId,
+                isMember ? true : false
             );
-            addToSubscriptionsForSub(
-                isTeam ? 'team' : 'user',
-                WhoWrotePost?.id,
-                UserId
-            );
-            changeUserData('experience', UserExperience + 10, UserId);
-            MassageNotification('Вы успешно подписались!');
+
+            changeUserData('experience', NewXp, UserId);
+            MassageNotification(message);
         } else {
-            removeSubscriptionForUser(
-                isTeam ? 'team' : 'user',
-                WhoWrotePost?.id,
-                UserId
-            );
-            removeSubscriptionForSub(
-                isTeam ? 'team' : 'user',
-                WhoWrotePost?.id,
-                UserId
-            );
-            changeUserData('experience', UserExperience - 10, UserId);
-            MassageNotification('Вы успешно отписались!');
+            ErrorNotification('Нужно войти в аккаунт.');
         }
     }
 

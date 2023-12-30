@@ -1,4 +1,4 @@
-import LevelUP from 'Api/Users/LevelUp';
+import LevelUP from 'Api/Users/Level/LevelUp';
 import { MassageNotification } from 'Components/Notifications/Notifications';
 import { useAuth } from 'Hooks/useAuth';
 import MaxXpToNextLevel from 'Utils/UsersOrTeams/MaxXpToNextLevel';

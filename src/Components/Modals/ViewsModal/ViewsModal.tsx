@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { IsModal } from '../isModal';
 import { Post } from 'Types/TypesOfData/Post/Post';
 import ShowUserOrTeam from 'Components/ShowPosts/ShowUsersOrTeam/ShowUsersOrTeam';
-import { getUserFromId } from 'Api/Users/getUserDataFromId';
+import { getUserFromId } from 'Api/Users/getData/getUserDataFromId';
 import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
 
 interface ViewsModal {

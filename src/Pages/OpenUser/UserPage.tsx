@@ -6,7 +6,7 @@ import { useAppDispatch } from 'Hooks/redux-hooks';
 import { removeUser } from 'Store/slices/UserSlice';
 import ButtonVoid from 'Components/MiniComponents/button';
 import { FC, useEffect, useState } from 'react';
-import { getUserFromId } from 'Api/Users/getUserDataFromId';
+import { getUserFromId } from 'Api/Users/getData/getUserDataFromId';
 import { getAuth, signOut } from 'firebase/auth';
 import { setTitleOfHeader } from 'Store/slices/Header/HeaderSlice';
 import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
@@ -18,7 +18,7 @@ import UsersIcon from 'Assets/Icons/User/users.svg';
 import PreloaderPosts from 'Components/MiniComponents/PreloaderPosts';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
 import SubscribeButton from 'Components/MiniComponents/SubscribeButton';
-import SettingsUserModal from 'Components/Modals/SettingsUserModal/SettingsUserModal';
+import SettingsUserModal from 'Components/Modals/SettingsModals/SettingsUserModal';
 import MaxXpToNextLevel from 'Utils/UsersOrTeams/MaxXpToNextLevel';
 
 export default function UserPage() {

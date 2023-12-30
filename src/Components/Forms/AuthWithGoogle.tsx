@@ -3,7 +3,7 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { setCurrentUser } from 'Store/slices/UserSlice';
 import { addUserToRealtimeDB } from 'Api/Users/addUserToRealtimeDB';
-import { getUserFromId } from 'Api/Users/getUserDataFromId';
+import { getUserFromId } from 'Api/Users/getData/getUserDataFromId';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
 
 type User = {

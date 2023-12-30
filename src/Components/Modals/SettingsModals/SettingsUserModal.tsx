@@ -1,10 +1,11 @@
-import { ChangeEvent, FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { CloseModal, IsModal } from '../isModal';
 import CustomInput from 'Components/MiniComponents/input';
 import ButtonVoid from 'Components/MiniComponents/button';
 import Styles from '../Modal.module.scss';
 import changeUserData from 'Api/Users/changeUserData';
 import { useAuth } from 'Hooks/useAuth';
+import { handleImageUpload } from 'Utils/Handlers/HandlerImageUpload';
 
 interface SettingsUserModal {
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -13,26 +14,20 @@ interface SettingsUserModal {
 const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
     const [userPhoto, setUserPhoto] = useState('');
     const [userDisplayName, setUserDisplayName] = useState('');
+    const [userAge, setUserAge] = useState('');
     const { UserId } = useAuth();
 
-    const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
-        const reader = new FileReader();
-        reader.onload = () => {
-            setUserPhoto(reader.result as string);
-        };
-        if (e.target.files?.[0]) {
-            reader.readAsDataURL(e.target.files?.[0]);
-        }
-    };
     function ChangeFunction() {
         if (userPhoto !== '') {
             changeUserData('photo', userPhoto, UserId);
-            CloseModal();
         }
         if (userDisplayName !== '') {
             changeUserData('name', userDisplayName, UserId);
-            CloseModal();
         }
+        if (userAge !== '') {
+            changeUserData('age', userAge, UserId);
+        }
+        CloseModal();
     }
 
     return (
@@ -40,13 +35,20 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
             <input
                 type="file"
                 accept="image/png, image/jpeg"
-                onChange={(e) => handleImageUpload(e)}
+                onChange={(e) => handleImageUpload(e, setUserPhoto)}
             />
             <CustomInput
                 placeholder="Имя"
                 mode="large"
                 changeFunction={(e) => {
                     setUserDisplayName(e.currentTarget.value);
+                }}
+            ></CustomInput>
+            <CustomInput
+                placeholder="Возраст"
+                mode="large"
+                changeFunction={(e) => {
+                    setUserAge(e.currentTarget.value);
                 }}
             ></CustomInput>
             <ButtonVoid

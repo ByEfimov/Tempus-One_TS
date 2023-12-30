@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import Styles from '../Modal.module.scss';
-import { getUserFromId } from 'Api/Users/getUserDataFromId';
+import { getUserFromId } from 'Api/Users/getData/getUserDataFromId';
 import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
 import { Comments } from 'Types/TypesOfData/Post/Comments';
 import ShowLogo from 'Components/MiniComponents/ShowLogo';

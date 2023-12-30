@@ -2,7 +2,7 @@
 import { FC, useEffect, useState } from 'react';
 import { Post } from 'Types/TypesOfData/Post/Post';
 import { ModsOfWritePost } from 'Utils/ModsOfComps';
-import { getUserFromId } from 'Api/Users/getUserDataFromId';
+import { getUserFromId } from 'Api/Users/getData/getUserDataFromId';
 import { useNavigate } from 'react-router-dom';
 import Styles from './Styles.module.scss';
 import BlocksRender from '../PostComponents/BlocksRender';
@@ -16,7 +16,7 @@ import { PostLoadIsDone } from 'Utils/Posts/PostLoadIsDone';
 import RepostModal from 'Components/Modals/RepostModal/RepostModal';
 import { useAuth } from 'Hooks/useAuth';
 import { viewPostForPost } from 'Api/Posts/Activities/viewPost';
-import { viewPostForUser } from 'Api/Users/viewPost';
+import { viewPostForUser } from 'Api/Users/Interaction/viewPost';
 import ViewsModal from 'Components/Modals/ViewsModal/ViewsModal';
 
 interface PostRender {

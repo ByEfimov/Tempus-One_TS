@@ -1,0 +1,43 @@
+.TeamPage {
+    padding-top: 20px;
+    .TopBlock {
+        margin-left: 17px;
+        margin-right: 17px;
+        display: flex;
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--DefaultBorderRadius);
+        justify-content: space-between;
+        .TeamImage {
+            width: 100%;
+            img {
+                width: 100%;
+                object-fit: fill;
+            }
+        }
+        .TeamTitle {
+            position: absolute;
+            bottom: 0;
+            text-align: center;
+            width: 100%;
+            font-size: 30px;
+            font-weight: 800;
+            background-color: var(--GreyTextColor);
+            color: var(--AccentColor);
+        }
+    }
+    .bottomBlock {
+        margin: 17px;
+        display: flex;
+        justify-content: space-between;
+        .Subscriptions {
+            color: var(--DarkTextColor);
+            font-size: 20px;
+            font-weight: 600;
+        }
+    }
+    .buttonSettings {
+        margin: 17px;
+        margin-top: -17px !important;
+    }
+}

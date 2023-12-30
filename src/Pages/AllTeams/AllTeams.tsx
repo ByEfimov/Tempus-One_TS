@@ -21,7 +21,7 @@ export default function AllTeams() {
     return (
         <div className={Styles.Teams}>
             <ButtonVoid
-                title="Добавить "
+                title="Добавить"
                 clickHandler={() => navigate('/createNewTeam')}
             ></ButtonVoid>
 

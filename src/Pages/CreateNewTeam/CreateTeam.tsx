@@ -2,13 +2,14 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from 'Hooks/useAuth';
 import Styles from './Styles.module.scss';
 import CustomInput from 'Components/MiniComponents/input';
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import CustomTextarea from 'Components/MiniComponents/textarea';
 import ButtonVoid from 'Components/MiniComponents/button';
 import { addNewTeam } from 'Api/Teams/addNewTeam';
-import { addToSubscriptionsForUser } from 'Api/Users/addToSubscriptionsForUser';
+import { Subscription } from 'Api/Users/Interaction/Subscription';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
 import changeUserData from 'Api/Users/changeUserData';
+import { handleImageUpload } from 'Utils/Handlers/HandlerImageUpload';
 
 const CreateTeam = () => {
     const { UserCanChanging, UserId, UserIsAuth, UserExperience } = useAuth();
@@ -19,16 +20,6 @@ const CreateTeam = () => {
     const [ProjectName, setProjectName] = useState('');
     const [ProjectDescription, setProjectDescription] = useState('');
     const [selectImage, setSelectImage] = useState('');
-
-    const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
-        const reader = new FileReader();
-        reader.onload = () => {
-            setSelectImage(reader.result as string);
-        };
-        if (e.target.files?.[0]) {
-            reader.readAsDataURL(e.target.files?.[0]);
-        }
-    };
 
     function createNewTeam() {
         if (
@@ -50,11 +41,13 @@ const CreateTeam = () => {
                 },
             };
             addNewTeam(NewTeam).then((teamId) => {
-                addToSubscriptionsForUser('team', teamId, UserId);
+                Subscription('team', teamId, UserId);
                 changeUserData('experience', UserExperience + 80, UserId);
                 clearInputs();
                 navigate('/');
             });
+        } else {
+            ErrorNotification('Не все поля заполнены.');
         }
     }
     function clearInputs() {
@@ -81,7 +74,9 @@ const CreateTeam = () => {
                         ) : (
                             <input
                                 type="file"
-                                onChange={(e) => handleImageUpload(e)}
+                                onChange={(e) =>
+                                    handleImageUpload(e, setSelectImage)
+                                }
                                 className={Styles.image}
                             />
                         )}
