@@ -1,19 +1,18 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+import Styles from './Styles.module.scss';
+import getUserAdmins from 'Api/Teams/GetUserAdmins';
+import { getTeamFromId } from 'Api/Teams/getTeamDataFromId';
+import FakeOpenUser from 'Components/FakeData/FakeOpenUser';
+import SubscribeButton from 'Components/MiniComponents/SubscribeButton';
+import ButtonVoid from 'Components/MiniComponents/button';
+import SettingsTeamModal from 'Components/Modals/SettingsModals/SettingsTeamModal';
+import { ErrorNotification } from 'Components/Notifications/Notifications';
+import ShowPosts from 'Components/ShowPosts/Posts/ShowPosts';
+import { useAppDispatch } from 'Hooks/redux-hooks';
+import { useAuth } from 'Hooks/useAuth';
+import { setTitleOfHeader } from 'Store/slices/Header/HeaderSlice';
+import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getTeamFromId } from 'Api/Teams/getTeamDataFromId';
-import ShowPosts from 'Components/ShowPosts/Posts/ShowPosts';
-import { setTitleOfHeader } from 'Store/slices/Header/HeaderSlice';
-import { useAppDispatch } from 'Hooks/redux-hooks';
-import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
-import FakeOpenUser from 'Components/FakeData/FakeOpenUser';
-import { ErrorNotification } from 'Components/Notifications/Notifications';
-import SubscribeButton from 'Components/MiniComponents/SubscribeButton';
-import SettingsTeamModal from 'Components/Modals/SettingsModals/SettingsTeamModal';
-import getUserAdmins from 'Api/Teams/GetUserAdmins';
-import { useAuth } from 'Hooks/useAuth';
-import ButtonVoid from 'Components/MiniComponents/button';
-import Styles from './Styles.module.scss';
 
 export default function TeamPage() {
     const { id } = useParams();

@@ -1,20 +1,20 @@
+import HeaderSlice from './slices/Header/HeaderSlice';
+import NotifySlice from './slices/Notifications/NotifySlice';
+import PostsSlice from './slices/PostsSlice';
+import userReducer from './slices/UserSlice';
+import WritePostSlice from './slices/WritePost/WritePostSlice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import {
-    persistStore,
-    persistReducer,
     FLUSH,
-    REHYDRATE,
     PAUSE,
     PERSIST,
     PURGE,
     REGISTER,
+    REHYDRATE,
+    persistReducer,
+    persistStore,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import userReducer from './slices/UserSlice';
-import WritePostSlice from './slices/WritePost/WritePostSlice';
-import PostsSlice from './slices/PostsSlice';
-import HeaderSlice from './slices/Header/HeaderSlice';
-import NotifySlice from './slices/Notifications/NotifySlice';
 
 const persistConfig = {
     key: 'root',

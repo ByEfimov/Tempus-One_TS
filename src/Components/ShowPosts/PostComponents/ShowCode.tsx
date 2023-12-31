@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { LiveProvider, LivePreview } from 'react-live';
+import { LivePreview, LiveProvider } from 'react-live';
 
 interface ShowCodeProps {
     UserCode: string;

@@ -1,10 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from 'react';
-import { useAuth } from 'Hooks/useAuth';
-import { useAppDispatch } from 'Hooks/redux-hooks';
-import { setPostForWhom } from 'Store/slices/WritePost/WritePostSlice';
-import getUserAdmins from 'Api/Teams/GetUserAdmins';
 import Styles from '../Styles.module.scss';
+import getUserAdmins from 'Api/Teams/GetUserAdmins';
+import { useAppDispatch } from 'Hooks/redux-hooks';
+import { useAuth } from 'Hooks/useAuth';
+import { setPostForWhom } from 'Store/slices/WritePost/WritePostSlice';
+import { useEffect, useState } from 'react';
 
 const PostForWhom = () => {
     const { UserId, UserSubscriptions } = useAuth();

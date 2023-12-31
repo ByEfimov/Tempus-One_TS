@@ -1,6 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import {
     setAnimOfHeader,
@@ -9,6 +7,8 @@ import {
     setTypeOfHeader,
 } from 'Store/slices/Header/HeaderSlice';
 import { TypesOfHeader } from 'Types/TypesOfData/Header/HeaderType';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export default function HeaderReducer() {
     const location = useLocation().pathname;
@@ -75,7 +75,7 @@ export default function HeaderReducer() {
                 setHeader({
                     Type: TypesOfHeader.WithSearchBar,
                     Title: TitleOfHeader,
-                })
+                }),
             );
         } else {
             dispatch(setAnimOfHeader({ Animation: 'Close' }));
@@ -84,7 +84,7 @@ export default function HeaderReducer() {
                 dispatch(
                     setTypeOfHeader({
                         Type: TypesOfHeader.WithoutSearchBar,
-                    })
+                    }),
                 );
             }, 500);
         }

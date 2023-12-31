@@ -1,22 +1,21 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import CustomInput from 'Components/MiniComponents/input';
-import { ModsOfInput } from 'Utils/ModsOfComps';
-import { useState } from 'react';
-import Styles from '../Styles.module.scss';
-import classNames from 'classnames';
-import { LiveProvider, LiveEditor } from 'react-live';
 import ShowErrorsOrAlert, {
     ModsForShowModal,
 } from '../Modals/ShowErrorsOrAlert';
-import ActiveButton from 'Components/ShowPosts/PostComponents/activeButton';
+import Styles from '../Styles.module.scss';
+import CustomInput from 'Components/MiniComponents/input';
 import ShowCode from 'Components/ShowPosts/PostComponents/ShowCode';
-import { reversBlock } from 'Utils/Animations/reversBlock';
-import { useWritePost } from 'Hooks/useWritePost';
+import ActiveButton from 'Components/ShowPosts/PostComponents/activeButton';
 import { useAppDispatch } from 'Hooks/redux-hooks';
+import { useWritePost } from 'Hooks/useWritePost';
 import {
     changeTextOfBlock,
     changeTitleOfBlock,
 } from 'Store/slices/WritePost/WritePostSlice';
+import { reversBlock } from 'Utils/Animations/reversBlock';
+import { ModsOfInput } from 'Utils/ModsOfComps';
+import classNames from 'classnames';
+import { useState } from 'react';
+import { LiveEditor, LiveProvider } from 'react-live';
 
 const CodeMode = () => {
     const { selectMode, BlocksOfPost } = useWritePost();
@@ -28,7 +27,7 @@ const CodeMode = () => {
 
     function changeTitle(e: React.ChangeEvent<HTMLInputElement>) {
         dispatch(
-            changeTitleOfBlock({ id: selectMode.id, title: e.target.value })
+            changeTitleOfBlock({ id: selectMode.id, title: e.target.value }),
         );
     }
 
@@ -88,7 +87,7 @@ const CodeMode = () => {
                                         changeTextOfBlock({
                                             id: selectMode.id,
                                             text: e,
-                                        })
+                                        }),
                                     )
                                 }
                             />

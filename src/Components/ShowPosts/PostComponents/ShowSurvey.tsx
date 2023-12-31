@@ -1,8 +1,8 @@
-import { FC, useState } from 'react';
 import Styles from '../Posts/Styles.module.scss';
-import { PostBlock } from 'Types/TypesOfData/Post/Post';
 import selectVariantOfSurvey from 'Api/Users/Interaction/selectVariantOfSurvey';
 import { useAuth } from 'Hooks/useAuth';
+import { PostBlock } from 'Types/TypesOfData/Post/Post';
+import { FC, useState } from 'react';
 
 interface ShowSurvey {
     block: PostBlock;
@@ -30,7 +30,7 @@ const ShowSurvey: FC<ShowSurvey> = ({ block, postId }) => {
                 block.id,
                 Variant.id,
                 (Variant.selected && Variant.selected + 1) || 1,
-                UserId
+                UserId,
             );
             setSelectVariant(Variant.id);
         }
@@ -66,7 +66,7 @@ const ShowSurvey: FC<ShowSurvey> = ({ block, postId }) => {
                         >
                             {variant.text}
                         </div>
-                    )
+                    ),
                 )}
             </div>
         </div>

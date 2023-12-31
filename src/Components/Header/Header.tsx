@@ -1,18 +1,18 @@
 import Styles from './Header.module.scss';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from 'Hooks/useAuth';
-import { useState } from 'react';
 import NavPanel from './NavPanel';
+import SearchBarComp from './SearchBar';
 import UserIcon from 'Assets/Icons/Header/user.svg';
+import { useAppDispatch } from 'Hooks/redux-hooks';
+import { useAuth } from 'Hooks/useAuth';
 import { useHeader } from 'Hooks/useHeader';
 import { setTypeOfButtonHeader } from 'Store/slices/Header/HeaderSlice';
-import classNames from 'classnames';
-import { useAppDispatch } from 'Hooks/redux-hooks';
-import SearchBarComp from './SearchBar';
 import {
     TypesOfHeader,
     TypesOfHeaderButton,
 } from 'Types/TypesOfData/Header/HeaderType';
+import classNames from 'classnames';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Header() {
     const [openNavPanel, setOpenNavPanel] = useState(false);
@@ -31,7 +31,7 @@ export default function Header() {
             dispatch(
                 setTypeOfButtonHeader({
                     TypeOfButton: TypesOfHeaderButton.ToLeft,
-                })
+                }),
             );
         } else {
             document.body.scrollTop = 0;
@@ -50,13 +50,13 @@ export default function Header() {
             dispatch(
                 setTypeOfButtonHeader({
                     TypeOfButton: TypesOfHeaderButton.ToTop,
-                })
+                }),
             );
         } else {
             dispatch(
                 setTypeOfButtonHeader({
                     TypeOfButton: TypesOfHeaderButton.NavBar,
-                })
+                }),
             );
         }
     });
@@ -79,7 +79,7 @@ export default function Header() {
                         onClick={ClickActiveButton}
                         className={classNames(
                             Styles.ButtonWithLines,
-                            ClassToButton
+                            ClassToButton,
                         )}
                     ></button>
                     <Link to="/" className={Styles.Title}>

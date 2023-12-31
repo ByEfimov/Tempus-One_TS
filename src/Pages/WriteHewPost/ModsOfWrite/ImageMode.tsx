@@ -1,17 +1,17 @@
-import { ModsOfInput } from 'Utils/ModsOfComps';
-import CustomInput from 'Components/MiniComponents/input';
 import Styles from '../Styles.module.scss';
-import classNames from 'classnames';
-import ActiveButton from 'Components/ShowPosts/PostComponents/activeButton';
+import { LoadImage } from 'Api/Posts/Loaders/ImageUpload';
+import CustomInput from 'Components/MiniComponents/input';
 import ShowImage from 'Components/ShowPosts/PostComponents/ShowImage';
-import { reversBlock } from 'Utils/Animations/reversBlock';
+import ActiveButton from 'Components/ShowPosts/PostComponents/activeButton';
+import { useAppDispatch } from 'Hooks/redux-hooks';
+import { useWritePost } from 'Hooks/useWritePost';
 import {
     changeTextOfBlock,
     changeTitleOfBlock,
 } from 'Store/slices/WritePost/WritePostSlice';
-import { useWritePost } from 'Hooks/useWritePost';
-import { useAppDispatch } from 'Hooks/redux-hooks';
-import { LoadImage } from 'Api/Posts/Loaders/ImageUpload';
+import { reversBlock } from 'Utils/Animations/reversBlock';
+import { ModsOfInput } from 'Utils/ModsOfComps';
+import classNames from 'classnames';
 
 const ImageMode = () => {
     const { selectMode, BlocksOfPost } = useWritePost();
@@ -19,7 +19,7 @@ const ImageMode = () => {
 
     function changeTitle(e: React.ChangeEvent<HTMLInputElement>) {
         dispatch(
-            changeTitleOfBlock({ id: selectMode.id, title: e.target.value })
+            changeTitleOfBlock({ id: selectMode.id, title: e.target.value }),
         );
     }
 
@@ -29,8 +29,8 @@ const ImageMode = () => {
                 changeTextOfBlock({
                     id: selectMode.id,
                     text: imageUrl,
-                })
-            )
+                }),
+            ),
         );
     }
 

@@ -1,12 +1,12 @@
-import { FC, useEffect, useState } from 'react';
 import Styles from '../Posts/Styles.module.scss';
-import { Post } from 'Types/TypesOfData/Post/Post';
 import { getPosts } from 'Api/Posts/getAllPosts';
-import { setLastPostKey } from 'Store/slices/PostsSlice';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';
 import { useHeader } from 'Hooks/useHeader';
+import { setLastPostKey } from 'Store/slices/PostsSlice';
+import { Post } from 'Types/TypesOfData/Post/Post';
+import { FC, useEffect, useState } from 'react';
 
 interface FiltersProps {
     setPosts: React.Dispatch<React.SetStateAction<Post[] | null>>;
@@ -16,7 +16,7 @@ interface FiltersProps {
 
 const FiltersPost: FC<FiltersProps> = ({ setPosts, filter, filterIsOpen }) => {
     const [Filter, setFilter] = useState<string | string[] | undefined | null>(
-        filter
+        filter,
     );
     const { UserSubscriptions, UserId } = useAuth();
     const { HeaderSearchBar } = useHeader();
@@ -28,7 +28,7 @@ const FiltersPost: FC<FiltersProps> = ({ setPosts, filter, filterIsOpen }) => {
             | undefined
             | null
             | string[]
-            | { orderBy: string; equalTo: string | undefined }
+            | { orderBy: string; equalTo: string | undefined },
     ) {
         getPosts(filter || null)
             .then((posts) => {

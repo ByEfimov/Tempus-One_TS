@@ -1,14 +1,14 @@
-import React, { FC } from 'react';
+import Styles from '../Styles.module.scss';
 import ButtonVoid from 'Components/MiniComponents/button';
-import { ModsOfWritePost } from 'Utils/ModsOfComps';
+import { CloseModal, IsModal } from 'Components/Modals/isModal';
 import { useAppDispatch } from 'Hooks/redux-hooks';
+import { useWritePost } from 'Hooks/useWritePost';
 import {
     addBlockToPost,
     setSelectMode,
 } from 'Store/slices/WritePost/WritePostSlice';
-import { useWritePost } from 'Hooks/useWritePost';
-import { CloseModal, IsModal } from 'Components/Modals/isModal';
-import Styles from '../Styles.module.scss';
+import { ModsOfWritePost } from 'Utils/ModsOfComps';
+import React, { FC } from 'react';
 
 const ButtonsSelectMode = () => {
     const dispatch = useAppDispatch();

@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
 import Styles from './Modal.module.scss';
+import React, { FC } from 'react';
 
 interface isModalProps {
     children: React.ReactChild | React.ReactNode;

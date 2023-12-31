@@ -1,13 +1,13 @@
-import { FC, useEffect, useState } from 'react';
-import { IsModal } from '../isModal';
 import Styles from '../Modal.module.scss';
-import SendIcon from 'Assets/Icons/Post/message.svg';
-import { getComments } from 'Api/Posts/Activities/getComments';
+import { IsModal } from '../isModal';
 import CommentRender from './CommentRender';
-import { Comments } from 'Types/TypesOfData/Post/Comments';
-import { useAuth } from 'Hooks/useAuth';
 import { addNewComment } from 'Api/Posts/Activities/addNewComment';
+import { getComments } from 'Api/Posts/Activities/getComments';
+import SendIcon from 'Assets/Icons/Post/message.svg';
+import { useAuth } from 'Hooks/useAuth';
+import { Comments } from 'Types/TypesOfData/Post/Comments';
 import { getUnixTime } from 'date-fns';
+import { FC, useEffect, useState } from 'react';
 
 interface CommentsModalProps {
     PostId: string;
@@ -18,7 +18,7 @@ const CommentsModal: FC<CommentsModalProps> = ({ setModalOpen, PostId }) => {
     const { UserId } = useAuth();
     const [commentText, setCommentText] = useState('');
     const [comments, setComments] = useState<Comments[] | string>(
-        'Комментариев еще нет.'
+        'Комментариев еще нет.',
     );
 
     function getCommentsThis() {

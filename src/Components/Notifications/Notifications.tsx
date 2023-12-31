@@ -1,17 +1,14 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { useNotify } from 'Hooks/useNotify';
 import Styles from './Styles.module.scss';
+import BellIcon from 'Assets/Icons/Notification/bell.svg';
+import ErrorIcon from 'Assets/Icons/Notification/exclamation-triangle.svg';
 import { useAppDispatch } from 'Hooks/redux-hooks';
+import { useNotify } from 'Hooks/useNotify';
 import {
     clearNotify,
     setNotification,
 } from 'Store/slices/Notifications/NotifySlice';
 import { TypesOfNotifications } from 'Types/TypesOfData/Notifications/NotifyType';
-import { LegacyRef, useEffect } from 'react';
-import React from 'react';
-import BellIcon from 'Assets/Icons/Notification/bell.svg';
-import ErrorIcon from 'Assets/Icons/Notification/exclamation-triangle.svg';
+import React, { LegacyRef, useEffect } from 'react';
 
 let ErrorNotification = (_error: string) => {};
 let MassageNotification = (_massage: string) => {};
@@ -26,7 +23,7 @@ const Notifications = () => {
             setNotification({
                 Type: TypesOfNotifications.Error,
                 Massage: error,
-            })
+            }),
         );
     };
 
@@ -35,7 +32,7 @@ const Notifications = () => {
             setNotification({
                 Type: TypesOfNotifications.Massage,
                 Massage: massage,
-            })
+            }),
         );
     };
 

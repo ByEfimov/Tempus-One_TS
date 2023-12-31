@@ -1,15 +1,15 @@
-import { useWritePost } from 'Hooks/useWritePost';
+import Styles from '../Styles.module.scss';
+import PlusIcon from 'Assets/Icons/Post/plus-circle.svg';
+import TrashIcon from 'Assets/Icons/Post/trash-alt.svg';
+import CustomInput from 'Components/MiniComponents/input';
 import { useAppDispatch } from 'Hooks/redux-hooks';
+import { useWritePost } from 'Hooks/useWritePost';
 import {
     addNewVariantForSurvey,
     changeTitleOfBlock,
     removeVariantForSurvey,
 } from 'Store/slices/WritePost/WritePostSlice';
-import CustomInput from 'Components/MiniComponents/input';
-import Styles from '../Styles.module.scss';
-import PlusIcon from 'Assets/Icons/Post/plus-circle.svg';
 import { useState } from 'react';
-import TrashIcon from 'Assets/Icons/Post/trash-alt.svg';
 
 const SurveyMode = () => {
     const { selectMode, BlocksOfPost } = useWritePost();
@@ -18,7 +18,7 @@ const SurveyMode = () => {
 
     function changeTitleOfQuestion(e: React.ChangeEvent<HTMLInputElement>) {
         dispatch(
-            changeTitleOfBlock({ id: selectMode.id, title: e.target.value })
+            changeTitleOfBlock({ id: selectMode.id, title: e.target.value }),
         );
     }
     function addNewVariant() {
@@ -28,7 +28,7 @@ const SurveyMode = () => {
                     BlockId: selectMode.id,
                     newVariant,
                     selected: 0,
-                })
+                }),
             );
             setNewVariant('');
         }
@@ -38,12 +38,11 @@ const SurveyMode = () => {
             removeVariantForSurvey({
                 BlockId: selectMode.id,
                 VariantId: e.currentTarget.id,
-            })
+            }),
         );
     }
 
     const Variants = BlocksOfPost[selectMode.id].variants;
-    console.log(BlocksOfPost[selectMode.id]);
 
     return (
         <div className={Styles.Survey}>

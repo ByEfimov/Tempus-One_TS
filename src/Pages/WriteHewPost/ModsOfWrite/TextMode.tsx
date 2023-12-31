@@ -1,6 +1,6 @@
 import CustomTextarea from 'Components/MiniComponents/textarea';
-import { useWritePost } from 'Hooks/useWritePost';
 import { useAppDispatch } from 'Hooks/redux-hooks';
+import { useWritePost } from 'Hooks/useWritePost';
 import { changeTextOfBlock } from 'Store/slices/WritePost/WritePostSlice';
 
 const TextMode = () => {
@@ -9,7 +9,7 @@ const TextMode = () => {
 
     function changeMainText(e: React.ChangeEvent<HTMLTextAreaElement>) {
         dispatch(
-            changeTextOfBlock({ id: selectMode.id, text: e.target.value })
+            changeTextOfBlock({ id: selectMode.id, text: e.target.value }),
         );
     }
 

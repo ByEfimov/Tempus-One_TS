@@ -1,11 +1,11 @@
-import AuthenticationFrom from 'Components/Forms/AuthenticationForm';
-import { Navigate } from 'react-router-dom';
-import { useAuth } from 'Hooks/useAuth';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { useAppDispatch } from 'Hooks/redux-hooks';
-import { setCurrentUser } from 'Store/slices/UserSlice';
 import { addUserToRealtimeDB } from 'Api/Users/addUserToRealtimeDB';
+import AuthenticationFrom from 'Components/Forms/AuthenticationForm';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
+import { useAppDispatch } from 'Hooks/redux-hooks';
+import { useAuth } from 'Hooks/useAuth';
+import { setCurrentUser } from 'Store/slices/UserSlice';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { Navigate } from 'react-router-dom';
 
 export default function RegisterPage() {
     const { UserIsAuth } = useAuth();
@@ -16,7 +16,7 @@ export default function RegisterPage() {
         Email: string,
         Pass: string,
         Name: string,
-        Age: number
+        Age: number,
     ) {
         createUserWithEmailAndPassword(auth, Email, Pass)
             .then((userCredential) => {
@@ -27,13 +27,13 @@ export default function RegisterPage() {
                     Name,
                     user.photoURL,
                     user.emailVerified,
-                    Age
+                    Age,
                 );
                 dispatch(
                     setCurrentUser({
                         email: user.email,
                         id: user.uid,
-                    })
+                    }),
                 );
                 location.reload();
             })

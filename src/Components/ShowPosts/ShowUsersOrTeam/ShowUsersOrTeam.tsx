@@ -1,9 +1,9 @@
-import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
-import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
 import Styles from './Styles.module.scss';
-import { useNavigate } from 'react-router-dom';
 import ShowLogo from 'Components/MiniComponents/ShowLogo';
 import SubscribeButton from 'Components/MiniComponents/SubscribeButton';
+import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
+import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
+import { useNavigate } from 'react-router-dom';
 
 export default function ShowUserOrTeam({
     Team,

@@ -1,11 +1,11 @@
-import classNames from 'classnames';
+import ShowResultBlock from '../ShowResultBlock/ShowResultBlock';
 import Styles from '../Styles.module.scss';
-import { FC } from 'react';
 import {
     BlockOfPostType,
     SelectModeType,
 } from 'Types/TypesOfData/Post/WritePost';
-import ShowResultBlock from '../ShowResultBlock/ShowResultBlock';
+import classNames from 'classnames';
+import { FC } from 'react';
 
 interface ControlBlockRenderProps {
     blockData: BlockOfPostType;
@@ -49,7 +49,7 @@ const ControlBlockRender: FC<ControlBlockRenderProps> = ({
                 onTouchEnd={handleInteractionEnd}
                 className={classNames(
                     Styles.wrapper,
-                    blockData.id === SelectMode.id && Styles.wrapperActive
+                    blockData.id === SelectMode.id && Styles.wrapperActive,
                 )}
             >
                 <div className={Styles.Content}>

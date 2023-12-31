@@ -1,13 +1,13 @@
-import Styles from '../Styles.module.scss';
-import FeatherIcon from 'feather-icons-react';
-import { useState } from 'react';
+import ActivityModal from '../Modals/FullScreenModal';
 import ModalAddNewMode from '../Modals/SelectModal';
+import Styles from '../Styles.module.scss';
 import ControlBlockRender from './ControlBlockRender';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useWritePost } from 'Hooks/useWritePost';
 import { setSelectMode } from 'Store/slices/WritePost/WritePostSlice';
 import { BlockOfPostType } from 'Types/TypesOfData/Post/WritePost';
-import ActivityModal from '../Modals/FullScreenModal';
+import FeatherIcon from 'feather-icons-react';
+import { useState } from 'react';
 
 export const ControlBlocksPanel = () => {
     const { selectMode, BlocksOfPost } = useWritePost();

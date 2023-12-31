@@ -1,8 +1,8 @@
+import Styles from '../Styles.module.scss';
 import ShowCode from 'Components/ShowPosts/PostComponents/ShowCode';
 import ShowImage from 'Components/ShowPosts/PostComponents/ShowImage';
 import { BlockOfPostType } from 'Types/TypesOfData/Post/WritePost';
 import { ModsOfWritePost } from 'Utils/ModsOfComps';
-import Styles from '../Styles.module.scss';
 import { FC } from 'react';
 
 interface ShowResultBlock {

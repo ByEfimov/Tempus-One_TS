@@ -1,10 +1,11 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ModsOfWritePost } from 'Utils/ModsOfComps';
+/* eslint-disable import/order */
 import NewBlocks from './NewBlocks';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import {
     BlockOfPostType,
     SelectModeType,
 } from 'Types/TypesOfData/Post/WritePost';
+import { ModsOfWritePost } from 'Utils/ModsOfComps';
 
 type WritePostType = {
     TitleOfPost: string;
@@ -37,11 +38,11 @@ const WritePostSlice = createSlice({
         removeVariantForSurvey(state, action) {
             const removeVariant =
                 state.BlocksOfPost[action.payload.BlockId].variants?.findIndex(
-                    (n) => n.id === action.payload.VariantId
+                    (n) => n.id === action.payload.VariantId,
                 ) || 0;
             state.BlocksOfPost[action.payload.BlockId].variants?.splice(
                 removeVariant,
-                1
+                1,
             );
         },
         setTitleOfPost(state, action: PayloadAction<{ title: string }>) {
@@ -53,13 +54,13 @@ const WritePostSlice = createSlice({
         addBlockToPost(state, action: PayloadAction<{ type: string }>) {
             const NewBlock: BlockOfPostType = NewBlocks(
                 state.BlocksOfPost.length,
-                action.payload.type
+                action.payload.type,
             );
             state.BlocksOfPost.push(NewBlock);
         },
         changeTitleOfBlock(
             state,
-            action: PayloadAction<{ id: number; title: string }>
+            action: PayloadAction<{ id: number; title: string }>,
         ) {
             state.BlocksOfPost.forEach((item, i) => {
                 if (item.id === action.payload.id) {
@@ -72,7 +73,7 @@ const WritePostSlice = createSlice({
         },
         changeTextOfBlock(
             state,
-            action: PayloadAction<{ id: number; text: string }>
+            action: PayloadAction<{ id: number; text: string }>,
         ) {
             state.BlocksOfPost.forEach((item, i) => {
                 if (item.id === action.payload.id) {
@@ -86,7 +87,7 @@ const WritePostSlice = createSlice({
         removeBlockOfPost(state, action: PayloadAction<{ id: number }>) {
             if (action.payload.id !== 0) {
                 const removeBlockIndex = state.BlocksOfPost.findIndex(
-                    (n) => n.id === action.payload.id
+                    (n) => n.id === action.payload.id,
                 );
                 state.BlocksOfPost.splice(removeBlockIndex, 1);
                 state.selectMode = { type: ModsOfWritePost.text, id: 0 };
@@ -94,7 +95,7 @@ const WritePostSlice = createSlice({
         },
         clearBlockOfPost(
             state,
-            action: PayloadAction<{ id: number; type: string }>
+            action: PayloadAction<{ id: number; type: string }>,
         ) {
             const purifiedText =
                 action.payload.type === ModsOfWritePost.code
@@ -114,7 +115,7 @@ const WritePostSlice = createSlice({
 
         setSelectMode(
             state,
-            action: PayloadAction<{ type: string; id: number }>
+            action: PayloadAction<{ type: string; id: number }>,
         ) {
             state.selectMode = {
                 type: action.payload.type,

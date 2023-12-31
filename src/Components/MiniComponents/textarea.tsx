@@ -1,6 +1,6 @@
-import { ChangeEvent, FC } from 'react';
 import Styles from './MiniComponents.module.scss';
 import { useWritePost } from 'Hooks/useWritePost';
+import { ChangeEvent, FC } from 'react';
 
 interface CustomTextarea {
     placeholder: string;

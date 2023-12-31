@@ -1,15 +1,15 @@
-import { Post } from 'Types/TypesOfData/Post/Post';
 import Styles from '../Posts/Styles.module.scss';
-import HeartIcon from 'Assets/Icons/Post/heart.svg';
-import FillHeartIcon from 'Assets/Icons/Post/fiil/heart.svg';
-import CommentIcon from 'Assets/Icons/Post/comment.svg';
-import ShareIcon from 'Assets/Icons/Post/share.svg';
-import EyeIcon from 'Assets/Icons/Post/eye.svg';
-import { FC, useState } from 'react';
-import { useAuth } from 'Hooks/useAuth';
-import { SendLikePost } from 'Api/Posts/Activities/SendLikePost';
-import { ErrorNotification } from 'Components/Notifications/Notifications';
 import { RemoveLikePost } from 'Api/Posts/Activities/RemoveLikePost';
+import { SendLikePost } from 'Api/Posts/Activities/SendLikePost';
+import CommentIcon from 'Assets/Icons/Post/comment.svg';
+import EyeIcon from 'Assets/Icons/Post/eye.svg';
+import FillHeartIcon from 'Assets/Icons/Post/fiil/heart.svg';
+import HeartIcon from 'Assets/Icons/Post/heart.svg';
+import ShareIcon from 'Assets/Icons/Post/share.svg';
+import { ErrorNotification } from 'Components/Notifications/Notifications';
+import { useAuth } from 'Hooks/useAuth';
+import { Post } from 'Types/TypesOfData/Post/Post';
+import { FC, useState } from 'react';
 
 interface ActivitiesProps {
     post: Post;
@@ -30,7 +30,7 @@ const Activities: FC<ActivitiesProps> = ({
     const PostComments = Object.keys(post.PostComments || []).length;
 
     const ItPostLiked = Object.keys(UserPostsLiked || [])?.includes(
-        post.PostId
+        post.PostId,
     );
 
     const LikePost = () => {

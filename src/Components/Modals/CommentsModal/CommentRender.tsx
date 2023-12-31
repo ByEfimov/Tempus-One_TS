@@ -1,13 +1,13 @@
-import { FC, useEffect, useState } from 'react';
 import Styles from '../Modal.module.scss';
-import { getUserFromId } from 'Api/Users/getData/getUserDataFromId';
-import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
-import { Comments } from 'Types/TypesOfData/Post/Comments';
-import ShowLogo from 'Components/MiniComponents/ShowLogo';
-import FakeComment from 'Components/FakeData/FakeComment';
-import { useNavigate } from 'react-router-dom';
 import { CloseModal } from '../isModal';
+import { getUserFromId } from 'Api/Users/getData/getUserDataFromId';
+import FakeComment from 'Components/FakeData/FakeComment';
+import ShowLogo from 'Components/MiniComponents/ShowLogo';
+import { Comments } from 'Types/TypesOfData/Post/Comments';
+import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
 import formatTimeAgo from 'Utils/Posts/FormatTimeAgo';
+import { FC, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface comment {
     comment: Comments;
@@ -19,7 +19,7 @@ const CommentRender: FC<comment> = ({ comment }) => {
 
     useEffect(() => {
         getUserFromId(comment.CommentatorId).then((user) =>
-            setCommentator(user)
+            setCommentator(user),
         );
     }, []);
 

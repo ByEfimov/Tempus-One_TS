@@ -1,16 +1,16 @@
-import PlusIcon from 'Assets/Icons/Post/plus-circle.svg';
-import PlusDarkIcon from 'Assets/Icons/Post/plus-circle-dark.svg';
-import { useAuth } from 'Hooks/useAuth';
-import { FC } from 'react';
 import Styles from './MiniComponents.module.scss';
-import { WhoWrotePost } from 'Components/ShowPosts/Posts/PostRender';
 import { Subscription } from 'Api/Users/Interaction/Subscription';
+import changeUserData from 'Api/Users/changeUserData';
+import PlusDarkIcon from 'Assets/Icons/Post/plus-circle-dark.svg';
+import PlusIcon from 'Assets/Icons/Post/plus-circle.svg';
 import {
     ErrorNotification,
     MassageNotification,
 } from 'Components/Notifications/Notifications';
-import changeUserData from 'Api/Users/changeUserData';
+import { WhoWrotePost } from 'Components/ShowPosts/Posts/PostRender';
+import { useAuth } from 'Hooks/useAuth';
 import { itsMember } from 'Utils/UsersOrTeams/istMember';
+import { FC } from 'react';
 
 interface SubscribeButton {
     WhoWrotePost: WhoWrotePost | null;
@@ -34,7 +34,7 @@ const SubscribeButton: FC<SubscribeButton> = ({ WhoWrotePost }) => {
                 isTeam ? 'team' : 'user',
                 WhoWrotePost?.id,
                 UserId,
-                isMember ? true : false
+                isMember ? true : false,
             );
 
             changeUserData('experience', NewXp, UserId);

@@ -1,23 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { FC, useEffect, useState } from 'react';
-import { Post } from 'Types/TypesOfData/Post/Post';
-import { ModsOfWritePost } from 'Utils/ModsOfComps';
-import { getUserFromId } from 'Api/Users/getData/getUserDataFromId';
-import { useNavigate } from 'react-router-dom';
-import Styles from './Styles.module.scss';
-import BlocksRender from '../PostComponents/BlocksRender';
-import FakePost from 'Components/FakeData/FakePost';
-import { getTeamFromId } from 'Api/Teams/getTeamDataFromId';
 import Activities from '../PostComponents/Activities';
 import AuthorDataRender from '../PostComponents/AuthorDataRender';
+import BlocksRender from '../PostComponents/BlocksRender';
 import PostDataRender from '../PostComponents/PostDataRender';
-import CommentsModal from 'Components/Modals/CommentsModal/CommentsModal';
-import { PostLoadIsDone } from 'Utils/Posts/PostLoadIsDone';
-import RepostModal from 'Components/Modals/RepostModal/RepostModal';
-import { useAuth } from 'Hooks/useAuth';
+import Styles from './Styles.module.scss';
 import { viewPostForPost } from 'Api/Posts/Activities/viewPost';
+import { getTeamFromId } from 'Api/Teams/getTeamDataFromId';
 import { viewPostForUser } from 'Api/Users/Interaction/viewPost';
+import { getUserFromId } from 'Api/Users/getData/getUserDataFromId';
+import FakePost from 'Components/FakeData/FakePost';
+import CommentsModal from 'Components/Modals/CommentsModal/CommentsModal';
+import RepostModal from 'Components/Modals/RepostModal/RepostModal';
 import ViewsModal from 'Components/Modals/ViewsModal/ViewsModal';
+import { useAuth } from 'Hooks/useAuth';
+import { Post } from 'Types/TypesOfData/Post/Post';
+import { ModsOfWritePost } from 'Utils/ModsOfComps';
+import { PostLoadIsDone } from 'Utils/Posts/PostLoadIsDone';
+import { FC, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface PostRender {
     post: Post;
@@ -48,8 +48,8 @@ const PostRender: FC<PostRender> = ({ post }) => {
                 .then((user) => setWhoWrotePost(user))
                 .catch(() =>
                     getTeamFromId(post.PostAuthorId).then((team) =>
-                        setWhoWrotePost(team)
-                    )
+                        setWhoWrotePost(team),
+                    ),
                 );
         }
         LoadUser();

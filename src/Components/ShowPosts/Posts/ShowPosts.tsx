@@ -1,9 +1,9 @@
-import { FC, useState } from 'react';
-import Styles from './Styles.module.scss';
+import FiltersPost from '../PostComponents/FiltersPosts';
 import PostRender from './PostRender';
+import Styles from './Styles.module.scss';
 import PreloaderPosts from 'Components/MiniComponents/PreloaderPosts';
 import { Post } from 'Types/TypesOfData/Post/Post';
-import FiltersPost from '../PostComponents/FiltersPosts';
+import { FC, useState } from 'react';
 
 interface ShowPosts {
     filter?: string;

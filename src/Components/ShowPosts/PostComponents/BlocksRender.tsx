@@ -1,14 +1,13 @@
-import { FC } from 'react';
-import { PostBlock } from 'Types/TypesOfData/Post/Post';
-import { ModsOfWritePost } from 'Utils/ModsOfComps';
-import ShowCode from './ShowCode';
 import Styles from '../Posts/Styles.module.scss';
-// import Styles from '../Styles.module.scss';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
-import 'swiper/css';
+import ShowCode from './ShowCode';
 import ShowImage from './ShowImage';
 import ShowSurvey from './ShowSurvey';
+import { PostBlock } from 'Types/TypesOfData/Post/Post';
+import { ModsOfWritePost } from 'Utils/ModsOfComps';
+import { FC } from 'react';
+import 'swiper/css';
+import { Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 interface BlocksRender {
     Blocks: PostBlock[];

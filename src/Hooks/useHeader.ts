@@ -2,7 +2,7 @@ import { useAppSelector } from './redux-hooks';
 
 export function useHeader() {
     const { Title, Type, SearchBar, TypeOfButton, Animation } = useAppSelector(
-        (state) => state.Header
+        (state) => state.Header,
     );
 
     return {

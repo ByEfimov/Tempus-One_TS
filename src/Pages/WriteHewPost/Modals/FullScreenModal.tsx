@@ -1,16 +1,16 @@
-import React, { FC } from 'react';
-import ButtonVoid from 'Components/MiniComponents/button';
-import { ModsOfWritePost } from 'Utils/ModsOfComps';
-import { useAppDispatch } from 'Hooks/redux-hooks';
 import {
     clearBlockOfPost,
     removeBlockOfPost,
 } from '../../../Store/slices/WritePost/WritePostSlice';
-import { BlockOfPostType } from 'Types/TypesOfData/Post/WritePost';
-import { CloseModal, IsModal } from 'Components/Modals/isModal';
 import ShowResultBlock from '../ShowResultBlock/ShowResultBlock';
 import Styles from '../Styles.module.scss';
+import ButtonVoid from 'Components/MiniComponents/button';
+import { CloseModal, IsModal } from 'Components/Modals/isModal';
+import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useWritePost } from 'Hooks/useWritePost';
+import { BlockOfPostType } from 'Types/TypesOfData/Post/WritePost';
+import { ModsOfWritePost } from 'Utils/ModsOfComps';
+import React, { FC } from 'react';
 
 interface SelectModalProps {
     setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -34,7 +34,7 @@ const ActivityModal: FC<SelectModalProps> = ({
             clearBlockOfPost({
                 id: ResultObject?.id || 0,
                 type: ResultObject?.type || ModsOfWritePost.text,
-            })
+            }),
         );
         CloseModal();
     }

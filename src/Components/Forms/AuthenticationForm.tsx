@@ -1,11 +1,11 @@
+import AuthWithGoogle from './AuthWithGoogle';
 import FormsStyles from './FormsStyles.module.scss';
+import ButtonVoid from 'Components/MiniComponents/button';
+import validateEmail from 'Utils/ValidateData/ValidateEmail';
+import validatePassword from 'Utils/ValidateData/ValidatePassword';
+import { validateAuthenticationForm } from 'Utils/ValidateData/validateAuthenticationForm';
 import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ButtonVoid from 'Components/MiniComponents/button';
-import AuthWithGoogle from './AuthWithGoogle';
-import validatePassword from 'Utils/ValidateData/ValidatePassword';
-import validateEmail from 'Utils/ValidateData/ValidateEmail';
-import { validateAuthenticationForm } from 'Utils/ValidateData/validateAuthenticationForm';
 
 interface AuthenticationFromProps {
     title: string;
@@ -13,7 +13,7 @@ interface AuthenticationFromProps {
         Email: string,
         Pass: string,
         Name: string,
-        Age: number
+        Age: number,
     ) => void;
 }
 
@@ -37,7 +37,7 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({
                     Name,
                     Age,
                     title,
-                    handlerSubmit
+                    handlerSubmit,
                 );
             }}
         >

@@ -1,12 +1,13 @@
-import { FC } from 'react';
-import Styles from '../Posts/Styles.module.scss';
-import { Post } from 'Types/TypesOfData/Post/Post';
 import { WhoWrotePost } from '../Posts/PostRender';
-import { useNavigate } from 'react-router-dom';
+import Styles from '../Posts/Styles.module.scss';
 import ShowLogo from 'Components/MiniComponents/ShowLogo';
-import ItsUser from 'Utils/UsersOrTeams/ItsUser';
 import SubscribeButton from 'Components/MiniComponents/SubscribeButton';
+import { Post } from 'Types/TypesOfData/Post/Post';
 import formatTimeAgo from 'Utils/Posts/FormatTimeAgo';
+import ItsUser from 'Utils/UsersOrTeams/ItsUser';
+import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 interface AuthorDataRenderProps {
     post: Post;
     WhoWrotePost: WhoWrotePost | null;
@@ -26,7 +27,7 @@ const AuthorDataRender: FC<AuthorDataRenderProps> = ({
                 navigate(
                     (ItsUser(WhoWrotePost?.id) &&
                         '/User/' + WhoWrotePost?.id) ||
-                        '/Team/' + WhoWrotePost?.id
+                        '/Team/' + WhoWrotePost?.id,
                 );
             }}
         >

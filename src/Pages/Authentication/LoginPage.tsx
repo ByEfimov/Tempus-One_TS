@@ -1,10 +1,10 @@
-import { Navigate } from 'react-router-dom';
 import AuthenticationFrom from 'Components/Forms/AuthenticationForm';
-import { useAuth } from 'Hooks/useAuth';
+import { ErrorNotification } from 'Components/Notifications/Notifications';
 import { useAppDispatch } from 'Hooks/redux-hooks';
+import { useAuth } from 'Hooks/useAuth';
 import { setCurrentUser } from 'Store/slices/UserSlice';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { ErrorNotification } from 'Components/Notifications/Notifications';
+import { Navigate } from 'react-router-dom';
 
 export default function LoginPage() {
     const { UserIsAuth } = useAuth();
@@ -19,7 +19,7 @@ export default function LoginPage() {
                     setCurrentUser({
                         email: user.email,
                         id: user.uid,
-                    })
+                    }),
                 );
                 location.reload();
             })

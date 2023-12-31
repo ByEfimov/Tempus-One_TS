@@ -12,8 +12,8 @@ export const validateAuthenticationForm = (
         Email: string,
         Pass: string,
         Name: string,
-        Age: number
-    ) => void
+        Age: number,
+    ) => void,
 ) => {
     if (!validatePassword(Pass)) {
         ErrorNotification('Пароль не подходит.');

@@ -1,16 +1,16 @@
+import ListenerFB from './Api/ListenerFireBase.tsx';
+import './Api/firebase';
+import App from './App.tsx';
+import './Assets/Styles/animations.css';
+import './Assets/Styles/null.css';
+import HeaderReducer from './Components/Header/HeaderReducer.tsx';
+import store, { persister } from './Store/index.ts';
+import LevelReducer from 'Components/Level/LevelReducer.tsx';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
-import { BrowserRouter } from 'react-router-dom';
-import './Assets/Styles/null.css';
-import './Assets/Styles/animations.css';
 import { Provider } from 'react-redux';
-import store, { persister } from './Store/index.ts';
-import './Api/firebase';
+import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
-import ListenerFB from './Api/ListenerFireBase.tsx';
-import HeaderReducer from './Components/Header/HeaderReducer.tsx';
-import LevelReducer from 'Components/Level/LevelReducer.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
@@ -26,5 +26,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 </PersistGate>
             </Provider>
         </BrowserRouter>
-    </React.StrictMode>
+    </React.StrictMode>,
 );

@@ -1,11 +1,11 @@
-import { FC, useState } from 'react';
-import { CloseModal, IsModal } from '../isModal';
-import CustomInput from 'Components/MiniComponents/input';
-import ButtonVoid from 'Components/MiniComponents/button';
 import Styles from '../Modal.module.scss';
-import { handleImageUpload } from 'Utils/Handlers/HandlerImageUpload';
-import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
+import { CloseModal, IsModal } from '../isModal';
 import changeTeamData from 'Api/Teams/ChangeTeamData';
+import ButtonVoid from 'Components/MiniComponents/button';
+import CustomInput from 'Components/MiniComponents/input';
+import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
+import { handleImageUpload } from 'Utils/Handlers/HandlerImageUpload';
+import { FC, useState } from 'react';
 
 interface SettingsTeamModal {
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;

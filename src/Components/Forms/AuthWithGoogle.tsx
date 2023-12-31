@@ -1,10 +1,10 @@
-import ButtonVoid from 'Components/MiniComponents/button';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import { useAppDispatch } from 'Hooks/redux-hooks';
-import { setCurrentUser } from 'Store/slices/UserSlice';
 import { addUserToRealtimeDB } from 'Api/Users/addUserToRealtimeDB';
 import { getUserFromId } from 'Api/Users/getData/getUserDataFromId';
+import ButtonVoid from 'Components/MiniComponents/button';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
+import { useAppDispatch } from 'Hooks/redux-hooks';
+import { setCurrentUser } from 'Store/slices/UserSlice';
+import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 
 type User = {
     email: string | null;
@@ -22,7 +22,7 @@ const AuthWithGoogle = () => {
             setCurrentUser({
                 email: user.email,
                 id: user.uid,
-            })
+            }),
         );
         location.reload();
     }
@@ -33,13 +33,13 @@ const AuthWithGoogle = () => {
             user.uid,
             user.displayName,
             user.photoURL,
-            user.emailVerified
+            user.emailVerified,
         );
         dispatch(
             setCurrentUser({
                 email: user.email,
                 id: user.uid,
-            })
+            }),
         );
         location.reload();
     }

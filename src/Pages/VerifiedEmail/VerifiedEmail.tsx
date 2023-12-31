@@ -1,11 +1,12 @@
-import { Navigate } from 'react-router-dom';
+/* eslint-disable import/order */
+import Styles from './Styles.module.scss';
+import { getDatabase, ref, set } from '@firebase/database';
+import { getCurrentUserData } from 'Api/Users/getData/getCurrentUserData';
 import ButtonVoid from 'Components/MiniComponents/button';
+import { MassageNotification } from 'Components/Notifications/Notifications';
 import { useAuth } from 'Hooks/useAuth';
 import { getAuth, sendEmailVerification } from 'firebase/auth';
-import Styles from './Styles.module.scss';
-import { getCurrentUserData } from 'Api/Users/getData/getCurrentUserData';
-import { getDatabase, ref, set } from '@firebase/database';
-import { MassageNotification } from 'Components/Notifications/Notifications';
+import { Navigate } from 'react-router-dom';
 
 const VerifyingEmail = () => {
     const { UserEmailVerified, UserId } = useAuth();

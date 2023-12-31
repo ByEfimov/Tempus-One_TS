@@ -1,7 +1,7 @@
+import { IsModal } from 'Components/Modals/isModal';
+import { useWritePost } from 'Hooks/useWritePost';
 import React, { FC } from 'react';
 import { LiveError, LiveProvider } from 'react-live';
-import { useWritePost } from 'Hooks/useWritePost';
-import { IsModal } from 'Components/Modals/isModal';
 
 interface ShowModalProps {
     mode: string;

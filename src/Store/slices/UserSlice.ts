@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 type UserType = {
     email: string | null;
@@ -56,7 +56,7 @@ const UserSlice = createSlice({
         },
         setCurrentUser(
             state,
-            action: PayloadAction<{ email: string | null; id: string | null }>
+            action: PayloadAction<{ email: string | null; id: string | null }>,
         ) {
             state.email = action.payload.email || null;
             state.id = action.payload.id || null;

@@ -1,6 +1,6 @@
-import { FC } from 'react';
 import Styles from './MiniComponents.module.scss';
 import classNames from 'classnames';
+import { FC } from 'react';
 
 interface ButtonVoid {
     clickHandler: () => void;

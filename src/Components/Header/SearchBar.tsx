@@ -27,7 +27,7 @@ const SearchBarComp = () => {
                     dispatch(
                         setInputSearchBar({
                             SearchBar: SearchInput.current?.value,
-                        })
+                        }),
                     )
                 }
             >

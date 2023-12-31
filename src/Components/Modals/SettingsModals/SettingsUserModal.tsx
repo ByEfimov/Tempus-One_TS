@@ -1,11 +1,11 @@
-import { FC, useState } from 'react';
-import { CloseModal, IsModal } from '../isModal';
-import CustomInput from 'Components/MiniComponents/input';
-import ButtonVoid from 'Components/MiniComponents/button';
 import Styles from '../Modal.module.scss';
+import { CloseModal, IsModal } from '../isModal';
 import changeUserData from 'Api/Users/changeUserData';
+import ButtonVoid from 'Components/MiniComponents/button';
+import CustomInput from 'Components/MiniComponents/input';
 import { useAuth } from 'Hooks/useAuth';
 import { handleImageUpload } from 'Utils/Handlers/HandlerImageUpload';
+import { FC, useState } from 'react';
 
 interface SettingsUserModal {
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;

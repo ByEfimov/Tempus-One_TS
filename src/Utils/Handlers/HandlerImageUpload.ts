@@ -2,7 +2,7 @@ import { ChangeEvent } from 'react';
 
 export const handleImageUpload = (
     e: ChangeEvent<HTMLInputElement>,
-    setUserPhoto: (value: React.SetStateAction<string>) => void
+    setUserPhoto: (value: React.SetStateAction<string>) => void,
 ) => {
     const reader = new FileReader();
     reader.onload = () => {

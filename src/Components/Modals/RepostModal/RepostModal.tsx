@@ -1,19 +1,19 @@
-import { FC } from 'react';
-import { CloseModal, IsModal } from '../isModal';
-import { Post } from 'Types/TypesOfData/Post/Post';
 import Styles from '../Modal.module.scss';
-import { useAuth } from 'Hooks/useAuth';
-import { NewPostType } from 'Types/TypesOfData/Post/NewPostType';
+import { CloseModal, IsModal } from '../isModal';
+import { addNewCountOfReposts } from 'Api/Posts/Activities/addNewCountOfRepost';
+import { addNewPost } from 'Api/Posts/addNewPost';
+import ShowLogo from 'Components/MiniComponents/ShowLogo';
 import {
     ErrorNotification,
     MassageNotification,
 } from 'Components/Notifications/Notifications';
-import { addNewPost } from 'Api/Posts/addNewPost';
+import { useAuth } from 'Hooks/useAuth';
+import { NewPostType } from 'Types/TypesOfData/Post/NewPostType';
+import { Post } from 'Types/TypesOfData/Post/Post';
 import { countEmptyValues } from 'Utils/countEmptyValues';
-import { addNewCountOfReposts } from 'Api/Posts/Activities/addNewCountOfRepost';
-import { useNavigate } from 'react-router-dom';
-import ShowLogo from 'Components/MiniComponents/ShowLogo';
 import { getUnixTime } from 'date-fns';
+import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface RepostModal {
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;

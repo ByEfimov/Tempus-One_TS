@@ -1,18 +1,18 @@
-import MainPage from 'Pages/MainPage/MainPage';
 import Header from './Components/Header/Header';
-import { Route, Routes } from 'react-router-dom';
+import { Notifications } from 'Components/Notifications/Notifications';
+import AllTeams from 'Pages/AllTeams/AllTeams';
+import AllUsers from 'Pages/AllUsers/AllUsers';
+import ForgotPasswordPage from 'Pages/Authentication/ForgotPasswordPage';
 import LoginPage from 'Pages/Authentication/LoginPage';
 import RegisterPage from 'Pages/Authentication/RegisterPage';
-import WritePost from 'Pages/WriteHewPost/WritePost';
-import AllUsers from 'Pages/AllUsers/AllUsers';
-import AllTeams from 'Pages/AllTeams/AllTeams';
 import CreateTeam from 'Pages/CreateNewTeam/CreateTeam';
-import VerifyingEmail from 'Pages/VerifiedEmail/VerifiedEmail';
-import UserPage from 'Pages/OpenUser/UserPage';
+import MainPage from 'Pages/MainPage/MainPage';
 import PostPage from 'Pages/OpenPost/PostPage';
 import TeamPage from 'Pages/OpenTeam/TeamPage';
-import ForgotPasswordPage from 'Pages/Authentication/ForgotPasswordPage';
-import { Notifications } from 'Components/Notifications/Notifications';
+import UserPage from 'Pages/OpenUser/UserPage';
+import VerifyingEmail from 'Pages/VerifiedEmail/VerifiedEmail';
+import WritePost from 'Pages/WriteHewPost/WritePost';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
     return (

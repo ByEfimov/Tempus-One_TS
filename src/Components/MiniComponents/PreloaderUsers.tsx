@@ -1,5 +1,5 @@
-import FakeUser from 'Components/FakeData/FakeUser';
 import Styles from './MiniComponents.module.scss';
+import FakeUser from 'Components/FakeData/FakeUser';
 
 export default function PreloaderUsers() {
     return (
