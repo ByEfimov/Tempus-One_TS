@@ -1,9 +1,9 @@
-import { getDatabase, ref, onValue } from 'firebase/database';
 import { useAppDispatch } from 'Hooks/redux-hooks';
-import { useEffect } from 'react';
 import { useAuth } from 'Hooks/useAuth';
 import { removeUser, setUser } from 'Store/slices/UserSlice';
 import { getAuth, signOut } from 'firebase/auth';
+import { getDatabase, onValue, ref } from 'firebase/database';
+import { useEffect } from 'react';
 
 interface ListenerFC {
     children: React.ReactChild | React.ReactNode;
@@ -17,13 +17,9 @@ export default function ListenerFB({ children }: ListenerFC) {
 
     useEffect(() => {
         function LogoutUser() {
-            signOut(auth)
-                .then(() => {
-                    dispatch(removeUser());
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
+            signOut(auth).then(() => {
+                dispatch(removeUser());
+            });
         }
 
         if (UserIsAuth) {
@@ -46,7 +42,7 @@ export default function ListenerFB({ children }: ListenerFC) {
                             experience: data.experience || 0,
                             level: data.level | 0,
                             selectedVariants: data.selectedVariants,
-                        })
+                        }),
                     );
                 }
             });

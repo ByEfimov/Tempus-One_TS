@@ -16,7 +16,7 @@ export default function getUserAdmins(UserId: string | null) {
             const teamAdmin = query(
                 teamsRef,
                 orderByChild('/members/' + UserId + '/UserRole'),
-                equalTo('Administrator')
+                equalTo('Administrator'),
             );
             onValue(teamAdmin, (admin) => {
                 if (admin.val()) {
@@ -29,10 +29,9 @@ export default function getUserAdmins(UserId: string | null) {
                     }
                     resolve(Array);
                 } else {
-                    console.error('Администратор не найден.');
                     reject(null);
                 }
             });
-        }
+        },
     );
 }

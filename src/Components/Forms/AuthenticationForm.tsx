@@ -1,4 +1,4 @@
-import AuthWithGoogle from './AuthWithGoogle';
+import AuthWithGoogle from '../../Pages/Authentication/AuthWithGoogle';
 import FormsStyles from './FormsStyles.module.scss';
 import ButtonVoid from 'Components/MiniComponents/button';
 import validateEmail from 'Utils/ValidateData/ValidateEmail';

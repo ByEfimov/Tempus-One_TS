@@ -1,10 +1,11 @@
+/* eslint-disable import/order */
 import { getDatabase, ref, set } from '@firebase/database';
 import MaxXpToNextLevel from 'Utils/UsersOrTeams/MaxXpToNextLevel';
 
 export default function LevelUP(
     UserId: string | null,
     level: number | null,
-    experience: number | null
+    experience: number | null,
 ) {
     const db = getDatabase();
     if (level && experience) {
