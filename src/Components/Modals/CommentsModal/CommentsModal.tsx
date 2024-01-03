@@ -6,6 +6,7 @@ import { getComments } from 'Api/Posts/Activities/getComments';
 import SendIcon from 'Assets/Icons/Post/message.svg';
 import { useAuth } from 'Hooks/useAuth';
 import { Comments } from 'Types/TypesOfData/Post/Comments';
+import filterBadWords from 'Utils/Posts/FilterBadWords';
 import { getUnixTime } from 'date-fns';
 import { FC, useEffect, useState } from 'react';
 
@@ -34,10 +35,11 @@ const CommentsModal: FC<CommentsModalProps> = ({ setModalOpen, PostId }) => {
     const sendComment = () => {
         const currentDate = new Date();
         const currentUnixTime = getUnixTime(currentDate);
+        const Text = filterBadWords(commentText);
         if (commentText) {
             const NewComment = {
                 CommentatorId: UserId,
-                CommentText: commentText,
+                CommentText: Text,
                 CommentDate: currentUnixTime,
             };
             addNewComment(NewComment, PostId);

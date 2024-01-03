@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 import { getDatabase, push, ref, set } from '@firebase/database';
 import { NewPostType } from 'Types/TypesOfData/Post/NewPostType';
 

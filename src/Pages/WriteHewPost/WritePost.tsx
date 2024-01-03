@@ -16,6 +16,9 @@ import { useWritePost } from 'Hooks/useWritePost';
 import { removePost } from 'Store/slices/WritePost/WritePostSlice';
 import { NewPostType } from 'Types/TypesOfData/Post/NewPostType';
 import { ModsOfWritePost } from 'Utils/ModsOfComps';
+import filterBadWords, {
+    applyFilterToNewPost,
+} from 'Utils/Posts/FilterBadWords';
 import { countEmptyValues } from 'Utils/countEmptyValues';
 import { getUnixTime } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
@@ -42,9 +45,11 @@ const WritePost = () => {
             PostReposts: 0,
         };
 
-        if (countEmptyValues(NewPost) - 4 >= 0) {
+        const filteredPost = applyFilterToNewPost(NewPost);
+
+        if (countEmptyValues(filteredPost) - 4 === 0) {
             changeUserData('experience', UserExperience + 40, UserId);
-            addNewPost(NewPost);
+            addNewPost(filteredPost);
             dispatch(removePost());
             navigate('/');
         } else {

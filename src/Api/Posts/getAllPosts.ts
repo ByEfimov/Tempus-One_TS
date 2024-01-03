@@ -1,20 +1,20 @@
-import {
-    getDatabase,
-    ref,
-    onValue,
-    query,
-    orderByKey,
-    orderByChild,
-    equalTo,
-} from 'firebase/database';
 import { Post } from 'Types/TypesOfData/Post/Post';
+import {
+    equalTo,
+    getDatabase,
+    onValue,
+    orderByChild,
+    orderByKey,
+    query,
+    ref,
+} from 'firebase/database';
 
 export function getPosts(
     filter:
         | string
         | null
         | string[]
-        | { orderBy: string; equalTo: string | undefined }
+        | { orderBy: string; equalTo: string | undefined },
 ) {
     const db = getDatabase();
     const postsRef = ref(db, '/posts/');
@@ -26,7 +26,7 @@ export function getPosts(
         Posts = query(
             postsRef,
             orderByChild(filter.orderBy),
-            equalTo(filter.equalTo || '')
+            equalTo(filter.equalTo || ''),
         );
     }
 
@@ -47,7 +47,7 @@ export function getPosts(
                     const filteredData = outputArray.filter(
                         (item) =>
                             Array.isArray(filter) &&
-                            filter?.includes(item.PostAuthorId)
+                            filter?.includes(item.PostAuthorId),
                     );
 
                     if (filteredData.length > 0) {
@@ -56,13 +56,12 @@ export function getPosts(
                         resolve(outputArray);
                     }
                 } else {
-                    console.error('Посты не были получены.');
                     reject(null);
                 }
             },
             {
                 onlyOnce: true,
-            }
+            },
         );
     });
 }

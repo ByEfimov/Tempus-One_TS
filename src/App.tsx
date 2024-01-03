@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 import Header from './Components/Header/Header';
 import { Notifications } from 'Components/Notifications/Notifications';
 import AllTeams from 'Pages/AllTeams/AllTeams';
@@ -15,6 +16,7 @@ import WritePost from 'Pages/WriteHewPost/WritePost';
 import { Route, Routes } from 'react-router-dom';
 
 function App() {
+    const files = {};
     return (
         <>
             <Header />

@@ -1,5 +1,5 @@
-import { getDatabase, ref, onValue } from 'firebase/database';
 import { Post } from 'Types/TypesOfData/Post/Post';
+import { getDatabase, onValue, ref } from 'firebase/database';
 
 export function getPostFromId(id: string | undefined): Promise<Post | null> {
     const db = getDatabase();
@@ -15,13 +15,12 @@ export function getPostFromId(id: string | undefined): Promise<Post | null> {
 
                     resolve(Post);
                 } else {
-                    console.error('Пост не найден.');
                     reject(null);
                 }
             },
             {
                 onlyOnce: true,
-            }
+            },
         );
     });
 }
