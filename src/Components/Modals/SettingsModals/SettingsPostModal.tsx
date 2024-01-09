@@ -1,6 +1,7 @@
 import Styles from '../Modal.module.scss';
 import { CloseModal, IsModal } from '../isModal';
 import changePostData from 'Api/Posts/ChangePostData';
+import removePost from 'Api/Posts/removePost';
 import ButtonVoid from 'Components/MiniComponents/button';
 import CustomInput from 'Components/MiniComponents/input';
 import CustomTextarea from 'Components/MiniComponents/textarea';
@@ -50,6 +51,16 @@ const SettingsPostModal: FC<SettingsPostModal> = ({ setModalOpen, post }) => {
                 clickHandler={ChangeFunction}
                 title="Применить"
                 classes={Styles.ButtonModal}
+                padding={false}
+            ></ButtonVoid>
+            <ButtonVoid
+                clickHandler={() => {
+                    removePost(post.PostId);
+                    navigate('/');
+                    CloseModal();
+                }}
+                title="Удалить пост"
+                classes={Styles.ButtonModalFalse}
                 padding={false}
             ></ButtonVoid>
         </IsModal>

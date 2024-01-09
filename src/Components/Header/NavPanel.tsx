@@ -5,12 +5,12 @@ import MessagesIcon from 'Assets/Icons/NavBar/comments-alt.svg';
 import WritePostIcon from 'Assets/Icons/NavBar/edit.svg';
 import StatisticIcon from 'Assets/Icons/NavBar/game-structure.svg';
 import UsersIcon from 'Assets/Icons/NavBar/users-alt.svg';
+import { ErrorNotification } from 'Components/Notifications/Notifications';
 import { useAppDispatch } from 'Hooks/redux-hooks';
+import { useAuth } from 'Hooks/useAuth';
 import { useHeader } from 'Hooks/useHeader';
 import { setTypeOfButtonHeader } from 'Store/slices/Header/HeaderSlice';
-import { setNotification } from 'Store/slices/Notifications/NotifySlice';
 import { TypesOfHeaderButton } from 'Types/TypesOfData/Header/HeaderType';
-import { TypesOfNotifications } from 'Types/TypesOfData/Notifications/NotifyType';
 import React, { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -22,6 +22,7 @@ const NavPanel: FC<NavPanelType> = ({ setOpenNavPanel }) => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { HeaderTitle } = useHeader();
+    const { UserCanChanging, UserIsAuth } = useAuth();
 
     const NavBarRef = React.createRef<HTMLDivElement>();
 
@@ -46,7 +47,15 @@ const NavPanel: FC<NavPanelType> = ({ setOpenNavPanel }) => {
                 <div
                     className={Styles.block}
                     onClick={() => {
-                        navigate('/WriteNewPost');
+                        if (UserCanChanging) {
+                            navigate('/WriteNewPost');
+                        } else if (!UserCanChanging) {
+                            if (!UserIsAuth) {
+                                ErrorNotification('Нужно войти в аккаунт.');
+                            } else {
+                                ErrorNotification('Нужно подтвердить почту.');
+                            }
+                        }
                         closeNav();
                     }}
                 >
@@ -86,12 +95,7 @@ const NavPanel: FC<NavPanelType> = ({ setOpenNavPanel }) => {
                 <div
                     className={Styles.block}
                     onClick={() => {
-                        dispatch(
-                            setNotification({
-                                Type: TypesOfNotifications.Error,
-                                Massage: 'Сервис недоступен.',
-                            }),
-                        );
+                        ErrorNotification('Сервис недоступен.');
                         closeNav();
                     }}
                 >
@@ -101,12 +105,7 @@ const NavPanel: FC<NavPanelType> = ({ setOpenNavPanel }) => {
                 <div
                     className={Styles.block}
                     onClick={() => {
-                        dispatch(
-                            setNotification({
-                                Type: TypesOfNotifications.Error,
-                                Massage: 'Сервис недоступен.',
-                            }),
-                        );
+                        ErrorNotification('Сервис недоступен.');
                         closeNav();
                     }}
                 >

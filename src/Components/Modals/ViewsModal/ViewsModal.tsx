@@ -1,6 +1,6 @@
 import { IsModal } from '../isModal';
 import { getUserFromId } from 'Api/Users/getData/getUserDataFromId';
-import ShowUserOrTeam from 'Components/ShowPosts/ShowUsersOrTeam/ShowUsersOrTeam';
+import ShowUserOrTeam from 'Components/ShowPosts/PostComponents/ShowUsersOrTeam/ShowUsersOrTeam';
 import { Post } from 'Types/TypesOfData/Post/Post';
 import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
 import { FC, useEffect, useState } from 'react';

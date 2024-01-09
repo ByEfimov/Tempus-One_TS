@@ -3,7 +3,7 @@ import { getAllTeams } from 'Api/Teams/getAllTeams';
 import PreloaderUsers from 'Components/MiniComponents/PreloaderUsers';
 import ButtonVoid from 'Components/MiniComponents/button';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
-import ShowUserOrTeam from 'Components/ShowPosts/ShowUsersOrTeam/ShowUsersOrTeam';
+import ShowUserOrTeam from 'Components/ShowPosts/PostComponents/ShowUsersOrTeam/ShowUsersOrTeam';
 import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';

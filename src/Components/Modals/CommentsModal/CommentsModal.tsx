@@ -4,6 +4,7 @@ import CommentRender from './CommentRender';
 import { addNewComment } from 'Api/Posts/Activities/addNewComment';
 import { getComments } from 'Api/Posts/Activities/getComments';
 import SendIcon from 'Assets/Icons/Post/message.svg';
+import { ErrorNotification } from 'Components/Notifications/Notifications';
 import { useAuth } from 'Hooks/useAuth';
 import { Comments } from 'Types/TypesOfData/Post/Comments';
 import filterBadWords from 'Utils/Posts/FilterBadWords';
@@ -16,7 +17,7 @@ interface CommentsModalProps {
 }
 
 const CommentsModal: FC<CommentsModalProps> = ({ setModalOpen, PostId }) => {
-    const { UserId } = useAuth();
+    const { UserId, UserIsAuth } = useAuth();
     const [commentText, setCommentText] = useState('');
     const [comments, setComments] = useState<Comments[] | string>(
         'Комментариев еще нет.',
@@ -36,7 +37,7 @@ const CommentsModal: FC<CommentsModalProps> = ({ setModalOpen, PostId }) => {
         const currentDate = new Date();
         const currentUnixTime = getUnixTime(currentDate);
         const Text = filterBadWords(commentText);
-        if (commentText) {
+        if (commentText && UserIsAuth) {
             const NewComment = {
                 CommentatorId: UserId,
                 CommentText: Text,
@@ -45,6 +46,8 @@ const CommentsModal: FC<CommentsModalProps> = ({ setModalOpen, PostId }) => {
             addNewComment(NewComment, PostId);
             getCommentsThis();
             setCommentText('');
+        } else if (!UserIsAuth) {
+            ErrorNotification('Нужно войти в аккаунт.');
         }
     };
 

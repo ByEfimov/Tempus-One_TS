@@ -16,9 +16,7 @@ import { useWritePost } from 'Hooks/useWritePost';
 import { removePost } from 'Store/slices/WritePost/WritePostSlice';
 import { NewPostType } from 'Types/TypesOfData/Post/NewPostType';
 import { ModsOfWritePost } from 'Utils/ModsOfComps';
-import filterBadWords, {
-    applyFilterToNewPost,
-} from 'Utils/Posts/FilterBadWords';
+import { applyFilterToNewPost } from 'Utils/Posts/FilterBadWords';
 import { countEmptyValues } from 'Utils/countEmptyValues';
 import { getUnixTime } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
@@ -70,40 +68,32 @@ const WritePost = () => {
         }
     };
 
-    if (UserCanChanging) {
-        return (
-            <div className={Styles.WritePost}>
-                <PostForWhom></PostForWhom>
+    return (
+        <div className={Styles.WritePost}>
+            <PostForWhom></PostForWhom>
 
-                <TitleForPost></TitleForPost>
+            <TitleForPost></TitleForPost>
 
-                {showSelectMode()}
+            {showSelectMode()}
 
-                <ControlBlocksPanel></ControlBlocksPanel>
+            <ControlBlocksPanel></ControlBlocksPanel>
 
-                <ButtonVoid
-                    classes={Styles.ButtonWrite}
-                    title="Отправить пост"
-                    clickHandler={sendNewPost}
-                    padding={false}
-                ></ButtonVoid>
-                <ButtonVoid
-                    padding={false}
-                    classes={Styles.ButtonClear}
-                    title="Очистить пост"
-                    clickHandler={() => {
-                        dispatch(removePost());
-                    }}
-                ></ButtonVoid>
-            </div>
-        );
-    } else if (!UserCanChanging) {
-        if (!UserIsAuth) {
-            ErrorNotification('Нужно войти в аккаунт.');
-        } else {
-            ErrorNotification('Нужно подтвердить почту.');
-        }
-    }
+            <ButtonVoid
+                classes={Styles.ButtonWrite}
+                title="Отправить пост"
+                clickHandler={sendNewPost}
+                padding={false}
+            ></ButtonVoid>
+            <ButtonVoid
+                padding={false}
+                classes={Styles.ButtonClear}
+                title="Очистить пост"
+                clickHandler={() => {
+                    dispatch(removePost());
+                }}
+            ></ButtonVoid>
+        </div>
+    );
 };
 
 export default WritePost;

@@ -21,7 +21,7 @@ interface RepostModal {
 }
 
 const RepostModal: FC<RepostModal> = ({ setModalOpen, post }) => {
-    const { UserPhoto, UserId } = useAuth();
+    const { UserPhoto, UserId, UserIsAuth } = useAuth();
     const navigate = useNavigate();
 
     function repostToYou() {
@@ -40,12 +40,15 @@ const RepostModal: FC<RepostModal> = ({ setModalOpen, post }) => {
             PostWithRepostUs: post.PostId,
         };
 
-        if (countEmptyValues(NewPost) - 5 === 0) {
+        if (countEmptyValues(NewPost) - 5 >= 0 && UserIsAuth) {
             addNewPost(NewPost);
             addNewCountOfReposts(post.PostReposts + 1, post.PostId);
             navigate('/User/' + UserId);
             MassageNotification('Пост отправлен!');
         } else {
+            if (!UserIsAuth) {
+                ErrorNotification('Нужно войти в аккаунт.');
+            }
             ErrorNotification('Ошибка при отправке поста.');
         }
         CloseModal();

@@ -140,6 +140,17 @@
     font-size: 20px;
     font-weight: 600;
 }
+.ButtonModalFalse {
+    padding: 8px;
+    width: 100%;
+    background-color: var(--DarkTextColor) !important;
+    border-radius: 15px;
+    box-shadow: var(--DarkShadow);
+    color: var(--WhiteTextColor);
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+}
 
 @keyframes closeNav {
     from {

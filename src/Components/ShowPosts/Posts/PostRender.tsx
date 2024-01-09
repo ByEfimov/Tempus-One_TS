@@ -37,7 +37,7 @@ const PostRender: FC<PostRender> = ({ post }) => {
     const [CommentsOpen, setCommentsOpen] = useState(false);
     const [RepostModalOpen, setRepostModalOpen] = useState(false);
     const [ViewsModalOpen, setViewsModalOpen] = useState(false);
-    const { UserViewings, UserId } = useAuth();
+    const { UserViewings, UserId, UserIsAuth } = useAuth();
     const navigate = useNavigate();
 
     const [ImageIsLoad, setImageIsLoad] = useState(false);
@@ -68,7 +68,7 @@ const PostRender: FC<PostRender> = ({ post }) => {
         loadImages();
 
         function ViewingPost() {
-            if (!UserViewings?.includes(post.PostId)) {
+            if (!UserViewings?.includes(post.PostId) && UserIsAuth) {
                 viewPostForPost(post.PostId, UserId);
                 viewPostForUser(post.PostId, UserId);
             }

@@ -16,7 +16,6 @@ import WritePost from 'Pages/WriteHewPost/WritePost';
 import { Route, Routes } from 'react-router-dom';
 
 function App() {
-    const files = {};
     return (
         <>
             <Header />
