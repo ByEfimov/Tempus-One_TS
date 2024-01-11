@@ -22,7 +22,7 @@ import { getUnixTime } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 
 const WritePost = () => {
-    const { UserCanChanging, UserIsAuth, UserExperience, UserId } = useAuth();
+    const { UserExperience, UserId } = useAuth();
     const { TitleOfPost, selectMode, BlocksOfPost, postForWhom } =
         useWritePost();
     const dispatch = useAppDispatch();
