@@ -87,6 +87,21 @@ pre::-webkit-scrollbar {
     }
     .card .face.front {
         background-color: var(--AccentColor);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .Image {
+            position: absolute;
+            pointer-events: none;
+            width: 60px;
+            height: 60px;
+            * {
+                color: var(--WhiteTextColor);
+            }
+        }
+        input {
+            opacity: 0;
+        }
     }
     .card .face.back {
         overflow: hidden;

@@ -12,6 +12,7 @@ import {
 import { reversBlock } from 'Utils/Animations/reversBlock';
 import { ModsOfInput } from 'Utils/ModsOfComps';
 import classNames from 'classnames';
+import FeatherIcon from 'feather-icons-react';
 
 const ImageMode = () => {
     const { selectMode, BlocksOfPost } = useWritePost();
@@ -56,6 +57,10 @@ const ImageMode = () => {
             <div className={Styles.card} id="card">
                 <div className={classNames(Styles.face, Styles.front)}>
                     <input type="file" onChange={handleImageUpload} />
+                    <FeatherIcon
+                        icon={'image'}
+                        className={Styles.Image}
+                    ></FeatherIcon>
                 </div>
                 <div className={classNames(Styles.face, Styles.back)}>
                     <ShowImage
