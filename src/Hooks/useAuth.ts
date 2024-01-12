@@ -1,4 +1,5 @@
 import { useAppSelector } from './redux-hooks';
+import { decryptData } from 'Utils/CryptData/CriptingData';
 
 export function useAuth() {
     const {
@@ -23,7 +24,7 @@ export function useAuth() {
         UserSubscriptions: subscriptions,
         UserEmailVerified: emailVerified,
         UserEmail: email,
-        UserId: id,
+        UserId: decryptData(id),
         UserPhoto: photo,
         UserName: name,
         UserAge: age,

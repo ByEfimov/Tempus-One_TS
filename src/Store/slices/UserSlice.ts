@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { encryptData } from 'Utils/CryptData/CriptingData';
 
 type UserType = {
     email: string | null;
@@ -41,7 +42,7 @@ const UserSlice = createSlice({
     reducers: {
         setUser(state, action: PayloadAction<UserType>) {
             state.email = action.payload.email || null;
-            state.id = action.payload.id || null;
+            state.id = encryptData(action.payload.id || null);
             state.name = action.payload.name || null;
             state.age = action.payload.age;
             state.photo = action.payload.photo || null;
@@ -59,7 +60,7 @@ const UserSlice = createSlice({
             action: PayloadAction<{ email: string | null; id: string | null }>,
         ) {
             state.email = action.payload.email || null;
-            state.id = action.payload.id || null;
+            state.id = encryptData(action.payload.id || null);
         },
         removeUser(state) {
             state.email = null;
