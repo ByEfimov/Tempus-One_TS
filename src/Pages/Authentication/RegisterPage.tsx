@@ -16,7 +16,7 @@ export default function RegisterPage() {
         Email: string,
         Pass: string,
         Name: string,
-        Age: number,
+        Age: string,
     ) {
         createUserWithEmailAndPassword(auth, Email, Pass)
             .then((userCredential) => {
@@ -44,7 +44,8 @@ export default function RegisterPage() {
 
     return !UserIsAuth ? (
         <AuthenticationFrom
-            title="Регистрация"
+            title="Создай свой 
+						Аккаунт"
             handlerSubmit={registerUser}
         ></AuthenticationFrom>
     ) : (

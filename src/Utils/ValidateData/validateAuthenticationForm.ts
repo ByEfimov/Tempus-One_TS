@@ -6,13 +6,13 @@ export const validateAuthenticationForm = (
     Pass: string,
     Email: string,
     Name: string,
-    Age: number,
+    Age: string,
     title: string,
     handlerSubmit: (
         Email: string,
         Pass: string,
         Name: string,
-        Age: number,
+        Age: string,
     ) => void,
 ) => {
     if (!validatePassword(Pass)) {
@@ -21,8 +21,6 @@ export const validateAuthenticationForm = (
         ErrorNotification('Почта не подходит.');
     } else if (title === 'Регистрация' && Name.length < 5) {
         ErrorNotification('Имя должно быть длиннее 5 букв.');
-    } else if (title === 'Регистрация' && Age < 5) {
-        ErrorNotification('Вам должно быть больше 5 лет.');
     } else {
         handlerSubmit(Email, Pass, Name, Age);
     }

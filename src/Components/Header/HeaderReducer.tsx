@@ -1,5 +1,5 @@
 import { useAppDispatch } from 'Hooks/redux-hooks';
-import { setHeader } from 'Store/slices/Header/HeaderSlice';
+import { setHeader, setTypeOfHeader } from 'Store/slices/Header/HeaderSlice';
 import { TypesOfHeader } from 'Types/TypesOfData/Header/HeaderType';
 import AppRoutes from 'Utils/Routes/app-routes';
 import { useEffect } from 'react';
@@ -59,17 +59,22 @@ export default function HeaderReducer() {
                 break;
         }
 
+        const clickBack = () => {
+            navigate(PathOfBack);
+        };
+
         if (!HeaderHaveSearchBar) {
             dispatch(
                 setHeader({
                     Type: TypesOfHeader.WithoutSearchBar,
                     Title: TitleOfHeader,
-                    HeaderClickBack: () => navigate(PathOfBack),
+                    HeaderClickBack: clickBack,
+                    HeaderClickExecute: undefined,
                 }),
             );
         } else {
             dispatch(
-                setHeader({
+                setTypeOfHeader({
                     Type: TypesOfHeader.WithSearchBar,
                 }),
             );

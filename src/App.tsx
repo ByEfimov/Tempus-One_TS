@@ -1,5 +1,4 @@
-/* eslint-disable import/order */
-import Header from 'Assets/Tempus-Ui/Header/Header';
+import Header from 'Assets/Tempus-Ui/Components/Header/Header';
 import { Notifications } from 'Components/Notifications/Notifications';
 import AllTeams from 'Pages/AllTeams/AllTeams';
 import AllUsers from 'Pages/AllUsers/AllUsers';

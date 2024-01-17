@@ -72,6 +72,7 @@ const UserSlice = createSlice({
             state.subscriptions = null;
             state.members = null;
             state.postsLiked = null;
+            state.viewings = null;
             state.experience = null;
             state.level = null;
             state.selectedVariants = null;

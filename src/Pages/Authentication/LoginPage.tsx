@@ -30,7 +30,8 @@ export default function LoginPage() {
 
     return !UserIsAuth ? (
         <AuthenticationFrom
-            title="Вход"
+            title="Войди в свой 
+						Аккаунт"
             handlerSubmit={handlerSubmit}
         ></AuthenticationFrom>
     ) : (

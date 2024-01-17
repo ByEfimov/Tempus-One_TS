@@ -1,4 +1,4 @@
-import { getDatabase, set, ref } from '@firebase/database';
+import { getDatabase, ref, set } from '@firebase/database';
 
 export function addUserToRealtimeDB(
     email: string | null,
@@ -6,7 +6,7 @@ export function addUserToRealtimeDB(
     displayName: string | null,
     photoURL: string | null,
     emailVerified: boolean | null,
-    Age: number | null = 0
+    Age: string | number | null = 0,
 ) {
     const db = getDatabase();
     const NewUser = {

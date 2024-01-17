@@ -1,6 +1,9 @@
+import GoogleIcon from '../../Assets/Tempus-Ui/Icons/Buttons/google.svg';
 import { addUserToRealtimeDB } from 'Api/Users/addUserToRealtimeDB';
 import { getUserFromId } from 'Api/Users/getData/getUserDataFromId';
-import ButtonVoid from 'Components/MiniComponents/button';
+import Button, {
+    ButtonTypes,
+} from 'Assets/Tempus-Ui/Components/Buttons/Button';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { setCurrentUser } from 'Store/slices/UserSlice';
@@ -64,13 +67,14 @@ const AuthWithGoogle = () => {
     }
 
     return (
-        <ButtonVoid
-            title="войти с гугл"
-            clickHandler={() => {
+        <Button
+            Title="Войти с Google"
+            Type={ButtonTypes.default}
+            Icon={GoogleIcon}
+            Click={() => {
                 startAuth();
             }}
-            classes={undefined}
-        ></ButtonVoid>
+        ></Button>
     );
 };
 export default AuthWithGoogle;

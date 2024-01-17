@@ -1,5 +1,5 @@
 /* eslint-disable import/order */
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { HeaderType, TypesOfHeader } from 'Types/TypesOfData/Header/HeaderType';
 
 const initialState: HeaderType = {
@@ -17,7 +17,7 @@ const HeaderSlice = createSlice({
         setInputSearchBar(state, action) {
             state.SearchBar = action.payload.SearchBar;
         },
-        setHeader(state, action) {
+        setHeader(state, action: PayloadAction<Omit<HeaderType, 'SearchBar'>>) {
             state.Title = action.payload.Title;
             state.Type = action.payload.Type;
             state.HeaderClickBack = action.payload.HeaderClickBack;

@@ -4,16 +4,7 @@ import PostsSlice from './slices/PostsSlice';
 import userReducer from './slices/UserSlice';
 import WritePostSlice from './slices/WritePost/WritePostSlice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import {
-    FLUSH,
-    PAUSE,
-    PERSIST,
-    PURGE,
-    REGISTER,
-    REHYDRATE,
-    persistReducer,
-    persistStore,
-} from 'redux-persist';
+import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 const persistConfig = {
@@ -35,16 +26,7 @@ const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
-            serializableCheck: {
-                ignoredActions: [
-                    FLUSH,
-                    REHYDRATE,
-                    PAUSE,
-                    PERSIST,
-                    PURGE,
-                    REGISTER,
-                ],
-            },
+            serializableCheck: false,
         }),
 });
 
