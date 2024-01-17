@@ -25,6 +25,7 @@ module.exports = {
             'warn',
             { allowConstantExport: true },
         ],
+        'react-refresh/only-export-components': 'off',
         'no-console': 'error',
         'prefer-const': 'error',
         'import/no-unresolved': 'off',

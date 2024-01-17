@@ -1,0 +1,40 @@
+.AuthForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: var(--PrimaryPaddingSize);
+    &__Title {
+        color: var(--PrimaryTextColor);
+        font-size: 40px;
+        margin-top: 50px;
+        font-weight: 500;
+    }
+    &__InputWrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        .moreInputs {
+            display: flex;
+            gap: 10px;
+        }
+    }
+}
+.BottomForm {
+    padding: var(--PrimaryPaddingSize);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    bottom: 10px;
+    width: 100%;
+    .nextForm {
+        text-align: center;
+        font-size: 17px;
+        color: var(--SecondaryTextColor);
+        a {
+            background: var(--AccentBackgroundGradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+}

@@ -30,7 +30,7 @@ const Button = ({ Title, Click, Type, Icon }: Button) => {
             }}
             type="submit"
         >
-            <img src={Icon} alt="" />
+            {Icon && <img src={Icon} alt="" />}
             {Title}
         </button>
     );

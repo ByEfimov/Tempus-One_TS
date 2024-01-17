@@ -1,41 +1,19 @@
 html {
-    --BackgroundColor: #ffffff;
-    --WhiteColor: #f5f4f3;
-    --GreyColor: #f8f8f8;
-
-    --WhiteTextColor: #e8eaf5;
-    --WhiteTextColor2: #e6e3f3;
-    --GreyTextColor: #aab1b5;
-    --DarkTextColor: #505259;
-    --PlaceholderTextColor: rgba(245, 244, 243, 0.7);
-
-    --AccentColor: #675ef5;
-    --AccentColor2: #8e89ea;
-
-    --BigBoxShabow: drop-shadow(4px 4px 6px rgba(103, 94, 245, 0.2));
-    --SmollBoxShabow: drop-shadow(2px 2px 5px rgba(103, 94, 245, 0.2));
-    --DarkShadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.25);
-
-    --DefaultPadding: 17px;
-    --DefaultBorderRadius: 20px;
-
-    --BigFontSize: 35px;
-}
-
-html {
     --PrimaryTextColor: #fff;
     --SecondaryTextColor: #bdbdbd;
-
     --PrimaryBackgroundColor: #18191e;
     --SecondaryBackgroundColor: #1d1f2a;
     --ThirdaryBackgroundColor: #3d3f48;
-
+    --FourBackgroundColor: #20182c;
     --AccentBackgroundGradient: linear-gradient(
-        94deg,
-        #9651f3 0%,
+        91deg,
+        #7728e1 0%,
         #700cf5 100%
     );
-    --ErrorBackgroundGradient: linear-gradient(94deg, #b24239 0%, #d7554a 100%);
+    --AccentBackgroundShadow: 4px 4px 4px 0px rgba(113, 13, 245, 0.1);
 
+    --ErrorBackgroundGradient: linear-gradient(94deg, #b24239 0%, #d7554a 100%);
     --TransparentColor: #60658320;
+
+    --PrimaryPaddingSize: 15px;
 }

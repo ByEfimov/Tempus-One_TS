@@ -37,24 +37,24 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({
     const [Age, setAge] = useState('');
 
     return (
-        <form
-            className={FormsStyles.Container}
-            onSubmit={(e) => {
-                e.preventDefault();
-                validateAuthenticationForm(
-                    Pass,
-                    Email,
-                    Name,
-                    Age,
-                    title,
-                    handlerSubmit,
-                );
-            }}
-        >
-            <div className={FormsStyles.AuthForm}>
-                <div className={FormsStyles.Title}>{title}</div>
+        <>
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    validateAuthenticationForm(
+                        Pass,
+                        Email,
+                        Name,
+                        Age,
+                        title,
+                        handlerSubmit,
+                    );
+                }}
+                className={FormsStyles.AuthForm}
+            >
+                <div className={FormsStyles.AuthForm__Title}>{title}</div>
 
-                <div className={FormsStyles.InputWrapper}>
+                <div className={FormsStyles.AuthForm__InputWrapper}>
                     <Input
                         Placeholder="Ваша почта"
                         Change={(e) => setEmail(e.target.value)}
@@ -77,7 +77,7 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({
                                 Value={Name}
                                 Icon={UserIcon}
                                 Type={InputTypes.text}
-                                MaxLength={12}
+                                MaxLength={15}
                             ></Input>
                             <Input
                                 Placeholder="Возраст"
@@ -100,8 +100,7 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({
                     Click={() => {}}
                     Type={ButtonTypes.active}
                 ></Button>
-            </div>
-
+            </form>
             <div className={FormsStyles.BottomForm}>
                 <TextWithLine>Или</TextWithLine>
                 <AuthWithGoogle />
@@ -121,7 +120,7 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({
                     )}
                 </div>
             </div>
-        </form>
+        </>
     );
 };
 

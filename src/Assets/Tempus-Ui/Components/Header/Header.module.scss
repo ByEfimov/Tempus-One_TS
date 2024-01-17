@@ -8,7 +8,7 @@
         width: 100%;
         text-align: center;
         color: #fff;
-        font-size: 32px;
+        font-size: 28px;
         font-weight: 500;
         position: absolute;
         left: 0;
@@ -16,6 +16,8 @@
         pointer-events: none;
     }
     button {
+        height: 34px;
+        width: 30px;
         display: flex;
         justify-content: center;
         align-items: center;
