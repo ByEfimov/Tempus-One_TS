@@ -31,7 +31,6 @@ const WritePost = () => {
     function sendNewPost() {
         const currentDate = new Date();
         const currentUnixTime = getUnixTime(currentDate);
-
         const NewPost: NewPostType = {
             PostDataBlocks: BlocksOfPost,
             PostTitle: TitleOfPost,
@@ -44,7 +43,6 @@ const WritePost = () => {
         };
 
         const filteredPost = applyFilterToNewPost(NewPost);
-
         if (countEmptyValues(filteredPost) - 4 === 0) {
             changeUserData('experience', UserExperience + 40, UserId);
             addNewPost(filteredPost);

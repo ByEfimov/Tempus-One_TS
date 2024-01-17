@@ -1,92 +1,78 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useAppDispatch } from 'Hooks/redux-hooks';
-import {
-    setAnimOfHeader,
-    setHeader,
-    setTitleOfHeader,
-    setTypeOfHeader,
-} from 'Store/slices/Header/HeaderSlice';
+import { setHeader } from 'Store/slices/Header/HeaderSlice';
 import { TypesOfHeader } from 'Types/TypesOfData/Header/HeaderType';
+import AppRoutes from 'Utils/Routes/app-routes';
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function HeaderReducer() {
     const location = useLocation().pathname;
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const Path = location.split('/')[1];
 
         const ThenHaveSearchBar =
             Path === '' || Path === 'Users' || Path === 'Teams';
+        const HeaderHaveSearchBar = ThenHaveSearchBar ? true : false;
 
-        function HeaderHaveSearchBar() {
-            if (ThenHaveSearchBar) {
-                return true;
-            } else {
-                return false;
-            }
-        }
+        let TitleOfHeader = '';
+        let PathOfBack = AppRoutes.DEFAULT;
 
-        let TitleOfHeader = 'TEMPUS';
-        switch (Path) {
-            case '':
-                TitleOfHeader = 'TEMPUS';
-                break;
-            case 'Users':
-                TitleOfHeader = 'Все люди';
-                break;
-            case 'Teams':
-                TitleOfHeader = 'Сообщества';
-                break;
-            case 'WriteNewPost':
+        switch ('/' + Path) {
+            case AppRoutes.WRITENEWPOST:
                 TitleOfHeader = 'Новый пост';
+                PathOfBack = AppRoutes.DEFAULT;
                 break;
-            case 'CreateNewTeam':
+            case AppRoutes.CREATENEWTEAM:
                 TitleOfHeader = 'Новое сообщество';
+                PathOfBack = AppRoutes.TEAMS;
                 break;
-            case 'Team':
+            case AppRoutes.TEAM:
                 TitleOfHeader = 'Сообщество';
+                PathOfBack = AppRoutes.TEAMS;
                 break;
-            case 'User':
-                TitleOfHeader = 'Человек';
+            case AppRoutes.USER:
+                TitleOfHeader = 'Пользователь';
+                PathOfBack = AppRoutes.USERS;
                 break;
-            case 'Post':
+            case AppRoutes.POST:
                 TitleOfHeader = 'Пост';
+                PathOfBack = AppRoutes.DEFAULT;
                 break;
-            case 'Login':
-                TitleOfHeader = 'Авторизация';
+            case AppRoutes.LOGIN:
+                TitleOfHeader = 'Tempus-ID';
+                PathOfBack = AppRoutes.DEFAULT;
                 break;
-            case 'Register':
-                TitleOfHeader = 'Авторизация';
+            case AppRoutes.REGISTER:
+                TitleOfHeader = 'Tempus-ID';
+                PathOfBack = AppRoutes.DEFAULT;
                 break;
-            case 'NeedAuth':
-                TitleOfHeader = 'Нужен вход';
+            case AppRoutes.VERIFYINGEMAIL:
+                TitleOfHeader = 'Tempus-ID';
+                PathOfBack = AppRoutes.DEFAULT;
                 break;
-            case 'VerifyingEmail':
-                TitleOfHeader = 'Подтверждение почты';
+            default:
+                TitleOfHeader = '';
+                PathOfBack = AppRoutes.DEFAULT;
                 break;
         }
 
-        if (HeaderHaveSearchBar()) {
-            dispatch(setAnimOfHeader({ Animation: 'Open' }));
-
+        if (!HeaderHaveSearchBar) {
             dispatch(
                 setHeader({
-                    Type: TypesOfHeader.WithSearchBar,
+                    Type: TypesOfHeader.WithoutSearchBar,
                     Title: TitleOfHeader,
+                    HeaderClickBack: () => navigate(PathOfBack),
                 }),
             );
         } else {
-            dispatch(setAnimOfHeader({ Animation: 'Close' }));
-            dispatch(setTitleOfHeader({ Title: TitleOfHeader }));
-            setTimeout(() => {
-                dispatch(
-                    setTypeOfHeader({
-                        Type: TypesOfHeader.WithoutSearchBar,
-                    }),
-                );
-            }, 500);
+            dispatch(
+                setHeader({
+                    Type: TypesOfHeader.WithSearchBar,
+                }),
+            );
         }
     }, [location]);
 

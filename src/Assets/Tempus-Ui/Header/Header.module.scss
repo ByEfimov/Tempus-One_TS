@@ -1,0 +1,23 @@
+.Header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    &__Title {
+        width: 100%;
+        text-align: center;
+        color: #fff;
+        font-size: 32px;
+        font-weight: 500;
+        position: absolute;
+        left: 0;
+        top: 15px;
+        pointer-events: none;
+    }
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

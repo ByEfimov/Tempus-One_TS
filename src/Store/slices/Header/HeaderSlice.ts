@@ -1,17 +1,13 @@
 /* eslint-disable import/order */
 import { createSlice } from '@reduxjs/toolkit';
-import {
-    HeaderType,
-    TypesOfHeader,
-    TypesOfHeaderButton,
-} from 'Types/TypesOfData/Header/HeaderType';
+import { HeaderType, TypesOfHeader } from 'Types/TypesOfData/Header/HeaderType';
 
 const initialState: HeaderType = {
-    Title: 'TEMPUS',
-    Animation: 'Open',
+    Title: '',
     SearchBar: '',
     Type: TypesOfHeader.WithSearchBar,
-    TypeOfButton: TypesOfHeaderButton.NavBar,
+    HeaderClickBack: undefined,
+    HeaderClickExecute: undefined,
 };
 
 const HeaderSlice = createSlice({
@@ -21,12 +17,17 @@ const HeaderSlice = createSlice({
         setInputSearchBar(state, action) {
             state.SearchBar = action.payload.SearchBar;
         },
-        setTypeOfButtonHeader(state, action) {
-            state.TypeOfButton = action.payload.TypeOfButton;
-        },
         setHeader(state, action) {
             state.Title = action.payload.Title;
             state.Type = action.payload.Type;
+            state.HeaderClickBack = action.payload.HeaderClickBack;
+            state.HeaderClickExecute = action.payload.HeaderClickExecute;
+        },
+        setHeaderClickBack(state, action) {
+            state.HeaderClickBack = action.payload.HeaderHandleClickBack;
+        },
+        setHeaderClickExecute(state, action) {
+            state.HeaderClickExecute = action.payload.HeaderHandleClickBack;
         },
         setTitleOfHeader(state, action) {
             state.Title = action.payload.Title;
@@ -34,18 +35,15 @@ const HeaderSlice = createSlice({
         setTypeOfHeader(state, action) {
             state.Type = action.payload.Type;
         },
-        setAnimOfHeader(state, action) {
-            state.Animation = action.payload.Animation;
-        },
     },
 });
 export const {
     setTypeOfHeader,
     setInputSearchBar,
-    setTypeOfButtonHeader,
+    setHeaderClickBack,
+    setHeaderClickExecute,
     setHeader,
     setTitleOfHeader,
-    setAnimOfHeader,
 } = HeaderSlice.actions;
 
 export default HeaderSlice.reducer;

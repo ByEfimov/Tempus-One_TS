@@ -1,5 +1,5 @@
 /* eslint-disable import/order */
-import Header from './Components/Header/Header';
+import Header from 'Assets/Tempus-Ui/Header/Header';
 import { Notifications } from 'Components/Notifications/Notifications';
 import AllTeams from 'Pages/AllTeams/AllTeams';
 import AllUsers from 'Pages/AllUsers/AllUsers';
@@ -13,6 +13,7 @@ import TeamPage from 'Pages/OpenTeam/TeamPage';
 import UserPage from 'Pages/OpenUser/UserPage';
 import VerifyingEmail from 'Pages/VerifiedEmail/VerifiedEmail';
 import WritePost from 'Pages/WriteHewPost/WritePost';
+import AppRoutes from 'Utils/Routes/app-routes';
 import { Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -21,19 +22,25 @@ function App() {
             <Header />
             <Notifications />
             <Routes>
-                <Route path="/" element={<MainPage />} />
-                <Route path="/Login" element={<LoginPage />} />
-                <Route path="/Register" element={<RegisterPage />} />
-                <Route path="/WriteNewPost" element={<WritePost />} />
-                <Route path="/Users" element={<AllUsers />} />
-                <Route path="/Teams" element={<AllTeams />} />
-                <Route path="/CreateNewTeam" element={<CreateTeam />} />
-                <Route path="/VerifyingEmail" element={<VerifyingEmail />} />
-                <Route path="/User/:id" element={<UserPage />} />
-                <Route path="/Post/:id" element={<PostPage />} />
-                <Route path="/Team/:id" element={<TeamPage />} />
+                <Route path={AppRoutes.DEFAULT} element={<MainPage />} />
+                <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
+                <Route path={AppRoutes.REGISTER} element={<RegisterPage />} />
+                <Route path={AppRoutes.WRITENEWPOST} element={<WritePost />} />
+                <Route path={AppRoutes.USERS} element={<AllUsers />} />
+                <Route path={AppRoutes.TEAMS} element={<AllTeams />} />
                 <Route
-                    path="/ForgotPasswordPage"
+                    path={AppRoutes.CREATENEWTEAM}
+                    element={<CreateTeam />}
+                />
+                <Route
+                    path={AppRoutes.VERIFYINGEMAIL}
+                    element={<VerifyingEmail />}
+                />
+                <Route path={AppRoutes.USER + '/:id'} element={<UserPage />} />
+                <Route path={AppRoutes.POST + '/:id'} element={<PostPage />} />
+                <Route path={AppRoutes.TEAM + '/:id'} element={<TeamPage />} />
+                <Route
+                    path={AppRoutes.FORGOTPASSWORD}
                     element={<ForgotPasswordPage />}
                 />
             </Routes>
