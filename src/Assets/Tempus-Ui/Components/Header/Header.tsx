@@ -1,4 +1,4 @@
-import BackIcon from '../Icons/Header/BackIcon.svg';
+import BackIcon from '../../Icons/Header/back.svg';
 import Styles from './Header.module.scss';
 import CustomInput from 'Components/MiniComponents/input';
 import { useHeader } from 'Hooks/useHeader';
