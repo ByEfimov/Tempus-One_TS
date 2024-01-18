@@ -1,6 +1,7 @@
 import Styles from './Input.module.scss';
 import { formItemType } from 'Assets/Tempus-Ui/Animation/Form-animate';
 import { motion } from 'framer-motion';
+import { ReactNode } from 'react';
 
 export enum InputTypes {
     text = 'text',
@@ -19,7 +20,7 @@ interface Input {
     Change: (e: React.ChangeEvent<HTMLInputElement>) => void;
     Value: string | number;
     DefaultValue?: string;
-    Icon?: string;
+    Icon?: string | ReactNode;
     MaxLength?: number;
     Type: InputTypes;
     Variants?: formItemType;
@@ -40,9 +41,7 @@ const Input = ({
     return (
         <motion.div variants={Variants} className={Styles.Input}>
             {Icon && IconPosition === IconPositions.left && (
-                <div className={Styles.Input__Icon}>
-                    <img src={Icon} alt="" />
-                </div>
+                <div className={Styles.Input__Icon}>{Icon}</div>
             )}
             <input
                 maxLength={MaxLength}
@@ -53,9 +52,7 @@ const Input = ({
                 placeholder={Placeholder}
             ></input>
             {Icon && IconPosition === IconPositions.rigth && (
-                <div className={Styles.Input__Icon_r}>
-                    <img src={Icon} alt="" />
-                </div>
+                <div className={Styles.Input__Icon_r}>{Icon}</div>
             )}
         </motion.div>
     );

@@ -3,10 +3,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
     top: 0;
     position: fixed;
     z-index: 9999;
+    gap: 10px;
+    height: 70px;
     background-color: var(--PrimaryBackgroundColor);
     &__Title {
         width: 100%;
@@ -17,18 +21,23 @@
         font-weight: 600;
         position: absolute;
         left: 0;
-        height: 34px;
-        top: 15px;
+        padding: 10px;
+        top: 0px;
         display: flex;
         justify-content: center;
         align-items: center;
         pointer-events: none;
     }
+
     button {
-        height: 34px;
-        width: 30px;
         display: flex;
+        min-height: 27px;
+        min-width: 27px;
         justify-content: center;
         align-items: center;
+        svg {
+            height: 27px;
+            width: 27px;
+        }
     }
 }

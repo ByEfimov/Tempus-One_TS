@@ -1,4 +1,3 @@
-/* eslint-disable import/order */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { HeaderType, TypesOfHeader } from 'Types/TypesOfData/Header/HeaderType';
 
@@ -7,8 +6,9 @@ const initialState: HeaderType = {
     SearchBar: '',
     Type: TypesOfHeader.WithSearchBar,
     HeaderClickBack: undefined,
-    HeaderClickExecute: undefined,
+    ButtonExecute: undefined,
     ShowFooter: true,
+    PlaceholderForInput: 'Найти пост...',
 };
 
 const HeaderSlice = createSlice({
@@ -18,18 +18,20 @@ const HeaderSlice = createSlice({
         setInputSearchBar(state, action) {
             state.SearchBar = action.payload.SearchBar;
         },
-        setHeader(state, action: PayloadAction<Omit<HeaderType, 'SearchBar'>>) {
+        setHeader(
+            state,
+            action: PayloadAction<
+                Omit<Omit<HeaderType, 'SearchBar'>, 'PlaceholderForInput'>
+            >,
+        ) {
             state.Title = action.payload.Title;
             state.Type = action.payload.Type;
             state.HeaderClickBack = action.payload.HeaderClickBack;
             state.ShowFooter = action.payload.ShowFooter;
-            state.HeaderClickExecute = action.payload.HeaderClickExecute;
+            state.ButtonExecute = action.payload.ButtonExecute;
         },
         setHeaderClickBack(state, action) {
             state.HeaderClickBack = action.payload.HeaderHandleClickBack;
-        },
-        setHeaderClickExecute(state, action) {
-            state.HeaderClickExecute = action.payload.HeaderHandleClickBack;
         },
         setTitleOfHeader(state, action) {
             state.Title = action.payload.Title;
@@ -37,6 +39,8 @@ const HeaderSlice = createSlice({
         setTypeOfHeader(state, action) {
             state.Type = action.payload.Type;
             state.ShowFooter = action.payload.ShowFooter;
+            state.ButtonExecute = action.payload.ButtonExecute;
+            state.PlaceholderForInput = action.payload.placeholderForInput;
         },
     },
 });
@@ -44,7 +48,6 @@ export const {
     setTypeOfHeader,
     setInputSearchBar,
     setHeaderClickBack,
-    setHeaderClickExecute,
     setHeader,
     setTitleOfHeader,
 } = HeaderSlice.actions;

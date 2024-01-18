@@ -7,7 +7,8 @@ export function useHeader() {
         SearchBar,
         HeaderClickBack,
         ShowFooter,
-        HeaderClickExecute,
+        ButtonExecute,
+        PlaceholderForInput,
     } = useAppSelector((state) => state.Header);
 
     return {
@@ -15,7 +16,8 @@ export function useHeader() {
         HeaderType: Type,
         HeaderSearchBar: SearchBar,
         HeaderClickBack: HeaderClickBack,
-        HeaderClickExecute: HeaderClickExecute,
+        ButtonExecute,
         ShowFooter,
+        PlaceholderForInput,
     };
 }

@@ -1,7 +1,8 @@
-import BackIcon from '../../Icons/Header/back.svg';
-import SearchIcon from '../../Icons/Header/search.svg';
 import Input, { IconPositions, InputTypes } from '../Inputs/Input';
 import Styles from './Header.module.scss';
+import HeaderIcons, {
+    headerIcons,
+} from 'Assets/Tempus-Ui/Icons/Header/Header-Icons';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useHeader } from 'Hooks/useHeader';
 import { setInputSearchBar } from 'Store/slices/Header/HeaderSlice';
@@ -13,7 +14,8 @@ export default function Header() {
         HeaderTitle,
         HeaderSearchBar,
         HeaderClickBack,
-        HeaderClickExecute,
+        PlaceholderForInput,
+        ButtonExecute,
         HeaderType,
     } = useHeader();
     const dispatch = useAppDispatch();
@@ -27,12 +29,14 @@ export default function Header() {
             >
                 {HeaderClickBack && (
                     <button onClick={HeaderClickBack}>
-                        <img src={BackIcon} alt="" />
+                        <HeaderIcons Icon={headerIcons.Back} />
                     </button>
                 )}
                 <h1 className={Styles.Header__Title}>{HeaderTitle}</h1>
-                {HeaderClickExecute && (
-                    <button onClick={() => HeaderClickExecute()}>\/</button>
+                {ButtonExecute && (
+                    <button>
+                        <HeaderIcons Icon={ButtonExecute.icon}></HeaderIcons>
+                    </button>
                 )}
             </motion.header>
         );
@@ -49,10 +53,15 @@ export default function Header() {
                     Change={(e) => {
                         dispatch(setInputSearchBar(e.target.value));
                     }}
-                    Placeholder="Найти пост..."
-                    Icon={SearchIcon}
+                    Placeholder={PlaceholderForInput}
+                    Icon={<HeaderIcons Icon={headerIcons.Search} />}
                     IconPosition={IconPositions.rigth}
                 ></Input>
+                {ButtonExecute && (
+                    <button>
+                        <HeaderIcons Icon={ButtonExecute.icon}></HeaderIcons>
+                    </button>
+                )}
             </motion.header>
         );
     }

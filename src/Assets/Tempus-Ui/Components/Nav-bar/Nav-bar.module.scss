@@ -18,6 +18,7 @@
         align-items: center;
         background: var(--SecondaryBackgroundColor);
         svg {
+            transition: all 0.3s;
             fill: var(--SecondaryTextColor);
         }
     }

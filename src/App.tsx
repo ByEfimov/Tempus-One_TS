@@ -1,6 +1,6 @@
 import Header from 'Assets/Tempus-Ui/Components/Header/Header';
 import NavBar from 'Assets/Tempus-Ui/Components/Nav-bar/Nav-bar';
-import { footerIcons } from 'Assets/Tempus-Ui/Icons/Footer/FooterIcons';
+import { footerIcons } from 'Assets/Tempus-Ui/Icons/Footer/footer-icons';
 import { Notifications } from 'Components/Notifications/Notifications';
 import { useAuth } from 'Hooks/useAuth';
 import AllTeams from 'Pages/AllTeams/AllTeams';
@@ -22,19 +22,32 @@ function App() {
     const { PathToProfile } = useAuth();
 
     const navBarLinks = [
-        { name: 'Home', path: AppRoutes.DEFAULT, icon: footerIcons.Home },
+        {
+            name: 'Home',
+            path: [AppRoutes.DEFAULT, AppRoutes.POST],
+            icon: footerIcons.Home,
+        },
         {
             name: 'Services',
-            path: AppRoutes.SERVICES,
+            path: [AppRoutes.SERVICES],
             icon: footerIcons.Services,
         },
-        { name: 'Users', path: AppRoutes.USERS, icon: footerIcons.Users },
+        {
+            name: 'Users',
+            path: [
+                AppRoutes.USERS,
+                AppRoutes.TEAM,
+                AppRoutes.TEAMS,
+                AppRoutes.USER,
+            ],
+            icon: footerIcons.Users,
+        },
         {
             name: 'Statistic',
-            path: AppRoutes.STATISTIC,
+            path: [AppRoutes.STATISTIC],
             icon: footerIcons.Statistic,
         },
-        { name: 'Profile', path: PathToProfile, icon: footerIcons.User },
+        { name: 'Profile', path: [PathToProfile], icon: footerIcons.User },
     ];
 
     return (
