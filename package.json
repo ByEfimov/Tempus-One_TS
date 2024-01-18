@@ -21,6 +21,7 @@
         "feather-icons": "^4.29.1",
         "feather-icons-react": "^0.6.2",
         "firebase": "^10.6.0",
+        "framer-motion": "^10.18.0",
         "handy-svg": "^1.0.8",
         "react-advanced-cropper": "^0.19.4",
         "react-dom": "^18.2.0",
