@@ -1,11 +1,11 @@
-import ListenerFB from './Api/ListenerFireBase.tsx';
 import './Api/firebase';
 import App from './App.tsx';
 import './Assets/Styles/animations.css';
 import './Assets/Styles/null.css';
 import NavigationReducer from './Components/Header/navigation-reducer.tsx';
 import store, { persister } from './Store/index.ts';
-import LevelReducer from 'Components/Level/LevelReducer.tsx';
+import ListenerFB from 'Api/listener-fire-base.tsx';
+import LevelReducer from 'Components/Level/level-reducer.tsx';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';

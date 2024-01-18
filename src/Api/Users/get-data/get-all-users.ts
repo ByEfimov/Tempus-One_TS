@@ -1,5 +1,5 @@
-import { getDatabase, ref, onValue } from 'firebase/database';
 import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
+import { getDatabase, onValue, ref } from 'firebase/database';
 
 export function getAllUsers() {
     const db = getDatabase();
@@ -10,13 +10,12 @@ export function getAllUsers() {
                 if (snapshot.exists()) {
                     resolve(Object.values(snapshot.val()));
                 } else {
-                    console.error('Пользователи не были получены.');
                     reject(null);
                 }
             },
             {
                 onlyOnce: true,
-            }
+            },
         );
     });
 }

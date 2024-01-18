@@ -1,5 +1,5 @@
 import Styles from './Styles.module.scss';
-import { getAllUsers } from 'Api/Users/getData/getAllUsers';
+import { getAllUsers } from 'Api/Users/get-data/get-all-users';
 import PreloaderUsers from 'Components/MiniComponents/PreloaderUsers';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
 import ShowUserOrTeam from 'Components/ShowPosts/PostComponents/ShowUsersOrTeam/ShowUsersOrTeam';

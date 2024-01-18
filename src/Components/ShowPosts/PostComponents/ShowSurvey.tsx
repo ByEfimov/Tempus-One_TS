@@ -1,5 +1,5 @@
 import Styles from '../Posts/Styles.module.scss';
-import selectVariantOfSurvey from 'Api/Users/Interaction/selectVariantOfSurvey';
+import selectVariantOfSurvey from 'Api/Users/interaction/select-variant-of-survey';
 import { useAuth } from 'Hooks/useAuth';
 import { PostBlock } from 'Types/TypesOfData/Post/Post';
 import { FC, useState } from 'react';

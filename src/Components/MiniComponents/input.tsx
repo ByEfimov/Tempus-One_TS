@@ -1,4 +1,4 @@
-import Styles from './MiniComponents.module.scss';
+import Styles from './styles.module.scss';
 import { useWritePost } from 'Hooks/useWritePost';
 import { ChangeEvent, FC } from 'react';
 

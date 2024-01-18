@@ -1,5 +1,5 @@
 import AuthWithGoogle from '../../Pages/Authentication/AuthWithGoogle';
-import FormsStyles from './FormsStyles.module.scss';
+import FormsStyles from './styles.module.scss';
 import {
     formContainer,
     formItem,

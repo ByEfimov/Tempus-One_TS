@@ -1,7 +1,7 @@
-import { getPostFromId } from 'Api/Posts/getPostDataFromId';
-import FakePost from 'Components/FakeData/FakePost';
+import { getPostFromId } from 'Api/Posts/get-post-data-fromId';
+import FakePost from 'Components/FakeData/fake-post';
 import ButtonVoid from 'Components/MiniComponents/button';
-import SettingsPostModal from 'Components/Modals/SettingsModals/SettingsPostModal';
+import SettingsPostModal from 'Components/Modals/Settings/settings-post-modal';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
 import PostRender from 'Components/ShowPosts/Posts/PostRender';
 import { useAppDispatch } from 'Hooks/redux-hooks';

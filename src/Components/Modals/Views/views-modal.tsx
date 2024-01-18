@@ -1,5 +1,5 @@
-import { IsModal } from '../isModal';
-import { getUserFromId } from 'Api/Users/getData/getUserDataFromId';
+import { IsModal } from '../is-modal';
+import { getUserFromId } from 'Api/Users/get-data/get-user-data-from-id';
 import ShowUserOrTeam from 'Components/ShowPosts/PostComponents/ShowUsersOrTeam/ShowUsersOrTeam';
 import { Post } from 'Types/TypesOfData/Post/Post';
 import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';

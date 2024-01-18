@@ -1,4 +1,4 @@
-import { IsModal } from 'Components/Modals/isModal';
+import { IsModal } from 'Components/Modals/is-modal';
 import { useWritePost } from 'Hooks/useWritePost';
 import React, { FC } from 'react';
 import { LiveError, LiveProvider } from 'react-live';

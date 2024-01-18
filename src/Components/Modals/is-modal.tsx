@@ -1,4 +1,4 @@
-import Styles from './Modal.module.scss';
+import Styles from './style.module.scss';
 import React, { FC } from 'react';
 
 interface isModalProps {

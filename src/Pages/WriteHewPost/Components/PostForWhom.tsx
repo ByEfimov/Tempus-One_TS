@@ -1,5 +1,5 @@
 import Styles from '../Styles.module.scss';
-import getUserAdmins from 'Api/Teams/GetUserAdmins';
+import getUserAdmins from 'Api/Teams/get-user-admins';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';
 import { setPostForWhom } from 'Store/slices/WritePost/WritePostSlice';

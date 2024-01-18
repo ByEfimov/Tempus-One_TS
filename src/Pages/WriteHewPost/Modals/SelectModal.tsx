@@ -1,6 +1,6 @@
 import Styles from '../Styles.module.scss';
 import ButtonVoid from 'Components/MiniComponents/button';
-import { CloseModal, IsModal } from 'Components/Modals/isModal';
+import { CloseModal, IsModal } from 'Components/Modals/is-modal';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useWritePost } from 'Hooks/useWritePost';
 import {

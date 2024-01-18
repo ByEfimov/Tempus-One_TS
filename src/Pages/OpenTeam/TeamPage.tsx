@@ -1,10 +1,10 @@
 import Styles from './Styles.module.scss';
-import getUserAdmins from 'Api/Teams/GetUserAdmins';
-import { getTeamFromId } from 'Api/Teams/getTeamDataFromId';
-import FakeOpenUser from 'Components/FakeData/FakeOpenUser';
+import { getTeamFromId } from 'Api/Teams/get-team-data-from-id';
+import getUserAdmins from 'Api/Teams/get-user-admins';
+import FakeOpenUser from 'Components/FakeData/fake-open-user';
 import SubscribeButton from 'Components/MiniComponents/SubscribeButton';
 import ButtonVoid from 'Components/MiniComponents/button';
-import SettingsTeamModal from 'Components/Modals/SettingsModals/SettingsTeamModal';
+import SettingsTeamModal from 'Components/Modals/Settings/settings-team-modal';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
 import ShowPosts from 'Components/ShowPosts/Posts/ShowPosts';
 import { useAppDispatch } from 'Hooks/redux-hooks';

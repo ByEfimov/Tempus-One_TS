@@ -1,8 +1,8 @@
-import Styles from '../Modal.module.scss';
-import { IsModal } from '../isModal';
+import { IsModal } from '../is-modal';
+import Styles from '../style.module.scss';
 import CommentRender from './CommentRender';
-import { addNewComment } from 'Api/Posts/Activities/addNewComment';
-import { getComments } from 'Api/Posts/Activities/getComments';
+import { addNewComment } from 'Api/Posts/Activities/add-new-comment';
+import { getComments } from 'Api/Posts/Activities/get-comments';
 import SendIcon from 'Assets/Icons/Post/message.svg';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
 import { useAuth } from 'Hooks/useAuth';

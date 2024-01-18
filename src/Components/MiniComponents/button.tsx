@@ -1,4 +1,4 @@
-import Styles from './MiniComponents.module.scss';
+import Styles from './styles.module.scss';
 import classNames from 'classnames';
 import { FC } from 'react';
 

@@ -1,4 +1,4 @@
-import Styles from './FakeStyles.module.scss';
+import Styles from './styles.module.scss';
 
 export default function FakeOpenUser() {
     return (

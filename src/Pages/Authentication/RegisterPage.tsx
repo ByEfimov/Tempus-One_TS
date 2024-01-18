@@ -1,5 +1,5 @@
-import { addUserToRealtimeDB } from 'Api/Users/addUserToRealtimeDB';
-import AuthenticationFrom from 'Components/Forms/AuthenticationForm';
+import { addUserToRealtimeDB } from 'Api/Users/add-user-to-realtime-DB';
+import AuthenticationFrom from 'Components/Forms/authentication-form';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';

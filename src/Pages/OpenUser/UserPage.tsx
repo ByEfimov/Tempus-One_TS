@@ -1,13 +1,13 @@
 import Styles from './UserPage.module.scss';
-import { getUserFromId } from 'Api/Users/getData/getUserDataFromId';
+import { getUserFromId } from 'Api/Users/get-data/get-user-data-from-id';
 import GiftIcon from 'Assets/Icons/User/gift.svg';
 import UserIcon from 'Assets/Icons/User/user.svg';
 import UsersIcon from 'Assets/Icons/User/users.svg';
-import FakeOpenUser from 'Components/FakeData/FakeOpenUser';
+import FakeOpenUser from 'Components/FakeData/fake-open-user';
 import PreloaderPosts from 'Components/MiniComponents/PreloaderPosts';
 import SubscribeButton from 'Components/MiniComponents/SubscribeButton';
 import ButtonVoid from 'Components/MiniComponents/button';
-import SettingsUserModal from 'Components/Modals/SettingsModals/SettingsUserModal';
+import SettingsUserModal from 'Components/Modals/Settings/settings-user-modal';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
 import ShowPosts from 'Components/ShowPosts/Posts/ShowPosts';
 import { useAppDispatch } from 'Hooks/redux-hooks';

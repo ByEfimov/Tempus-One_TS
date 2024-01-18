@@ -1,7 +1,7 @@
-import Styles from '../Modal.module.scss';
-import { CloseModal } from '../isModal';
-import { getUserFromId } from 'Api/Users/getData/getUserDataFromId';
-import FakeComment from 'Components/FakeData/FakeComment';
+import { CloseModal } from '../is-modal';
+import Styles from '../style.module.scss';
+import { getUserFromId } from 'Api/Users/get-data/get-user-data-from-id';
+import FakeComment from 'Components/FakeData/fake-comment';
 import ShowLogo from 'Components/MiniComponents/ShowLogo';
 import { Comments } from 'Types/TypesOfData/Post/Comments';
 import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';

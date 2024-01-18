@@ -1,7 +1,7 @@
 import Styles from './Styles.module.scss';
-import { addNewTeam } from 'Api/Teams/addNewTeam';
-import { Subscription } from 'Api/Users/Interaction/Subscription';
-import changeUserData from 'Api/Users/changeUserData';
+import { addNewTeam } from 'Api/Teams/add-new-team';
+import changeUserData from 'Api/Users/change-user-data';
+import { Subscription } from 'Api/Users/interaction/subscription';
 import ButtonVoid from 'Components/MiniComponents/button';
 import CustomInput from 'Components/MiniComponents/input';
 import CustomTextarea from 'Components/MiniComponents/textarea';

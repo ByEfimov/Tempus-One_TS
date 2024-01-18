@@ -1,4 +1,4 @@
-import AuthenticationFrom from 'Components/Forms/AuthenticationForm';
+import AuthenticationFrom from 'Components/Forms/authentication-form';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';

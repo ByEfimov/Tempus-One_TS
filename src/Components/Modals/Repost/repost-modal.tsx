@@ -1,7 +1,7 @@
-import Styles from '../Modal.module.scss';
-import { CloseModal, IsModal } from '../isModal';
-import { addNewCountOfReposts } from 'Api/Posts/Activities/addNewCountOfRepost';
-import { addNewPost } from 'Api/Posts/addNewPost';
+import { CloseModal, IsModal } from '../is-modal';
+import Styles from '../style.module.scss';
+import { addNewCountOfReposts } from 'Api/Posts/Activities/add-new-count-of-repost';
+import { addNewPost } from 'Api/Posts/add-new-post';
 import ShowLogo from 'Components/MiniComponents/ShowLogo';
 import {
     ErrorNotification,

@@ -1,5 +1,5 @@
 import Styles from '../Posts/Styles.module.scss';
-import { getPosts } from 'Api/Posts/getAllPosts';
+import { getPosts } from 'Api/Posts/get-all-posts';
 import { ErrorNotification } from 'Components/Notifications/Notifications';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';

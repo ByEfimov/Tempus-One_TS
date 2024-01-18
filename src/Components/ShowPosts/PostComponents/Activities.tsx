@@ -1,6 +1,6 @@
 import Styles from '../Posts/Styles.module.scss';
-import { RemoveLikePost } from 'Api/Posts/Activities/RemoveLikePost';
-import { SendLikePost } from 'Api/Posts/Activities/SendLikePost';
+import { RemoveLikePost } from 'Api/Posts/Activities/remove-like-post';
+import { SendLikePost } from 'Api/Posts/Activities/send-like-post';
 import CommentIcon from 'Assets/Icons/Post/comment.svg';
 import EyeIcon from 'Assets/Icons/Post/eye.svg';
 import FillHeartIcon from 'Assets/Icons/Post/fiil/heart.svg';

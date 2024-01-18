@@ -1,31 +1,31 @@
-import Styles from '../Modal.module.scss';
-import { CloseModal, IsModal } from '../isModal';
-import changeUserData from 'Api/Users/changeUserData';
+import { CloseModal, IsModal } from '../is-modal';
+import Styles from '../style.module.scss';
+import changeTeamData from 'Api/Teams/change-team-data';
 import ButtonVoid from 'Components/MiniComponents/button';
 import CustomInput from 'Components/MiniComponents/input';
-import { useAuth } from 'Hooks/useAuth';
+import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
 import { handleImageUpload } from 'Utils/Handlers/HandlerImageUpload';
 import { FC, useState } from 'react';
 
-interface SettingsUserModal {
+interface SettingsTeamModal {
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    team: OpenTeamType;
 }
 
-const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
-    const [userPhoto, setUserPhoto] = useState('');
-    const [userDisplayName, setUserDisplayName] = useState('');
-    const [userAge, setUserAge] = useState('');
-    const { UserId } = useAuth();
+const SettingsTeamModal: FC<SettingsTeamModal> = ({ setModalOpen, team }) => {
+    const [teamPhoto, setTeamPhoto] = useState('');
+    const [teamTitle, setTeamTitle] = useState('');
+    const [teamDesc, setTeamDesc] = useState('');
 
     function ChangeFunction() {
-        if (userPhoto !== '') {
-            changeUserData('photo', userPhoto, UserId);
+        if (teamPhoto !== '') {
+            changeTeamData('image', teamPhoto, team.id);
         }
-        if (userDisplayName !== '') {
-            changeUserData('name', userDisplayName, UserId);
+        if (teamTitle !== '') {
+            changeTeamData('title', teamTitle, team.id);
         }
-        if (userAge !== '') {
-            changeUserData('age', userAge, UserId);
+        if (teamDesc !== '') {
+            changeTeamData('desc', teamDesc, team.id);
         }
         CloseModal();
     }
@@ -35,20 +35,20 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
             <input
                 type="file"
                 accept="image/png, image/jpeg"
-                onChange={(e) => handleImageUpload(e, setUserPhoto)}
+                onChange={(e) => handleImageUpload(e, setTeamPhoto)}
             />
             <CustomInput
-                placeholder="Имя"
+                placeholder="Название"
                 mode="large"
                 changeFunction={(e) => {
-                    setUserDisplayName(e.currentTarget.value);
+                    setTeamTitle(e.currentTarget.value);
                 }}
             ></CustomInput>
             <CustomInput
-                placeholder="Возраст"
+                placeholder="Описание"
                 mode="large"
                 changeFunction={(e) => {
-                    setUserAge(e.currentTarget.value);
+                    setTeamDesc(e.currentTarget.value);
                 }}
             ></CustomInput>
             <ButtonVoid
@@ -61,4 +61,4 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
     );
 };
 
-export default SettingsUserModal;
+export default SettingsTeamModal;

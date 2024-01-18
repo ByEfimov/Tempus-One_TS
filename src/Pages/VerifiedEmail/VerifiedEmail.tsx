@@ -1,7 +1,7 @@
 /* eslint-disable import/order */
 import Styles from './Styles.module.scss';
 import { getDatabase, ref, set } from '@firebase/database';
-import { getCurrentUserData } from 'Api/Users/getData/getCurrentUserData';
+import { getCurrentUserData } from 'Api/Users/get-data/get-current-user-data';
 import ButtonVoid from 'Components/MiniComponents/button';
 import { MassageNotification } from 'Components/Notifications/Notifications';
 import { useAuth } from 'Hooks/useAuth';

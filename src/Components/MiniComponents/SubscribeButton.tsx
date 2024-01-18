@@ -1,6 +1,6 @@
-import Styles from './MiniComponents.module.scss';
-import { Subscription } from 'Api/Users/Interaction/Subscription';
-import changeUserData from 'Api/Users/changeUserData';
+import Styles from './styles.module.scss';
+import changeUserData from 'Api/Users/change-user-data';
+import { Subscription } from 'Api/Users/interaction/subscription';
 import PlusDarkIcon from 'Assets/Icons/Post/plus-circle-dark.svg';
 import PlusIcon from 'Assets/Icons/Post/plus-circle.svg';
 import {

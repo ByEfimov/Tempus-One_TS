@@ -1,5 +1,5 @@
-import { getDatabase, ref, onValue } from 'firebase/database';
 import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
+import { getDatabase, onValue, ref } from 'firebase/database';
 
 export function getAllTeams() {
     const db = getDatabase();
@@ -18,13 +18,12 @@ export function getAllTeams() {
 
                     resolve(outputArray);
                 } else {
-                    console.error('Команды не быди получены.');
                     reject(null);
                 }
             },
             {
                 onlyOnce: true,
-            }
+            },
         );
     });
 }

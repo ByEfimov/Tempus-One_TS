@@ -1,5 +1,5 @@
 import Styles from '../Styles.module.scss';
-import { LoadImage } from 'Api/Posts/Loaders/ImageUpload';
+import { LoadImage } from 'Api/Posts/Loaders/Image-upload';
 import CustomInput from 'Components/MiniComponents/input';
 import ShowImage from 'Components/ShowPosts/PostComponents/ShowImage';
 import ActiveButton from 'Components/ShowPosts/PostComponents/activeButton';

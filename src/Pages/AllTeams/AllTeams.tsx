@@ -1,5 +1,5 @@
 import Styles from './Styles.module.scss';
-import { getAllTeams } from 'Api/Teams/getAllTeams';
+import { getAllTeams } from 'Api/Teams/get-all-teams';
 import PreloaderUsers from 'Components/MiniComponents/PreloaderUsers';
 import ButtonVoid from 'Components/MiniComponents/button';
 import { ErrorNotification } from 'Components/Notifications/Notifications';

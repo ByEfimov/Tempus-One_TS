@@ -1,6 +1,6 @@
 import GoogleIcon from '../../Assets/Tempus-Ui/Icons/Buttons/google.svg';
-import { addUserToRealtimeDB } from 'Api/Users/addUserToRealtimeDB';
-import { getUserFromId } from 'Api/Users/getData/getUserDataFromId';
+import { addUserToRealtimeDB } from 'Api/Users/add-user-to-realtime-DB';
+import { getUserFromId } from 'Api/Users/get-data/get-user-data-from-id';
 import Button, {
     ButtonTypes,
 } from 'Assets/Tempus-Ui/Components/Buttons/Button';

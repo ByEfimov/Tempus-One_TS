@@ -1,8 +1,8 @@
-import { getDatabase, ref, onValue } from 'firebase/database';
 import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
+import { getDatabase, onValue, ref } from 'firebase/database';
 
 export function getTeamFromId(
-    id: string | undefined
+    id: string | undefined,
 ): Promise<OpenTeamType | null> {
     const db = getDatabase();
     return new Promise((resolve, reject) => {
@@ -17,13 +17,12 @@ export function getTeamFromId(
 
                     resolve(outputObject);
                 } else {
-                    console.error('Команда не найдена.');
                     reject(null);
                 }
             },
             {
                 onlyOnce: true,
-            }
+            },
         );
     });
 }

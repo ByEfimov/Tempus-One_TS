@@ -1,4 +1,4 @@
-import Styles from './MiniComponents.module.scss';
+import Styles from './styles.module.scss';
 import UserIcon from 'Assets/Icons/Header/user.svg';
 import { FC } from 'react';
 

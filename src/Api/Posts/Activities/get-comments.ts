@@ -17,13 +17,12 @@ export function getComments(id: string | undefined) {
                         }));
                     resolve(outputArray);
                 } else {
-                    console.error('Комментариев нет.');
                     reject(null);
                 }
             },
             {
                 onlyOnce: true,
-            }
+            },
         );
     });
 }
