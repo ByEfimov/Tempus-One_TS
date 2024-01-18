@@ -1,7 +1,3 @@
-import EmailIcon from '../../Assets/Tempus-Ui/Icons/Inputs/email.svg';
-import LockIcon from '../../Assets/Tempus-Ui/Icons/Inputs/lock.svg';
-import GiftIcon from '../../Assets/Tempus-Ui/Icons/Users/gift.svg';
-import UserIcon from '../../Assets/Tempus-Ui/Icons/Users/user.svg';
 import AuthWithGoogle from '../../Pages/Authentication/AuthWithGoogle';
 import FormsStyles from './FormsStyles.module.scss';
 import Button, {
@@ -59,14 +55,12 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({
                         Placeholder="Ваша почта"
                         Change={(e) => setEmail(e.target.value)}
                         Value={Email}
-                        Icon={EmailIcon}
                         Type={InputTypes.email}
                     ></Input>
                     <Input
                         Placeholder="Ваш пароль"
                         Change={(e) => setPass(e.target.value)}
                         Value={Pass}
-                        Icon={LockIcon}
                         Type={InputTypes.password}
                     ></Input>
                     {Path === AppRoutes.REGISTER && (
@@ -75,7 +69,6 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({
                                 Placeholder="Имя"
                                 Change={(e) => setName(e.target.value)}
                                 Value={Name}
-                                Icon={UserIcon}
                                 Type={InputTypes.text}
                                 MaxLength={15}
                             ></Input>
@@ -84,7 +77,6 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({
                                 Change={(e) => setAge(e.target.value)}
                                 Value={Age}
                                 DefaultValue="03"
-                                Icon={GiftIcon}
                                 Type={InputTypes.number}
                             ></Input>
                         </div>

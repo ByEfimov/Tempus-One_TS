@@ -2,12 +2,12 @@
     display: flex;
     justify-content: center;
     position: relative;
-    font-size: 18px;
-    font-weight: 400;
+    font-size: 16px;
+    font-weight: 500;
 }
 .TextWithLine::after {
     content: '';
-    width: 40%;
+    width: 42%;
     left: 0;
     top: calc(50% - 2px);
     border-radius: 5px;
@@ -18,7 +18,7 @@
 
 .TextWithLine::before {
     content: '';
-    width: 40%;
+    width: 42%;
     right: 0;
     top: calc(50% - 2px);
     border-radius: 5px;

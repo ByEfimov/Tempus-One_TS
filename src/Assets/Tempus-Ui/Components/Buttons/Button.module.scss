@@ -3,8 +3,7 @@
     padding: 10px;
     background: var(--SecondaryBackgroundColor);
     font-size: 18px;
-    font-weight: 500;
-    letter-spacing: 1px;
+    font-weight: 600;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,7 +16,7 @@
 .ButtonActive {
     background: var(--AccentBackgroundGradient);
     border-radius: 50px;
-    letter-spacing: 1.5px;
+    font-weight: 600;
     font-size: 18px;
     box-shadow: var(--AccentBackgroundShadow);
 }
