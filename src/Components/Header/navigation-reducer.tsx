@@ -35,7 +35,7 @@ export default function NavigationReducer() {
             case AppRoutes.TEAM:
                 TitleOfHeader = 'Сообщество';
                 PathOfBack = AppRoutes.TEAMS;
-                ShowFooter = false;
+                ShowFooter = true;
                 break;
             case AppRoutes.USER:
                 TitleOfHeader = 'Профиль';
@@ -45,7 +45,7 @@ export default function NavigationReducer() {
             case AppRoutes.POST:
                 TitleOfHeader = 'Пост';
                 PathOfBack = AppRoutes.DEFAULT;
-                ShowFooter = false;
+                ShowFooter = true;
                 break;
             case AppRoutes.LOGIN:
                 TitleOfHeader = 'Tempus-ID';
