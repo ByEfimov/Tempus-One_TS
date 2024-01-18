@@ -4,6 +4,10 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px;
+    top: 0;
+    position: fixed;
+    z-index: 9999;
+    background-color: var(--PrimaryBackgroundColor);
     &__Title {
         width: 100%;
         text-align: center;
@@ -13,7 +17,11 @@
         font-weight: 600;
         position: absolute;
         left: 0;
+        height: 34px;
         top: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         pointer-events: none;
     }
     button {

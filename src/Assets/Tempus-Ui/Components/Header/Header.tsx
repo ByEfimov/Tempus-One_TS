@@ -1,16 +1,30 @@
 import BackIcon from '../../Icons/Header/back.svg';
+import SearchIcon from '../../Icons/Header/search.svg';
+import Input, { IconPositions, InputTypes } from '../Inputs/Input';
 import Styles from './Header.module.scss';
-import CustomInput from 'Components/MiniComponents/input';
+import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useHeader } from 'Hooks/useHeader';
+import { setInputSearchBar } from 'Store/slices/Header/HeaderSlice';
 import { TypesOfHeader } from 'Types/TypesOfData/Header/HeaderType';
+import { motion } from 'framer-motion';
 
 export default function Header() {
-    const { HeaderTitle, HeaderClickBack, HeaderClickExecute, HeaderType } =
-        useHeader();
+    const {
+        HeaderTitle,
+        HeaderSearchBar,
+        HeaderClickBack,
+        HeaderClickExecute,
+        HeaderType,
+    } = useHeader();
+    const dispatch = useAppDispatch();
 
     if (HeaderType === TypesOfHeader.WithoutSearchBar) {
         return (
-            <header className={Styles.Header}>
+            <motion.header
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                className={Styles.Header}
+            >
                 {HeaderClickBack && (
                     <button onClick={HeaderClickBack}>
                         <img src={BackIcon} alt="" />
@@ -20,17 +34,26 @@ export default function Header() {
                 {HeaderClickExecute && (
                     <button onClick={() => HeaderClickExecute()}>\/</button>
                 )}
-            </header>
+            </motion.header>
         );
     } else {
         return (
-            <header className={Styles.Header}>
-                <CustomInput
-                    mode="default"
-                    changeFunction={() => {}}
-                    placeholder="Найти пост..."
-                ></CustomInput>
-            </header>
+            <motion.header
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className={Styles.Header}
+            >
+                <Input
+                    Value={HeaderSearchBar}
+                    Type={InputTypes.text}
+                    Change={(e) => {
+                        dispatch(setInputSearchBar(e.target.value));
+                    }}
+                    Placeholder="Найти пост..."
+                    Icon={SearchIcon}
+                    IconPosition={IconPositions.rigth}
+                ></Input>
+            </motion.header>
         );
     }
 }

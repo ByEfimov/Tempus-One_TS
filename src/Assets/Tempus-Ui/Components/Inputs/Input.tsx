@@ -1,4 +1,6 @@
 import Styles from './Input.module.scss';
+import { formItemType } from 'Assets/Tempus-Ui/Animation/Form-animate';
+import { motion } from 'framer-motion';
 
 export enum InputTypes {
     text = 'text',
@@ -6,6 +8,10 @@ export enum InputTypes {
     password = 'password',
     email = 'email',
     phone = 'phone',
+}
+export enum IconPositions {
+    left = 'left',
+    rigth = 'rigth',
 }
 
 interface Input {
@@ -16,6 +22,8 @@ interface Input {
     Icon?: string;
     MaxLength?: number;
     Type: InputTypes;
+    Variants?: formItemType;
+    IconPosition?: IconPositions;
 }
 
 const Input = ({
@@ -26,12 +34,16 @@ const Input = ({
     Icon,
     MaxLength,
     Type,
+    Variants,
+    IconPosition = IconPositions.left,
 }: Input) => {
     return (
-        <div className={Styles.Input}>
-            <div className={Styles.Input__Icon}>
-                <img src={Icon} alt="" />
-            </div>
+        <motion.div variants={Variants} className={Styles.Input}>
+            {Icon && IconPosition === IconPositions.left && (
+                <div className={Styles.Input__Icon}>
+                    <img src={Icon} alt="" />
+                </div>
+            )}
             <input
                 maxLength={MaxLength}
                 type={Type}
@@ -40,7 +52,12 @@ const Input = ({
                 value={Value}
                 placeholder={Placeholder}
             ></input>
-        </div>
+            {Icon && IconPosition === IconPositions.rigth && (
+                <div className={Styles.Input__Icon_r}>
+                    <img src={Icon} alt="" />
+                </div>
+            )}
+        </motion.div>
     );
 };
 

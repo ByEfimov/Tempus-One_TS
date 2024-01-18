@@ -4,6 +4,7 @@ export type HeaderType = {
     Type: TypesOfHeader;
     HeaderClickBack?: () => void;
     HeaderClickExecute?: () => void;
+    ShowFooter: boolean;
 };
 
 export enum TypesOfHeader {

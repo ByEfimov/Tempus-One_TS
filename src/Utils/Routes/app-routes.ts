@@ -11,5 +11,7 @@ const AppRoutes = {
     POST: '/Post',
     TEAM: '/Team',
     FORGOTPASSWORD: '/ForgotPassword',
+    SERVICES: '/Services',
+    STATISTIC: '/Statistic',
 };
 export default AppRoutes;

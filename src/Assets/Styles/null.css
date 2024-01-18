@@ -41,6 +41,7 @@ html {
 body {
     overflow-x: hidden;
     overflow-y: auto;
+    padding-top: 64px;
 }
 html {
     overflow-x: hidden;
@@ -124,6 +125,10 @@ p {
 ul,
 ul li {
     list-style: none;
+}
+li::marker {
+    display: none;
+    opacity: 0 !important;
 }
 
 img {

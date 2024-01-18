@@ -1,5 +1,6 @@
 import { useAppSelector } from './redux-hooks';
 import { decryptData } from 'Utils/CryptData/CriptingData';
+import AppRoutes from 'Utils/Routes/app-routes';
 
 export function useAuth() {
     const {
@@ -18,6 +19,10 @@ export function useAuth() {
         selectedVariants,
     } = useAppSelector((state) => state.user);
 
+    const PathToProfile = email
+        ? AppRoutes.USER + '/' + decryptData(id)
+        : AppRoutes.LOGIN;
+
     return {
         UserIsAuth: !!email,
         UserCanChanging: !!emailVerified && !!email,
@@ -34,5 +39,6 @@ export function useAuth() {
         UserExperience: experience || 0,
         UserLevel: level || 1,
         UserSelectedVariants: selectedVariants,
+        PathToProfile,
     };
 }

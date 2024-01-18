@@ -3,7 +3,7 @@ import './Api/firebase';
 import App from './App.tsx';
 import './Assets/Styles/animations.css';
 import './Assets/Styles/null.css';
-import HeaderReducer from './Components/Header/HeaderReducer.tsx';
+import NavigationReducer from './Components/Header/navigation-reducer.tsx';
 import store, { persister } from './Store/index.ts';
 import LevelReducer from 'Components/Level/LevelReducer.tsx';
 import React from 'react';
@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 <PersistGate persistor={persister} loading={null}>
                     <ListenerFB>
                         <LevelReducer>
-                            <HeaderReducer />
+                            <NavigationReducer />
                             <App />
                         </LevelReducer>
                     </ListenerFB>

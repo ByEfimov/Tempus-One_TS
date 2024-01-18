@@ -5,7 +5,7 @@ import AppRoutes from 'Utils/Routes/app-routes';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-export default function HeaderReducer() {
+export default function NavigationReducer() {
     const location = useLocation().pathname;
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -18,50 +18,70 @@ export default function HeaderReducer() {
         const HeaderHaveSearchBar = ThenHaveSearchBar ? true : false;
 
         let TitleOfHeader = '';
-        let PathOfBack = AppRoutes.DEFAULT;
+        let PathOfBack = '';
+        let ShowFooter = true;
 
         switch ('/' + Path) {
             case AppRoutes.WRITENEWPOST:
                 TitleOfHeader = 'Новый пост';
                 PathOfBack = AppRoutes.DEFAULT;
+                ShowFooter = false;
                 break;
             case AppRoutes.CREATENEWTEAM:
                 TitleOfHeader = 'Новое сообщество';
                 PathOfBack = AppRoutes.TEAMS;
+                ShowFooter = false;
                 break;
             case AppRoutes.TEAM:
                 TitleOfHeader = 'Сообщество';
                 PathOfBack = AppRoutes.TEAMS;
+                ShowFooter = false;
                 break;
             case AppRoutes.USER:
-                TitleOfHeader = 'Пользователь';
+                TitleOfHeader = 'Профиль';
                 PathOfBack = AppRoutes.USERS;
+                ShowFooter = true;
                 break;
             case AppRoutes.POST:
                 TitleOfHeader = 'Пост';
                 PathOfBack = AppRoutes.DEFAULT;
+                ShowFooter = false;
                 break;
             case AppRoutes.LOGIN:
                 TitleOfHeader = 'Tempus-ID';
                 PathOfBack = AppRoutes.DEFAULT;
+                ShowFooter = false;
                 break;
             case AppRoutes.REGISTER:
                 TitleOfHeader = 'Tempus-ID';
                 PathOfBack = AppRoutes.DEFAULT;
+                ShowFooter = false;
                 break;
             case AppRoutes.VERIFYINGEMAIL:
                 TitleOfHeader = 'Tempus-ID';
                 PathOfBack = AppRoutes.DEFAULT;
+                ShowFooter = false;
+                break;
+            case AppRoutes.SERVICES:
+                TitleOfHeader = 'Сервисы';
+                ShowFooter = true;
+                break;
+            case AppRoutes.STATISTIC:
+                TitleOfHeader = 'Статистика';
+                ShowFooter = true;
                 break;
             default:
                 TitleOfHeader = '';
-                PathOfBack = AppRoutes.DEFAULT;
+                PathOfBack = '';
+                ShowFooter = true;
                 break;
         }
 
-        const clickBack = () => {
-            navigate(PathOfBack);
-        };
+        const clickBack = PathOfBack
+            ? () => {
+                  navigate(PathOfBack);
+              }
+            : undefined;
 
         if (!HeaderHaveSearchBar) {
             dispatch(
@@ -70,12 +90,14 @@ export default function HeaderReducer() {
                     Title: TitleOfHeader,
                     HeaderClickBack: clickBack,
                     HeaderClickExecute: undefined,
+                    ShowFooter,
                 }),
             );
         } else {
             dispatch(
                 setTypeOfHeader({
                     Type: TypesOfHeader.WithSearchBar,
+                    ShowFooter,
                 }),
             );
         }

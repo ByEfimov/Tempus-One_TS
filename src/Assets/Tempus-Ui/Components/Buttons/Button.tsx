@@ -1,5 +1,7 @@
 import Styles from './Button.module.scss';
+import { formItemType } from 'Assets/Tempus-Ui/Animation/Form-animate';
 import classNames from 'classnames';
+import { motion } from 'framer-motion';
 
 export enum ButtonTypes {
     active = 'active',
@@ -12,9 +14,10 @@ interface Button {
     Click: () => void;
     Type: ButtonTypes;
     Icon?: string;
+    Variants?: formItemType;
 }
 
-const Button = ({ Title, Click, Type, Icon }: Button) => {
+const Button = ({ Title, Click, Type, Icon, Variants }: Button) => {
     const moreStyleOfButton =
         Type === ButtonTypes.active
             ? Styles.ButtonActive
@@ -23,16 +26,17 @@ const Button = ({ Title, Click, Type, Icon }: Button) => {
             : undefined;
 
     return (
-        <button
+        <motion.button
             className={classNames(Styles.Button, moreStyleOfButton)}
             onClick={() => {
                 Click();
             }}
             type="submit"
+            variants={Variants}
         >
             {Icon && <img src={Icon} alt="" />}
             {Title}
-        </button>
+        </motion.button>
     );
 };
 export default Button;

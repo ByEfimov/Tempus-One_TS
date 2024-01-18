@@ -8,6 +8,7 @@ const initialState: HeaderType = {
     Type: TypesOfHeader.WithSearchBar,
     HeaderClickBack: undefined,
     HeaderClickExecute: undefined,
+    ShowFooter: true,
 };
 
 const HeaderSlice = createSlice({
@@ -21,6 +22,7 @@ const HeaderSlice = createSlice({
             state.Title = action.payload.Title;
             state.Type = action.payload.Type;
             state.HeaderClickBack = action.payload.HeaderClickBack;
+            state.ShowFooter = action.payload.ShowFooter;
             state.HeaderClickExecute = action.payload.HeaderClickExecute;
         },
         setHeaderClickBack(state, action) {
@@ -34,6 +36,7 @@ const HeaderSlice = createSlice({
         },
         setTypeOfHeader(state, action) {
             state.Type = action.payload.Type;
+            state.ShowFooter = action.payload.ShowFooter;
         },
     },
 });

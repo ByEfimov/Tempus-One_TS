@@ -12,7 +12,6 @@ import { ErrorNotification } from 'Components/Notifications/Notifications';
 import ShowPosts from 'Components/ShowPosts/Posts/ShowPosts';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';
-import { setTitleOfHeader } from 'Store/slices/Header/HeaderSlice';
 import { removeUser } from 'Store/slices/UserSlice';
 import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
 import MaxXpToNextLevel from 'Utils/UsersOrTeams/MaxXpToNextLevel';
@@ -33,7 +32,6 @@ export default function UserPage() {
         getUserFromId(id)
             .then((user) => {
                 setOpenUser(user);
-                dispatch(setTitleOfHeader({ Title: user?.name }));
             })
             .catch(() => ErrorNotification('Пользователь не найден.'));
     }, []);
