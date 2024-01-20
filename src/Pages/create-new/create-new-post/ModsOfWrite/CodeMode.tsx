@@ -3,7 +3,7 @@ import ShowErrorsOrAlert, {
 } from '../Modals/ShowErrorsOrAlert';
 import Styles from '../Styles.module.scss';
 import CustomInput from 'Components/mini-components/input';
-import ActiveButton from 'Components/show-posts/post-components/activeButton';
+import ActiveButton from 'Components/show-posts/post-components/active-button';
 import ShowCode from 'Components/show-posts/post-components/show-code';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useWritePost } from 'Hooks/useWritePost';

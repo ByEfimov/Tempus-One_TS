@@ -1,7 +1,7 @@
 import Styles from '../Styles.module.scss';
 import { LoadImage } from 'Api/Posts/Loaders/Image-upload';
 import CustomInput from 'Components/mini-components/input';
-import ActiveButton from 'Components/show-posts/post-components/activeButton';
+import ActiveButton from 'Components/show-posts/post-components/active-button';
 import ShowImage from 'Components/show-posts/post-components/show-image';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useWritePost } from 'Hooks/useWritePost';
