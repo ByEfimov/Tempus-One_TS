@@ -1,0 +1,75 @@
+.Notification {
+    position: fixed;
+    height: 60px;
+    bottom: 17px;
+    display: flex;
+    align-items: center;
+    border-radius: var(--DefaultBorderRadius);
+    left: 17px;
+    right: 17px;
+    padding: 10px;
+    padding-left: 15px;
+    width: calc(100% - 34px);
+    z-index: 100000;
+    gap: 8px;
+    justify-content: center;
+    animation: open 0.5s forwards;
+    box-shadow: var(--DarkShadow);
+    background-color: var(--AccentColor);
+    img {
+        height: 30px;
+    }
+    .Text {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--WhiteTextColor);
+    }
+}
+.NotificationError {
+    position: fixed;
+    height: 60px;
+    bottom: 17px;
+    display: flex;
+    align-items: center;
+    border-radius: var(--DefaultBorderRadius);
+    left: 17px;
+    right: 17px;
+    padding: 10px;
+    padding-left: 15px;
+    width: calc(100% - 34px);
+    z-index: 100000;
+    gap: 8px;
+    animation: open 0.5s forwards;
+    box-shadow: var(--DarkShadow);
+    background-color: var(--DarkTextColor);
+    img {
+        height: 30px;
+    }
+    .Text {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--WhiteTextColor);
+    }
+}
+.NotificationClose {
+    animation: close 0.5s forwards;
+}
+
+@keyframes open {
+    0% {
+        bottom: -100px;
+    }
+    100% {
+        bottom: 17px;
+    }
+}
+
+@keyframes close {
+    0% {
+        bottom: 17px;
+    }
+
+    100% {
+        bottom: -100px;
+    }
+}
