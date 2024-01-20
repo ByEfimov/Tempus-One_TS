@@ -6,7 +6,12 @@ import { useHeader } from 'Hooks/useHeader';
 import { Link, useLocation } from 'react-router-dom';
 
 interface NavBar {
-    Links: { name: string; path: string[]; icon: footerIcons }[];
+    Links: {
+        name: string;
+        path: string[];
+        icon: footerIcons;
+        blackList?: string[];
+    }[];
 }
 
 const NavBar = ({ Links }: NavBar) => {
@@ -20,7 +25,11 @@ const NavBar = ({ Links }: NavBar) => {
                     <Link
                         key={link.path[0]}
                         className={
-                            link.path.includes(location)
+                            (link.path.includes(location) ||
+                                link.path.includes(
+                                    '/' + location.split('/')[1],
+                                )) &&
+                            !link.blackList?.includes(location)
                                 ? Styles.Select
                                 : undefined
                         }

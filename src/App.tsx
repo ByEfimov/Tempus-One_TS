@@ -40,6 +40,7 @@ function App() {
                 AppRoutes.TEAMS,
                 AppRoutes.USER,
             ],
+            blackList: [PathToProfile],
             icon: footerIcons.Users,
         },
         {
