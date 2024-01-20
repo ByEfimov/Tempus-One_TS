@@ -1,4 +1,3 @@
-import AuthWithGoogle from '../../pages/authentication/auth-with-google';
 import FormsStyles from './styles.module.scss';
 import {
     formContainer,
@@ -9,6 +8,7 @@ import Button, {
 } from 'Assets/Tempus-Ui/Components/Buttons/Button';
 import Input, { InputTypes } from 'Assets/Tempus-Ui/Components/Inputs/Input';
 import TextWithLine from 'Assets/Tempus-Ui/Components/Texts/Text-with-line';
+import AuthWithGoogle from 'Pages/authentication/auth-with-google';
 import AppRoutes from 'Utils/routes/app-routes';
 import { validateAuthenticationForm } from 'Utils/validate-data/validate-authentication-form';
 import { motion } from 'framer-motion';

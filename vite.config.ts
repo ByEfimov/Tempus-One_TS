@@ -6,14 +6,14 @@ export default defineConfig({
     plugins: [react()],
     resolve: {
         alias: {
-            Api: '/src/api',
-            Assets: '/src/assets',
-            Components: '/src/components',
-            Hooks: '/src/hooks',
-            Pages: '/src/pages',
+            Api: '/src/Api',
+            Assets: '/src/Assets',
+            Components: '/src/Components',
+            Hooks: '/src/Hooks',
+            Pages: '/src/Pages',
             Store: '/src/Store',
-            Types: '/src/types',
-            Utils: '/src/utils',
+            Types: '/src/Types',
+            Utils: '/src/Utils',
         },
     },
 });

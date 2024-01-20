@@ -22,14 +22,14 @@
         "noFallthroughCasesInSwitch": true,
         "baseUrl": "src",
         "paths": {
-            "Api/*": ["api/*"],
-            "Assets/*": ["assets/*"],
-            "Components/*": ["components/*"],
-            "Hooks/*": ["hooks/*"],
-            "Pages/*": ["pages/*"],
+            "Api/*": ["Api/*"],
+            "Assets/*": ["Assets/*"],
+            "Components/*": ["Components/*"],
+            "Hooks/*": ["Hooks/*"],
+            "Pages/*": ["Pages/*"],
             "Store/*": ["Store/*"],
-            "Types/*": ["types/*"],
-            "Utils/*": ["utils/*"]
+            "Types/*": ["Types/*"],
+            "Utils/*": ["Utils/*"]
         }
     },
     "references": [{ "path": "./tsconfig.node.json" }]
