@@ -5,7 +5,7 @@ import removePost from 'Api/Posts/remove-post';
 import ButtonVoid from 'Components/mini-components/button';
 import CustomInput from 'Components/mini-components/input';
 import CustomTextarea from 'Components/mini-components/textarea';
-import { Post } from 'Types/TypesOfData/Post/Post';
+import { Post } from 'Types/TypesOfData/post/post';
 import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 

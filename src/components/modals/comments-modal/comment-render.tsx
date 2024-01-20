@@ -3,9 +3,9 @@ import Styles from '../style.module.scss';
 import { getUserFromId } from 'Api/Users/get-data/get-user-data-from-id';
 import FakeComment from 'Components/fake-data/fake-comment';
 import ShowLogo from 'Components/mini-components/show-logo';
-import { Comments } from 'Types/TypesOfData/Post/Comments';
-import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
-import formatTimeAgo from 'Utils/post-utils/FormatTimeAgo';
+import { Comments } from 'Types/TypesOfData/post/comments';
+import { OpenUserType } from 'Types/TypesOfData/team-or-user/open-user-type';
+import formatTimeAgo from 'Utils/post-utils/format-time-ago';
 import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 

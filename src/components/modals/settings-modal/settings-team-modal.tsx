@@ -3,8 +3,8 @@ import Styles from '../style.module.scss';
 import changeTeamData from 'Api/Teams/change-team-data';
 import ButtonVoid from 'Components/mini-components/button';
 import CustomInput from 'Components/mini-components/input';
-import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
-import { handleImageUpload } from 'Utils/handlers/HandlerImageUpload';
+import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';
+import { handleImageUpload } from 'Utils/handlers/handler-image-upload';
 import { FC, useState } from 'react';
 
 interface SettingsTeamModal {

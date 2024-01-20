@@ -9,7 +9,7 @@ import {
 } from 'Components/notifications/notifications';
 import { WhoWrotePost } from 'Components/show-posts/posts/post-render';
 import { useAuth } from 'Hooks/useAuth';
-import { itsMember } from 'Utils/users-or-teams/istMember';
+import { itsMember } from 'Utils/users-or-teams/ist-member';
 import { FC } from 'react';
 
 interface SubscribeButton {

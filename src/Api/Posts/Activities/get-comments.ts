@@ -1,5 +1,5 @@
 import { getDatabase, onValue, ref } from '@firebase/database';
-import { Comments } from 'Types/TypesOfData/Post/Comments';
+import { Comments } from 'Types/TypesOfData/post/comments';
 
 export function getComments(id: string | undefined) {
     const db = getDatabase();

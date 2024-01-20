@@ -1,4 +1,4 @@
-import { NewPostType } from 'Types/TypesOfData/Post/NewPostType';
+import { NewPostType } from 'Types/TypesOfData/post/new-post-type';
 import array from 'badwords/array';
 import { flatWords } from 'russian-bad-words';
 

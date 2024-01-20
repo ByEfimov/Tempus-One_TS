@@ -8,7 +8,7 @@ import {
     clearNotify,
     setNotification,
 } from 'Store/slices/Notifications/NotifySlice';
-import { TypesOfNotifications } from 'Types/TypesOfData/Notifications/NotifyType';
+import { TypesOfNotifications } from 'Types/TypesOfData/notifications/notify-type';
 import React, { LegacyRef, useEffect } from 'react';
 
 let ErrorNotification = (_error: string) => {};

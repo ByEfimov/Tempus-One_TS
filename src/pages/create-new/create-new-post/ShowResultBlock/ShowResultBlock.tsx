@@ -1,7 +1,7 @@
 import Styles from '../Styles.module.scss';
 import ShowCode from 'Components/show-posts/post-components/show-code';
 import ShowImage from 'Components/show-posts/post-components/show-image';
-import { BlockOfPostType } from 'Types/TypesOfData/Post/WritePost';
+import { BlockOfPostType } from 'Types/TypesOfData/post/write-post';
 import { ModsOfWritePost } from 'Utils/mods-of-comps';
 import { FC } from 'react';
 

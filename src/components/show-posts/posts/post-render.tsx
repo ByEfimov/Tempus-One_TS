@@ -12,9 +12,9 @@ import CommentsModal from 'Components/modals/comments-modal/comments-modal';
 import RepostModal from 'Components/modals/repost-modal/repost-modal';
 import ViewsModal from 'Components/modals/views-modal/views-modal';
 import { useAuth } from 'Hooks/useAuth';
-import { Post } from 'Types/TypesOfData/Post/Post';
+import { Post } from 'Types/TypesOfData/post/post';
 import { ModsOfWritePost } from 'Utils/mods-of-comps';
-import { PostLoadIsDone } from 'Utils/post-utils/PostLoadIsDone';
+import { PostLoadIsDone } from 'Utils/post-utils/post-load-is-done';
 import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 

@@ -3,7 +3,7 @@ import { getAllUsers } from 'Api/Users/get-data/get-all-users';
 import PreloaderUsers from 'Components/mini-components/preloader-users';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import ShowUserOrTeam from 'Components/show-users-or-team/ShowUsersOrTeam';
-import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
+import { OpenUserType } from 'Types/TypesOfData/team-or-user/open-user-type';
 import { useEffect, useState } from 'react';
 
 export default function AllUsers() {

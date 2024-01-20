@@ -10,7 +10,7 @@ import ShowPosts from 'Components/show-posts/posts/show-posts';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';
 import { setTitleOfHeader } from 'Store/slices/header/header-slice';
-import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
+import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 

@@ -1,5 +1,5 @@
 import Styles from '../Posts/Styles.module.scss';
-import { Post } from 'Types/TypesOfData/Post/Post';
+import { Post } from 'Types/TypesOfData/post/post';
 import { FC } from 'react';
 
 interface PostDataRenderProps {

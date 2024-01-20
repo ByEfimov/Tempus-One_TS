@@ -3,7 +3,7 @@ import Styles from '../Styles.module.scss';
 import {
     BlockOfPostType,
     SelectModeType,
-} from 'Types/TypesOfData/Post/WritePost';
+} from 'Types/TypesOfData/post/write-post';
 import classNames from 'classnames';
 import { FC } from 'react';
 

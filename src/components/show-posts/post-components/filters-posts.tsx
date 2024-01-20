@@ -5,7 +5,7 @@ import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';
 import { useHeader } from 'Hooks/useHeader';
 import { setLastPostKey } from 'Store/slices/PostsSlice';
-import { Post } from 'Types/TypesOfData/Post/Post';
+import { Post } from 'Types/TypesOfData/post/post';
 import { FC, useEffect, useState } from 'react';
 
 interface FiltersProps {

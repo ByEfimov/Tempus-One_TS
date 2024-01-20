@@ -8,7 +8,7 @@ import {
     clearBlockOfPost,
     removeBlockOfPost,
 } from 'Store/slices/wite-post/write-post-slice';
-import { BlockOfPostType } from 'Types/TypesOfData/Post/WritePost';
+import { BlockOfPostType } from 'Types/TypesOfData/post/write-post';
 import { ModsOfWritePost } from 'Utils/mods-of-comps';
 import React, { FC } from 'react';
 

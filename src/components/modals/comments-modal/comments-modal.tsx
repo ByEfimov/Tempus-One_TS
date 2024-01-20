@@ -6,8 +6,8 @@ import { getComments } from 'Api/Posts/Activities/get-comments';
 import SendIcon from 'Assets/Icons/Post/message.svg';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import { useAuth } from 'Hooks/useAuth';
-import { Comments } from 'Types/TypesOfData/Post/Comments';
-import filterBadWords from 'Utils/post-utils/FilterBadWords';
+import { Comments } from 'Types/TypesOfData/post/comments';
+import filterBadWords from 'Utils/post-utils/filter-bad-words';
 import { getUnixTime } from 'date-fns';
 import { FC, useEffect, useState } from 'react';
 

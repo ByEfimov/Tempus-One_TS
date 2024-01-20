@@ -8,8 +8,8 @@ import {
     MassageNotification,
 } from 'Components/notifications/notifications';
 import { useAuth } from 'Hooks/useAuth';
-import { NewPostType } from 'Types/TypesOfData/Post/NewPostType';
-import { Post } from 'Types/TypesOfData/Post/Post';
+import { NewPostType } from 'Types/TypesOfData/post/new-post-type';
+import { Post } from 'Types/TypesOfData/post/post';
 import { countEmptyValues } from 'Utils/validate-data/count-empty-values';
 import { getUnixTime } from 'date-fns';
 import { FC } from 'react';

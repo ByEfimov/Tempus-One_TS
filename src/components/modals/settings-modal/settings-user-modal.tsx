@@ -4,7 +4,7 @@ import changeUserData from 'Api/Users/change-user-data';
 import ButtonVoid from 'Components/mini-components/button';
 import CustomInput from 'Components/mini-components/input';
 import { useAuth } from 'Hooks/useAuth';
-import { handleImageUpload } from 'Utils/handlers/HandlerImageUpload';
+import { handleImageUpload } from 'Utils/handlers/handler-image-upload';
 import { FC, useState } from 'react';
 
 interface SettingsUserModal {

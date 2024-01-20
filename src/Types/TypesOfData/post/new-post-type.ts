@@ -1,4 +1,4 @@
-import { BlockOfPostType } from './WritePost';
+import { BlockOfPostType } from './write-post';
 
 export type NewPostType = {
     PostDataBlocks: BlockOfPostType[];

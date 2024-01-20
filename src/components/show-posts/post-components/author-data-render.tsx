@@ -2,9 +2,9 @@ import Styles from '../Posts/Styles.module.scss';
 import { WhoWrotePost } from '../posts/post-render';
 import ShowLogo from 'Components/mini-components/show-logo';
 import SubscribeButton from 'Components/mini-components/subscribe-button';
-import { Post } from 'Types/TypesOfData/Post/Post';
-import formatTimeAgo from 'Utils/post-utils/FormatTimeAgo';
-import ItsUser from 'Utils/users-or-teams/ItsUser';
+import { Post } from 'Types/TypesOfData/post/post';
+import formatTimeAgo from 'Utils/post-utils/format-time-ago';
+import ItsUser from 'Utils/users-or-teams/Its-user';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 

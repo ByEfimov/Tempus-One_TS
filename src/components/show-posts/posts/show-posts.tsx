@@ -2,7 +2,7 @@ import FiltersPost from '../post-components/filters-posts';
 import Styles from './Styles.module.scss';
 import PostRender from './post-render';
 import PreloaderPosts from 'Components/mini-components/preloader-posts';
-import { Post } from 'Types/TypesOfData/Post/Post';
+import { Post } from 'Types/TypesOfData/post/post';
 import { FC, useState } from 'react';
 
 interface ShowPosts {

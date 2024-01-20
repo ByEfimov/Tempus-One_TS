@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { encryptData } from 'Utils/crypt-data/CriptingData';
+import { encryptData } from 'Utils/crypt-data/cripting-data';
 
 type UserType = {
     email: string | null;

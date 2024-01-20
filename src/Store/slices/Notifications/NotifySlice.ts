@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
     NotifyType,
     TypesOfNotifications,
-} from 'Types/TypesOfData/Notifications/NotifyType';
+} from 'Types/TypesOfData/notifications/notify-type';
 
 const initialState: NotifyType = {
     Type: TypesOfNotifications.Massage,

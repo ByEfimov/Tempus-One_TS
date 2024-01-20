@@ -4,7 +4,7 @@ import ButtonVoid from 'Components/mini-components/button';
 import PreloaderUsers from 'Components/mini-components/preloader-users';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import ShowUserOrTeam from 'Components/show-users-or-team/ShowUsersOrTeam';
-import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
+import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 

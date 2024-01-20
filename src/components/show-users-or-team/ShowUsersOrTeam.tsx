@@ -1,8 +1,8 @@
 import Styles from './Styles.module.scss';
 import ShowLogo from 'Components/mini-components/show-logo';
 import SubscribeButton from 'Components/mini-components/subscribe-button';
-import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
-import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
+import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';
+import { OpenUserType } from 'Types/TypesOfData/team-or-user/open-user-type';
 import { useNavigate } from 'react-router-dom';
 
 export default function ShowUserOrTeam({

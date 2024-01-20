@@ -1,4 +1,4 @@
-import { Post } from 'Types/TypesOfData/Post/Post';
+import { Post } from 'Types/TypesOfData/post/post';
 import { getDatabase, onValue, ref } from 'firebase/database';
 
 export function getPostFromId(id: string | undefined): Promise<Post | null> {

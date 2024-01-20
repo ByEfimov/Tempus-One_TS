@@ -1,5 +1,5 @@
 import { useAppSelector } from './redux-hooks';
-import { decryptData } from 'Utils/crypt-data/CriptingData';
+import { decryptData } from 'Utils/crypt-data/cripting-data';
 import AppRoutes from 'Utils/routes/app-routes';
 
 export function useAuth() {

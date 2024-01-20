@@ -5,7 +5,7 @@ import ControlBlockRender from './ControlBlockRender';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useWritePost } from 'Hooks/useWritePost';
 import { setSelectMode } from 'Store/slices/wite-post/write-post-slice';
-import { BlockOfPostType } from 'Types/TypesOfData/Post/WritePost';
+import { BlockOfPostType } from 'Types/TypesOfData/post/write-post';
 import FeatherIcon from 'feather-icons-react';
 import { useState } from 'react';
 

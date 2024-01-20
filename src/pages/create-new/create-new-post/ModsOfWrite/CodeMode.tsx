@@ -11,7 +11,7 @@ import {
     changeTextOfBlock,
     changeTitleOfBlock,
 } from 'Store/slices/wite-post/write-post-slice';
-import { reversBlock } from 'Utils/animations/reversBlock';
+import { reversBlock } from 'Utils/animations/revers-block';
 import { ModsOfInput } from 'Utils/mods-of-comps';
 import classNames from 'classnames';
 import { useState } from 'react';

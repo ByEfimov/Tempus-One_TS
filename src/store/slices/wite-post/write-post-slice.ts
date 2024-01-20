@@ -3,7 +3,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import {
     BlockOfPostType,
     SelectModeType,
-} from 'Types/TypesOfData/Post/WritePost';
+} from 'Types/TypesOfData/post/write-post';
 import { ModsOfWritePost } from 'Utils/mods-of-comps';
 
 type WritePostType = {

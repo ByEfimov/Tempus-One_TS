@@ -13,7 +13,7 @@ import ShowPosts from 'Components/show-posts/posts/show-posts';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';
 import { removeUser } from 'Store/slices/UserSlice';
-import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
+import { OpenUserType } from 'Types/TypesOfData/team-or-user/open-user-type';
 import MaxXpToNextLevel from 'Utils/users-or-teams/max-xp-to-next-level';
 import { getAuth, signOut } from 'firebase/auth';
 import { FC, useEffect, useState } from 'react';

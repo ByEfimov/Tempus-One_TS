@@ -1,7 +1,7 @@
 import Styles from '../Posts/Styles.module.scss';
 import selectVariantOfSurvey from 'Api/Users/interaction/select-variant-of-survey';
 import { useAuth } from 'Hooks/useAuth';
-import { PostBlock } from 'Types/TypesOfData/Post/Post';
+import { PostBlock } from 'Types/TypesOfData/post/post';
 import { FC, useState } from 'react';
 
 interface ShowSurvey {

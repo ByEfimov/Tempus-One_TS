@@ -1,4 +1,4 @@
-import { Comments } from './Comments';
+import { Comments } from './comments';
 
 export type PostBlock = {
     id: number;

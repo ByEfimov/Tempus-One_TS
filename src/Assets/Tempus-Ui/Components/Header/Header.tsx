@@ -6,7 +6,7 @@ import HeaderIcons, {
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useHeader } from 'Hooks/useHeader';
 import { setInputSearchBar } from 'Store/slices/header/header-slice';
-import { TypesOfHeader } from 'Types/TypesOfData/Header/HeaderType';
+import { TypesOfHeader } from 'Types/TypesOfData/header/header-type';
 import { motion } from 'framer-motion';
 
 export default function Header() {

@@ -7,7 +7,7 @@ import PostRender from 'Components/show-posts/posts/post-render';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';
 import { setTitleOfHeader } from 'Store/slices/header/header-slice';
-import { Post } from 'Types/TypesOfData/Post/Post';
+import { Post } from 'Types/TypesOfData/post/post';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 

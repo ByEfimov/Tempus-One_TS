@@ -1,4 +1,4 @@
-import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
+import { OpenUserType } from 'Types/TypesOfData/team-or-user/open-user-type';
 import { getDatabase, onValue, ref } from 'firebase/database';
 
 export function getAllUsers() {

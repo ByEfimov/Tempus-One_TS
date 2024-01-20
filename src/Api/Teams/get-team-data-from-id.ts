@@ -1,4 +1,4 @@
-import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
+import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';
 import { getDatabase, onValue, ref } from 'firebase/database';
 
 export function getTeamFromId(

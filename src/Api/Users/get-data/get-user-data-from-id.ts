@@ -1,8 +1,8 @@
-import { getDatabase, ref, onValue } from 'firebase/database';
-import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
+import { OpenUserType } from 'Types/TypesOfData/team-or-user/open-user-type';
+import { getDatabase, onValue, ref } from 'firebase/database';
 
 export function getUserFromId(
-    id: string | undefined
+    id: string | undefined,
 ): Promise<OpenUserType | null> {
     const db = getDatabase();
     return new Promise((resolve, reject) => {
@@ -17,7 +17,7 @@ export function getUserFromId(
             },
             {
                 onlyOnce: true,
-            }
+            },
         );
     });
 }

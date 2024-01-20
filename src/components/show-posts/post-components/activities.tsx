@@ -8,7 +8,7 @@ import HeartIcon from 'Assets/Icons/Post/heart.svg';
 import ShareIcon from 'Assets/Icons/Post/share.svg';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import { useAuth } from 'Hooks/useAuth';
-import { Post } from 'Types/TypesOfData/Post/Post';
+import { Post } from 'Types/TypesOfData/post/post';
 import { FC, useState } from 'react';
 
 interface ActivitiesProps {

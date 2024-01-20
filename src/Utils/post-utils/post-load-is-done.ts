@@ -1,5 +1,5 @@
 import { WhoWrotePost } from 'Components/show-posts/posts/post-render';
-import { Post } from 'Types/TypesOfData/Post/Post';
+import { Post } from 'Types/TypesOfData/post/post';
 import { ModsOfWritePost } from 'Utils/mods-of-comps';
 
 export const PostLoadIsDone = (

@@ -1,4 +1,4 @@
-import { Post } from 'Types/TypesOfData/Post/Post';
+import { Post } from 'Types/TypesOfData/post/post';
 import {
     equalTo,
     getDatabase,

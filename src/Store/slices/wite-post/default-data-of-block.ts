@@ -1,4 +1,4 @@
-import { BlockOfPostType } from 'Types/TypesOfData/Post/WritePost';
+import { BlockOfPostType } from 'Types/TypesOfData/post/write-post';
 import { ModsOfWritePost } from 'Utils/mods-of-comps';
 
 export default function DefaultDataOfBlock(

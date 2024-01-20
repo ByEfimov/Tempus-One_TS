@@ -1,8 +1,8 @@
 import { IsModal } from '../is-modal';
 import { getUserFromId } from 'Api/Users/get-data/get-user-data-from-id';
 import ShowUserOrTeam from 'Components/show-users-or-team/ShowUsersOrTeam';
-import { Post } from 'Types/TypesOfData/Post/Post';
-import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
+import { Post } from 'Types/TypesOfData/post/post';
+import { OpenUserType } from 'Types/TypesOfData/team-or-user/open-user-type';
 import { FC, useEffect, useState } from 'react';
 
 interface ViewsModal {

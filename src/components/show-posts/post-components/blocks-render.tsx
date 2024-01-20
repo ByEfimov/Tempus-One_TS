@@ -2,7 +2,7 @@ import Styles from '../Posts/Styles.module.scss';
 import ShowCode from './show-code';
 import ShowImage from './show-image';
 import ShowSurvey from './show-survey';
-import { PostBlock } from 'Types/TypesOfData/Post/Post';
+import { PostBlock } from 'Types/TypesOfData/post/post';
 import { ModsOfWritePost } from 'Utils/mods-of-comps';
 import { FC } from 'react';
 import 'swiper/css';

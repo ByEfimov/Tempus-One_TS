@@ -1,5 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { HeaderType, TypesOfHeader } from 'Types/TypesOfData/Header/HeaderType';
+import {
+    HeaderType,
+    TypesOfHeader,
+} from 'Types/TypesOfData/header/header-type';
 
 const initialState: HeaderType = {
     Title: '',
