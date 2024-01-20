@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Styles from './Styles.module.scss';
 import BellIcon from 'Assets/Icons/Notification/bell.svg';
 import ErrorIcon from 'Assets/Icons/Notification/exclamation-triangle.svg';
