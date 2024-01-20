@@ -32,5 +32,6 @@
             "Utils/*": ["Utils/*"]
         }
     },
+    "include": ["src/**/*", "src/pages/authentication/login/.tsx"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }
