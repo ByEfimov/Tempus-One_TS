@@ -1,6 +1,5 @@
-/* eslint-disable import/order */
 import { getDatabase, ref, set } from '@firebase/database';
-import MaxXpToNextLevel from 'Utils/UsersOrTeams/MaxXpToNextLevel';
+import MaxXpToNextLevel from 'Utils/users-or-teams/MaxXpToNextLevel';
 
 export default function LevelUP(
     UserId: string | null,

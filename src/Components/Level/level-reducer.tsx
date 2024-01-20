@@ -1,7 +1,7 @@
 import LevelUP from 'Api/Users/Level/level-up';
-import { MassageNotification } from 'Components/Notifications/Notifications';
+import { MassageNotification } from 'Components/notifications/notifications';
 import { useAuth } from 'Hooks/useAuth';
-import MaxXpToNextLevel from 'Utils/UsersOrTeams/MaxXpToNextLevel';
+import MaxXpToNextLevel from 'Utils/users-or-teams/MaxXpToNextLevel';
 import { useEffect } from 'react';
 
 interface LevelReducer {

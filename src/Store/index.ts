@@ -1,8 +1,8 @@
-import HeaderSlice from './slices/Header/HeaderSlice';
 import NotifySlice from './slices/Notifications/NotifySlice';
 import PostsSlice from './slices/PostsSlice';
 import userReducer from './slices/UserSlice';
-import WritePostSlice from './slices/WritePost/WritePostSlice';
+import HeaderSlice from './slices/header/header-slice';
+import WritePostSlice from './slices/wite-post/write-post-slice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';

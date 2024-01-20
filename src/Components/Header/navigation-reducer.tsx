@@ -1,8 +1,8 @@
 import { headerIcons } from 'Assets/Tempus-Ui/Icons/Header/Header-Icons';
 import { useAppDispatch } from 'Hooks/redux-hooks';
-import { setHeader, setTypeOfHeader } from 'Store/slices/Header/HeaderSlice';
+import { setHeader, setTypeOfHeader } from 'Store/slices/header/header-slice';
 import { TypesOfHeader } from 'Types/TypesOfData/Header/HeaderType';
-import AppRoutes from 'Utils/Routes/app-routes';
+import AppRoutes from 'Utils/routes/app-routes';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 

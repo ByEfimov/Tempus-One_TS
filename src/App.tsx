@@ -1,21 +1,21 @@
 import Header from 'Assets/Tempus-Ui/Components/Header/Header';
 import NavBar from 'Assets/Tempus-Ui/Components/Nav-bar/Nav-bar';
 import { footerIcons } from 'Assets/Tempus-Ui/Icons/Footer/footer-icons';
-import { Notifications } from 'Components/Notifications/Notifications';
+import { Notifications } from 'Components/notifications/notifications';
 import { useAuth } from 'Hooks/useAuth';
-import AllTeams from 'Pages/AllTeams/AllTeams';
-import AllUsers from 'Pages/AllUsers/AllUsers';
-import ForgotPasswordPage from 'Pages/Authentication/ForgotPasswordPage';
-import LoginPage from 'Pages/Authentication/LoginPage';
-import RegisterPage from 'Pages/Authentication/RegisterPage';
-import CreateTeam from 'Pages/CreateNewTeam/CreateTeam';
-import MainPage from 'Pages/MainPage/MainPage';
-import PostPage from 'Pages/OpenPost/PostPage';
-import TeamPage from 'Pages/OpenTeam/TeamPage';
-import UserPage from 'Pages/OpenUser/UserPage';
-import VerifyingEmail from 'Pages/VerifiedEmail/VerifiedEmail';
-import WritePost from 'Pages/WriteHewPost/WritePost';
-import AppRoutes from 'Utils/Routes/app-routes';
+import AllTeams from 'Pages/all-teams/AllTeams';
+import AllUsers from 'Pages/all-users/AllUsers';
+import ForgotPasswordPage from 'Pages/authentication/forgot-password';
+import LoginPage from 'Pages/authentication/login';
+import RegisterPage from 'Pages/authentication/register';
+import VerifyingEmail from 'Pages/authentication/verified-email/verified-email';
+import WritePost from 'Pages/create-new/create-new-post/WritePost';
+import CreateTeam from 'Pages/create-new/create-new-team/CreateTeam';
+import MainPage from 'Pages/main-page/MainPage';
+import PostPage from 'Pages/open-pages/open-post/PostPage';
+import TeamPage from 'Pages/open-pages/open-team/TeamPage';
+import UserPage from 'Pages/open-pages/open-user/UserPage';
+import AppRoutes from 'Utils/routes/app-routes';
 import { Route, Routes } from 'react-router-dom';
 
 function App() {

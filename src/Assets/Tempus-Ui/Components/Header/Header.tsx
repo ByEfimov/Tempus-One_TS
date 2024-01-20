@@ -5,7 +5,7 @@ import HeaderIcons, {
 } from 'Assets/Tempus-Ui/Icons/Header/Header-Icons';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useHeader } from 'Hooks/useHeader';
-import { setInputSearchBar } from 'Store/slices/Header/HeaderSlice';
+import { setInputSearchBar } from 'Store/slices/header/header-slice';
 import { TypesOfHeader } from 'Types/TypesOfData/Header/HeaderType';
 import { motion } from 'framer-motion';
 
