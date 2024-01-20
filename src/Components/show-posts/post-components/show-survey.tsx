@@ -1,4 +1,4 @@
-import Styles from '../Posts/Styles.module.scss';
+import Styles from '../posts/Styles.module.scss';
 import selectVariantOfSurvey from 'Api/Users/interaction/select-variant-of-survey';
 import { useAuth } from 'Hooks/useAuth';
 import { PostBlock } from 'Types/TypesOfData/post/post';

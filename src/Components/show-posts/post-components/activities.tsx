@@ -1,4 +1,4 @@
-import Styles from '../Posts/Styles.module.scss';
+import Styles from '../posts/Styles.module.scss';
 import { RemoveLikePost } from 'Api/Posts/Activities/remove-like-post';
 import { SendLikePost } from 'Api/Posts/Activities/send-like-post';
 import CommentIcon from 'Assets/Icons/Post/comment.svg';

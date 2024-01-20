@@ -1,4 +1,4 @@
-import Styles from '../Posts/Styles.module.scss';
+import Styles from '../posts/Styles.module.scss';
 import { WhoWrotePost } from '../posts/post-render';
 import ShowLogo from 'Components/mini-components/show-logo';
 import SubscribeButton from 'Components/mini-components/subscribe-button';

@@ -1,4 +1,4 @@
-import Styles from '../Posts/Styles.module.scss';
+import Styles from '../posts/Styles.module.scss';
 import { Post } from 'Types/TypesOfData/post/post';
 import { FC } from 'react';
 

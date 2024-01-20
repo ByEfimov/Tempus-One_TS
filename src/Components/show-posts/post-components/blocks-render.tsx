@@ -1,4 +1,4 @@
-import Styles from '../Posts/Styles.module.scss';
+import Styles from '../posts/Styles.module.scss';
 import ShowCode from './show-code';
 import ShowImage from './show-image';
 import ShowSurvey from './show-survey';
