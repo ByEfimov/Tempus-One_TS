@@ -1,0 +1,243 @@
+.ControlPanel::-webkit-scrollbar {
+    height: 0;
+}
+pre::-webkit-scrollbar {
+    width: 0;
+}
+
+.LiveEdit {
+    border-top-right-radius: 0.4em;
+    border-bottom-left-radius: 0.4em;
+    border-bottom-right-radius: 0.4em;
+    transition: all 0.3s;
+    overflow: hidden;
+    pre {
+        background-color: var(--mainBorderColor) !important;
+        min-height: 300px;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+}
+
+.WritePost {
+    padding: 17px;
+    .select {
+        box-shadow: var(--DarkShadow);
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 100%;
+        height: 46px;
+        background-color: var(--AccentColor2);
+        border-radius: var(--DefaultBorderRadius);
+        color: var(--WhiteTextColor);
+        font-size: 18px;
+        font-weight: 600;
+    }
+    .topBlock {
+        display: flex;
+        align-items: center;
+        margin-top: 17px;
+        gap: 25px;
+        justify-content: space-between;
+        .buttons {
+            gap: 10px;
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            .alertButton {
+                width: 25px;
+                height: 24px;
+            }
+            .helpButton {
+                height: 24px;
+                width: 24px;
+            }
+            .swapButton {
+                height: 24px;
+                width: 24px;
+            }
+        }
+    }
+
+    .card {
+        width: 100%;
+        height: 300px;
+        position: relative;
+    }
+    .card .face {
+        overflow: hidden;
+        box-shadow: var(--DarkShadow);
+        border-radius: var(--DefaultBorderRadius);
+        transition: 1s ease-in-out;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-top-left-radius: 0px;
+        width: 100%;
+        height: 300px;
+        transform: rotateY(0deg);
+        backface-visibility: hidden;
+        input {
+            width: 100%;
+            margin: 10px;
+            height: 100%;
+        }
+    }
+    .card .face.front {
+        background-color: var(--AccentColor);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .Image {
+            position: absolute;
+            pointer-events: none;
+            width: 60px;
+            height: 60px;
+            * {
+                color: var(--WhiteTextColor);
+            }
+        }
+        input {
+            opacity: 0;
+        }
+    }
+    .card .face.back {
+        overflow: hidden;
+        transform: rotateY(180deg);
+        background-color: var(--AccentColor);
+        img {
+            padding: 20px;
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+            background-color: var(--mainBorderColor);
+        }
+    }
+    .cardActive .face.front {
+        transform: rotateY(180deg);
+    }
+    .cardActive .face.back {
+        transform: rotateY(360deg);
+    }
+    .InputVariant {
+        display: flex;
+        gap: 17px;
+        align-items: center;
+        .PlusIcon {
+            flex-shrink: 0;
+            width: 35px;
+            height: 35px;
+            margin-top: 17px;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+    .Survey {
+        margin-top: 17px;
+        .Variants {
+            box-shadow: var(--DarkShadow);
+            width: 100%;
+            padding: 10px;
+            resize: none;
+            background-color: var(--AccentColor);
+            border-radius: var(--DefaultBorderRadius);
+            color: var(--WhiteTextColor);
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            gap: 17px;
+            height: 300px;
+            overflow-y: auto;
+            border-top-right-radius: 0px;
+            border-top-left-radius: 0px;
+        }
+        .Variant {
+            justify-content: space-between;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            box-shadow: var(--DarkShadow);
+            padding: 10px;
+            width: 100%;
+            background-color: var(--AccentColor2);
+            border-radius: var(--DefaultBorderRadius);
+            color: var(--WhiteTextColor);
+            font-size: 18px;
+            font-weight: 600;
+            img {
+                height: 24px;
+                width: 24px;
+            }
+        }
+    }
+}
+
+.ButtonClear {
+    background-color: var(--DarkTextColor) !important;
+}
+
+.ControlPanel {
+    display: flex;
+    gap: 17px;
+    margin-top: 12px;
+    overflow-x: auto;
+    .wrapper {
+        width: 80px;
+        word-wrap: break-word;
+        flex-shrink: 0;
+        overflow: hidden;
+        height: 80px;
+        box-shadow: var(--DarkShadow);
+        border-radius: var(--DefaultBorderRadius);
+        background-color: var(--AccentColor);
+        .Content {
+            padding: 2px;
+            min-width: 80px;
+            min-height: 80px;
+            * {
+                font-size: 9px;
+            }
+        }
+        .OneceMode {
+            width: 100%;
+            height: 76px;
+            display: flex;
+            flex-direction: column;
+        }
+        .ImageMode {
+            width: 100%;
+            height: 76px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    .ButtonAdd {
+        flex-shrink: 0;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: var(--DarkShadow);
+        border-radius: var(--DefaultBorderRadius);
+        background-color: var(--AccentColor);
+    }
+}
+
+.ShowResultBlock {
+    width: 100%;
+    min-height: 76px;
+    overflow: hidden;
+}
+
+.BadButton {
+    background-color: var(--DarkTextColor) !important;
+}
+
+.PopupButton {
+    background-color: var(--AccentColor2) !important;
+}
