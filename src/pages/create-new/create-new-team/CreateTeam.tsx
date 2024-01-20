@@ -7,7 +7,7 @@ import CustomInput from 'Components/mini-components/input';
 import CustomTextarea from 'Components/mini-components/textarea';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import { useAuth } from 'Hooks/useAuth';
-import { handleImageUpload } from 'Utils/Handlers/HandlerImageUpload';
+import { handleImageUpload } from 'Utils/handlers/HandlerImageUpload';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 

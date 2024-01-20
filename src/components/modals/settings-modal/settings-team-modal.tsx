@@ -4,7 +4,7 @@ import changeTeamData from 'Api/Teams/change-team-data';
 import ButtonVoid from 'Components/mini-components/button';
 import CustomInput from 'Components/mini-components/input';
 import { OpenTeamType } from 'Types/TypesOfData/TeamOrUser/OpenTeamType';
-import { handleImageUpload } from 'Utils/Handlers/HandlerImageUpload';
+import { handleImageUpload } from 'Utils/handlers/HandlerImageUpload';
 import { FC, useState } from 'react';
 
 interface SettingsTeamModal {

@@ -1,4 +1,4 @@
-import NewBlocks from './new-blocks';
+import DefaultDataOfBlock from './default-data-of-block';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import {
     BlockOfPostType,
@@ -51,7 +51,7 @@ const WritePostSlice = createSlice({
             state.PostForWhom = action.payload.PostForWhom;
         },
         addBlockToPost(state, action: PayloadAction<{ type: string }>) {
-            const NewBlock: BlockOfPostType = NewBlocks(
+            const NewBlock: BlockOfPostType = DefaultDataOfBlock(
                 state.BlocksOfPost.length,
                 action.payload.type,
             );

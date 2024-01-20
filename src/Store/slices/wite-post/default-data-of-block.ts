@@ -1,7 +1,10 @@
 import { BlockOfPostType } from 'Types/TypesOfData/Post/WritePost';
 import { ModsOfWritePost } from 'Utils/mods-of-comps';
 
-export default function NewBlocks(id: number, type: string): BlockOfPostType {
+export default function DefaultDataOfBlock(
+    id: number,
+    type: string,
+): BlockOfPostType {
     if (type === ModsOfWritePost.code) {
         return {
             text: '<div>Пиши свой код здесь.</div>',
