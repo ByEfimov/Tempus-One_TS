@@ -14,7 +14,7 @@ import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';
 import { removeUser } from 'Store/slices/UserSlice';
 import { OpenUserType } from 'Types/TypesOfData/TeamOrUser/OpenUserType';
-import MaxXpToNextLevel from 'Utils/users-or-teams/MaxXpToNextLevel';
+import MaxXpToNextLevel from 'Utils/users-or-teams/max-xp-to-next-level';
 import { getAuth, signOut } from 'firebase/auth';
 import { FC, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
