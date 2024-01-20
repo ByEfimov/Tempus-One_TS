@@ -1,0 +1,33 @@
+.NavBar {
+    position: fixed;
+    bottom: 0;
+    height: 55px;
+    width: 100%;
+    display: flex;
+    z-index: 9999;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--SecondaryBackgroundColor);
+    a {
+        border-top: 2px solid var(--TransparentColor);
+        width: 100%;
+        display: flex;
+        height: 100%;
+        transition: all 0.3s;
+        justify-content: center;
+        align-items: center;
+        background: var(--SecondaryBackgroundColor);
+        svg {
+            transition: all 0.3s;
+            fill: var(--SecondaryTextColor);
+        }
+    }
+    .Select {
+        color: var(--PrimaryTextColor);
+        border-top: 2px solid var(--PrimaryTextColor);
+        background: #700cf5;
+        svg {
+            fill: var(--PrimaryTextColor);
+        }
+    }
+}
