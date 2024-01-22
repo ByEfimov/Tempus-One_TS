@@ -1,5 +1,5 @@
 import { IsModal } from '../is-modal';
-import { getUserFromId } from 'Api/Users/get-data/get-user-data-from-id';
+import { getRequestObject } from 'Api/requests/get-requests';
 import ShowUserOrTeam from 'Components/show-users-or-team/ShowUsersOrTeam';
 import { Post } from 'Types/TypesOfData/post/post';
 import { OpenUserType } from 'Types/TypesOfData/team-or-user/open-user-type';
@@ -28,7 +28,7 @@ const Viewer: FC<Viewer> = ({ userId }) => {
     const [viewer, setViewer] = useState<OpenUserType | null>(null);
 
     useEffect(() => {
-        getUserFromId(userId).then((user) => setViewer(user));
+        getRequestObject('users/' + userId).then((user) => setViewer(user));
     }, []);
 
     return <ShowUserOrTeam User={viewer}></ShowUserOrTeam>;

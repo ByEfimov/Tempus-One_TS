@@ -3,10 +3,8 @@ import AuthorDataRender from '../post-components/author-data-render';
 import BlocksRender from '../post-components/blocks-render';
 import PostDataRender from '../post-components/post-data-render';
 import Styles from './Styles.module.scss';
-import { viewPostForPost } from 'Api/Posts/Activities/view-post';
-import { getTeamFromId } from 'Api/Teams/get-team-data-from-id';
-import { getUserFromId } from 'Api/Users/get-data/get-user-data-from-id';
-import { viewPostForUser } from 'Api/Users/interaction/viewPost';
+import { getRequestObject } from 'Api/requests/get-requests';
+import { postRequestWithoutNewId } from 'Api/requests/post-requests-with-new-id';
 import FakePost from 'Components/fake-data/fake-post';
 import CommentsModal from 'Components/modals/comments-modal/comments-modal';
 import RepostModal from 'Components/modals/repost-modal/repost-modal';
@@ -36,18 +34,18 @@ const PostRender: FC<PostRender> = ({ post }) => {
     const [CommentsOpen, setCommentsOpen] = useState(false);
     const [RepostModalOpen, setRepostModalOpen] = useState(false);
     const [ViewsModalOpen, setViewsModalOpen] = useState(false);
-    const { UserViewings, UserId, UserIsAuth } = useAuth();
+    const { UserId, UserIsAuth } = useAuth();
     const navigate = useNavigate();
 
     const [ImageIsLoad, setImageIsLoad] = useState(false);
 
     useEffect(() => {
         function LoadUser() {
-            getUserFromId(post.PostAuthorId)
+            getRequestObject('users/' + post.PostAuthorId)
                 .then((user) => setWhoWrotePost(user))
                 .catch(() =>
-                    getTeamFromId(post.PostAuthorId).then((team) =>
-                        setWhoWrotePost(team),
+                    getRequestObject('teams/' + post.PostAuthorId).then(
+                        (team) => setWhoWrotePost(team),
                     ),
                 );
         }
@@ -67,9 +65,11 @@ const PostRender: FC<PostRender> = ({ post }) => {
         loadImages();
 
         function ViewingPost() {
-            if (!UserViewings?.includes(post.PostId) && UserIsAuth) {
-                viewPostForPost(post.PostId, UserId);
-                viewPostForUser(post.PostId, UserId);
+            if (!Object.values(post.PostShows).includes(UserId) && UserIsAuth) {
+                postRequestWithoutNewId(
+                    'posts/' + post.id + '/PostShows/' + UserId,
+                    UserId,
+                );
             }
         }
         ViewingPost();
@@ -80,7 +80,7 @@ const PostRender: FC<PostRender> = ({ post }) => {
             <>
                 {CommentsOpen && (
                     <CommentsModal
-                        PostId={post.PostId}
+                        PostId={post.id}
                         setModalOpen={setCommentsOpen}
                     ></CommentsModal>
                 )}
@@ -99,7 +99,7 @@ const PostRender: FC<PostRender> = ({ post }) => {
 
                 <div
                     onClick={() => {
-                        navigate('/Post/' + post.PostId);
+                        navigate('/Post/' + post.id);
                     }}
                     className={Styles.Post}
                 >
@@ -109,7 +109,7 @@ const PostRender: FC<PostRender> = ({ post }) => {
                         <div className={Styles.BlocksData}>
                             <BlocksRender
                                 Blocks={post.PostDataBlocks}
-                                postId={post.PostId}
+                                postId={post.id}
                             ></BlocksRender>
                         </div>
                     )}

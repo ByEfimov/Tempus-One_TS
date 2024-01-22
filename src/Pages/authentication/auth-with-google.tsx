@@ -1,6 +1,6 @@
 import GoogleIcon from '../../Assets/Tempus-Ui/Icons/Buttons/google.svg';
 import { addUserToRealtimeDB } from 'Api/Users/add-user-to-realtime-DB';
-import { getUserFromId } from 'Api/Users/get-data/get-user-data-from-id';
+import { getRequestObject } from 'Api/requests/get-requests';
 import Button, {
     ButtonTypes,
 } from 'Assets/Tempus-Ui/Components/Buttons/Button';
@@ -53,7 +53,7 @@ const AuthWithGoogle = () => {
         signInWithPopup(auth, provider)
             .then((result) => {
                 const user = result.user;
-                getUserFromId(user.uid)
+                getRequestObject('users/' + user.uid)
                     .then(() => {
                         loginWithGoogle(user);
                     })

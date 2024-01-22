@@ -1,5 +1,5 @@
 import Styles from './Styles.module.scss';
-import { getAllTeams } from 'Api/Teams/get-all-teams';
+import { getRequestArray } from 'Api/requests/get-requests';
 import ButtonVoid from 'Components/mini-components/button';
 import PreloaderUsers from 'Components/mini-components/preloader-users';
 import { ErrorNotification } from 'Components/notifications/notifications';
@@ -13,7 +13,7 @@ export default function AllTeams() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        getAllTeams()
+        getRequestArray('teams/')
             .then((teams) => setTeams(teams))
             .catch(() => ErrorNotification('Сообщества не найдены.'));
     }, []);

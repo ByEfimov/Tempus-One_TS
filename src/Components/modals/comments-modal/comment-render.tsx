@@ -1,6 +1,6 @@
 import { CloseModal } from '../is-modal';
 import Styles from '../style.module.scss';
-import { getUserFromId } from 'Api/Users/get-data/get-user-data-from-id';
+import { getRequestObject } from 'Api/requests/get-requests';
 import FakeComment from 'Components/fake-data/fake-comment';
 import ShowLogo from 'Components/mini-components/show-logo';
 import { Comments } from 'Types/TypesOfData/post/comments';
@@ -18,7 +18,7 @@ const CommentRender: FC<comment> = ({ comment }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        getUserFromId(comment.CommentatorId).then((user) =>
+        getRequestObject('users/' + comment.CommentatorId).then((user) =>
             setCommentator(user),
         );
     }, []);

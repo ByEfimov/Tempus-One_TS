@@ -1,5 +1,4 @@
 import Styles from '../Styles.module.scss';
-import { LoadImage } from 'Api/Posts/Loaders/Image-upload';
 import CustomInput from 'Components/mini-components/input';
 import ActiveButton from 'Components/show-posts/post-components/active-button';
 import ShowImage from 'Components/show-posts/post-components/show-image';
@@ -10,6 +9,7 @@ import {
     changeTitleOfBlock,
 } from 'Store/slices/wite-post/write-post-slice';
 import { reversBlock } from 'Utils/animations/revers-block';
+import { LoadImage } from 'Utils/handlers/Image-upload';
 import { ModsOfInput } from 'Utils/mods-of-comps';
 import classNames from 'classnames';
 import FeatherIcon from 'feather-icons-react';

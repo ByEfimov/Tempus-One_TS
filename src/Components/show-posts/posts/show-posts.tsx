@@ -22,9 +22,7 @@ const ShowPosts: FC<ShowPosts> = ({ filter, filterIsOpen = false }) => {
             />
 
             {posts ? (
-                posts.map((post) => (
-                    <PostRender key={post.PostId} post={post} />
-                ))
+                posts.map((post) => <PostRender key={post.id} post={post} />)
             ) : (
                 <PreloaderPosts />
             )}

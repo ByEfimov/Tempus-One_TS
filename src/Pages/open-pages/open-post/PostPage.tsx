@@ -1,4 +1,4 @@
-import { getPostFromId } from 'Api/Posts/get-post-data-fromId';
+import { getRequestObject } from 'Api/requests/get-requests';
 import FakePost from 'Components/fake-data/fake-post';
 import ButtonVoid from 'Components/mini-components/button';
 import SettingsPostModal from 'Components/modals/settings-modal/settings-post-modal';
@@ -20,7 +20,7 @@ export default function PostPage() {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        getPostFromId(id)
+        getRequestObject('posts/' + id)
             .then((OpenPost) => {
                 setOpenPost(OpenPost);
                 dispatch(setTitleOfHeader({ Title: OpenPost?.PostTitle }));

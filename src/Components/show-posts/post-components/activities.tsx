@@ -29,17 +29,15 @@ const Activities: FC<ActivitiesProps> = ({
 
     const PostComments = Object.keys(post.PostComments || []).length;
 
-    const ItPostLiked = Object.keys(UserPostsLiked || [])?.includes(
-        post.PostId,
-    );
+    const ItPostLiked = Object.keys(UserPostsLiked || [])?.includes(post.id);
 
     const LikePost = () => {
         if (UserCanChanging) {
             if (ItPostLiked) {
-                RemoveLikePost(post.PostId, UserId, PostLikes - 1);
+                RemoveLikePost(post.id, UserId, PostLikes - 1);
                 setPostLikes(PostLikes - 1);
             } else {
-                SendLikePost(post.PostId, UserId, PostLikes + 1);
+                SendLikePost(post.id, UserId, PostLikes + 1);
                 setPostLikes(PostLikes + 1);
             }
         } else {

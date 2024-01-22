@@ -1,7 +1,7 @@
 import Styles from './Styles.module.scss';
-import { addNewTeam } from 'Api/Teams/add-new-team';
 import changeUserData from 'Api/Users/change-user-data';
 import { Subscription } from 'Api/Users/interaction/subscription';
+import { postRequestWithNewId } from 'Api/requests/post-requests-with-new-id';
 import ButtonVoid from 'Components/mini-components/button';
 import CustomInput from 'Components/mini-components/input';
 import CustomTextarea from 'Components/mini-components/textarea';
@@ -40,7 +40,7 @@ const CreateTeam = () => {
                     [UserId]: { UserId: UserId, UserRole: 'Administrator' },
                 },
             };
-            addNewTeam(NewTeam).then((teamId) => {
+            postRequestWithNewId('teams/', NewTeam).then((teamId) => {
                 Subscription('team', teamId, UserId);
                 changeUserData('experience', UserExperience + 80, UserId);
                 clearInputs();

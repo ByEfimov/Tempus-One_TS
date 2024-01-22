@@ -1,5 +1,5 @@
 import Styles from '../posts/Styles.module.scss';
-import { getPosts } from 'Api/Posts/get-all-posts';
+import { getRequestArray } from 'Api/requests/get-requests';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';
@@ -30,7 +30,7 @@ const FiltersPost: FC<FiltersProps> = ({ setPosts, filter, filterIsOpen }) => {
             | string[]
             | { orderBy: string; equalTo: string | undefined },
     ) {
-        getPosts(filter || null)
+        getRequestArray('/posts')
             .then((posts) => {
                 setPosts(posts);
                 dispatch(setLastPostKey(Object.keys(posts).pop()));

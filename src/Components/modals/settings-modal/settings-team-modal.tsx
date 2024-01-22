@@ -1,6 +1,6 @@
 import { CloseModal, IsModal } from '../is-modal';
 import Styles from '../style.module.scss';
-import changeTeamData from 'Api/Teams/change-team-data';
+import { changeRequest } from 'Api/requests/change-request';
 import ButtonVoid from 'Components/mini-components/button';
 import CustomInput from 'Components/mini-components/input';
 import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';
@@ -19,13 +19,13 @@ const SettingsTeamModal: FC<SettingsTeamModal> = ({ setModalOpen, team }) => {
 
     function ChangeFunction() {
         if (teamPhoto !== '') {
-            changeTeamData('image', teamPhoto, team.id);
+            changeRequest('teams/' + team.id, '/image', teamPhoto);
         }
         if (teamTitle !== '') {
-            changeTeamData('title', teamTitle, team.id);
+            changeRequest('teams/' + team.id, '/title', teamTitle);
         }
         if (teamDesc !== '') {
-            changeTeamData('desc', teamDesc, team.id);
+            changeRequest('teams/' + team.id, '/desc', teamDesc);
         }
         CloseModal();
     }

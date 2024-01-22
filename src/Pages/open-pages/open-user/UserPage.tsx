@@ -1,5 +1,5 @@
 import Styles from './Styles.module.scss';
-import { getUserFromId } from 'Api/Users/get-data/get-user-data-from-id';
+import { getRequestObject } from 'Api/requests/get-requests';
 import GiftIcon from 'Assets/Icons/User/gift.svg';
 import UserIcon from 'Assets/Icons/User/user.svg';
 import UsersIcon from 'Assets/Icons/User/users.svg';
@@ -29,7 +29,7 @@ export default function UserPage() {
     const { UserId, UserEmailVerified } = useAuth();
 
     useEffect(() => {
-        getUserFromId(id)
+        getRequestObject('users/' + id)
             .then((user) => {
                 setOpenUser(user);
             })

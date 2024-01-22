@@ -6,8 +6,8 @@ import ImageMode from './ModsOfWrite/ImageMode';
 import SurveyMode from './ModsOfWrite/SurveyMode';
 import TextMode from './ModsOfWrite/TextMode';
 import Styles from './Styles.module.scss';
-import { addNewPost } from 'Api/Posts/add-new-post';
 import changeUserData from 'Api/Users/change-user-data';
+import { postRequestWithNewId } from 'Api/requests/post-requests-with-new-id';
 import ButtonVoid from 'Components/mini-components/button';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import { useAppDispatch } from 'Hooks/redux-hooks';
@@ -45,7 +45,7 @@ const WritePost = () => {
         const filteredPost = applyFilterToNewPost(NewPost);
         if (countEmptyValues(filteredPost) - 4 === 0) {
             changeUserData('experience', UserExperience + 40, UserId);
-            addNewPost(filteredPost);
+            postRequestWithNewId('posts/', NewPost);
             dispatch(removePost());
             navigate('/');
         } else {

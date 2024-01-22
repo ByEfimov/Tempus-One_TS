@@ -1,7 +1,7 @@
 import { CloseModal, IsModal } from '../is-modal';
 import Styles from '../style.module.scss';
-import changePostData from 'Api/Posts/change-post-data';
-import removePost from 'Api/Posts/remove-post';
+import { changeRequest } from 'Api/requests/change-request';
+import { removeRequest } from 'Api/requests/remove-request';
 import ButtonVoid from 'Components/mini-components/button';
 import CustomInput from 'Components/mini-components/input';
 import CustomTextarea from 'Components/mini-components/textarea';
@@ -22,10 +22,14 @@ const SettingsPostModal: FC<SettingsPostModal> = ({ setModalOpen, post }) => {
 
     function ChangeFunction() {
         if (postTitle !== '') {
-            changePostData('PostTitle', postTitle, post.PostId);
+            changeRequest('posts/' + post.id, '/PostTitle', postTitle);
         }
         if (postText !== '') {
-            changePostData('PostDataBlocks/0/text', postText, post.PostId);
+            changeRequest(
+                'posts/' + post.id,
+                '/PostDataBlocks/0/text',
+                postText,
+            );
         }
         navigate('/');
         CloseModal();
@@ -55,7 +59,7 @@ const SettingsPostModal: FC<SettingsPostModal> = ({ setModalOpen, post }) => {
             ></ButtonVoid>
             <ButtonVoid
                 clickHandler={() => {
-                    removePost(post.PostId);
+                    removeRequest('posts/', post.id);
                     navigate('/');
                     CloseModal();
                 }}

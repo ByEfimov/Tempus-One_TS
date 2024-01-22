@@ -1,7 +1,7 @@
 import { CloseModal, IsModal } from '../is-modal';
 import Styles from '../style.module.scss';
-import { addNewCountOfReposts } from 'Api/Posts/Activities/add-new-count-of-repost';
-import { addNewPost } from 'Api/Posts/add-new-post';
+import { changeRequest } from 'Api/requests/change-request';
+import { postRequestWithNewId } from 'Api/requests/post-requests-with-new-id';
 import ShowLogo from 'Components/mini-components/show-logo';
 import {
     ErrorNotification,
@@ -37,12 +37,17 @@ const RepostModal: FC<RepostModal> = ({ setModalOpen, post }) => {
             PostShows: 1,
             PostComments: {},
             PostReposts: 0,
-            PostWithRepostUs: post.PostId,
+            PostWithRepostUs: post.id,
         };
 
         if (countEmptyValues(NewPost) - 5 >= 0 && UserIsAuth) {
-            addNewPost(NewPost);
-            addNewCountOfReposts(post.PostReposts + 1, post.PostId);
+            postRequestWithNewId('posts/', NewPost);
+
+            changeRequest(
+                'posts/' + post.id,
+                '/PostReposts/',
+                post.PostReposts + 1,
+            );
             navigate('/User/' + UserId);
             MassageNotification('Пост отправлен!');
         } else {

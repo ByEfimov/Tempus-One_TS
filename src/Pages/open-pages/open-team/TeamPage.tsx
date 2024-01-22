@@ -1,6 +1,6 @@
 import Styles from './Styles.module.scss';
-import { getTeamFromId } from 'Api/Teams/get-team-data-from-id';
 import getUserAdmins from 'Api/Teams/get-user-admins';
+import { getRequestObject } from 'Api/requests/get-requests';
 import FakeOpenUser from 'Components/fake-data/fake-open-user';
 import ButtonVoid from 'Components/mini-components/button';
 import SubscribeButton from 'Components/mini-components/subscribe-button';
@@ -23,7 +23,7 @@ export default function TeamPage() {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        getTeamFromId(id)
+        getRequestObject('teams/' + id)
             .then((team) => {
                 setOpenTeam(team);
                 dispatch(setTitleOfHeader({ Title: team?.title }));

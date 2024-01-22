@@ -12,7 +12,7 @@ export type Post = {
     PostAuthorId: string;
     PostDataBlocks: PostBlock[];
     PostDate: number;
-    PostId: string;
+    id: string;
     PostLikes: number;
     PostShows: string[];
     PostTitle: string;

@@ -1,5 +1,5 @@
 import Styles from './Styles.module.scss';
-import { getAllUsers } from 'Api/Users/get-data/get-all-users';
+import { getRequestArray } from 'Api/requests/get-requests';
 import PreloaderUsers from 'Components/mini-components/preloader-users';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import ShowUserOrTeam from 'Components/show-users-or-team/ShowUsersOrTeam';
@@ -10,7 +10,7 @@ export default function AllUsers() {
     const [users, setUsers] = useState<OpenUserType[] | null>(null);
 
     useEffect(() => {
-        getAllUsers()
+        getRequestArray('users/')
             .then((users) => setUsers(users))
             .catch(() => ErrorNotification('Пользователи не найдены.'));
     }, []);
