@@ -1,6 +1,6 @@
 import Styles from './styles.module.scss';
-import changeUserData from 'Api/Users/change-user-data';
 import { Subscription } from 'Api/Users/interaction/subscription';
+import { changeRequest } from 'Api/requests/change-request';
 import PlusDarkIcon from 'Assets/Icons/Post/plus-circle-dark.svg';
 import PlusIcon from 'Assets/Icons/Post/plus-circle.svg';
 import {
@@ -37,7 +37,7 @@ const SubscribeButton: FC<SubscribeButton> = ({ WhoWrotePost }) => {
                 isMember ? true : false,
             );
 
-            changeUserData('experience', NewXp, UserId);
+            changeRequest('users/' + UserId, '/experience', NewXp);
             MassageNotification(message);
         } else {
             ErrorNotification('Нужно войти в аккаунт.');

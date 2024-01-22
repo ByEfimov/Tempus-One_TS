@@ -23,7 +23,8 @@ const FiltersPost: FC<FiltersProps> = ({ setPosts, filter, filterIsOpen }) => {
     const dispatch = useAppDispatch();
 
     function getPostsDefault(
-        filter:
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        _filter:
             | string
             | undefined
             | null

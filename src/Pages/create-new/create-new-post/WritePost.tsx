@@ -6,7 +6,7 @@ import ImageMode from './ModsOfWrite/ImageMode';
 import SurveyMode from './ModsOfWrite/SurveyMode';
 import TextMode from './ModsOfWrite/TextMode';
 import Styles from './Styles.module.scss';
-import changeUserData from 'Api/Users/change-user-data';
+import { changeRequest } from 'Api/requests/change-request';
 import { postRequestWithNewId } from 'Api/requests/post-requests-with-new-id';
 import ButtonVoid from 'Components/mini-components/button';
 import { ErrorNotification } from 'Components/notifications/notifications';
@@ -44,7 +44,11 @@ const WritePost = () => {
 
         const filteredPost = applyFilterToNewPost(NewPost);
         if (countEmptyValues(filteredPost) - 4 === 0) {
-            changeUserData('experience', UserExperience + 40, UserId);
+            changeRequest(
+                'users/' + UserId,
+                '/experience',
+                UserExperience + 40,
+            );
             postRequestWithNewId('posts/', NewPost);
             dispatch(removePost());
             navigate('/');

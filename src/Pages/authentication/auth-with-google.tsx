@@ -1,6 +1,6 @@
 import GoogleIcon from '../../Assets/Tempus-Ui/Icons/Buttons/google.svg';
-import { addUserToRealtimeDB } from 'Api/Users/add-user-to-realtime-DB';
 import { getRequestObject } from 'Api/requests/get-requests';
+import { postRequestWithoutNewId } from 'Api/requests/post-requests-with-new-id';
 import Button, {
     ButtonTypes,
 } from 'Assets/Tempus-Ui/Components/Buttons/Button';
@@ -31,13 +31,19 @@ const AuthWithGoogle = () => {
     }
 
     function registerWithGoogle(user: User) {
-        addUserToRealtimeDB(
-            user.email,
-            user.uid,
-            user.displayName,
-            user.photoURL,
-            user.emailVerified,
-        );
+        const NewUser = {
+            email: user.email,
+            experience: 0,
+            id: user.uid,
+            level: 1,
+            name: user.displayName,
+            photo: user.photoURL,
+            age: 0,
+            emailVerified: user.emailVerified,
+            members: 0,
+        };
+        postRequestWithoutNewId('users/' + user.uid, NewUser);
+
         dispatch(
             setCurrentUser({
                 email: user.email,

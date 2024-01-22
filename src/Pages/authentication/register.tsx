@@ -1,4 +1,4 @@
-import { addUserToRealtimeDB } from 'Api/Users/add-user-to-realtime-DB';
+import { postRequestWithoutNewId } from 'Api/requests/post-requests-with-new-id';
 import AuthenticationFrom from 'Components/forms/authentication-form';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import { useAppDispatch } from 'Hooks/redux-hooks';
@@ -21,14 +21,18 @@ export default function RegisterPage() {
         createUserWithEmailAndPassword(auth, Email, Pass)
             .then((userCredential) => {
                 const user = userCredential.user;
-                addUserToRealtimeDB(
-                    user.email,
-                    user.uid,
-                    Name,
-                    user.photoURL,
-                    user.emailVerified,
-                    Age,
-                );
+                const NewUser = {
+                    email: user.email,
+                    experience: 0,
+                    id: user.uid,
+                    level: 1,
+                    name: Name,
+                    photo: user.photoURL,
+                    age: Age,
+                    emailVerified: user.emailVerified,
+                    members: 0,
+                };
+                postRequestWithoutNewId('users/' + user.uid, NewUser);
                 dispatch(
                     setCurrentUser({
                         email: user.email,

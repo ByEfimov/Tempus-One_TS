@@ -1,6 +1,6 @@
 import Styles from './Styles.module.scss';
-import changeUserData from 'Api/Users/change-user-data';
 import { Subscription } from 'Api/Users/interaction/subscription';
+import { changeRequest } from 'Api/requests/change-request';
 import { postRequestWithNewId } from 'Api/requests/post-requests-with-new-id';
 import ButtonVoid from 'Components/mini-components/button';
 import CustomInput from 'Components/mini-components/input';
@@ -42,7 +42,11 @@ const CreateTeam = () => {
             };
             postRequestWithNewId('teams/', NewTeam).then((teamId) => {
                 Subscription('team', teamId, UserId);
-                changeUserData('experience', UserExperience + 80, UserId);
+                changeRequest(
+                    'users/' + UserId,
+                    '/experience',
+                    UserExperience + 80,
+                );
                 clearInputs();
                 navigate('/');
             });

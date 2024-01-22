@@ -1,6 +1,6 @@
 import { CloseModal, IsModal } from '../is-modal';
 import Styles from '../style.module.scss';
-import changeUserData from 'Api/Users/change-user-data';
+import { changeRequest } from 'Api/requests/change-request';
 import ButtonVoid from 'Components/mini-components/button';
 import CustomInput from 'Components/mini-components/input';
 import { useAuth } from 'Hooks/useAuth';
@@ -19,13 +19,13 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
 
     function ChangeFunction() {
         if (userPhoto !== '') {
-            changeUserData('photo', userPhoto, UserId);
+            changeRequest('users/' + UserId, '/photo', userPhoto);
         }
         if (userDisplayName !== '') {
-            changeUserData('name', userDisplayName, UserId);
+            changeRequest('users/' + UserId, '/name', userDisplayName);
         }
         if (userAge !== '') {
-            changeUserData('age', userAge, UserId);
+            changeRequest('users/' + UserId, '/age', userAge);
         }
         CloseModal();
     }
