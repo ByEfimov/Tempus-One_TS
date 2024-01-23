@@ -39,7 +39,7 @@
 }
 
 .Input:has(input:focus) {
-    border: 1px solid #700cf5;
+    border: 1px solid var(--AccentBorderColor);
     border-image-slice: 1;
     background-color: var(--FourBackgroundColor);
 }

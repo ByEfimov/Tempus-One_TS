@@ -42,6 +42,7 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
     padding-top: 64px;
+    padding-bottom: 55px;
 }
 html {
     overflow-x: hidden;

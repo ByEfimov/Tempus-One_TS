@@ -1,0 +1,26 @@
+.Select {
+    display: flex;
+    padding: 15px;
+    padding-bottom: 10px;
+    gap: 10px;
+    overflow-y: auto;
+    transition: all 0.5s;
+    .Item {
+        padding: 5px;
+        padding-left: 12px;
+        padding-right: 12px;
+        font-weight: 600;
+        border-radius: 500px;
+        font-size: 15px;
+        flex-shrink: 0;
+        transition: all 0.3s;
+        border: 1px solid transparent;
+        color: var(--SecondaryTextColor);
+        background: var(--SecondaryBackgroundColor);
+    }
+    .Selected {
+        color: var(--PrimaryTextColor);
+        border: 1px solid var(--AccentBorderColor);
+        background-color: var(--FourBackgroundColor);
+    }
+}
