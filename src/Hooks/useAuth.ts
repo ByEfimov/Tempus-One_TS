@@ -6,7 +6,6 @@ import Cookies from 'js-cookie';
 export function useAuth() {
     const {
         email,
-        id,
         photo,
         name,
         age,

@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 interface SettingsPostModal {
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
     post: Post;
-    postid: string;
+    postid: string | undefined;
 }
 
 const SettingsPostModal: FC<SettingsPostModal> = ({
