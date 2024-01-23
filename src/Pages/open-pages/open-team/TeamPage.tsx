@@ -55,7 +55,7 @@ export default function TeamPage() {
                     />
                 )}
 
-                <ShowPosts filter={OpenTeam.id}></ShowPosts>
+                <ShowPosts></ShowPosts>
             </div>
         );
     } else if (!OpenTeam) {

@@ -5,6 +5,13 @@ export const formItem = {
         opacity: 1,
     },
 };
+export type formItemType = {
+    hidden: { y: number; opacity: number };
+    visible: {
+        y: number;
+        opacity: number;
+    };
+};
 
 export const defaultItem = {
     hidden: { x: -2, opacity: 0, scale: 0.95 },

@@ -83,7 +83,7 @@ export default function UserPage() {
                     ></ButtonVoid>
                 )}
 
-                <ShowPosts filter={OpenUser.id}></ShowPosts>
+                <ShowPosts></ShowPosts>
             </>
         );
     } else if (!OpenUser) {
