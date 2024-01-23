@@ -5,7 +5,7 @@ export type NewPostType = {
     PostTitle: string;
     PostAuthorId: string | null;
     PostDate: number;
-    PostLikes: number;
+    PostLikes: { [key: string]: string } | 0;
     PostShows: number;
     PostComments: object;
     PostReposts: number;

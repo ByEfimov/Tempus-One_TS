@@ -1,6 +1,6 @@
 import Styles from '../posts/Styles.module.scss';
-import { RemoveLikePost } from 'Api/Posts/Activities/remove-like-post';
-import { SendLikePost } from 'Api/Posts/Activities/send-like-post';
+import { postRequestWithoutNewId } from 'Api/requests/post-requests-with-new-id';
+import { removeRequest } from 'Api/requests/remove-request';
 import CommentIcon from 'Assets/Icons/Post/comment.svg';
 import EyeIcon from 'Assets/Icons/Post/eye.svg';
 import FillHeartIcon from 'Assets/Icons/Post/fiil/heart.svg';
@@ -24,21 +24,29 @@ const Activities: FC<ActivitiesProps> = ({
     setRepostModalOpen,
     setViewsModalOpen,
 }) => {
-    const { UserId, UserPostsLiked, UserCanChanging } = useAuth();
-    const [PostLikes, setPostLikes] = useState(post.PostLikes);
+    const { UserId, UserCanChanging } = useAuth();
+    const [PostLikes, setPostLikes] = useState(
+        post.PostLikes ? Object.values(post.PostLikes).length : 0,
+    );
+    const [ItPostLiked, setItPostLiked] = useState(
+        post.PostLikes ? Object.values(post.PostLikes).includes(UserId) : false,
+    );
 
     const PostComments = Object.keys(post.PostComments || []).length;
-
-    const ItPostLiked = Object.keys(UserPostsLiked || [])?.includes(post.id);
 
     const LikePost = () => {
         if (UserCanChanging) {
             if (ItPostLiked) {
-                RemoveLikePost(post.id, UserId, PostLikes - 1);
                 setPostLikes(PostLikes - 1);
+                removeRequest('posts/' + post.id + '/PostLikes/', UserId);
+                setItPostLiked(false);
             } else {
-                SendLikePost(post.id, UserId, PostLikes + 1);
+                postRequestWithoutNewId(
+                    'posts/' + post.id + '/PostLikes/' + UserId,
+                    UserId,
+                );
                 setPostLikes(PostLikes + 1);
+                setItPostLiked(true);
             }
         } else {
             ErrorNotification('Нужно войти в аккаунт.');

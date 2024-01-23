@@ -9,7 +9,6 @@ import Styles from './Styles.module.scss';
 import { changeRequest } from 'Api/requests/change-request';
 import { postRequestWithNewId } from 'Api/requests/post-requests-with-new-id';
 import ButtonVoid from 'Components/mini-components/button';
-import { ErrorNotification } from 'Components/notifications/notifications';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';
 import { useWritePost } from 'Hooks/useWritePost';
@@ -17,7 +16,6 @@ import { removePost } from 'Store/slices/wite-post/write-post-slice';
 import { NewPostType } from 'Types/TypesOfData/post/new-post-type';
 import { ModsOfWritePost } from 'Utils/mods-of-comps';
 import { applyFilterToNewPost } from 'Utils/post-utils/filter-bad-words';
-import { countEmptyValues } from 'Utils/validate-data/count-empty-values';
 import { getUnixTime } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 
@@ -43,18 +41,10 @@ const WritePost = () => {
         };
 
         const filteredPost = applyFilterToNewPost(NewPost);
-        if (countEmptyValues(filteredPost) - 4 === 0) {
-            changeRequest(
-                'users/' + UserId,
-                '/experience',
-                UserExperience + 40,
-            );
-            postRequestWithNewId('posts/', NewPost);
-            dispatch(removePost());
-            navigate('/');
-        } else {
-            ErrorNotification('Не все поля заполнены.');
-        }
+        changeRequest('users/' + UserId, '/experience', UserExperience + 40);
+        postRequestWithNewId('posts/', filteredPost);
+        dispatch(removePost());
+        navigate('/');
     }
 
     const showSelectMode = () => {

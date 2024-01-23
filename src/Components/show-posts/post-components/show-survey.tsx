@@ -1,5 +1,5 @@
 import Styles from '../posts/Styles.module.scss';
-import selectVariantOfSurvey from 'Api/Users/interaction/select-variant-of-survey';
+import { postRequestWithoutNewId } from 'Api/requests/post-requests-with-new-id';
 import { useAuth } from 'Hooks/useAuth';
 import { PostBlock } from 'Types/TypesOfData/post/post';
 import { FC, useState } from 'react';
@@ -10,29 +10,35 @@ interface ShowSurvey {
 }
 
 const ShowSurvey: FC<ShowSurvey> = ({ block, postId }) => {
-    const { UserId, UserSelectedVariants } = useAuth();
+    const { UserId } = useAuth();
     const [SelectVariant, setSelectVariant] = useState<
         number | null | undefined
     >(null);
-
-    const ItPostSelect =
-        UserSelectedVariants &&
-        Object.keys(UserSelectedVariants).includes(postId);
+    const [ItPostSelect, setItPostSelect] = useState(
+        Object.values(block.variants || 0).some(
+            (obj) => obj.selected && obj.selected[UserId] === UserId,
+        ),
+    );
 
     function selectVariant(Variant: {
         id: number | undefined;
         text: string;
-        selected?: number | undefined;
+        selected?: { [key: string]: string };
     }) {
         if (!ItPostSelect) {
-            selectVariantOfSurvey(
-                postId,
-                block.id,
-                Variant.id,
-                (Variant.selected && Variant.selected + 1) || 1,
+            postRequestWithoutNewId(
+                'posts/' +
+                    postId +
+                    '/PostDataBlocks/' +
+                    block.id +
+                    '/variants/' +
+                    Variant.id +
+                    '/selected/' +
+                    UserId,
                 UserId,
             );
             setSelectVariant(Variant.id);
+            setItPostSelect(true);
         }
     }
 
@@ -51,9 +57,10 @@ const ShowSurvey: FC<ShowSurvey> = ({ block, postId }) => {
                             key={variant.id}
                         >
                             {variant.text}{' '}
-                            {variant.selected && variant.id === SelectVariant
-                                ? variant.selected + 1
-                                : variant.selected}
+                            {variant.id === SelectVariant
+                                ? Object.values(variant.selected || 0).length +
+                                  1
+                                : Object.values(variant.selected || 0).length}
                         </div>
                     ) : (
                         <div

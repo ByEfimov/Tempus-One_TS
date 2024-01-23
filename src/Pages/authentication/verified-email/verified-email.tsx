@@ -1,6 +1,6 @@
 import Styles from './Styles.module.scss';
 import { getDatabase, ref, set } from '@firebase/database';
-import { getCurrentUserData } from 'Api/Users/get-data/get-current-user';
+import { getCurrentUserData } from 'Api/requests/get-current-user';
 import ButtonVoid from 'Components/mini-components/button';
 import { MassageNotification } from 'Components/notifications/notifications';
 import { useAuth } from 'Hooks/useAuth';
