@@ -16,5 +16,5 @@ html {
     --ErrorBackgroundGradient: linear-gradient(94deg, #b24239 0%, #d7554a 100%);
     --TransparentColor: #60658320;
 
-    --PrimaryPaddingSize: 15px;
+    --PrimaryPaddingSize: 12px;
 }

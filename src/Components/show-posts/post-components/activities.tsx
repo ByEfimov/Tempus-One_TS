@@ -1,11 +1,9 @@
 import Styles from '../posts/Styles.module.scss';
 import { postRequestWithoutNewId } from 'Api/requests/post-requests-with-new-id';
 import { removeRequest } from 'Api/requests/remove-request';
-import CommentIcon from 'Assets/Icons/Post/comment.svg';
-import EyeIcon from 'Assets/Icons/Post/eye.svg';
-import FillHeartIcon from 'Assets/Icons/Post/fiil/heart.svg';
-import HeartIcon from 'Assets/Icons/Post/heart.svg';
-import ShareIcon from 'Assets/Icons/Post/share.svg';
+import PostsIcons, {
+    postsIcons,
+} from 'Assets/Tempus-Ui/Icons/Posts/Posts-Icons';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import { useAuth } from 'Hooks/useAuth';
 import { Post } from 'Types/TypesOfData/post/post';
@@ -63,7 +61,7 @@ const Activities: FC<ActivitiesProps> = ({
                     }}
                     className={(ItPostLiked && Styles.LikeHeart) || undefined}
                 >
-                    <img src={ItPostLiked ? FillHeartIcon : HeartIcon} alt="" />
+                    <PostsIcons Icon={postsIcons.like}></PostsIcons>
                     <h1>{PostLikes}</h1>
                 </button>
                 <button
@@ -73,7 +71,7 @@ const Activities: FC<ActivitiesProps> = ({
                         setCommentsOpen(true);
                     }}
                 >
-                    <img src={CommentIcon} alt="" />
+                    <PostsIcons Icon={postsIcons.comment}></PostsIcons>
                     <h1>{PostComments}</h1>
                 </button>
                 <button
@@ -83,7 +81,7 @@ const Activities: FC<ActivitiesProps> = ({
                         setRepostModalOpen(true);
                     }}
                 >
-                    <img src={ShareIcon} alt="" />
+                    <PostsIcons Icon={postsIcons.repost}></PostsIcons>
                     <h1>{post.PostReposts}</h1>
                 </button>
             </div>
@@ -95,7 +93,7 @@ const Activities: FC<ActivitiesProps> = ({
                 }}
                 className={Styles.Shows}
             >
-                <img src={EyeIcon} alt="" />
+                <PostsIcons Icon={postsIcons.eye}></PostsIcons>
                 <h1> {Object.keys(post.PostShows).length}</h1>
             </button>
         </div>

@@ -22,10 +22,13 @@
     min-height: 26px;
     max-width: 26px;
     max-height: 26px;
-
-    img {
-        width: 100%;
-        height: 100%;
+    svg * {
+        fill: var(--AccentBorderColor);
+    }
+}
+.sub {
+    svg * {
+        fill: #bdbdbd;
     }
 }
 

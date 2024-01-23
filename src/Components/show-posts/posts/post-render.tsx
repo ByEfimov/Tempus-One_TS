@@ -5,6 +5,7 @@ import PostDataRender from '../post-components/post-data-render';
 import Styles from './Styles.module.scss';
 import { getRequestObject } from 'Api/requests/get-requests';
 import { postRequestWithoutNewId } from 'Api/requests/post-requests-with-new-id';
+import { formItem } from 'Assets/Tempus-Ui/Animation/Form-animate';
 import FakePost from 'Components/fake-data/fake-post';
 import CommentsModal from 'Components/modals/comments-modal/comments-modal';
 import RepostModal from 'Components/modals/repost-modal/repost-modal';
@@ -13,6 +14,7 @@ import { useAuth } from 'Hooks/useAuth';
 import { Post } from 'Types/TypesOfData/post/post';
 import { ModsOfWritePost } from 'Utils/mods-of-comps';
 import { PostLoadIsDone } from 'Utils/post-utils/post-load-is-done';
+import { motion } from 'framer-motion';
 import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -97,10 +99,11 @@ const PostRender: FC<PostRender> = ({ post }) => {
                     ></ViewsModal>
                 )}
 
-                <div
+                <motion.div
                     onClick={() => {
                         navigate('/Post/' + post.id);
                     }}
+                    variants={formItem}
                     className={Styles.Post}
                 >
                     <AuthorDataRender post={post} WhoWrotePost={WhoWrotePost} />
@@ -130,7 +133,7 @@ const PostRender: FC<PostRender> = ({ post }) => {
                         setViewsModalOpen={setViewsModalOpen}
                         post={post}
                     />
-                </div>
+                </motion.div>
             </>
         );
     } else if (!PostLoadIsDone) {

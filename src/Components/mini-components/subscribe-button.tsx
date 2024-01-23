@@ -1,8 +1,9 @@
 import Styles from './styles.module.scss';
 import { Subscription } from 'Api/Users/interaction/subscription';
 import { changeRequest } from 'Api/requests/change-request';
-import PlusDarkIcon from 'Assets/Icons/Post/plus-circle-dark.svg';
-import PlusIcon from 'Assets/Icons/Post/plus-circle.svg';
+import PostsIcons, {
+    postsIcons,
+} from 'Assets/Tempus-Ui/Icons/Posts/Posts-Icons';
 import {
     ErrorNotification,
     MassageNotification,
@@ -10,6 +11,7 @@ import {
 import { WhoWrotePost } from 'Components/show-posts/posts/post-render';
 import { useAuth } from 'Hooks/useAuth';
 import { itsMember } from 'Utils/users-or-teams/ist-member';
+import classNames from 'classnames';
 import { FC } from 'react';
 
 interface SubscribeButton {
@@ -46,16 +48,16 @@ const SubscribeButton: FC<SubscribeButton> = ({ WhoWrotePost }) => {
 
     return (
         <button
-            className={Styles.SubButton}
+            className={classNames(Styles.SubButton, isMember && Styles.sub)}
             onClick={(e) => {
                 e.stopPropagation();
                 subbing();
             }}
         >
             {isMember ? (
-                <img src={PlusDarkIcon} alt="" />
+                <PostsIcons Icon={postsIcons.sub}></PostsIcons>
             ) : (
-                <img src={PlusIcon} alt="" />
+                <PostsIcons Icon={postsIcons.sub}></PostsIcons>
             )}
         </button>
     );

@@ -1,11 +1,13 @@
 import Styles from './Styles.module.scss';
 import PostRender from './post-render';
 import { getRequestArray } from 'Api/requests/get-requests';
+import { formContainer } from 'Assets/Tempus-Ui/Animation/Form-animate';
 import List from 'Assets/Tempus-Ui/Components/Select/Select';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { setLastPostKey } from 'Store/slices/PostsSlice';
 import { Post } from 'Types/TypesOfData/post/post';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 const ShowPosts = () => {
@@ -36,9 +38,17 @@ const ShowPosts = () => {
                 setSelect={setSelectFilter}
                 selectFilter={selectFilter}
             ></List>
-
-            {posts &&
-                posts.map((post) => <PostRender key={post.id} post={post} />)}
+            <motion.div
+                className={Styles.Render}
+                initial="hidden"
+                animate="visible"
+                variants={formContainer}
+            >
+                {posts &&
+                    posts.map((post) => (
+                        <PostRender key={post.id} post={post} />
+                    ))}
+            </motion.div>
         </div>
     );
 };

@@ -20,6 +20,17 @@ const ShowSurvey: FC<ShowSurvey> = ({ block, postId }) => {
         ),
     );
 
+    const selectedUsers = Object.values(block.variants || 0).reduce(
+        (acc, obj) => {
+            if (obj.selected) {
+                const users = Object.keys(obj.selected);
+                acc.push(...users);
+            }
+            return acc;
+        },
+        [],
+    );
+
     function selectVariant(Variant: {
         id: number | undefined;
         text: string;
@@ -56,11 +67,17 @@ const ShowSurvey: FC<ShowSurvey> = ({ block, postId }) => {
                             className={Styles.variant}
                             key={variant.id}
                         >
+                            <progress
+                                max={selectedUsers.length}
+                                value={
+                                    variant.id === SelectVariant
+                                        ? Object.values(variant.selected || 0)
+                                              .length + 1
+                                        : Object.values(variant.selected || 0)
+                                              .length
+                                }
+                            ></progress>
                             {variant.text}{' '}
-                            {variant.id === SelectVariant
-                                ? Object.values(variant.selected || 0).length +
-                                  1
-                                : Object.values(variant.selected || 0).length}
                         </div>
                     ) : (
                         <div
