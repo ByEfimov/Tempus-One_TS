@@ -10,7 +10,7 @@ interface ShowSurvey {
 }
 
 const ShowSurvey: FC<ShowSurvey> = ({ block, postId }) => {
-    const { UserId } = useAuth();
+    const { UserId, UserIsAuth } = useAuth();
     const [SelectVariant, setSelectVariant] = useState<
         number | null | undefined
     >(null);
@@ -36,7 +36,7 @@ const ShowSurvey: FC<ShowSurvey> = ({ block, postId }) => {
         text: string;
         selected?: { [key: string]: string };
     }) {
-        if (!ItPostSelect) {
+        if (!ItPostSelect && UserIsAuth) {
             postRequestWithoutNewId(
                 'posts/' +
                     postId +
