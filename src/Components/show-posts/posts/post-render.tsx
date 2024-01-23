@@ -114,16 +114,15 @@ const PostRender: FC<PostRender> = ({ post }) => {
                         </div>
                     )}
                     {post.PostWithRepostUs && (
-                        <div
+                        <a
                             className={Styles.repost}
                             onClick={(e) => {
                                 e.stopPropagation();
                                 navigate('/Post/' + post.PostWithRepostUs);
-                                location.reload();
                             }}
                         >
-                            Этот пост запосщен.
-                        </div>
+                            Ссылка на оригинал.
+                        </a>
                     )}
                     <Activities
                         setCommentsOpen={setCommentsOpen}

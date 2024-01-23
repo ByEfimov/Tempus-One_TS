@@ -1,5 +1,5 @@
 import Styles from './Styles.module.scss';
-import { getDatabase, ref, set } from '@firebase/database';
+import { changeRequest } from 'Api/requests/change-request';
 import { getCurrentUserData } from 'Api/requests/get-current-user';
 import ButtonVoid from 'Components/mini-components/button';
 import { MassageNotification } from 'Components/notifications/notifications';
@@ -9,7 +9,6 @@ import { Navigate } from 'react-router-dom';
 
 const VerifyingEmail = () => {
     const { UserEmailVerified, UserId } = useAuth();
-    const db = getDatabase();
     const auth = getAuth();
 
     function sendMailForVerifying() {
@@ -24,7 +23,7 @@ const VerifyingEmail = () => {
         location.reload();
         getCurrentUserData().then((currentUser) => {
             if (currentUser.emailVerified === true) {
-                set(ref(db, 'users/' + UserId + '/emailVerified'), true);
+                changeRequest('users/' + UserId, '/emailVerified', true);
             }
         });
     }

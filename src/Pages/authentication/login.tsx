@@ -3,12 +3,16 @@ import { ErrorNotification } from 'Components/notifications/notifications';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';
 import { setCurrentUser } from 'Store/slices/UserSlice';
+import { encryptData } from 'Utils/crypt-data/cripting-data';
+import AppRoutes from 'Utils/routes/app-routes';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { Navigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
     const { UserIsAuth } = useAuth();
     const auth = getAuth();
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
     function handlerSubmit(Email: string, Pass: string) {
@@ -21,7 +25,9 @@ export default function LoginPage() {
                         id: user.uid,
                     }),
                 );
-                location.reload();
+
+                Cookies.set('UserId', encryptData(user.uid));
+                navigate(AppRoutes.DEFAULT);
             })
             .catch(() => {
                 ErrorNotification('Пароль или почта не подходят.');

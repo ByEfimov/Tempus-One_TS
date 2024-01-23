@@ -11,4 +11,5 @@ export type NewPostType = {
     PostReposts: number;
     PostId?: string | null;
     PostWithRepostUs?: string;
+    id: null;
 };

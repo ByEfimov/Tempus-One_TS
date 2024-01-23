@@ -7,7 +7,11 @@ import Button, {
 import { ErrorNotification } from 'Components/notifications/notifications';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { setCurrentUser } from 'Store/slices/UserSlice';
+import { encryptData } from 'Utils/crypt-data/cripting-data';
+import AppRoutes from 'Utils/routes/app-routes';
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 type User = {
     email: string | null;
@@ -18,6 +22,7 @@ type User = {
 };
 
 const AuthWithGoogle = () => {
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
     function loginWithGoogle(user: User) {
@@ -27,7 +32,6 @@ const AuthWithGoogle = () => {
                 id: user.uid,
             }),
         );
-        location.reload();
     }
 
     function registerWithGoogle(user: User) {
@@ -50,7 +54,6 @@ const AuthWithGoogle = () => {
                 id: user.uid,
             }),
         );
-        location.reload();
     }
 
     function startAuth() {
@@ -62,9 +65,13 @@ const AuthWithGoogle = () => {
                 getRequestObject('users/' + user.uid)
                     .then(() => {
                         loginWithGoogle(user);
+                        Cookies.set('UserId', encryptData(user.uid));
+                        navigate(AppRoutes.DEFAULT);
                     })
                     .catch(() => {
                         registerWithGoogle(user);
+                        Cookies.set('UserId', encryptData(user.uid));
+                        navigate(AppRoutes.DEFAULT);
                     });
             })
             .catch(() => {

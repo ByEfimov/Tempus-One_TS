@@ -1,4 +1,5 @@
 import { getDatabase, ref, set } from '@firebase/database';
+import filterBadWords from 'Utils/post-utils/filter-bad-words';
 
 export async function changeRequest<T>(
     Path: string,
@@ -6,8 +7,12 @@ export async function changeRequest<T>(
     NewData: T,
 ): Promise<string> {
     const db = getDatabase();
+    let filteredData;
+    if (typeof NewData === 'string') {
+        filteredData = filterBadWords(NewData);
+    }
     const postListRef = ref(db, Path + ChangedPath);
-    await set(postListRef, NewData);
+    await set(postListRef, filteredData || NewData);
 
     return postListRef.key as string;
 }

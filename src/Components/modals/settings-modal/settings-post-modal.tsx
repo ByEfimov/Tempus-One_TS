@@ -12,9 +12,14 @@ import { useNavigate } from 'react-router-dom';
 interface SettingsPostModal {
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
     post: Post;
+    postid: string;
 }
 
-const SettingsPostModal: FC<SettingsPostModal> = ({ setModalOpen, post }) => {
+const SettingsPostModal: FC<SettingsPostModal> = ({
+    setModalOpen,
+    post,
+    postid,
+}) => {
     const [postTitle, setPostTitle] = useState('');
     const [postText, setPostText] = useState('');
 
@@ -22,11 +27,11 @@ const SettingsPostModal: FC<SettingsPostModal> = ({ setModalOpen, post }) => {
 
     function ChangeFunction() {
         if (postTitle !== '') {
-            changeRequest('posts/' + post.id, '/PostTitle', postTitle);
+            changeRequest('posts/' + postid, '/PostTitle', postTitle);
         }
         if (postText !== '') {
             changeRequest(
-                'posts/' + post.id,
+                'posts/' + postid,
                 '/PostDataBlocks/0/text',
                 postText,
             );

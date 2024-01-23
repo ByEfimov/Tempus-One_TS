@@ -34,6 +34,7 @@ export default function PostPage() {
                 {SettingsModalOpen && (
                     <SettingsPostModal
                         setModalOpen={setSettingsModalOpen}
+                        postid={id}
                         post={OpenPost}
                     ></SettingsPostModal>
                 )}

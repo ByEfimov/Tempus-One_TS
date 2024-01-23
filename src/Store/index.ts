@@ -10,7 +10,7 @@ import storage from 'redux-persist/lib/storage';
 const persistConfig = {
     key: 'root',
     storage,
-    blacklist: ['WritePost', 'Header', 'Notify'],
+    blacklist: ['WritePost', 'Header', 'Notify', 'user'],
 };
 
 const rootReducer = combineReducers({

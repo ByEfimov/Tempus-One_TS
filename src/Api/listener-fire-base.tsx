@@ -1,8 +1,10 @@
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';
 import { removeUser, setUser } from 'Store/slices/UserSlice';
+import { decryptData } from 'Utils/crypt-data/cripting-data';
 import { getAuth, signOut } from 'firebase/auth';
 import { getDatabase, onValue, ref } from 'firebase/database';
+import Cookies from 'js-cookie';
 import { useEffect } from 'react';
 
 interface ListenerFC {
@@ -11,7 +13,8 @@ interface ListenerFC {
 
 export default function ListenerFB({ children }: ListenerFC) {
     const db = getDatabase();
-    const { UserId, UserIsAuth } = useAuth();
+    const UserIdC = decryptData(Cookies.get('UserId'));
+    const { UserId } = useAuth();
     const auth = getAuth();
     const dispatch = useAppDispatch();
 
@@ -20,9 +23,10 @@ export default function ListenerFB({ children }: ListenerFC) {
             signOut(auth).then(() => {
                 dispatch(removeUser());
             });
+            Cookies.remove('UserId');
         }
 
-        if (UserIsAuth) {
+        if (UserIdC || UserId) {
             const starCountRef = ref(db, '/users/' + UserId);
             onValue(starCountRef, (snapshot) => {
                 const data = snapshot.val();
@@ -49,7 +53,7 @@ export default function ListenerFB({ children }: ListenerFC) {
         } else {
             LogoutUser();
         }
-    }, []);
+    }, [UserId]);
 
     return children;
 }

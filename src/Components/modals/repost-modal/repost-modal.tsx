@@ -38,6 +38,7 @@ const RepostModal: FC<RepostModal> = ({ setModalOpen, post }) => {
             PostComments: {},
             PostReposts: 0,
             PostWithRepostUs: post.id,
+            id: null,
         };
 
         if (countEmptyValues(NewPost) - 5 >= 0 && UserIsAuth) {

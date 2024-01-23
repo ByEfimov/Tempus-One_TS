@@ -1,6 +1,7 @@
 import { useAppSelector } from './redux-hooks';
 import { decryptData } from 'Utils/crypt-data/cripting-data';
 import AppRoutes from 'Utils/routes/app-routes';
+import Cookies from 'js-cookie';
 
 export function useAuth() {
     const {
@@ -20,7 +21,7 @@ export function useAuth() {
     } = useAppSelector((state) => state.user);
 
     const PathToProfile = email
-        ? AppRoutes.USER + '/' + decryptData(id)
+        ? AppRoutes.USER + '/' + decryptData(Cookies.get('UserId'))
         : AppRoutes.LOGIN;
 
     return {
@@ -29,7 +30,7 @@ export function useAuth() {
         UserSubscriptions: subscriptions,
         UserEmailVerified: emailVerified,
         UserEmail: email,
-        UserId: decryptData(id),
+        UserId: decryptData(Cookies.get('UserId')),
         UserPhoto: photo,
         UserName: name,
         UserAge: age,

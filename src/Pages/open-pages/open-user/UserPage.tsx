@@ -16,6 +16,7 @@ import { removeUser } from 'Store/slices/UserSlice';
 import { OpenUserType } from 'Types/TypesOfData/team-or-user/open-user-type';
 import MaxXpToNextLevel from 'Utils/users-or-teams/max-xp-to-next-level';
 import { getAuth, signOut } from 'firebase/auth';
+import Cookies from 'js-cookie';
 import { FC, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -40,6 +41,7 @@ export default function UserPage() {
         signOut(auth)
             .then(() => {
                 dispatch(removeUser());
+                Cookies.remove('UserId');
                 navigate('/Login');
             })
             .catch(() => {
