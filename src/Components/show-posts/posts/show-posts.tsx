@@ -2,7 +2,6 @@ import Styles from './Styles.module.scss';
 import PostRender from './post-render';
 import { getRequestArray } from 'Api/requests/get-requests';
 import List from 'Assets/Tempus-Ui/Components/Select/Select';
-import PreloaderPosts from 'Components/mini-components/preloader-posts';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { setLastPostKey } from 'Store/slices/PostsSlice';
