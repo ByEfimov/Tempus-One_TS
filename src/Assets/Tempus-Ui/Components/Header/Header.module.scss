@@ -11,6 +11,7 @@
     z-index: 9999;
     gap: 10px;
     height: 70px;
+    border-bottom: 1px solid var(--TransparentColor);
     background-color: var(--PrimaryBackgroundColor);
     &__Title {
         width: 100%;
