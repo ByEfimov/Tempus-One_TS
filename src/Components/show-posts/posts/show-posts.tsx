@@ -1,54 +1,67 @@
+import { Filters, aplyFilter } from '../post-components/filters';
 import Styles from './Styles.module.scss';
 import PostRender from './post-render';
 import { getRequestArray } from 'Api/requests/get-requests';
 import { formContainer } from 'Assets/Tempus-Ui/Animation/Form-animate';
-import List from 'Assets/Tempus-Ui/Components/Select/Select';
-import { ErrorNotification } from 'Components/notifications/notifications';
+import Select from 'Assets/Tempus-Ui/Components/Select/Select';
+import TextWithLine from 'Assets/Tempus-Ui/Components/Texts/Text-with-line';
 import { useAppDispatch } from 'Hooks/redux-hooks';
+import { useAuth } from 'Hooks/useAuth';
+import { useHeader } from 'Hooks/useHeader';
 import { setLastPostKey } from 'Store/slices/PostsSlice';
 import { Post } from 'Types/TypesOfData/post/post';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 const ShowPosts = () => {
-    const [posts, setPosts] = useState<Post[] | null>(null);
+    const [posts, setPosts] = useState<Post[] | undefined>();
     const [selectFilter, setSelectFilter] = useState<string>('Default');
-    const Filters = [
-        { name: 'Все посты', value: 'Default' },
-        { name: 'Интересное', value: 'Interesting' },
-        { name: 'Только мои', value: 'OnlyMy' },
-    ];
+    const { UserSubscriptions, UserId } = useAuth();
+    const { HeaderSearchBar } = useHeader();
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        getRequestArray('/posts')
-            .then((posts) => {
-                setPosts(posts);
+        const TimeSearch = HeaderSearchBar;
+        function getPosts() {
+            getRequestArray('/posts').then((posts) => {
+                const filteredPosts = aplyFilter(
+                    posts,
+                    selectFilter,
+                    UserSubscriptions,
+                    UserId,
+                    HeaderSearchBar,
+                );
+                setPosts(filteredPosts);
                 dispatch(setLastPostKey(Object.keys(posts).pop()));
-            })
-            .catch(() => {
-                ErrorNotification('Посты не найдены.');
             });
-    }, [selectFilter]);
+        }
+        setTimeout(() => {
+            if (TimeSearch === HeaderSearchBar) {
+                getPosts();
+            }
+        }, 1000);
+    }, [selectFilter, HeaderSearchBar]);
 
     return (
         <div className={Styles.Posts}>
-            <List
+            <Select
                 Array={Filters}
                 setSelect={setSelectFilter}
                 selectFilter={selectFilter}
-            ></List>
-            <motion.div
-                className={Styles.Render}
-                initial="hidden"
-                animate="visible"
-                variants={formContainer}
-            >
-                {posts &&
-                    posts.map((post) => (
+            ></Select>{' '}
+            {posts && (
+                <motion.div
+                    className={Styles.Render}
+                    initial="hidden"
+                    animate="visible"
+                    variants={formContainer}
+                >
+                    {posts.map((post) => (
                         <PostRender key={post.id} post={post} />
                     ))}
-            </motion.div>
+                    <TextWithLine>Постов больше нет</TextWithLine>
+                </motion.div>
+            )}
         </div>
     );
 };

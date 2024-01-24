@@ -25,6 +25,7 @@ interface Input {
     Type: InputTypes;
     Variants?: formItemType;
     IconPosition?: IconPositions;
+    SearchFun?: () => void;
 }
 
 const Input = ({
@@ -51,9 +52,6 @@ const Input = ({
                 value={Value}
                 placeholder={Placeholder}
             ></input>
-            {Icon && IconPosition === IconPositions.rigth && (
-                <div className={Styles.Input__Icon_r}>{Icon}</div>
-            )}
         </motion.div>
     );
 };

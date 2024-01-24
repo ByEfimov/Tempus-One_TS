@@ -4,25 +4,24 @@
     position: relative;
     font-size: 16px;
     font-weight: 500;
-}
-.TextWithLine::after {
-    content: '';
-    width: 42%;
-    left: 0;
-    top: calc(50% - 2px);
-    border-radius: 5px;
-    position: absolute;
-    height: 4px;
-    background-color: var(--SecondaryBackgroundColor);
-}
-
-.TextWithLine::before {
-    content: '';
-    width: 42%;
-    right: 0;
-    top: calc(50% - 2px);
-    border-radius: 5px;
-    position: absolute;
-    height: 4px;
-    background-color: var(--SecondaryBackgroundColor);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+    .line1 {
+        width: 42%;
+        border-radius: 5px;
+        height: 4px;
+        background-color: var(--SecondaryBackgroundColor);
+    }
+    .text {
+        color: var(--SecondaryTextColor);
+        flex-shrink: 0;
+    }
+    .line2 {
+        width: 42%;
+        border-radius: 5px;
+        height: 4px;
+        background-color: var(--SecondaryBackgroundColor);
+    }
 }

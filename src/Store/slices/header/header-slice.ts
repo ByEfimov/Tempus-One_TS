@@ -45,6 +45,10 @@ const HeaderSlice = createSlice({
             state.ButtonExecute = action.payload.ButtonExecute;
             state.PlaceholderForInput = action.payload.placeholderForInput;
         },
+        setExecuteFunction(state, action) {
+            if (state.ButtonExecute)
+                state.ButtonExecute.function = action.payload.function;
+        },
     },
 });
 export const {
@@ -53,6 +57,7 @@ export const {
     setHeaderClickBack,
     setHeader,
     setTitleOfHeader,
+    setExecuteFunction,
 } = HeaderSlice.actions;
 
 export default HeaderSlice.reducer;

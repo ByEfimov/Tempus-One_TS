@@ -51,10 +51,13 @@ export default function Header() {
                     Value={HeaderSearchBar}
                     Type={InputTypes.text}
                     Change={(e) => {
-                        dispatch(setInputSearchBar(e.target.value));
+                        dispatch(
+                            setInputSearchBar({ SearchBar: e.target.value }),
+                        );
                     }}
                     Placeholder={PlaceholderForInput}
                     Icon={<HeaderIcons Icon={headerIcons.Search} />}
+                    SearchFun={ButtonExecute?.function}
                     IconPosition={IconPositions.rigth}
                 ></Input>
                 {ButtonExecute && (
