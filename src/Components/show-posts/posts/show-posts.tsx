@@ -3,6 +3,7 @@ import Styles from './Styles.module.scss';
 import PostRender from './post-render';
 import { getRequestArray } from 'Api/requests/get-requests';
 import { formContainer } from 'Assets/Tempus-Ui/Animation/Form-animate';
+import Preloader from 'Assets/Tempus-Ui/Components/Preloader/Preloader';
 import Select from 'Assets/Tempus-Ui/Components/Select/Select';
 import TextWithLine from 'Assets/Tempus-Ui/Components/Texts/Text-with-line';
 import { useAppDispatch } from 'Hooks/redux-hooks';
@@ -49,7 +50,7 @@ const ShowPosts = () => {
                 setSelect={setSelectFilter}
                 selectFilter={selectFilter}
             ></Select>{' '}
-            {posts && (
+            {posts ? (
                 <motion.div
                     className={Styles.Render}
                     initial="hidden"
@@ -61,6 +62,8 @@ const ShowPosts = () => {
                     ))}
                     <TextWithLine>Постов больше нет</TextWithLine>
                 </motion.div>
+            ) : (
+                <Preloader></Preloader>
             )}
         </div>
     );
