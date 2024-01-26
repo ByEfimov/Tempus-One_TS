@@ -48,9 +48,7 @@ html {
     overflow-x: hidden;
     overflow-y: auto;
 }
-::-webkit-scrollbar {
-    width: 10px;
-}
+
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
 }

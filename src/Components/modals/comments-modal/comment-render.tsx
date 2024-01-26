@@ -39,12 +39,14 @@ const CommentRender: FC<comment> = ({ comment }) => {
                         <ShowLogo ImageUrl={commentator.photo}></ShowLogo>
                     </div>
                     <div className={Styles.Data}>
-                        {commentator.name} {commentator.level}
+                        <div className={Styles.top}>
+                            {commentator.name} {commentator.level}
+                            <div className={Styles.date}>
+                                {formatTimeAgo(comment.CommentDate)}
+                            </div>
+                        </div>
                         <div className={Styles.commentText}>
                             {comment.CommentText}
-                        </div>
-                        <div className={Styles.date}>
-                            {formatTimeAgo(comment.CommentDate)}
                         </div>
                     </div>
                 </div>

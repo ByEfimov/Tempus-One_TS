@@ -19,6 +19,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-bottom: 15px;
     }
     .line::before {
         width: 90px;
@@ -33,7 +34,7 @@
         bottom: 0;
         width: 100%;
         display: flex;
-        padding: 17px;
+        padding: 15px;
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
         background-color: var(--SecondaryBackgroundColor);
@@ -43,48 +44,9 @@
         animation: openModal 0.5s forwards;
         z-index: 1000;
         padding-bottom: 20px;
-        .Comments {
-            margin-top: 10px;
-            display: flex;
-            flex-direction: column-reverse;
-            scroll-snap-type: mandatory;
-            height: 100%;
-            margin-bottom: 50px;
-            gap: 12px;
-            max-height: 400px;
-            overflow: auto;
-            .comment {
-                max-height: none;
-                padding: 5px;
-                animation: OpenComment 0.3s forwards;
-                border-radius: var(--DefaultBorderRadius);
-                background-color: var(--AccentColor2);
-                .author {
-                    display: flex;
-                    gap: 6px;
-                    .Photo {
-                        overflow: hidden;
-                        border-radius: var(--DefaultBorderRadius);
-                        width: 40px;
-                        height: 40px;
-                    }
-                    .Data {
-                        font-size: 18px;
-                        color: var(--WhiteTextColor);
-                        .commentText {
-                            font-size: 16px;
-                        }
-                        .date {
-                            font-size: 15px;
-                            color: var(--GreyTextColor);
-                        }
-                    }
-                }
-            }
-        }
         .Input {
             position: absolute;
-            bottom: 15px;
+            bottom: 10px;
             width: 100%;
             left: 0;
             padding-left: 15px;
@@ -114,6 +76,60 @@
                 border: 1px solid var(--AccentBorderColor);
 
                 background-color: var(--FourBackgroundColor);
+            }
+        }
+    }
+}
+
+.Comments {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 100%;
+    margin-bottom: 45px;
+    max-height: 400px;
+    overflow-y: auto;
+    width: 100%;
+    padding: 0px;
+    border-radius: 10px;
+    ul {
+        flex-direction: column;
+        display: flex;
+        gap: 10px;
+    }
+    .comment {
+        max-height: none;
+        padding: 5px;
+        width: 100%;
+        animation: OpenComment 0.3s forwards;
+        border-radius: 10px;
+        background-color: var(--PrimaryBackgroundColor);
+        .author {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            .Photo {
+                overflow: hidden;
+                border-radius: 10px;
+                width: 50px;
+                height: 50px;
+            }
+            .top {
+                display: flex;
+                gap: 5px;
+                align-items: center;
+                font-size: 16px;
+                .date {
+                    color: var(--SecondaryTextColor);
+                }
+            }
+            .Data {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                .commentText {
+                    font-size: 18px;
+                    color: var(--PrimaryTextColor);
+                }
             }
         }
     }
