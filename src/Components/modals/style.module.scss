@@ -9,36 +9,49 @@
         height: 100dvh;
         width: 100dvw;
         position: fixed;
-        background-color: rgba($color: #000000, $alpha: 0.3);
+        background-color: rgba($color: #000000, $alpha: 0.4);
         animation: bakModal 0.5s forwards;
     }
+    .line {
+        width: 100%;
+        height: 5px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .line::before {
+        width: 90px;
+        border-radius: 50px;
+        height: 4px;
+        content: '';
+        position: absolute;
+        background-color: var(--SecondaryTextColor);
+    }
     .content {
+        min-height: 200px;
         bottom: 0;
         width: 100%;
         display: flex;
         padding: 17px;
-        border-top-left-radius: var(--DefaultBorderRadius);
-        border-top-right-radius: var(--DefaultBorderRadius);
-        background-color: var(--AccentColor);
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        background-color: var(--SecondaryBackgroundColor);
         flex-direction: column;
         box-shadow: 2px 4px 5px 0px rgba(0, 0, 0, 0.25);
         position: fixed;
         animation: openModal 0.5s forwards;
         z-index: 1000;
         padding-bottom: 20px;
-        .Title {
-            text-align: center;
-            color: var(--WhiteTextColor);
-            font-size: 25px;
-            font-weight: 700;
-            letter-spacing: 3.5px;
-            margin-bottom: 17px;
-        }
         .Comments {
+            margin-top: 10px;
             display: flex;
-            flex-direction: column;
+            flex-direction: column-reverse;
+            scroll-snap-type: mandatory;
+            height: 100%;
+            margin-bottom: 50px;
             gap: 12px;
-            max-height: 450px;
+            max-height: 400px;
             overflow: auto;
             .comment {
                 max-height: none;
@@ -70,38 +83,37 @@
             }
         }
         .Input {
+            position: absolute;
+            bottom: 15px;
+            width: 100%;
+            left: 0;
+            padding-left: 15px;
+            padding-right: 15px;
             display: flex;
-            gap: 10px;
+            align-items: center;
             justify-content: space-between;
-            margin-top: 17px;
-            input {
-                box-shadow: var(--DarkShadow);
-                padding-left: 10px;
-                width: 100%;
-                height: 40px;
-                background-color: var(--AccentColor2);
-                border-radius: var(--DefaultBorderRadius);
-                color: var(--WhiteTextColor);
-                font-size: 18px;
-                font-weight: 500;
-                pointer-events: all;
-            }
-            input::placeholder {
-                color: var(--GreyTextColor);
-            }
+            border-radius: 10px;
+            overflow: hidden;
             button {
-                height: 40px;
-                width: 40px;
+                height: 45px;
+                width: 45px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 padding: 5px;
                 padding-left: 8px;
                 flex-shrink: 0;
-                box-shadow: var(--DarkShadow);
-                border-radius: var(--DefaultBorderRadius);
+                transition: all 0.3s;
+                border: 1px solid var(--PrimaryBackgroundColor);
                 color: var(--WhiteTextColor);
-                background-color: var(--AccentColor2);
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+                background-color: var(--PrimaryBackgroundColor);
+            }
+            button:focus {
+                border: 1px solid var(--AccentBorderColor);
+
+                background-color: var(--FourBackgroundColor);
             }
         }
     }
@@ -157,7 +169,7 @@
         bottom: 0px;
     }
     to {
-        bottom: -600px;
+        bottom: -550px;
     }
 }
 
@@ -172,7 +184,7 @@
 
 @keyframes openModal {
     from {
-        bottom: -600px;
+        bottom: -550px;
     }
     to {
         bottom: 0px;

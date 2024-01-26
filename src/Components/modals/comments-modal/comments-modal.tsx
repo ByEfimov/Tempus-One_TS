@@ -4,12 +4,19 @@ import CommentRender from './comment-render';
 import { getRequestArray } from 'Api/requests/get-requests';
 import { postRequestWithNewId } from 'Api/requests/post-requests-with-new-id';
 import SendIcon from 'Assets/Icons/Post/message.svg';
+import { formContainer } from 'Assets/Tempus-Ui/Animation/Form-animate';
+import Input, {
+    InputColors,
+    InputTypes,
+} from 'Assets/Tempus-Ui/Components/Inputs/Input';
+import Preloader from 'Assets/Tempus-Ui/Components/Preloader/Preloader';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import { useAuth } from 'Hooks/useAuth';
 import { Comments } from 'Types/TypesOfData/post/comments';
 import filterBadWords from 'Utils/post-utils/filter-bad-words';
 import { getUnixTime } from 'date-fns';
-import { FC, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import React, { FC, useEffect, useState } from 'react';
 
 interface CommentsModalProps {
     PostId: string;
@@ -19,14 +26,12 @@ interface CommentsModalProps {
 const CommentsModal: FC<CommentsModalProps> = ({ setModalOpen, PostId }) => {
     const { UserId, UserIsAuth } = useAuth();
     const [commentInput, setCommentInput] = useState('');
-    const [comments, setComments] = useState<Comments[] | string>(
-        'Комментариев еще нет.',
-    );
+    const [comments, setComments] = useState<Comments[]>();
 
     function getCommentsOfPost() {
-        getRequestArray('posts/' + PostId + '/PostComments/')
-            .then((comments) => setComments(comments))
-            .catch(() => setComments('Комментариев еще нет.'));
+        getRequestArray('posts/' + PostId + '/PostComments/').then((comments) =>
+            setComments(comments),
+        );
     }
 
     useEffect(() => {
@@ -53,25 +58,35 @@ const CommentsModal: FC<CommentsModalProps> = ({ setModalOpen, PostId }) => {
     };
 
     return (
-        <IsModal title={'Комментарии'} setModalOpen={setModalOpen}>
+        <IsModal setModalOpen={setModalOpen}>
             <div className={Styles.Comments}>
-                {Array.isArray(comments) &&
-                    comments.map((comment) => (
-                        <CommentRender key={comment.id} comment={comment} />
-                    ))}
+                <motion.ul
+                    variants={formContainer}
+                    initial="hidden"
+                    animate="visible"
+                >
+                    {comments ? (
+                        comments.map((comment) => (
+                            <CommentRender key={comment.id} comment={comment} />
+                        ))
+                    ) : (
+                        <Preloader></Preloader>
+                    )}
+                </motion.ul>
             </div>
 
-            <div className={Styles.Input}>
-                <input
-                    type="text"
-                    value={commentInput}
-                    onChange={(e) => setCommentInput(e.target.value)}
-                    placeholder="Новый комментарий"
-                />
+            <motion.div className={Styles.Input}>
+                <Input
+                    Placeholder="Новый комментарий"
+                    Change={(e) => setCommentInput(e.target.value)}
+                    Value={commentInput}
+                    Type={InputTypes.text}
+                    Color={InputColors.primary}
+                ></Input>
                 <button onClick={() => sendComment()}>
                     <img src={SendIcon} alt="" />
                 </button>
-            </div>
+            </motion.div>
         </IsModal>
     );
 };

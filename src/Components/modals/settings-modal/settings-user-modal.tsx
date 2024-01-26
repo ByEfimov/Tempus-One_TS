@@ -31,7 +31,7 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
     }
 
     return (
-        <IsModal title="Настройки" setModalOpen={setModalOpen}>
+        <IsModal setModalOpen={setModalOpen}>
             <input
                 type="file"
                 accept="image/png, image/jpeg"

@@ -1,5 +1,6 @@
 import Styles from './Input.module.scss';
 import { formItemType } from 'Assets/Tempus-Ui/Animation/Form-animate';
+import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
 
@@ -14,6 +15,10 @@ export enum IconPositions {
     left = 'left',
     rigth = 'rigth',
 }
+export enum InputColors {
+    default = 'default',
+    primary = 'primary',
+}
 
 interface Input {
     Placeholder: string;
@@ -26,6 +31,7 @@ interface Input {
     Variants?: formItemType;
     IconPosition?: IconPositions;
     SearchFun?: () => void;
+    Color?: InputColors;
 }
 
 const Input = ({
@@ -38,9 +44,16 @@ const Input = ({
     Type,
     Variants,
     IconPosition = IconPositions.left,
+    Color,
 }: Input) => {
     return (
-        <motion.div variants={Variants} className={Styles.Input}>
+        <motion.div
+            variants={Variants}
+            className={classNames(
+                Styles.Input,
+                Color === InputColors.primary && Styles.primary,
+            )}
+        >
             {Icon && IconPosition === IconPositions.left && (
                 <div className={Styles.Input__Icon}>{Icon}</div>
             )}

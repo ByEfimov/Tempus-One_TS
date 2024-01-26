@@ -12,7 +12,7 @@ interface ViewsModal {
 
 const ViewsModal: FC<ViewsModal> = ({ setModalOpen, post }) => {
     return (
-        <IsModal title="Просмотры" setModalOpen={setModalOpen}>
+        <IsModal setModalOpen={setModalOpen}>
             {Object.values(post.PostShows).map((userId) => (
                 <Viewer key={userId} userId={userId} />
             ))}

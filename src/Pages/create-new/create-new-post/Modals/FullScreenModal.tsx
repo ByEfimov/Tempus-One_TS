@@ -3,7 +3,6 @@ import Styles from '../Styles.module.scss';
 import ButtonVoid from 'Components/mini-components/button';
 import { CloseModal, IsModal } from 'Components/modals/is-modal';
 import { useAppDispatch } from 'Hooks/redux-hooks';
-import { useWritePost } from 'Hooks/useWritePost';
 import {
     clearBlockOfPost,
     removeBlockOfPost,
@@ -22,7 +21,6 @@ const ActivityModal: FC<SelectModalProps> = ({
     ResultObject,
 }) => {
     const dispatch = useAppDispatch();
-    const { TitleOfPost } = useWritePost();
 
     function deleteMode() {
         dispatch(removeBlockOfPost({ id: ResultObject?.id || 0 }));
@@ -40,10 +38,7 @@ const ActivityModal: FC<SelectModalProps> = ({
     }
 
     return (
-        <IsModal
-            setModalOpen={setIsModalOpen}
-            title={ResultObject?.title || TitleOfPost}
-        >
+        <IsModal setModalOpen={setIsModalOpen}>
             <ShowResultBlock blockData={ResultObject} />
             <ButtonVoid
                 clickHandler={clearMode}

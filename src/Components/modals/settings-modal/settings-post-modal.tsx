@@ -41,7 +41,7 @@ const SettingsPostModal: FC<SettingsPostModal> = ({
     }
 
     return (
-        <IsModal title="Настройки" setModalOpen={setModalOpen}>
+        <IsModal setModalOpen={setModalOpen}>
             <CustomInput
                 placeholder="Заголовок"
                 mode="large"

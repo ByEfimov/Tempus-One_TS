@@ -1,10 +1,11 @@
 import Styles from './Preloader.module.scss';
+import { motion } from 'framer-motion';
 
 const Preloader = () => {
     return (
-        <div className={Styles.PreloaderContainer}>
+        <motion.div className={Styles.PreloaderContainer}>
             <div className={Styles.Preloader}></div>
-        </div>
+        </motion.div>
     );
 };
 export default Preloader;

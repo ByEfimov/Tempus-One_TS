@@ -67,7 +67,6 @@ const Activities: FC<ActivitiesProps> = ({
                 <button
                     onClick={(e) => {
                         e.stopPropagation();
-                        document.body.style.overflowY = 'hidden';
                         setCommentsOpen(true);
                     }}
                 >
@@ -77,7 +76,6 @@ const Activities: FC<ActivitiesProps> = ({
                 <button
                     onClick={(e) => {
                         e.stopPropagation();
-                        document.body.style.overflowY = 'hidden';
                         setRepostModalOpen(true);
                     }}
                 >
@@ -88,7 +86,6 @@ const Activities: FC<ActivitiesProps> = ({
             <button
                 onClick={(e) => {
                     e.stopPropagation();
-                    document.body.style.overflowY = 'hidden';
                     setViewsModalOpen(true);
                 }}
                 className={Styles.Shows}

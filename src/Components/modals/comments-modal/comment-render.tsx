@@ -1,11 +1,13 @@
 import { CloseModal } from '../is-modal';
 import Styles from '../style.module.scss';
 import { getRequestObject } from 'Api/requests/get-requests';
+import { formItem } from 'Assets/Tempus-Ui/Animation/Form-animate';
 import FakeComment from 'Components/fake-data/fake-comment';
 import ShowLogo from 'Components/mini-components/show-logo';
 import { Comments } from 'Types/TypesOfData/post/comments';
 import { OpenUserType } from 'Types/TypesOfData/team-or-user/open-user-type';
 import formatTimeAgo from 'Utils/post-utils/format-time-ago';
+import { motion } from 'framer-motion';
 import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -25,7 +27,7 @@ const CommentRender: FC<comment> = ({ comment }) => {
 
     if (commentator) {
         return (
-            <div className={Styles.comment}>
+            <motion.li variants={formItem} className={Styles.comment}>
                 <div
                     className={Styles.author}
                     onClick={() => {
@@ -46,7 +48,7 @@ const CommentRender: FC<comment> = ({ comment }) => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.li>
         );
     } else {
         return <FakeComment></FakeComment>;

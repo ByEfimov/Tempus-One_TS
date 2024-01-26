@@ -12,11 +12,9 @@ const ShowErrorsOrAlert: FC<ShowModalProps> = ({ mode, setIsModalOpen }) => {
     const { selectMode, BlocksOfPost } = useWritePost();
 
     const userText = BlocksOfPost[selectMode.id].text;
-    const title =
-        mode === ModsForShowModal.ClueCode ? 'Подсказки' : 'Ошибки в коде';
 
     return (
-        <IsModal setModalOpen={setIsModalOpen} title={title}>
+        <IsModal setModalOpen={setIsModalOpen}>
             {mode === ModsForShowModal.ClueCode ? (
                 <ShowClueForWriteCode></ShowClueForWriteCode>
             ) : (

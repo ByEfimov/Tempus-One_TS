@@ -1,22 +1,23 @@
 import Styles from './style.module.scss';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 
 interface isModalProps {
     children: React.ReactChild | React.ReactNode;
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    title: string;
 }
 
 let CloseModal: () => void;
 
-const IsModal: FC<isModalProps> = ({ children, setModalOpen, title }) => {
+const IsModal: FC<isModalProps> = ({ children, setModalOpen }) => {
     const ModalRef = React.createRef<HTMLDivElement>();
-
+    useEffect(() => {
+        document.documentElement.style.overflowY = 'hidden';
+    }, []);
     function closeModal() {
         ModalRef.current?.classList.add(Styles.NavPanelClose);
 
         setTimeout(() => {
-            document.body.style.overflowY = 'auto';
+            document.documentElement.style.overflowY = 'auto';
             setModalOpen(false);
         }, 500);
     }
@@ -27,7 +28,7 @@ const IsModal: FC<isModalProps> = ({ children, setModalOpen, title }) => {
             <div className={Styles.back} onClick={closeModal}></div>
 
             <div className={Styles.content}>
-                <div className={Styles.Title}>{title}</div>
+                <div className={Styles.line}></div>
                 {children}
             </div>
         </div>

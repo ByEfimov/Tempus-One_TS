@@ -49,7 +49,7 @@ interface ShowModalProps {
 
 const ModalAddNewMode: FC<ShowModalProps> = ({ setIsModalOpen }) => {
     return (
-        <IsModal setModalOpen={setIsModalOpen} title="Выбери что добавить:">
+        <IsModal setModalOpen={setIsModalOpen}>
             <ButtonsSelectMode></ButtonsSelectMode>
         </IsModal>
     );

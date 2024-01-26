@@ -61,7 +61,7 @@ const RepostModal: FC<RepostModal> = ({ setModalOpen, post }) => {
     }
 
     return (
-        <IsModal title="Куда отправить?" setModalOpen={setModalOpen}>
+        <IsModal setModalOpen={setModalOpen}>
             <button onClick={repostToYou} className={Styles.RepostToYou}>
                 <ShowLogo ImageUrl={UserPhoto}></ShowLogo>
                 Себе
