@@ -3,11 +3,11 @@
     padding: 10px;
     background: var(--SecondaryBackgroundColor);
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 400;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    letter-spacing: 0.3px;
     transition: scale 0.2s;
     width: 100%;
     img {
@@ -18,8 +18,6 @@
 .ButtonActive {
     background: var(--AccentBackgroundGradient);
     border-radius: 50px;
-    font-weight: 600;
-    font-size: 18px;
     box-shadow: var(--AccentBackgroundShadow);
 }
 

@@ -4,7 +4,6 @@ import CommentRender from './comment-render';
 import { getRequestArray } from 'Api/requests/get-requests';
 import { postRequestWithNewId } from 'Api/requests/post-requests-with-new-id';
 import SendIcon from 'Assets/Icons/Post/message.svg';
-import { formContainer } from 'Assets/Tempus-Ui/Animation/Form-animate';
 import Input, {
     InputColors,
     InputTypes,
@@ -60,19 +59,13 @@ const CommentsModal: FC<CommentsModalProps> = ({ setModalOpen, PostId }) => {
     return (
         <IsModal setModalOpen={setModalOpen}>
             <div className={Styles.Comments}>
-                <motion.ul
-                    variants={formContainer}
-                    initial="hidden"
-                    animate="visible"
-                >
-                    {comments ? (
-                        comments.map((comment) => (
-                            <CommentRender key={comment.id} comment={comment} />
-                        ))
-                    ) : (
-                        <Preloader></Preloader>
-                    )}
-                </motion.ul>
+                {comments ? (
+                    comments.map((comment) => (
+                        <CommentRender key={comment.id} comment={comment} />
+                    ))
+                ) : (
+                    <Preloader></Preloader>
+                )}
             </div>
 
             <motion.div className={Styles.Input}>

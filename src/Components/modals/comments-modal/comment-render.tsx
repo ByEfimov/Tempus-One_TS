@@ -1,7 +1,6 @@
 import { CloseModal } from '../is-modal';
 import Styles from '../style.module.scss';
 import { getRequestObject } from 'Api/requests/get-requests';
-import { formItem } from 'Assets/Tempus-Ui/Animation/Form-animate';
 import FakeComment from 'Components/fake-data/fake-comment';
 import ShowLogo from 'Components/mini-components/show-logo';
 import { Comments } from 'Types/TypesOfData/post/comments';
@@ -27,7 +26,7 @@ const CommentRender: FC<comment> = ({ comment }) => {
 
     if (commentator) {
         return (
-            <motion.li variants={formItem} className={Styles.comment}>
+            <motion.div className={Styles.comment}>
                 <div
                     className={Styles.author}
                     onClick={() => {
@@ -50,7 +49,7 @@ const CommentRender: FC<comment> = ({ comment }) => {
                         </div>
                     </div>
                 </div>
-            </motion.li>
+            </motion.div>
         );
     } else {
         return <FakeComment></FakeComment>;

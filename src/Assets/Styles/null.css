@@ -2,29 +2,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 @font-face {
-    font-family: 'SegeoUI';
-    src: url('../Fonts/SegoeUI/SegoeUIBold.woff') format('woff');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'SegeoUI';
-    src: url('../Fonts/SegoeUI/SegoeUILight.woff') format('woff');
+    font-family: 'sfPro';
+    src: url('../Fonts/sfpro/SF-Pro-Display-Light.otf') format('woff');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
-    font-family: 'SegeoUI';
-    src: url('../Fonts/SegoeUI/SegoeUIRegular.woff') format('woff');
+    font-family: 'sfPro';
+    src: url('../Fonts/sfpro/SF-Pro-Display-Regular.otf') format('woff');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
-    font-family: 'SegeoUI';
-    src: url('../Fonts/SegoeUI/SegoeUISemiBold.woff') format('woff');
+    font-family: 'sfPro';
+    src: url('../Fonts/sfpro/SF-Pro-Display-Medium.otf') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'sfPro';
+    src: url('../Fonts/sfpro/SF-Pro-Display-Semibold.otf') format('woff');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -33,9 +33,12 @@
 html {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     background-color: var(--PrimaryBackgroundColor);
-    font-family: 'SegeoUI';
+    font-family: 'sfPro';
     color: var(--PrimaryTextColor);
     scroll-behavior: smooth;
+    * {
+        letter-spacing: 0.3px;
+    }
 }
 
 body {
