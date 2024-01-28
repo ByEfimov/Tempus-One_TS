@@ -91,7 +91,7 @@
     width: 100%;
     padding: 0px;
     border-radius: 10px;
-    ul {
+    .Wrapper {
         flex-direction: column;
         display: flex;
         gap: 10px;
@@ -115,19 +115,23 @@
             }
             .top {
                 display: flex;
-                gap: 5px;
+                gap: 7px;
                 align-items: center;
                 font-size: 16px;
+                font-weight: 300;
                 .date {
                     color: var(--SecondaryTextColor);
                 }
             }
             .Data {
                 display: flex;
-                flex-direction: column;
+                height: 43px;
                 justify-content: space-between;
+                flex-direction: column;
+
                 .commentText {
-                    font-size: 18px;
+                    font-weight: 400;
+                    font-size: 17px;
                     color: var(--PrimaryTextColor);
                 }
             }

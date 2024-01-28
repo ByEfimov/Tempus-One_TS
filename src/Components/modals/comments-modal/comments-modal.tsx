@@ -59,13 +59,15 @@ const CommentsModal: FC<CommentsModalProps> = ({ setModalOpen, PostId }) => {
     return (
         <IsModal setModalOpen={setModalOpen}>
             <div className={Styles.Comments}>
-                {comments ? (
-                    comments.map((comment) => (
-                        <CommentRender key={comment.id} comment={comment} />
-                    ))
-                ) : (
-                    <Preloader></Preloader>
-                )}
+                <div className={Styles.Wrapper}>
+                    {comments ? (
+                        comments.map((comment) => (
+                            <CommentRender key={comment.id} comment={comment} />
+                        ))
+                    ) : (
+                        <Preloader></Preloader>
+                    )}
+                </div>
             </div>
 
             <motion.div className={Styles.Input}>
