@@ -7,9 +7,7 @@ import SubscribeButton from 'Components/mini-components/subscribe-button';
 import SettingsTeamModal from 'Components/modals/settings-modal/settings-team-modal';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import ShowPosts from 'Components/show-posts/posts/show-posts';
-import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';
-import { setTitleOfHeader } from 'Store/slices/header/header-slice';
 import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -20,13 +18,11 @@ export default function TeamPage() {
     const [OpenTeam, setOpenTeam] = useState<OpenTeamType | null>(null);
     const [UserAdmin, setUserAdmin] = useState(false);
     const [settingsModalOpen, setSettingsModalOpen] = useState(false);
-    const dispatch = useAppDispatch();
 
     useEffect(() => {
         getRequestObject('teams/' + id)
             .then((team) => {
                 setOpenTeam(team);
-                dispatch(setTitleOfHeader({ Title: team?.title }));
                 getUserAdmins(UserId).then((teams) => {
                     setUserAdmin(teams.some((team) => team.TeamId === id));
                 });

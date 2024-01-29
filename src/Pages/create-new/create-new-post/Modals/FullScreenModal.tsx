@@ -1,5 +1,8 @@
 import ShowResultBlock from '../ShowResultBlock/ShowResultBlock';
 import Styles from '../Styles.module.scss';
+import Button, {
+    ButtonTypes,
+} from 'Assets/Tempus-Ui/Components/Buttons/Button';
 import ButtonVoid from 'Components/mini-components/button';
 import { CloseModal, IsModal } from 'Components/modals/is-modal';
 import { useAppDispatch } from 'Hooks/redux-hooks';
@@ -39,19 +42,19 @@ const ActivityModal: FC<SelectModalProps> = ({
 
     return (
         <IsModal setModalOpen={setIsModalOpen}>
-            <ShowResultBlock blockData={ResultObject} />
-            <ButtonVoid
-                clickHandler={clearMode}
-                title="Очистить"
-                classes={Styles.BadButton}
-                padding={false}
-            ></ButtonVoid>
-            <ButtonVoid
-                clickHandler={deleteMode}
-                title="Удалить"
-                classes={Styles.BadButton}
-                padding={false}
-            ></ButtonVoid>
+            <div className={Styles.FullScreenModal}>
+                <ShowResultBlock blockData={ResultObject} />
+                <Button
+                    Click={clearMode}
+                    Title="Очистить"
+                    Type={ButtonTypes.error}
+                ></Button>
+                <Button
+                    Click={deleteMode}
+                    Title="Удалить"
+                    Type={ButtonTypes.error}
+                ></Button>
+            </div>
         </IsModal>
     );
 };

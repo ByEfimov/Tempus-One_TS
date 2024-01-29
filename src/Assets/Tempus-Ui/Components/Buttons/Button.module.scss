@@ -24,3 +24,7 @@
 .Button:active {
     scale: 0.98;
 }
+
+.ButtonError {
+    background: var(--ErrorBackgroundGradient);
+}

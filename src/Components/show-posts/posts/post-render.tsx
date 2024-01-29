@@ -9,7 +9,6 @@ import { formItem } from 'Assets/Tempus-Ui/Animation/Form-animate';
 import FakePost from 'Components/fake-data/fake-post';
 import CommentsModal from 'Components/modals/comments-modal/comments-modal';
 import RepostModal from 'Components/modals/repost-modal/repost-modal';
-import ViewsModal from 'Components/modals/views-modal/views-modal';
 import { useAuth } from 'Hooks/useAuth';
 import { Post } from 'Types/TypesOfData/post/post';
 import { ModsOfWritePost } from 'Utils/mods-of-comps';
@@ -35,7 +34,6 @@ const PostRender: FC<PostRender> = ({ post }) => {
     const [WhoWrotePost, setWhoWrotePost] = useState<WhoWrotePost | null>(null);
     const [CommentsOpen, setCommentsOpen] = useState(false);
     const [RepostModalOpen, setRepostModalOpen] = useState(false);
-    const [ViewsModalOpen, setViewsModalOpen] = useState(false);
     const { UserId, UserIsAuth } = useAuth();
     const navigate = useNavigate();
 
@@ -92,12 +90,6 @@ const PostRender: FC<PostRender> = ({ post }) => {
                         setModalOpen={setRepostModalOpen}
                     ></RepostModal>
                 )}
-                {ViewsModalOpen && (
-                    <ViewsModal
-                        post={post}
-                        setModalOpen={setViewsModalOpen}
-                    ></ViewsModal>
-                )}
 
                 <motion.div
                     onClick={() => {
@@ -130,7 +122,6 @@ const PostRender: FC<PostRender> = ({ post }) => {
                     <Activities
                         setCommentsOpen={setCommentsOpen}
                         setRepostModalOpen={setRepostModalOpen}
-                        setViewsModalOpen={setViewsModalOpen}
                         post={post}
                     />
                 </motion.div>

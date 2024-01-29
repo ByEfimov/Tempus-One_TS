@@ -107,6 +107,7 @@ const WritePostSlice = createSlice({
                         ...state.BlocksOfPost[i],
                         title: '',
                         text: purifiedText,
+                        variants: undefined,
                     };
                 }
             });

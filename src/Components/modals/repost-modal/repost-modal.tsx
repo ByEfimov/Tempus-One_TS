@@ -1,5 +1,6 @@
 import { CloseModal, IsModal } from '../is-modal';
 import Styles from '../style.module.scss';
+import getUserAdmins from 'Api/Teams/get-user-admins';
 import { changeRequest } from 'Api/requests/change-request';
 import { postRequestWithNewId } from 'Api/requests/post-requests-with-new-id';
 import ShowLogo from 'Components/mini-components/show-logo';
@@ -12,7 +13,7 @@ import { NewPostType } from 'Types/TypesOfData/post/new-post-type';
 import { Post } from 'Types/TypesOfData/post/post';
 import { countEmptyValues } from 'Utils/validate-data/count-empty-values';
 import { getUnixTime } from 'date-fns';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface RepostModal {
@@ -21,8 +22,17 @@ interface RepostModal {
 }
 
 const RepostModal: FC<RepostModal> = ({ setModalOpen, post }) => {
-    const { UserPhoto, UserId, UserIsAuth } = useAuth();
+    const { UserPhoto, UserId, UserIsAuth, UserSubscriptions } = useAuth();
+    const [teamsAdmin, setTeamsAdmin] = useState<
+        { TeamId: string; TeamName: string; TeamImage: string }[] | undefined
+    >();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (UserSubscriptions?.teams) {
+            getUserAdmins(UserId).then((teams) => setTeamsAdmin(teams));
+        }
+    }, []);
 
     function repostToYou() {
         const currentDate = new Date();
@@ -62,10 +72,23 @@ const RepostModal: FC<RepostModal> = ({ setModalOpen, post }) => {
 
     return (
         <IsModal setModalOpen={setModalOpen}>
-            <button onClick={repostToYou} className={Styles.RepostToYou}>
-                <ShowLogo ImageUrl={UserPhoto}></ShowLogo>
-                Себе
-            </button>
+            <div className={Styles.RepostModal}>
+                <button onClick={repostToYou} className={Styles.RepostToYou}>
+                    <ShowLogo ImageUrl={UserPhoto}></ShowLogo>
+                    <p className={Styles.name}>Себе</p>
+                </button>
+                {teamsAdmin &&
+                    teamsAdmin.map((team) => (
+                        <button
+                            key={team.TeamId}
+                            onClick={repostToYou}
+                            className={Styles.RepostToTeam}
+                        >
+                            <ShowLogo ImageUrl={team.TeamImage}></ShowLogo>
+                            <p className={Styles.name}>{team.TeamName}</p>
+                        </button>
+                    ))}
+            </div>
         </IsModal>
     );
 };

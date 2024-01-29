@@ -13,7 +13,7 @@
 }
 .Post {
     background-color: var(--SecondaryBackgroundColor);
-    padding: 12px;
+    padding: 10px;
     border-radius: 15px;
     .PostData {
         margin-top: 5px;
@@ -55,6 +55,7 @@
             height: 240px;
             width: 100%;
             font-weight: 300;
+            font-size: 15px;
         }
         .SurveyMode {
             background-color: #60658310;
@@ -148,6 +149,7 @@
         justify-content: space-between;
         align-items: center;
         margin-top: 10px;
+        font-size: 50px;
         .Buttons {
             display: flex;
             gap: 20px;
@@ -158,8 +160,8 @@
                 fill: var(--SecondaryTextColor);
             }
             svg {
-                height: 20px;
-                width: 20px;
+                height: 18px;
+                width: 18px;
             }
             h1 {
                 font-weight: 400;
@@ -181,8 +183,8 @@
                 transition: all 0.3s;
             }
             svg {
-                height: 20px;
-                width: 20px;
+                height: 18px;
+                width: 18px;
                 transition: all 0.3s;
             }
             transition: all 0.3s;
@@ -196,12 +198,15 @@
             }
 
             align-items: center;
-            gap: 5px;
-            font-size: 17px;
+            gap: 3px;
+            font-size: 15px;
             font-weight: 400;
         }
     }
     .repost {
-        color: var(--GreyTextColor);
+        color: var(--SecondaryTextColor);
+        font-weight: 300;
+        padding-top: 5px;
+        font-size: 14px;
     }
 }

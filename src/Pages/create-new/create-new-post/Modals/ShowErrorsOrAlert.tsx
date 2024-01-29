@@ -1,3 +1,4 @@
+import Styles from '../Styles.module.scss';
 import { IsModal } from 'Components/modals/is-modal';
 import { useWritePost } from 'Hooks/useWritePost';
 import React, { FC } from 'react';
@@ -15,15 +16,18 @@ const ShowErrorsOrAlert: FC<ShowModalProps> = ({ mode, setIsModalOpen }) => {
 
     return (
         <IsModal setModalOpen={setIsModalOpen}>
-            {mode === ModsForShowModal.ClueCode ? (
-                <ShowClueForWriteCode></ShowClueForWriteCode>
-            ) : (
-                mode === ModsForShowModal.Errors && (
-                    <LiveProvider code={userText}>
-                        <LiveError />
-                    </LiveProvider>
-                )
-            )}
+            <div className={Styles.ErrorModal}>
+                {mode === ModsForShowModal.ClueCode ? (
+                    <ShowClueForWriteCode></ShowClueForWriteCode>
+                ) : (
+                    mode === ModsForShowModal.Errors && (
+                        <LiveProvider code={userText}>
+                            <h1>Ваши ошибки:</h1>
+                            <LiveError />
+                        </LiveProvider>
+                    )
+                )}
+            </div>
         </IsModal>
     );
 };

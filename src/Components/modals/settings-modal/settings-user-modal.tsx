@@ -1,10 +1,16 @@
 import { CloseModal, IsModal } from '../is-modal';
 import Styles from '../style.module.scss';
 import { changeRequest } from 'Api/requests/change-request';
-import ButtonVoid from 'Components/mini-components/button';
-import CustomInput from 'Components/mini-components/input';
+import Button, {
+    ButtonTypes,
+} from 'Assets/Tempus-Ui/Components/Buttons/Button';
+import Input, {
+    InputColors,
+    InputTypes,
+} from 'Assets/Tempus-Ui/Components/Inputs/Input';
+import LoadImage from 'Assets/Tempus-Ui/Components/LoadImage/LoadImage';
 import { useAuth } from 'Hooks/useAuth';
-import { handleImageUpload } from 'Utils/handlers/handler-image-upload';
+import { motion } from 'framer-motion';
 import { FC, useState } from 'react';
 
 interface SettingsUserModal {
@@ -32,31 +38,35 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
 
     return (
         <IsModal setModalOpen={setModalOpen}>
-            <input
-                type="file"
-                accept="image/png, image/jpeg"
-                onChange={(e) => handleImageUpload(e, setUserPhoto)}
-            />
-            <CustomInput
-                placeholder="Имя"
-                mode="large"
-                changeFunction={(e) => {
-                    setUserDisplayName(e.currentTarget.value);
-                }}
-            ></CustomInput>
-            <CustomInput
-                placeholder="Возраст"
-                mode="large"
-                changeFunction={(e) => {
-                    setUserAge(e.currentTarget.value);
-                }}
-            ></CustomInput>
-            <ButtonVoid
-                clickHandler={ChangeFunction}
-                title="Применить"
-                classes={Styles.ButtonModal}
-                padding={false}
-            ></ButtonVoid>
+            <motion.div className={Styles.SettingsModal}>
+                <LoadImage
+                    Callback={setUserPhoto}
+                    Image={userPhoto}
+                ></LoadImage>
+                <Input
+                    Placeholder="Имя"
+                    Color={InputColors.primary}
+                    Change={(e) => {
+                        setUserDisplayName(e.currentTarget.value);
+                    }}
+                    Value={userDisplayName}
+                    Type={InputTypes.text}
+                ></Input>
+                <Input
+                    Color={InputColors.primary}
+                    Placeholder="Возраст"
+                    Change={(e) => {
+                        setUserAge(e.currentTarget.value);
+                    }}
+                    Value={userAge}
+                    Type={InputTypes.number}
+                ></Input>
+                <Button
+                    Title="Применить"
+                    Click={ChangeFunction}
+                    Type={ButtonTypes.active}
+                ></Button>
+            </motion.div>
         </IsModal>
     );
 };

@@ -1,10 +1,16 @@
 import { CloseModal, IsModal } from '../is-modal';
 import Styles from '../style.module.scss';
 import { changeRequest } from 'Api/requests/change-request';
-import ButtonVoid from 'Components/mini-components/button';
-import CustomInput from 'Components/mini-components/input';
+import Button, {
+    ButtonTypes,
+} from 'Assets/Tempus-Ui/Components/Buttons/Button';
+import Input, {
+    InputColors,
+    InputTypes,
+} from 'Assets/Tempus-Ui/Components/Inputs/Input';
+import LoadImage from 'Assets/Tempus-Ui/Components/LoadImage/LoadImage';
 import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';
-import { handleImageUpload } from 'Utils/handlers/handler-image-upload';
+import { motion } from 'framer-motion';
 import { FC, useState } from 'react';
 
 interface SettingsTeamModal {
@@ -32,31 +38,35 @@ const SettingsTeamModal: FC<SettingsTeamModal> = ({ setModalOpen, team }) => {
 
     return (
         <IsModal setModalOpen={setModalOpen}>
-            <input
-                type="file"
-                accept="image/png, image/jpeg"
-                onChange={(e) => handleImageUpload(e, setTeamPhoto)}
-            />
-            <CustomInput
-                placeholder="Название"
-                mode="large"
-                changeFunction={(e) => {
-                    setTeamTitle(e.currentTarget.value);
-                }}
-            ></CustomInput>
-            <CustomInput
-                placeholder="Описание"
-                mode="large"
-                changeFunction={(e) => {
-                    setTeamDesc(e.currentTarget.value);
-                }}
-            ></CustomInput>
-            <ButtonVoid
-                clickHandler={ChangeFunction}
-                title="Применить"
-                classes={Styles.ButtonModal}
-                padding={false}
-            ></ButtonVoid>
+            <motion.div className={Styles.SettingsModal}>
+                <LoadImage
+                    Callback={setTeamPhoto}
+                    Image={teamPhoto}
+                ></LoadImage>
+                <Input
+                    Placeholder="Название"
+                    Color={InputColors.primary}
+                    Change={(e) => {
+                        setTeamTitle(e.currentTarget.value);
+                    }}
+                    Value={teamTitle}
+                    Type={InputTypes.text}
+                ></Input>
+                <Input
+                    Placeholder="Описание"
+                    Color={InputColors.primary}
+                    Change={(e) => {
+                        setTeamDesc(e.currentTarget.value);
+                    }}
+                    Value={teamTitle}
+                    Type={InputTypes.text}
+                ></Input>
+                <Button
+                    Title="Применить"
+                    Click={ChangeFunction}
+                    Type={ButtonTypes.active}
+                ></Button>
+            </motion.div>
         </IsModal>
     );
 };

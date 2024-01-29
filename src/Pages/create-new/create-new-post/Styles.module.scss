@@ -228,16 +228,46 @@ pre::-webkit-scrollbar {
     }
 }
 
-.ShowResultBlock {
-    width: 100%;
-    min-height: 76px;
-    overflow: hidden;
-}
-
 .BadButton {
     background-color: var(--DarkTextColor) !important;
 }
 
 .PopupButton {
     background-color: var(--AccentColor2) !important;
+}
+
+.FullScreenModal {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .ShowResultBlock {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        min-height: 100px;
+        overflow: hidden;
+        background-color: #60658310;
+        border-radius: 10px;
+    }
+}
+.ErrorModal {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    word-wrap: break-word;
+    h1 {
+        font-weight: 400;
+        font-size: 20px;
+    }
+    div {
+        font-size: 16px;
+        font-weight: 300;
+    }
+}
+
+.ButtonsOfSelect {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }

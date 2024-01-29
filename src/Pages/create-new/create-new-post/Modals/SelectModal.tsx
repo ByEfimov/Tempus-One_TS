@@ -1,5 +1,7 @@
 import Styles from '../Styles.module.scss';
-import ButtonVoid from 'Components/mini-components/button';
+import Button, {
+    ButtonTypes,
+} from 'Assets/Tempus-Ui/Components/Buttons/Button';
 import { CloseModal, IsModal } from 'Components/modals/is-modal';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useWritePost } from 'Hooks/useWritePost';
@@ -20,26 +22,23 @@ const ButtonsSelectMode = () => {
     }
 
     return (
-        <>
-            <ButtonVoid
-                title="Код"
-                classes={Styles.PopupButton}
-                clickHandler={() => createNewMode(ModsOfWritePost.code)}
-                padding={false}
-            ></ButtonVoid>
-            <ButtonVoid
-                title="Картинка"
-                padding={false}
-                classes={Styles.PopupButton}
-                clickHandler={() => createNewMode(ModsOfWritePost.image)}
-            ></ButtonVoid>
-            <ButtonVoid
-                title="Опрос"
-                classes={Styles.PopupButton}
-                padding={false}
-                clickHandler={() => createNewMode(ModsOfWritePost.survey)}
-            ></ButtonVoid>
-        </>
+        <div className={Styles.ButtonsOfSelect}>
+            <Button
+                Title="Код"
+                Type={ButtonTypes.active}
+                Click={() => createNewMode(ModsOfWritePost.code)}
+            ></Button>
+            <Button
+                Title="Картинка"
+                Type={ButtonTypes.active}
+                Click={() => createNewMode(ModsOfWritePost.image)}
+            ></Button>
+            <Button
+                Title="Опрос"
+                Type={ButtonTypes.active}
+                Click={() => createNewMode(ModsOfWritePost.survey)}
+            ></Button>
+        </div>
     );
 };
 
