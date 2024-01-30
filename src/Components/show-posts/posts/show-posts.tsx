@@ -14,7 +14,13 @@ import { Post } from 'Types/TypesOfData/post/post';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
-const ShowPosts = ({ AuthorFilter = '' }: { AuthorFilter: string }) => {
+const ShowPosts = ({
+    AuthorFilter = '',
+    ShowFilters = false,
+}: {
+    AuthorFilter?: string;
+    ShowFilters?: boolean;
+}) => {
     const [posts, setPosts] = useState<Post[] | undefined>();
     const [selectFilter, setSelectFilter] = useState<string>('Default');
     const { UserSubscriptions, UserId } = useAuth();
@@ -46,11 +52,13 @@ const ShowPosts = ({ AuthorFilter = '' }: { AuthorFilter: string }) => {
 
     return (
         <div className={Styles.Posts}>
-            <Select
-                Array={Filters}
-                setSelect={setSelectFilter}
-                selectFilter={selectFilter}
-            ></Select>{' '}
+            {ShowFilters && (
+                <Select
+                    Array={Filters}
+                    setSelect={setSelectFilter}
+                    selectFilter={selectFilter}
+                ></Select>
+            )}
             {posts ? (
                 <motion.div
                     className={Styles.Render}
