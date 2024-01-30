@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { encryptData } from 'Utils/crypt-data/cripting-data';
 
-type UserType = {
+export type UserType = {
     email: string | null;
     id: string | null;
     name: string | null;

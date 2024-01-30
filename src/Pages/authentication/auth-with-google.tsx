@@ -1,9 +1,11 @@
-import GoogleIcon from '../../Assets/Tempus-Ui/Icons/Buttons/google.svg';
 import { getRequestObject } from 'Api/requests/get-requests';
 import { postRequestWithoutNewId } from 'Api/requests/post-requests-with-new-id';
 import Button, {
     ButtonTypes,
 } from 'Assets/Tempus-Ui/Components/Buttons/Button';
+import ButtonIcons, {
+    buttonIcons,
+} from 'Assets/Tempus-Ui/Icons/Buttons/Button-icons';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { setCurrentUser } from 'Store/slices/UserSlice';
@@ -83,11 +85,12 @@ const AuthWithGoogle = () => {
         <Button
             Title="Войти с Google"
             Type={ButtonTypes.default}
-            Icon={GoogleIcon}
             Click={() => {
                 startAuth();
             }}
-        ></Button>
+        >
+            <ButtonIcons Icon={buttonIcons.Google}></ButtonIcons>
+        </Button>
     );
 };
 export default AuthWithGoogle;

@@ -13,5 +13,6 @@ const AppRoutes = {
     FORGOTPASSWORD: '/ForgotPassword',
     SERVICES: '/Services',
     STATISTIC: '/Statistic',
+    MYPROFILE: '/MyProfile',
 };
 export default AppRoutes;

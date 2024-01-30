@@ -13,11 +13,12 @@ interface Button {
     Title: string;
     Click: () => void;
     Type: ButtonTypes;
-    Icon?: string;
     Variants?: formItemType;
+    Class?: string;
+    children?: React.ReactChild | React.ReactNode;
 }
 
-const Button = ({ Title, Click, Type, Icon, Variants }: Button) => {
+const Button = ({ Title, Click, Type, Variants, Class, children }: Button) => {
     const moreStyleOfButton =
         Type === ButtonTypes.active
             ? Styles.ButtonActive
@@ -27,14 +28,14 @@ const Button = ({ Title, Click, Type, Icon, Variants }: Button) => {
 
     return (
         <motion.button
-            className={classNames(Styles.Button, moreStyleOfButton)}
+            className={classNames(Styles.Button, moreStyleOfButton, Class)}
             onClick={() => {
                 Click();
             }}
             type="submit"
             variants={Variants}
         >
-            {Icon && <img src={Icon} alt="" />}
+            {children && children}
             {Title}
         </motion.button>
     );

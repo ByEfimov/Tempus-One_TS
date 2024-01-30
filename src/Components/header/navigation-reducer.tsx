@@ -91,6 +91,11 @@ export default function NavigationReducer() {
                 ShowFooter = true;
                 ExecuteConfig = undefined;
                 break;
+            case AppRoutes.MYPROFILE:
+                TitleOfHeader = 'Мой профиль';
+                ShowFooter = true;
+                ExecuteConfig = undefined;
+                break;
             case AppRoutes.TEAMS:
                 placeholderForInput = 'Найти сообщество...';
                 ShowFooter = true;

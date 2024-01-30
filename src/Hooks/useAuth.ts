@@ -24,7 +24,7 @@ export function useAuth() {
         : AppRoutes.LOGIN;
 
     return {
-        UserIsAuth: !!email,
+        UserIsAuth: !!decryptData(Cookies.get('UserId')),
         UserCanChanging: !!emailVerified && !!email,
         UserSubscriptions: subscriptions,
         UserEmailVerified: emailVerified,

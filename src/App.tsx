@@ -12,14 +12,15 @@ import VerifyingEmail from 'Pages/authentication/verified-email/verified-email';
 import WritePost from 'Pages/create-new/create-new-post/WritePost';
 import CreateTeam from 'Pages/create-new/create-new-team/CreateTeam';
 import MainPage from 'Pages/main-page/MainPage';
-import PostPage from 'Pages/open-pages/open-post/PostPage';
-import TeamPage from 'Pages/open-pages/open-team/TeamPage';
-import UserPage from 'Pages/open-pages/open-user/UserPage';
+import MyProfile from 'Pages/my-profile/my-profile';
+import PostPage from 'Pages/open-pages/open-post/post-page';
+import TeamPage from 'Pages/open-pages/open-team/team-page';
+import UserPage from 'Pages/open-pages/open-user/user-page';
 import AppRoutes from 'Utils/routes/app-routes';
 import { Route, Routes } from 'react-router-dom';
 
 function App() {
-    const { PathToProfile } = useAuth();
+    const { PathToProfile, UserIsAuth } = useAuth();
 
     const navBarLinks = [
         {
@@ -48,7 +49,14 @@ function App() {
             path: [AppRoutes.STATISTIC],
             icon: footerIcons.Statistic,
         },
-        { name: 'Profile', path: [PathToProfile], icon: footerIcons.User },
+        {
+            name: 'Profile',
+            path: [
+                UserIsAuth ? AppRoutes.MYPROFILE : AppRoutes.LOGIN,
+                PathToProfile,
+            ],
+            icon: footerIcons.User,
+        },
     ];
 
     return (
@@ -71,6 +79,7 @@ function App() {
                 <Route path={AppRoutes.USERS} element={<AllUsers />} />
                 <Route path={AppRoutes.TEAMS} element={<AllTeams />} />
                 <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
+                <Route path={AppRoutes.MYPROFILE} element={<MyProfile />} />
                 <Route path={AppRoutes.USER + '/:id'} element={<UserPage />} />
                 <Route path={AppRoutes.POST + '/:id'} element={<PostPage />} />
                 <Route path={AppRoutes.TEAM + '/:id'} element={<TeamPage />} />
