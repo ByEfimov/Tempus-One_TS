@@ -14,7 +14,7 @@ import { Post } from 'Types/TypesOfData/post/post';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
-const ShowPosts = () => {
+const ShowPosts = ({ AuthorFilter = '' }: { AuthorFilter: string }) => {
     const [posts, setPosts] = useState<Post[] | undefined>();
     const [selectFilter, setSelectFilter] = useState<string>('Default');
     const { UserSubscriptions, UserId } = useAuth();
@@ -31,6 +31,7 @@ const ShowPosts = () => {
                     UserSubscriptions,
                     UserId,
                     HeaderSearchBar,
+                    AuthorFilter,
                 );
                 setPosts(filteredPosts);
                 dispatch(setLastPostKey(Object.keys(posts).pop()));

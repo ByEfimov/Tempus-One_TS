@@ -83,7 +83,7 @@ export default function UserPage() {
                     ></ButtonVoid>
                 )}
 
-                <ShowPosts></ShowPosts>
+                <ShowPosts AuthorFilter={OpenUser.id}></ShowPosts>
             </>
         );
     } else if (!OpenUser) {

@@ -20,6 +20,7 @@ export function aplyFilter(
         | undefined,
     UserId: string,
     HeaderSearchBar: string,
+    AuthorFilter: string,
 ) {
     let filterOfGroup;
     if (filter === Filters[0].value) {
@@ -37,12 +38,13 @@ export function aplyFilter(
     if (filterOfGroup) {
         return filterOfGroup.filter(
             (post) =>
-                post.PostTitle.toLocaleLowerCase().includes(
+                (post.PostTitle.toLocaleLowerCase().includes(
                     HeaderSearchBar.toLocaleLowerCase(),
                 ) ||
-                post.PostDataBlocks[0].text
-                    .toLocaleLowerCase()
-                    .includes(HeaderSearchBar.toLocaleLowerCase()),
+                    post.PostDataBlocks[0].text
+                        .toLocaleLowerCase()
+                        .includes(HeaderSearchBar.toLocaleLowerCase())) &&
+                post.PostAuthorId.includes(AuthorFilter),
         );
     } else {
         return filterOfGroup;
