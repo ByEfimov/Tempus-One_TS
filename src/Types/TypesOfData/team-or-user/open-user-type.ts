@@ -8,4 +8,8 @@ export type OpenUserType = {
     experience: number;
     level: number;
     members: { UserId: string; UserRole: string }[];
+    subscriptions: {
+        teams?: Record<string, string>;
+        users?: Record<string, string>;
+    };
 };

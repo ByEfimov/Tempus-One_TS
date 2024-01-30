@@ -5,7 +5,7 @@ import PostDataRender from '../post-components/post-data-render';
 import Styles from './Styles.module.scss';
 import { getRequestObject } from 'Api/requests/get-requests';
 import { postRequestWithoutNewId } from 'Api/requests/post-requests-with-new-id';
-import { formItem } from 'Assets/Tempus-Ui/Animation/Form-animate';
+import { defaultItem } from 'Assets/Tempus-Ui/Animation/Form-animate';
 import FakePost from 'Components/fake-data/fake-post';
 import CommentsModal from 'Components/modals/comments-modal/comments-modal';
 import RepostModal from 'Components/modals/repost-modal/repost-modal';
@@ -95,7 +95,7 @@ const PostRender: FC<PostRender> = ({ post }) => {
                     onClick={() => {
                         navigate('/Post/' + post.id);
                     }}
-                    variants={formItem}
+                    variants={defaultItem}
                     className={Styles.Post}
                 >
                     <AuthorDataRender post={post} WhoWrotePost={WhoWrotePost} />

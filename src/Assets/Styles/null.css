@@ -192,3 +192,43 @@ label {
 legend {
     display: block;
 }
+@property --progress-valued {
+    syntax: '<integer>';
+    inherits: false;
+    initial-value: 0;
+}
+@keyframes css-progress {
+    to {
+        --progress-valued: var(--progress-value);
+    }
+}
+.progress-bar {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    box-shadow: var(--AccentBackgroundShadow);
+}
+
+progress {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.css {
+    background: radial-gradient(
+            closest-side,
+            var(--PrimaryBackgroundColor) 90%,
+            transparent 80% 100%,
+            var(--PrimaryBackgroundColor) 0
+        ),
+        conic-gradient(
+            var(--AccentBorderColor) calc(var(--progress-valued) * 1%),
+            var(--SecondaryBackgroundColor) 0
+        );
+    animation: css-progress 2s 1 forwards;
+}
+
+.css::before {
+    animation: css-progress 2s 1 forwards;
+}

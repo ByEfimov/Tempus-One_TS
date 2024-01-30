@@ -19,7 +19,7 @@ export async function getRequestObject(Path: string) {
     const snapshot = await get(ref(db, Path));
     const outputObject = {
         ...snapshot.val(),
-        PostId: snapshot.key,
+        id: snapshot.key,
     };
 
     if (!snapshot.exists()) {

@@ -1,33 +1,27 @@
 import Styles from './Styles.module.scss';
 import { getRequestObject } from 'Api/requests/get-requests';
-import GiftIcon from 'Assets/Icons/User/gift.svg';
 import UserIcon from 'Assets/Icons/User/user.svg';
-import UsersIcon from 'Assets/Icons/User/users.svg';
+import {
+    formContainer,
+    formItem,
+} from 'Assets/Tempus-Ui/Animation/Form-animate';
 import FakeOpenUser from 'Components/fake-data/fake-open-user';
-import ButtonVoid from 'Components/mini-components/button';
 import PreloaderPosts from 'Components/mini-components/preloader-posts';
-import SubscribeButton from 'Components/mini-components/subscribe-button';
 import SettingsUserModal from 'Components/modals/settings-modal/settings-user-modal';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import ShowPosts from 'Components/show-posts/posts/show-posts';
-import { useAppDispatch } from 'Hooks/redux-hooks';
-import { useAuth } from 'Hooks/useAuth';
-import { removeUser } from 'Store/slices/UserSlice';
+import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';
 import { OpenUserType } from 'Types/TypesOfData/team-or-user/open-user-type';
+import AppRoutes from 'Utils/routes/app-routes';
 import MaxXpToNextLevel from 'Utils/users-or-teams/max-xp-to-next-level';
-import { getAuth, signOut } from 'firebase/auth';
-import Cookies from 'js-cookie';
-import { FC, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 export default function UserPage() {
     const { id } = useParams();
-    const auth = getAuth();
     const [OpenUser, setOpenUser] = useState<OpenUserType | null>(null);
     const [settingsModalOpen, setSettingsModalOpen] = useState(false);
-    const navigate = useNavigate();
-    const dispatch = useAppDispatch();
-    const { UserId, UserEmailVerified } = useAuth();
 
     useEffect(() => {
         getRequestObject('users/' + id)
@@ -37,17 +31,17 @@ export default function UserPage() {
             .catch(() => ErrorNotification('Пользователь не найден.'));
     }, []);
 
-    function LogoutUser() {
-        signOut(auth)
-            .then(() => {
-                dispatch(removeUser());
-                Cookies.remove('UserId');
-                navigate('/Login');
-            })
-            .catch(() => {
-                ErrorNotification('Ошибка выхода.');
-            });
-    }
+    // function LogoutUser() {
+    //     signOut(auth)
+    //         .then(() => {
+    //             dispatch(removeUser());
+    //             Cookies.remove('UserId');
+    //             navigate('/Login');
+    //         })
+    //         .catch(() => {
+    //             ErrorNotification('Ошибка выхода.');
+    //         });
+    // }
     if (OpenUser) {
         return (
             <>
@@ -59,7 +53,7 @@ export default function UserPage() {
 
                 <UserData OpenUser={OpenUser} />
 
-                {OpenUser.id === UserId && (
+                {/* {OpenUser.id === UserId && (
                     <ButtonVoid
                         title="Настройки"
                         clickHandler={() => setSettingsModalOpen(true)}
@@ -81,9 +75,11 @@ export default function UserPage() {
                             LogoutUser();
                         }}
                     ></ButtonVoid>
-                )}
-
-                <ShowPosts AuthorFilter={OpenUser.id}></ShowPosts>
+                )} */}
+                <ShowTeams
+                    UserSubscriptions={OpenUser.subscriptions}
+                ></ShowTeams>
+                <ShowPosts ShowTitle AuthorFilter={OpenUser.id}></ShowPosts>
             </>
         );
     } else if (!OpenUser) {
@@ -95,46 +91,118 @@ export default function UserPage() {
     }
 }
 
+const ShowTeams = ({
+    UserSubscriptions,
+}: {
+    UserSubscriptions: {
+        teams?: Record<string, string>;
+        users?: Record<string, string>;
+    };
+}) => {
+    const [firstTeam, setFirstTeam] = useState<OpenTeamType>();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        async function getFirstTeam() {
+            if (UserSubscriptions?.teams) {
+                const team = await getRequestObject(
+                    'teams/' + Object.values(UserSubscriptions?.teams)[0],
+                );
+                setFirstTeam(team);
+            }
+        }
+
+        getFirstTeam();
+    }, []);
+
+    return (
+        UserSubscriptions?.teams &&
+        firstTeam && (
+            <motion.ul
+                variants={formContainer}
+                initial="hidden"
+                animate="visible"
+                className={Styles.ShowTeams}
+            >
+                <motion.li variants={formItem} className={Styles.TitleTeams}>
+                    Сообщества
+                    <div>{Object.values(UserSubscriptions?.teams).length}</div>
+                </motion.li>
+                <motion.li
+                    onClick={() => {
+                        navigate(AppRoutes.TEAM + '/' + firstTeam.id);
+                    }}
+                    variants={formItem}
+                    className={Styles.FirstTeam}
+                >
+                    <div className={Styles.Logo}>
+                        <img src={firstTeam.image} alt="" />
+                    </div>
+                    <div className={Styles.Text}>
+                        <div className={Styles.Title}>{firstTeam.title}</div>
+                        <div className={Styles.Desc}>{firstTeam.desc}</div>
+                    </div>
+                </motion.li>
+            </motion.ul>
+        )
+    );
+};
+
 interface UserDataProps {
     OpenUser: OpenUserType;
 }
+interface CustomCSSProperties extends React.CSSProperties {
+    '--progress-value'?: number;
+}
 
-const UserData: FC<UserDataProps> = ({ OpenUser }) => (
-    <div className={Styles.UserData}>
-        <div className={Styles.TopBar}>
-            <div className={Styles.UserPhoto}>
-                <img src={OpenUser.photo || UserIcon} alt="UserPhoto" />
-            </div>
-            <div className={Styles.UserLevel}>
-                {OpenUser.level}
-                <progress
-                    value={OpenUser.experience}
-                    max={MaxXpToNextLevel(OpenUser.level)}
-                ></progress>
-            </div>
-        </div>
+const UserData = ({ OpenUser }: UserDataProps) => {
+    const progressValue = Math.round(
+        (OpenUser.experience / MaxXpToNextLevel(OpenUser.level)) * 100,
+    );
 
-        <div className={Styles.UserTexts}>
-            <div className={Styles.left}>
-                <div className={Styles.UserName}>
-                    <img src={UserIcon} alt="" />
+    return (
+        <motion.div className={Styles.UserData}>
+            <div className={Styles.TopBar}>
+                <div className={Styles.UserPhoto}>
+                    <img
+                        className={OpenUser.photo ? Styles.Photo : Styles.Fake}
+                        src={OpenUser.photo || UserIcon}
+                        alt="UserPhoto"
+                    />
+                </div>
+
+                <div
+                    className="progress-bar css"
+                    style={
+                        {
+                            '--progress-value': progressValue,
+                        } as CustomCSSProperties
+                    }
+                >
+                    <progress
+                        id="css"
+                        max={MaxXpToNextLevel(OpenUser.level)}
+                        value={OpenUser.experience}
+                    ></progress>
+                </div>
+            </div>
+
+            <motion.ul
+                variants={formContainer}
+                initial="hidden"
+                animate="visible"
+                className={Styles.UserTexts}
+            >
+                <motion.li variants={formItem} className={Styles.UserName}>
                     {OpenUser.name}
-                </div>
-                <div className={Styles.UserMembers}>
-                    <img src={UsersIcon} alt="" />
-                    {(OpenUser?.members &&
-                        Object.values(OpenUser?.members).length) ||
-                        0}{' '}
-                    подписчиков
-                </div>
-                <div className={Styles.UserAge}>
-                    <img src={GiftIcon} alt="" />
-                    {OpenUser.age} лет
-                </div>
-            </div>
-            <div className={Styles.ActiveButton}>
-                <SubscribeButton WhoWrotePost={OpenUser}></SubscribeButton>
-            </div>
-        </div>
-    </div>
-);
+                </motion.li>
+                <motion.li variants={formItem} className={Styles.UserEmail}>
+                    {OpenUser.email}
+                </motion.li>
+                <motion.li variants={formItem} className={Styles.UserLevel}>
+                    {OpenUser.level} уровень
+                </motion.li>
+            </motion.ul>
+        </motion.div>
+    );
+};

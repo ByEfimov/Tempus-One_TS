@@ -13,7 +13,7 @@ const ShowLogo: FC<{ ImageUrl: string | undefined | null }> = ({
         );
     } else {
         return (
-            <div className="FakeLogo">
+            <div className={Styles.FakeLogo}>
                 <img src={UserIcon} alt="" />
             </div>
         );
