@@ -5,8 +5,7 @@ import {
     formContainer,
     formItem,
 } from 'Assets/Tempus-Ui/Animation/Form-animate';
-import FakeOpenUser from 'Components/fake-data/fake-open-user';
-import PreloaderPosts from 'Components/mini-components/preloader-posts';
+import Preloader from 'Assets/Tempus-Ui/Components/Preloader/Preloader';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import ShowPosts from 'Components/show-posts/posts/show-posts';
 import { UserType } from 'Store/slices/UserSlice';
@@ -42,11 +41,7 @@ export default function UserPage() {
             </>
         );
     } else if (!OpenUser) {
-        return (
-            <>
-                <FakeOpenUser></FakeOpenUser> <PreloaderPosts></PreloaderPosts>
-            </>
-        );
+        return <Preloader></Preloader>;
     }
 }
 

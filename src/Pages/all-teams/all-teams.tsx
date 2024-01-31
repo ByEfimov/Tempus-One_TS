@@ -1,16 +1,15 @@
 import Styles from './Styles.module.scss';
 import { getRequestArray } from 'Api/requests/get-requests';
-import ButtonVoid from 'Components/mini-components/button';
-import PreloaderUsers from 'Components/mini-components/preloader-users';
+import { defaultContainer } from 'Assets/Tempus-Ui/Animation/Form-animate';
+import Preloader from 'Assets/Tempus-Ui/Components/Preloader/Preloader';
 import { ErrorNotification } from 'Components/notifications/notifications';
-import ShowUserOrTeam from 'Components/show-users-or-team/ShowUsersOrTeam';
+import ShowUserOrTeam from 'Components/show-users-or-team/show-users-or-team';
 import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 export default function AllTeams() {
     const [teams, setTeams] = useState<OpenTeamType[] | null>(null);
-    const navigate = useNavigate();
 
     useEffect(() => {
         getRequestArray('teams/')
@@ -19,24 +18,19 @@ export default function AllTeams() {
     }, []);
 
     return (
-        <div className={Styles.Teams}>
-            <ButtonVoid
-                title="Добавить"
-                clickHandler={() => navigate('/createNewTeam')}
-            ></ButtonVoid>
-
+        <motion.ul
+            initial="hidden"
+            animate="visible"
+            variants={defaultContainer}
+            className={Styles.Teams}
+        >
             {teams ? (
-                <div>
-                    {teams.map((team) => (
-                        <ShowUserOrTeam
-                            key={team.id}
-                            Team={team}
-                        ></ShowUserOrTeam>
-                    ))}
-                </div>
+                teams.map((team) => (
+                    <ShowUserOrTeam key={team.id} Team={team}></ShowUserOrTeam>
+                ))
             ) : (
-                <PreloaderUsers></PreloaderUsers>
+                <Preloader></Preloader>
             )}
-        </div>
+        </motion.ul>
     );
 }
