@@ -2,20 +2,32 @@ import Styles from './Styles.module.scss';
 import { getRequestArray } from 'Api/requests/get-requests';
 import { defaultContainer } from 'Assets/Tempus-Ui/Animation/Form-animate';
 import Preloader from 'Assets/Tempus-Ui/Components/Preloader/Preloader';
-import { ErrorNotification } from 'Components/notifications/notifications';
 import ShowUserOrTeam from 'Components/show-users-or-team/show-users-or-team';
+import { useHeader } from 'Hooks/useHeader';
 import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';
+import { filterTeams } from 'Utils/filters/filter-users';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 export default function AllTeams() {
     const [teams, setTeams] = useState<OpenTeamType[] | null>(null);
+    const { HeaderSearchBar } = useHeader();
 
     useEffect(() => {
-        getRequestArray('teams/')
-            .then((teams) => setTeams(teams))
-            .catch(() => ErrorNotification('Сообщества не найдены.'));
-    }, []);
+        const TimeSearch = HeaderSearchBar;
+        function getTeams() {
+            getRequestArray('teams/').then((teams) => {
+                const filteredTeams = filterTeams(HeaderSearchBar, teams);
+                setTeams(filteredTeams);
+            });
+        }
+
+        setTimeout(() => {
+            if (TimeSearch === HeaderSearchBar) {
+                getTeams();
+            }
+        }, 1000);
+    }, [HeaderSearchBar]);
 
     return (
         <motion.ul

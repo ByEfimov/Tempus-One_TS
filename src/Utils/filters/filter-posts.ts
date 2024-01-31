@@ -1,6 +1,6 @@
 import { Post } from 'Types/TypesOfData/post/post';
 
-export function aplyFilter(
+export function aplyFilterPosts(
     array: Post[],
     filter: string,
     UserSubscriptions:
@@ -23,15 +23,15 @@ export function aplyFilter(
     AuthorFilter: string,
 ) {
     let filterOfGroup;
-    if (filter === Filters[0].value) {
+    if (filter === FiltersPosts[0].value) {
         filterOfGroup = array;
-    } else if (filter === Filters[1].value && UserSubscriptions) {
+    } else if (filter === FiltersPosts[1].value && UserSubscriptions) {
         filterOfGroup = array.filter((post) => {
             return Object.values(UserSubscriptions).some(
                 (obj) => post.PostAuthorId in obj,
             );
         });
-    } else if (filter === Filters[2].value) {
+    } else if (filter === FiltersPosts[2].value) {
         filterOfGroup = array.filter((post) => post.PostAuthorId === UserId);
     }
 
@@ -51,7 +51,7 @@ export function aplyFilter(
     }
 }
 
-export const Filters = [
+export const FiltersPosts = [
     { name: 'Все посты', value: 'Default' },
     { name: 'Интересное', value: 'Interesting' },
     { name: 'Только мои', value: 'OnlyMy' },

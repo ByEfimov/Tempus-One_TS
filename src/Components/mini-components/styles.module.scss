@@ -1,4 +1,3 @@
-@import 'Assets/Styles/variables.css';
 @import 'Assets/Styles/animations.css';
 
 .ButtonWrapper {
@@ -28,7 +27,7 @@
 }
 .sub {
     svg * {
-        fill: #bdbdbd;
+        fill: var(--SecondaryTextColor);
     }
 }
 

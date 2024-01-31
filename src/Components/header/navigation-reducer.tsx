@@ -89,17 +89,20 @@ export default function NavigationReducer() {
             case AppRoutes.USERS:
                 placeholderForInput = 'Найти профиль...';
                 ShowFooter = true;
-                ExecuteConfig = undefined;
-                break;
-            case AppRoutes.MYPROFILE:
-                TitleOfHeader = 'Мой профиль';
-                ShowFooter = true;
-                ExecuteConfig = undefined;
+                ExecuteConfig = {
+                    icon: headerIcons.Teams,
+                    function: undefined,
+                };
                 break;
             case AppRoutes.TEAMS:
                 placeholderForInput = 'Найти сообщество...';
                 ShowFooter = true;
                 ExecuteConfig = { icon: headerIcons.Add, function: undefined };
+                break;
+            case AppRoutes.MYPROFILE:
+                TitleOfHeader = 'Мой профиль';
+                ShowFooter = true;
+                ExecuteConfig = undefined;
                 break;
             case AppRoutes.DEFAULT:
                 TitleOfHeader = '';

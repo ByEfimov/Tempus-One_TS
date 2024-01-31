@@ -1,4 +1,3 @@
-import { Filters, aplyFilter } from '../post-components/filters';
 import Styles from './Styles.module.scss';
 import PostRender from './post-render';
 import { getRequestArray } from 'Api/requests/get-requests';
@@ -10,6 +9,7 @@ import { useAuth } from 'Hooks/useAuth';
 import { useHeader } from 'Hooks/useHeader';
 import { setLastPostKey } from 'Store/slices/PostsSlice';
 import { Post } from 'Types/TypesOfData/post/post';
+import { FiltersPosts, aplyFilterPosts } from 'Utils/filters/filter-posts';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
@@ -32,7 +32,7 @@ const ShowPosts = ({
         const TimeSearch = HeaderSearchBar;
         function getPosts() {
             getRequestArray('/posts').then((posts) => {
-                const filteredPosts = aplyFilter(
+                const filteredPosts = aplyFilterPosts(
                     posts,
                     selectFilter,
                     UserSubscriptions,
@@ -55,7 +55,7 @@ const ShowPosts = ({
         <div className={Styles.Posts}>
             {ShowFilters && (
                 <Select
-                    Array={Filters}
+                    Array={FiltersPosts}
                     setSelect={setSelectFilter}
                     selectFilter={selectFilter}
                 ></Select>

@@ -1,6 +1,9 @@
 import Styles from './styles.module.scss';
 import { Subscription } from 'Api/Users/interaction/subscription';
 import { changeRequest } from 'Api/requests/change-request';
+import HeaderIcons, {
+    headerIcons,
+} from 'Assets/Tempus-Ui/Icons/Header/Header-Icons';
 import PostsIcons, {
     postsIcons,
 } from 'Assets/Tempus-Ui/Icons/Posts/Posts-Icons';
@@ -54,8 +57,8 @@ const SubscribeButton: FC<SubscribeButton> = ({ WhoWrotePost }) => {
                 subbing();
             }}
         >
-            {isMember ? (
-                <PostsIcons Icon={postsIcons.sub}></PostsIcons>
+            {isTeam ? (
+                <HeaderIcons Icon={headerIcons.SubTeam}></HeaderIcons>
             ) : (
                 <PostsIcons Icon={postsIcons.sub}></PostsIcons>
             )}
