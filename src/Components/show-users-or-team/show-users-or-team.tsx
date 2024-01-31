@@ -1,5 +1,5 @@
 import Styles from './Styles.module.scss';
-import { defaultItem } from 'Assets/Tempus-Ui/Animation/Form-animate';
+import { formItem } from 'Assets/Tempus-Ui/Animation/Form-animate';
 import ShowLogo from 'Components/mini-components/show-logo';
 import SubscribeButton from 'Components/mini-components/subscribe-button';
 import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';
@@ -19,7 +19,7 @@ export default function ShowUserOrTeam({
     if (User) {
         return (
             <motion.li
-                variants={defaultItem}
+                variants={formItem}
                 className={Styles.Obj}
                 onClick={() => navigate('/User/' + User.id)}
             >
@@ -45,7 +45,7 @@ export default function ShowUserOrTeam({
     } else if (Team) {
         return (
             <motion.li
-                variants={defaultItem}
+                variants={formItem}
                 className={Styles.Obj}
                 onClick={() => navigate('/Team/' + Team.id)}
             >

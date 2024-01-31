@@ -1,43 +1,93 @@
-.TeamPage {
+.TeamInfo {
+    padding: 10px;
     padding-top: 20px;
-    .TopBlock {
-        margin-left: 17px;
-        margin-right: 17px;
+    .Title {
         display: flex;
-        position: relative;
-        overflow: hidden;
-        border-radius: var(--DefaultBorderRadius);
+        font-size: 20px;
+        color: var(--SecondaryTextColor);
         justify-content: space-between;
-        .TeamImage {
+    }
+}
+
+.TeamInfoModal {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    .Group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .Title {
             width: 100%;
-            img {
+        }
+        .Content {
+            min-height: 80px;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: var(--PrimaryBackgroundColor);
+        }
+    }
+}
+
+.UserData {
+    margin-top: 20px;
+    .TopBar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .UserPhoto {
+            width: 150px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            border-radius: 500px;
+            align-items: center;
+            background: var(--ThirdaryBackgroundColor);
+            .Photo {
+                background: var(--ThirdaryBackgroundColor);
+                border-radius: 500px;
+                overflow: hidden;
                 width: 100%;
-                object-fit: fill;
+                object-fit: cover;
+                height: 100%;
+            }
+            .Fake {
+                width: 50px;
+                height: 50px;
             }
         }
-        .TeamTitle {
-            position: absolute;
-            bottom: 0;
-            text-align: center;
-            width: 100%;
-            font-size: 30px;
-            font-weight: 800;
-            background-color: var(--GreyTextColor);
-            color: var(--AccentColor);
-        }
     }
-    .bottomBlock {
-        margin: 17px;
+
+    .UserTexts {
+        margin-top: 5px;
         display: flex;
-        justify-content: space-between;
-        .Subscriptions {
-            color: var(--DarkTextColor);
-            font-size: 20px;
-            font-weight: 600;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .UserName {
+            font-size: 30px;
+            font-weight: 500;
         }
-    }
-    .buttonSettings {
-        margin: 17px;
-        margin-top: -17px !important;
+        .UserEmail {
+            background: var(--AccentBackgroundGradient);
+            background-clip: text;
+            margin-top: 2px;
+            font-size: 16px;
+            font-weight: 300;
+            -webkit-text-fill-color: transparent;
+        }
+        .UserLevel {
+            box-shadow: var(--AccentBackgroundShadow);
+            margin-top: 9px;
+            padding: 5px;
+            width: fit-content;
+            border-radius: 50px;
+            padding-left: 15px;
+            padding-right: 15px;
+            font-weight: 400;
+            background: var(--AccentBackgroundGradient);
+        }
     }
 }

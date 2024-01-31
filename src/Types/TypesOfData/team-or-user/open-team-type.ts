@@ -6,4 +6,6 @@ export type OpenTeamType = {
     members: { UserId: string; UserRole: string }[];
     title: string;
     id: string;
+    level: number;
+    experience: number;
 };

@@ -1,14 +1,23 @@
 import Styles from './Styles.module.scss';
+import TeamInfoModal from './team-info-modal';
 import getUserAdmins from 'Api/Teams/get-user-admins';
 import { getRequestObject } from 'Api/requests/get-requests';
-import FakeOpenUser from 'Components/fake-data/fake-open-user';
+import {
+    formContainer,
+    formItem,
+} from 'Assets/Tempus-Ui/Animation/Form-animate';
+import Preloader from 'Assets/Tempus-Ui/Components/Preloader/Preloader';
+import ButtonIcons, {
+    buttonIcons,
+} from 'Assets/Tempus-Ui/Icons/Buttons/Button-icons';
 import ButtonVoid from 'Components/mini-components/button';
-import SubscribeButton from 'Components/mini-components/subscribe-button';
 import SettingsTeamModal from 'Components/modals/settings-modal/settings-team-modal';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import ShowPosts from 'Components/show-posts/posts/show-posts';
 import { useAuth } from 'Hooks/useAuth';
 import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';
+import MaxXpToNextLevel from 'Utils/users-or-teams/max-xp-to-next-level';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -32,14 +41,21 @@ export default function TeamPage() {
 
     if (OpenTeam) {
         return (
-            <div className={Styles.TeamPage}>
+            <motion.div
+                variants={formContainer}
+                initial="hidden"
+                animate="visible"
+                className={Styles.TeamPage}
+            >
                 {settingsModalOpen && (
                     <SettingsTeamModal
                         setModalOpen={setSettingsModalOpen}
                         team={OpenTeam}
                     />
                 )}
+
                 <TeamData OpenTeam={OpenTeam}></TeamData>
+
                 {UserAdmin && (
                     <ButtonVoid
                         clickHandler={() => {
@@ -51,33 +67,98 @@ export default function TeamPage() {
                     />
                 )}
 
-                <ShowPosts AuthorFilter={OpenTeam.id}></ShowPosts>
-            </div>
+                <TeamInfo OpenTeam={OpenTeam}></TeamInfo>
+
+                <ShowPosts ShowTitle AuthorFilter={OpenTeam.id}></ShowPosts>
+            </motion.div>
         );
     } else if (!OpenTeam) {
-        return <FakeOpenUser></FakeOpenUser>;
+        return <Preloader></Preloader>;
     }
 }
 
-interface TeamData {
-    OpenTeam: OpenTeamType;
+function TeamInfo({ OpenTeam }: { OpenTeam: OpenTeamType }) {
+    const [modalInfoOpen, setModalInfoOpen] = useState(false);
+
+    return (
+        OpenTeam && (
+            <motion.div variants={formItem} className={Styles.TeamInfo}>
+                {modalInfoOpen && (
+                    <TeamInfoModal
+                        setModalOpen={setModalInfoOpen}
+                        OpenTeam={OpenTeam}
+                    ></TeamInfoModal>
+                )}
+                <motion.div
+                    className={Styles.Title}
+                    onClick={() => {
+                        setModalInfoOpen(true);
+                    }}
+                >
+                    Информация
+                    <div>
+                        <ButtonIcons Icon={buttonIcons.Arrow}></ButtonIcons>
+                    </div>
+                </motion.div>
+            </motion.div>
+        )
+    );
 }
 
-function TeamData({ OpenTeam }: TeamData) {
+interface CustomCSSProperties extends React.CSSProperties {
+    '--progress-value'?: number;
+}
+
+function TeamData({ OpenTeam }: { OpenTeam: OpenTeamType }) {
+    const progressValue =
+        OpenTeam.experience &&
+        Math.round(
+            (OpenTeam.experience / MaxXpToNextLevel(OpenTeam.level || 0)) * 100,
+        );
+
     return (
-        <div className={Styles.TeamData}>
-            <div className={Styles.TopBlock}>
-                <div className={Styles.TeamImage}>
-                    <img src={OpenTeam.image} alt="" />
+        <motion.div className={Styles.UserData} variants={formItem}>
+            <div className={Styles.TopBar}>
+                <div className={Styles.UserPhoto}>
+                    <img
+                        className={OpenTeam.image ? Styles.Photo : Styles.Fake}
+                        src={OpenTeam.image}
+                        alt="UserPhoto"
+                    />
                 </div>
-                <div className={Styles.TeamTitle}>{OpenTeam.title}</div>
-            </div>
-            <div className={Styles.bottomBlock}>
-                <div className={Styles.Subscriptions}>
-                    {Object.values(OpenTeam.members).length | 0} Подписчиков
+
+                <div
+                    className="progress-bar css"
+                    style={
+                        {
+                            '--progress-value': progressValue,
+                        } as CustomCSSProperties
+                    }
+                >
+                    <progress
+                        id="css"
+                        max={MaxXpToNextLevel(OpenTeam.level || 0)}
+                        value={OpenTeam.experience || 0}
+                    ></progress>
                 </div>
-                <SubscribeButton WhoWrotePost={OpenTeam} />
             </div>
-        </div>
+
+            <motion.ul
+                variants={formContainer}
+                initial="hidden"
+                animate="visible"
+                className={Styles.UserTexts}
+            >
+                <motion.li variants={formItem} className={Styles.UserName}>
+                    {OpenTeam.title}
+                </motion.li>
+                <motion.li variants={formItem} className={Styles.UserEmail}>
+                    {Object.values(OpenTeam.members).length} подписчиков
+                </motion.li>
+                <motion.li variants={formItem} className={Styles.UserLevel}>
+                    {OpenTeam.level || 1} уровень
+                </motion.li>
+            </motion.ul>
+        </motion.div>
     );
 }

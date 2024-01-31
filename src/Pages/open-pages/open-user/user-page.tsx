@@ -8,14 +8,14 @@ import {
 import Preloader from 'Assets/Tempus-Ui/Components/Preloader/Preloader';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import ShowPosts from 'Components/show-posts/posts/show-posts';
+import ShowUserOrTeam from 'Components/show-users-or-team/show-users-or-team';
 import { UserType } from 'Store/slices/UserSlice';
 import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';
 import { OpenUserType } from 'Types/TypesOfData/team-or-user/open-user-type';
-import AppRoutes from 'Utils/routes/app-routes';
 import MaxXpToNextLevel from 'Utils/users-or-teams/max-xp-to-next-level';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 export default function UserPage() {
     const { id } = useParams();
@@ -54,7 +54,6 @@ const ShowTeams = ({
     };
 }) => {
     const [firstTeam, setFirstTeam] = useState<OpenTeamType>();
-    const navigate = useNavigate();
 
     useEffect(() => {
         async function getFirstTeam() {
@@ -82,21 +81,7 @@ const ShowTeams = ({
                     Сообщества
                     <div>{Object.values(UserSubscriptions?.teams).length}</div>
                 </motion.li>
-                <motion.li
-                    onClick={() => {
-                        navigate(AppRoutes.TEAM + '/' + firstTeam.id);
-                    }}
-                    variants={formItem}
-                    className={Styles.FirstTeam}
-                >
-                    <div className={Styles.Logo}>
-                        <img src={firstTeam.image} alt="" />
-                    </div>
-                    <div className={Styles.Text}>
-                        <div className={Styles.Title}>{firstTeam.title}</div>
-                        <div className={Styles.Desc}>{firstTeam.desc}</div>
-                    </div>
-                </motion.li>
+                <ShowUserOrTeam Team={firstTeam}></ShowUserOrTeam>
             </motion.ul>
         )
     );
