@@ -14,19 +14,16 @@ export default function AllUsers() {
     const { HeaderSearchBar } = useHeader();
 
     useEffect(() => {
-        const TimeSearch = HeaderSearchBar;
-        function getUsers() {
+        const timeoutId = setTimeout(() => {
             getRequestArray('users/').then((users) => {
                 const filteredUsers = filterUsers(HeaderSearchBar, users);
                 setUsers(filteredUsers);
             });
-        }
-
-        setTimeout(() => {
-            if (TimeSearch === HeaderSearchBar) {
-                getUsers();
-            }
         }, 1000);
+
+        return () => {
+            clearTimeout(timeoutId);
+        };
     }, [HeaderSearchBar]);
 
     return (

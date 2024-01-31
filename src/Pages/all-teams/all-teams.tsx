@@ -14,19 +14,16 @@ export default function AllTeams() {
     const { HeaderSearchBar } = useHeader();
 
     useEffect(() => {
-        const TimeSearch = HeaderSearchBar;
-        function getTeams() {
+        const timeoutId = setTimeout(() => {
             getRequestArray('teams/').then((teams) => {
                 const filteredTeams = filterTeams(HeaderSearchBar, teams);
                 setTeams(filteredTeams);
             });
-        }
-
-        setTimeout(() => {
-            if (TimeSearch === HeaderSearchBar) {
-                getTeams();
-            }
         }, 1000);
+
+        return () => {
+            clearTimeout(timeoutId);
+        };
     }, [HeaderSearchBar]);
 
     return (

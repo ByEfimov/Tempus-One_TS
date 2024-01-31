@@ -29,8 +29,7 @@ const ShowPosts = ({
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        const TimeSearch = HeaderSearchBar;
-        function getPosts() {
+        const timeoutId = setTimeout(() => {
             getRequestArray('/posts').then((posts) => {
                 const filteredPosts = aplyFilterPosts(
                     posts,
@@ -43,12 +42,11 @@ const ShowPosts = ({
                 setPosts(filteredPosts);
                 dispatch(setLastPostKey(Object.keys(posts).pop()));
             });
-        }
-        setTimeout(() => {
-            if (TimeSearch === HeaderSearchBar) {
-                getPosts();
-            }
         }, 1000);
+
+        return () => {
+            clearTimeout(timeoutId);
+        };
     }, [selectFilter, HeaderSearchBar]);
 
     return (
