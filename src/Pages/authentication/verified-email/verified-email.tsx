@@ -4,6 +4,7 @@ import { getCurrentUserData } from 'Api/requests/get-current-user';
 import ButtonVoid from 'Components/mini-components/button';
 import { MassageNotification } from 'Components/notifications/notifications';
 import { useAuth } from 'Hooks/useAuth';
+import AppRoutes from 'Utils/routes/app-routes';
 import { getAuth, sendEmailVerification } from 'firebase/auth';
 import { Navigate } from 'react-router-dom';
 
@@ -46,7 +47,7 @@ const VerifyingEmail = () => {
             </div>
         );
     } else {
-        return <Navigate to="/"></Navigate>;
+        return <Navigate to={AppRoutes.DEFAULT}></Navigate>;
     }
 };
 export default VerifyingEmail;

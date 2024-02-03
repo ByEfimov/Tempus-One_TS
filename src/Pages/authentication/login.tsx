@@ -41,6 +41,6 @@ export default function LoginPage() {
             handlerSubmit={handlerSubmit}
         ></AuthenticationFrom>
     ) : (
-        <Navigate to="/"></Navigate>
+        <Navigate to={AppRoutes.DEFAULT}></Navigate>
     );
 }

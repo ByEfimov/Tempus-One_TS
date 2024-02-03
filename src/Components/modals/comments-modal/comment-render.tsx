@@ -6,6 +6,7 @@ import ShowLogo from 'Components/mini-components/show-logo';
 import { Comments } from 'Types/TypesOfData/post/comments';
 import { OpenUserType } from 'Types/TypesOfData/team-or-user/open-user-type';
 import formatTimeAgo from 'Utils/post-utils/format-time-ago';
+import AppRoutes from 'Utils/routes/app-routes';
 import { motion } from 'framer-motion';
 import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -30,7 +31,7 @@ const CommentRender: FC<comment> = ({ comment }) => {
                 <div
                     className={Styles.author}
                     onClick={() => {
-                        navigate('/User/' + commentator.id);
+                        navigate(AppRoutes.USER + '/' + commentator.id);
                         CloseModal();
                     }}
                 >

@@ -28,3 +28,9 @@
 .ButtonError {
     background: var(--ErrorBackgroundGradient);
 }
+
+.ButtonIcon {
+    width: fit-content;
+    padding: 0px;
+    background: inherit;
+}

@@ -29,9 +29,9 @@ const HeaderSlice = createSlice({
         ) {
             state.Title = action.payload.Title;
             state.Type = action.payload.Type;
-            state.HeaderClickBack = action.payload.HeaderClickBack;
             state.ShowFooter = action.payload.ShowFooter;
             state.ButtonExecute = action.payload.ButtonExecute;
+            state.HeaderClickBack = action.payload.HeaderClickBack;
         },
         setHeaderClickBack(state, action) {
             state.HeaderClickBack = action.payload.HeaderHandleClickBack;
@@ -45,9 +45,8 @@ const HeaderSlice = createSlice({
             state.ButtonExecute = action.payload.ButtonExecute;
             state.PlaceholderForInput = action.payload.placeholderForInput;
         },
-        setExecuteFunction(state, action) {
-            if (state.ButtonExecute)
-                state.ButtonExecute.function = action.payload.function;
+        setExecuteButton(state, action) {
+            state.ButtonExecute = action.payload.button;
         },
     },
 });
@@ -57,7 +56,7 @@ export const {
     setHeaderClickBack,
     setHeader,
     setTitleOfHeader,
-    setExecuteFunction,
+    setExecuteButton,
 } = HeaderSlice.actions;
 
 export default HeaderSlice.reducer;

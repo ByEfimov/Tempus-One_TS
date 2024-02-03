@@ -2,44 +2,46 @@ import Styles from './Styles.module.scss';
 import { Subscription } from 'Api/Users/interaction/subscription';
 import { changeRequest } from 'Api/requests/change-request';
 import { postRequestWithNewId } from 'Api/requests/post-requests-with-new-id';
-import ButtonVoid from 'Components/mini-components/button';
+import Button, {
+    ButtonTypes,
+} from 'Assets/Tempus-Ui/Components/Buttons/Button';
+import HeaderIcons, {
+    headerIcons,
+} from 'Assets/Tempus-Ui/Icons/Header/Header-Icons';
 import CustomInput from 'Components/mini-components/input';
 import CustomTextarea from 'Components/mini-components/textarea';
 import { ErrorNotification } from 'Components/notifications/notifications';
+import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';
+import { setExecuteButton } from 'Store/slices/header/header-slice';
 import { handleImageUpload } from 'Utils/handlers/handler-image-upload';
-import { useState } from 'react';
+import AppRoutes from 'Utils/routes/app-routes';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const CreateTeam = () => {
     const { UserCanChanging, UserId, UserIsAuth, UserExperience } = useAuth();
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const [Title, setTitle] = useState('');
     const [Description, setDescription] = useState('');
     const [ProjectName, setProjectName] = useState('');
     const [ProjectDescription, setProjectDescription] = useState('');
     const [selectImage, setSelectImage] = useState('');
+    const NewTeam = {
+        title: Title,
+        desc: Description,
+        projectTitle: ProjectName,
+        projectDesc: ProjectDescription,
+        image: selectImage,
+        members: {
+            [UserId]: { UserId: UserId, UserRole: 'Administrator' },
+        },
+    };
 
-    function createNewTeam() {
-        if (
-            Title &&
-            Description &&
-            ProjectName &&
-            ProjectDescription &&
-            selectImage &&
-            UserId
-        ) {
-            const NewTeam = {
-                title: Title,
-                desc: Description,
-                projectTitle: ProjectName,
-                projectDesc: ProjectDescription,
-                image: selectImage,
-                members: {
-                    [UserId]: { UserId: UserId, UserRole: 'Administrator' },
-                },
-            };
+    useEffect(() => {
+        function createNewTeam() {
             postRequestWithNewId('teams/', NewTeam).then((teamId) => {
                 Subscription('team', teamId, UserId);
                 changeRequest(
@@ -48,12 +50,23 @@ const CreateTeam = () => {
                     UserExperience + 80,
                 );
                 clearInputs();
-                navigate('/');
+                navigate(AppRoutes.TEAMS);
             });
-        } else {
-            ErrorNotification('Не все поля заполнены.');
         }
-    }
+        dispatch(
+            setExecuteButton({
+                button: {
+                    icon: '',
+                    component: (
+                        <Button Click={createNewTeam} Type={ButtonTypes.icon}>
+                            <HeaderIcons Icon={headerIcons.Add} />
+                        </Button>
+                    ),
+                },
+            }),
+        );
+    }, [NewTeam]);
+
     function clearInputs() {
         setTitle('');
         setDescription('');
@@ -120,12 +133,6 @@ const CreateTeam = () => {
                             stateValue={ProjectDescription}
                         ></CustomTextarea>
                     </div>
-                    <ButtonVoid
-                        title="Создать"
-                        clickHandler={() => {
-                            createNewTeam();
-                        }}
-                    ></ButtonVoid>
                 </form>
             </div>
         );

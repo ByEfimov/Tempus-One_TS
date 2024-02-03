@@ -35,7 +35,7 @@ const MyProfile = () => {
             .then(() => {
                 dispatch(removeUser());
                 Cookies.remove('UserId');
-                navigate('/Login');
+                navigate(AppRoutes.LOGIN);
             })
             .catch(() => {
                 ErrorNotification('Ошибка выхода.');
@@ -158,7 +158,7 @@ const MyProfile = () => {
             </>
         );
     } else {
-        return <Navigate to="/"></Navigate>;
+        return <Navigate to={AppRoutes.DEFAULT}></Navigate>;
     }
 };
 

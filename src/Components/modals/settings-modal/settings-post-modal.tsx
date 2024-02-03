@@ -10,6 +10,7 @@ import Input, {
     InputTypes,
 } from 'Assets/Tempus-Ui/Components/Inputs/Input';
 import { Post } from 'Types/TypesOfData/post/post';
+import AppRoutes from 'Utils/routes/app-routes';
 import { motion } from 'framer-motion';
 import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -41,7 +42,7 @@ const SettingsPostModal: FC<SettingsPostModal> = ({
                 postText,
             );
         }
-        navigate('/');
+        navigate(AppRoutes.POST + '/' + postid);
         CloseModal();
     }
 
@@ -75,7 +76,7 @@ const SettingsPostModal: FC<SettingsPostModal> = ({
                     Title="Удалить пост"
                     Click={() => {
                         removeRequest('posts/', post.id);
-                        navigate('/');
+                        navigate(AppRoutes.DEFAULT);
                         CloseModal();
                     }}
                     Type={ButtonTypes.error}

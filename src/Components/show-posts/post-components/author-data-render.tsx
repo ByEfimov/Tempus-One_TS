@@ -47,7 +47,10 @@ const AuthorDataRender: FC<AuthorDataRenderProps> = ({
                 </div>
             </div>
 
-            <SubscribeButton WhoWrotePost={WhoWrotePost}></SubscribeButton>
+            <SubscribeButton
+                WhoWrotePost={WhoWrotePost}
+                id={WhoWrotePost?.id}
+            ></SubscribeButton>
         </div>
     );
 };

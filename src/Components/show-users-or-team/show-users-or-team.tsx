@@ -4,6 +4,7 @@ import ShowLogo from 'Components/mini-components/show-logo';
 import SubscribeButton from 'Components/mini-components/subscribe-button';
 import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';
 import { OpenUserType } from 'Types/TypesOfData/team-or-user/open-user-type';
+import AppRoutes from 'Utils/routes/app-routes';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
@@ -21,7 +22,7 @@ export default function ShowUserOrTeam({
             <motion.li
                 variants={formItem}
                 className={Styles.Obj}
-                onClick={() => navigate('/User/' + User.id)}
+                onClick={() => navigate(AppRoutes.USER + '/' + User.id)}
             >
                 <div className={Styles.Data}>
                     <div className={Styles.Photo}>
@@ -38,7 +39,10 @@ export default function ShowUserOrTeam({
                     </div>
                 </div>
                 <div className={Styles.Activity}>
-                    <SubscribeButton WhoWrotePost={User}></SubscribeButton>
+                    <SubscribeButton
+                        WhoWrotePost={User}
+                        id={User.id}
+                    ></SubscribeButton>
                 </div>
             </motion.li>
         );
@@ -47,7 +51,7 @@ export default function ShowUserOrTeam({
             <motion.li
                 variants={formItem}
                 className={Styles.Obj}
-                onClick={() => navigate('/Team/' + Team.id)}
+                onClick={() => navigate(AppRoutes.TEAM + '/' + Team.id)}
             >
                 <div className={Styles.Data}>
                     <div className={Styles.Photo}>
@@ -64,7 +68,10 @@ export default function ShowUserOrTeam({
                     </div>
                 </div>
                 <div className={Styles.Activity}>
-                    <SubscribeButton WhoWrotePost={Team}></SubscribeButton>
+                    <SubscribeButton
+                        WhoWrotePost={Team}
+                        id={Team.id}
+                    ></SubscribeButton>
                 </div>
             </motion.li>
         );

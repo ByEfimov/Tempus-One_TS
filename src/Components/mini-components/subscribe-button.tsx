@@ -19,13 +19,14 @@ import { FC } from 'react';
 
 interface SubscribeButton {
     WhoWrotePost: WhoWrotePost | null;
+    id: string | undefined;
 }
 
-const SubscribeButton: FC<SubscribeButton> = ({ WhoWrotePost }) => {
+const SubscribeButton: FC<SubscribeButton> = ({ WhoWrotePost, id }) => {
     const { UserId, UserSubscriptions, UserExperience, UserIsAuth } = useAuth();
 
     const isMember = itsMember(WhoWrotePost, UserId, UserSubscriptions);
-    const isTeam = WhoWrotePost?.id && WhoWrotePost?.id[0] === '-';
+    const isTeam = WhoWrotePost?.id && WhoWrotePost.id[0] === '-';
 
     function subbing() {
         if (UserIsAuth) {
@@ -37,7 +38,7 @@ const SubscribeButton: FC<SubscribeButton> = ({ WhoWrotePost }) => {
 
             Subscription(
                 isTeam ? 'team' : 'user',
-                WhoWrotePost?.id,
+                id,
                 UserId,
                 isMember ? true : false,
             );

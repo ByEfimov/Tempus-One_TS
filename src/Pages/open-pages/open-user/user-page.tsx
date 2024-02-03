@@ -6,10 +6,13 @@ import {
     formItem,
 } from 'Assets/Tempus-Ui/Animation/Form-animate';
 import Preloader from 'Assets/Tempus-Ui/Components/Preloader/Preloader';
+import SubscribeButton from 'Components/mini-components/subscribe-button';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import ShowPosts from 'Components/show-posts/posts/show-posts';
 import ShowUserOrTeam from 'Components/show-users-or-team/show-users-or-team';
+import { useAppDispatch } from 'Hooks/redux-hooks';
 import { UserType } from 'Store/slices/UserSlice';
+import { setExecuteButton } from 'Store/slices/header/header-slice';
 import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';
 import { OpenUserType } from 'Types/TypesOfData/team-or-user/open-user-type';
 import MaxXpToNextLevel from 'Utils/users-or-teams/max-xp-to-next-level';
@@ -20,6 +23,7 @@ import { useParams } from 'react-router-dom';
 export default function UserPage() {
     const { id } = useParams();
     const [OpenUser, setOpenUser] = useState<OpenUserType | null>(null);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         getRequestObject('users/' + id)
@@ -28,6 +32,22 @@ export default function UserPage() {
             })
             .catch(() => ErrorNotification('Пользователь не найден.'));
     }, []);
+
+    useEffect(() => {
+        dispatch(
+            setExecuteButton({
+                button: {
+                    icon: '',
+                    component: (
+                        <SubscribeButton
+                            WhoWrotePost={OpenUser}
+                            id={OpenUser?.id}
+                        />
+                    ),
+                },
+            }),
+        );
+    }, [OpenUser]);
 
     if (OpenUser) {
         return (

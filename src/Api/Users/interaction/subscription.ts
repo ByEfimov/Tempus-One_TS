@@ -2,35 +2,35 @@ import { getDatabase, ref, set } from '@firebase/database';
 
 export function Subscription(
     type: string,
-    SubscribingId: string | null | undefined,
+    SubscribingId: string | undefined,
     UserId: string | null,
-    reverse = false
+    reverse = false,
 ) {
     const db = getDatabase();
     if (reverse) {
         if (type === 'user') {
             const subListRef = ref(
                 db,
-                'users/' + UserId + '/subscriptions/users/' + SubscribingId
+                'users/' + UserId + '/subscriptions/users/' + SubscribingId,
             );
 
             set(subListRef, null);
             const subListSRef = ref(
                 db,
-                'users/' + SubscribingId + '/members/' + UserId
+                'users/' + SubscribingId + '/members/' + UserId,
             );
 
             set(subListSRef, null);
         } else if (type === 'team') {
             const subListRef = ref(
                 db,
-                'users/' + UserId + '/subscriptions/teams/' + SubscribingId
+                'users/' + UserId + '/subscriptions/teams/' + SubscribingId,
             );
 
             set(subListRef, null);
             const subListSRef = ref(
                 db,
-                'teams/' + SubscribingId + '/members/' + UserId
+                'teams/' + SubscribingId + '/members/' + UserId,
             );
 
             set(subListSRef, null);
@@ -39,13 +39,13 @@ export function Subscription(
         if (type === 'user') {
             const subListRef = ref(
                 db,
-                'users/' + UserId + '/subscriptions/users/' + SubscribingId
+                'users/' + UserId + '/subscriptions/users/' + SubscribingId,
             );
 
             set(subListRef, SubscribingId);
             const subListSRef = ref(
                 db,
-                'users/' + SubscribingId + '/members/' + UserId
+                'users/' + SubscribingId + '/members/' + UserId,
             );
             const subObject = {
                 UserId: UserId,
@@ -55,13 +55,13 @@ export function Subscription(
         } else if (type === 'team') {
             const subListRef = ref(
                 db,
-                'users/' + UserId + '/subscriptions/teams/' + SubscribingId
+                'users/' + UserId + '/subscriptions/teams/' + SubscribingId,
             );
 
             set(subListRef, SubscribingId);
             const subListSRef = ref(
                 db,
-                'teams/' + SubscribingId + '/members/' + UserId
+                'teams/' + SubscribingId + '/members/' + UserId,
             );
             const subObject = {
                 UserId: UserId,

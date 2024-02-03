@@ -33,11 +33,12 @@ export default function Header() {
                     </button>
                 )}
                 <h1 className={Styles.Header__Title}>{HeaderTitle}</h1>
-                {ButtonExecute && (
+                {ButtonExecute?.function && (
                     <button>
                         <HeaderIcons Icon={ButtonExecute.icon}></HeaderIcons>
                     </button>
                 )}
+                {ButtonExecute?.component && ButtonExecute.component}
             </motion.header>
         );
     } else {
@@ -61,7 +62,11 @@ export default function Header() {
                     IconPosition={IconPositions.rigth}
                 ></Input>
                 {ButtonExecute && (
-                    <button>
+                    <button
+                        onClick={() =>
+                            ButtonExecute.function && ButtonExecute.function()
+                        }
+                    >
                         <HeaderIcons Icon={ButtonExecute.icon}></HeaderIcons>
                     </button>
                 )}

@@ -1,7 +1,10 @@
 import Styles from './Styles.module.scss';
 import PostRender from './post-render';
 import { getRequestArray } from 'Api/requests/get-requests';
-import { defaultContainer } from 'Assets/Tempus-Ui/Animation/Form-animate';
+import {
+    defaultContainer,
+    defaultItem,
+} from 'Assets/Tempus-Ui/Animation/Form-animate';
 import Preloader from 'Assets/Tempus-Ui/Components/Preloader/Preloader';
 import Select from 'Assets/Tempus-Ui/Components/Select/Select';
 import { useAppDispatch } from 'Hooks/redux-hooks';
@@ -59,23 +62,28 @@ const ShowPosts = ({
                 ></Select>
             )}
             {posts ? (
-                <>
+                <motion.div
+                    initial="hidden"
+                    animate="visible"
+                    variants={defaultContainer}
+                >
                     {ShowTitle && (
-                        <motion.div className={Styles.Title}>
+                        <motion.div
+                            variants={defaultItem}
+                            className={Styles.Title}
+                        >
                             Посты <div>{posts.length}</div>
                         </motion.div>
                     )}
                     <motion.div
                         className={Styles.Render}
-                        initial="hidden"
-                        animate="visible"
-                        variants={defaultContainer}
+                        variants={defaultItem}
                     >
                         {posts.map((post) => (
                             <PostRender key={post.id} post={post} />
                         ))}
                     </motion.div>
-                </>
+                </motion.div>
             ) : (
                 <Preloader></Preloader>
             )}

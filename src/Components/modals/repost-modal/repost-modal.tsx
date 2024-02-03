@@ -11,6 +11,7 @@ import {
 import { useAuth } from 'Hooks/useAuth';
 import { NewPostType } from 'Types/TypesOfData/post/new-post-type';
 import { Post } from 'Types/TypesOfData/post/post';
+import AppRoutes from 'Utils/routes/app-routes';
 import { countEmptyValues } from 'Utils/validate-data/count-empty-values';
 import { getUnixTime } from 'date-fns';
 import { FC, useEffect, useState } from 'react';
@@ -43,10 +44,6 @@ const RepostModal: FC<RepostModal> = ({ setModalOpen, post }) => {
             PostAuthorId: UserId,
             PostId: null,
             PostDate: currentUnixTime,
-            PostLikes: 0,
-            PostShows: 1,
-            PostComments: {},
-            PostReposts: 0,
             PostWithRepostUs: post.id,
             id: null,
         };
@@ -59,7 +56,7 @@ const RepostModal: FC<RepostModal> = ({ setModalOpen, post }) => {
                 '/PostReposts/',
                 post.PostReposts + 1,
             );
-            navigate('/User/' + UserId);
+            navigate(AppRoutes.USER + '/' + UserId);
             MassageNotification('Пост отправлен!');
         } else {
             if (!UserIsAuth) {

@@ -58,6 +58,6 @@ export default function RegisterPage() {
             handlerSubmit={registerUser}
         ></AuthenticationFrom>
     ) : (
-        <Navigate to="/"></Navigate>
+        <Navigate to={AppRoutes.DEFAULT}></Navigate>
     );
 }

@@ -11,10 +11,13 @@ import ButtonIcons, {
     buttonIcons,
 } from 'Assets/Tempus-Ui/Icons/Buttons/Button-icons';
 import ButtonVoid from 'Components/mini-components/button';
+import SubscribeButton from 'Components/mini-components/subscribe-button';
 import SettingsTeamModal from 'Components/modals/settings-modal/settings-team-modal';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import ShowPosts from 'Components/show-posts/posts/show-posts';
+import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';
+import { setExecuteButton } from 'Store/slices/header/header-slice';
 import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';
 import MaxXpToNextLevel from 'Utils/users-or-teams/max-xp-to-next-level';
 import { motion } from 'framer-motion';
@@ -27,6 +30,7 @@ export default function TeamPage() {
     const [OpenTeam, setOpenTeam] = useState<OpenTeamType | null>(null);
     const [UserAdmin, setUserAdmin] = useState(false);
     const [settingsModalOpen, setSettingsModalOpen] = useState(false);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         getRequestObject('teams/' + id)
@@ -38,6 +42,22 @@ export default function TeamPage() {
             })
             .catch(() => ErrorNotification('Сообщество не найдено.'));
     }, []);
+
+    useEffect(() => {
+        dispatch(
+            setExecuteButton({
+                button: {
+                    icon: '',
+                    component: (
+                        <SubscribeButton
+                            WhoWrotePost={OpenTeam}
+                            id={OpenTeam?.id}
+                        />
+                    ),
+                },
+            }),
+        );
+    }, [OpenTeam]);
 
     if (OpenTeam) {
         return (

@@ -1,4 +1,5 @@
 import { headerIcons } from 'Assets/Tempus-Ui/Icons/Header/Header-Icons';
+import { ReactNode } from 'react';
 
 export type HeaderType = {
     Title: string;
@@ -6,7 +7,11 @@ export type HeaderType = {
     Type: TypesOfHeader;
     HeaderClickBack?: () => void;
     ButtonExecute?:
-        | { icon: headerIcons; function: (() => void) | undefined }
+        | {
+              icon: headerIcons;
+              function?: (() => void) | undefined;
+              component?: ReactNode;
+          }
         | undefined;
     ShowFooter: boolean;
     PlaceholderForInput: string;

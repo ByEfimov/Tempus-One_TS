@@ -3,7 +3,7 @@ import { useAppDispatch } from 'Hooks/redux-hooks';
 import { setHeader, setTypeOfHeader } from 'Store/slices/header/header-slice';
 import { TypesOfHeader } from 'Types/TypesOfData/header/header-type';
 import AppRoutes from 'Utils/routes/app-routes';
-import { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function NavigationReducer() {
@@ -23,7 +23,11 @@ export default function NavigationReducer() {
         let ShowFooter = true;
         let placeholderForInput = 'Найти пост...';
         let ExecuteConfig:
-            | { icon: headerIcons; function: undefined }
+            | {
+                  icon: headerIcons;
+                  function: (() => void) | undefined;
+                  component?: ReactNode;
+              }
             | undefined = undefined;
 
         switch ('/' + Path) {
@@ -91,30 +95,38 @@ export default function NavigationReducer() {
                 ShowFooter = true;
                 ExecuteConfig = {
                     icon: headerIcons.Teams,
-                    function: undefined,
+                    function: () => navigate(AppRoutes.TEAMS),
                 };
                 break;
             case AppRoutes.TEAMS:
                 placeholderForInput = 'Найти сообщество...';
                 ShowFooter = true;
-                ExecuteConfig = { icon: headerIcons.Add, function: undefined };
+                ExecuteConfig = {
+                    icon: headerIcons.Add,
+                    function: () => navigate(AppRoutes.CREATENEWTEAM),
+                };
                 break;
             case AppRoutes.MYPROFILE:
                 TitleOfHeader = 'Мой профиль';
                 ShowFooter = true;
-                ExecuteConfig = undefined;
                 break;
             case AppRoutes.DEFAULT:
                 TitleOfHeader = '';
                 PathOfBack = '';
                 ShowFooter = true;
-                ExecuteConfig = { icon: headerIcons.Add, function: undefined };
+                ExecuteConfig = {
+                    icon: headerIcons.Add,
+                    function: () => navigate(AppRoutes.WRITENEWPOST),
+                };
                 break;
             default:
                 TitleOfHeader = '';
                 PathOfBack = '';
                 ShowFooter = true;
-                ExecuteConfig = { icon: headerIcons.Add, function: undefined };
+                ExecuteConfig = {
+                    icon: headerIcons.Add,
+                    function: () => navigate(AppRoutes.WRITENEWPOST),
+                };
                 break;
         }
 
@@ -129,9 +141,9 @@ export default function NavigationReducer() {
                 setHeader({
                     Title: TitleOfHeader,
                     Type: TypesOfHeader.WithoutSearchBar,
-                    HeaderClickBack: clickBack,
                     ButtonExecute: ExecuteConfig,
                     ShowFooter,
+                    HeaderClickBack: clickBack,
                 }),
             );
         } else {

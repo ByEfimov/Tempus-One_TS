@@ -7,10 +7,11 @@ export enum ButtonTypes {
     active = 'active',
     default = 'default',
     error = 'error',
+    icon = 'icon',
 }
 
 interface Button {
-    Title: string;
+    Title?: string;
     Click: () => void;
     Type: ButtonTypes;
     Variants?: formItemType;
@@ -24,6 +25,8 @@ const Button = ({ Title, Click, Type, Variants, Class, children }: Button) => {
             ? Styles.ButtonActive
             : Type === ButtonTypes.error
             ? Styles.ButtonError
+            : Type === ButtonTypes.icon
+            ? Styles.ButtonIcon
             : undefined;
 
     return (
@@ -36,7 +39,7 @@ const Button = ({ Title, Click, Type, Variants, Class, children }: Button) => {
             variants={Variants}
         >
             {children && children}
-            {Title}
+            {Type !== ButtonTypes.icon && Title}
         </motion.button>
     );
 };

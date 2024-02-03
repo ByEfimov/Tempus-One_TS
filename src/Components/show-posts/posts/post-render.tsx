@@ -13,6 +13,7 @@ import { useAuth } from 'Hooks/useAuth';
 import { Post } from 'Types/TypesOfData/post/post';
 import { ModsOfWritePost } from 'Utils/mods-of-comps';
 import { PostLoadIsDone } from 'Utils/post-utils/post-load-is-done';
+import AppRoutes from 'Utils/routes/app-routes';
 import { motion } from 'framer-motion';
 import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -65,7 +66,10 @@ const PostRender: FC<PostRender> = ({ post }) => {
         loadImages();
 
         function ViewingPost() {
-            if (!Object.values(post.PostShows).includes(UserId) && UserIsAuth) {
+            if (
+                !Object.values(post.PostShows || 0).includes(UserId) &&
+                UserIsAuth
+            ) {
                 postRequestWithoutNewId(
                     'posts/' + post.id + '/PostShows/' + UserId,
                     UserId,
@@ -93,7 +97,7 @@ const PostRender: FC<PostRender> = ({ post }) => {
 
                 <motion.div
                     onClick={() => {
-                        navigate('/Post/' + post.id);
+                        navigate(AppRoutes.POST + '/' + post.id);
                     }}
                     variants={defaultItem}
                     className={Styles.Post}
@@ -113,7 +117,11 @@ const PostRender: FC<PostRender> = ({ post }) => {
                             className={Styles.repost}
                             onClick={(e) => {
                                 e.stopPropagation();
-                                navigate('/Post/' + post.PostWithRepostUs);
+                                navigate(
+                                    AppRoutes.POST +
+                                        '/' +
+                                        post.PostWithRepostUs,
+                                );
                             }}
                         >
                             Ссылка на оригинал.
