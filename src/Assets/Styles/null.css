@@ -78,6 +78,9 @@ html {
     background: #00000010;
     border-radius: 10px;
 }
+.sortable-handler {
+    touch-action: none;
+}
 
 * {
     padding: 0px;

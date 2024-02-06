@@ -12,4 +12,5 @@ export type OpenUserType = {
         teams?: Record<string, string>;
         users?: Record<string, string>;
     };
+    specialization?: string;
 };

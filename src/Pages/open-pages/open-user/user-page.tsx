@@ -123,7 +123,12 @@ const UserData = ({ OpenUser }: UserDataProps) => {
 
     return (
         <motion.div className={Styles.UserData}>
-            <div className={Styles.TopBar}>
+            <motion.div
+                variants={formContainer}
+                initial="hidden"
+                animate="visible"
+                className={Styles.TopBar}
+            >
                 <div className={Styles.UserPhoto}>
                     <img
                         className={OpenUser.photo ? Styles.Photo : Styles.Fake}
@@ -146,7 +151,7 @@ const UserData = ({ OpenUser }: UserDataProps) => {
                         value={OpenUser.experience || 0}
                     ></progress>
                 </div>
-            </div>
+            </motion.div>
 
             <motion.ul
                 variants={formContainer}
@@ -158,7 +163,9 @@ const UserData = ({ OpenUser }: UserDataProps) => {
                     {OpenUser.name}
                 </motion.li>
                 <motion.li variants={formItem} className={Styles.UserEmail}>
-                    {OpenUser.email}
+                    {OpenUser.specialization
+                        ? OpenUser.specialization
+                        : OpenUser.email}
                 </motion.li>
                 <motion.li variants={formItem} className={Styles.UserLevel}>
                     {OpenUser.level} уровень

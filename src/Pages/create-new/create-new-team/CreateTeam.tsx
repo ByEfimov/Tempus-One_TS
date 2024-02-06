@@ -1,5 +1,4 @@
 import Styles from './Styles.module.scss';
-import { Subscription } from 'Api/Users/interaction/subscription';
 import { changeRequest } from 'Api/requests/change-request';
 import { postRequestWithNewId } from 'Api/requests/post-requests-with-new-id';
 import Button, {
@@ -29,6 +28,7 @@ const CreateTeam = () => {
     const [ProjectName, setProjectName] = useState('');
     const [ProjectDescription, setProjectDescription] = useState('');
     const [selectImage, setSelectImage] = useState('');
+
     const NewTeam = {
         title: Title,
         desc: Description,
@@ -42,8 +42,7 @@ const CreateTeam = () => {
 
     useEffect(() => {
         function createNewTeam() {
-            postRequestWithNewId('teams/', NewTeam).then((teamId) => {
-                Subscription('team', teamId, UserId);
+            postRequestWithNewId('teams/', NewTeam).then(() => {
                 changeRequest(
                     'users/' + UserId,
                     '/experience',

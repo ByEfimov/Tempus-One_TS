@@ -11,7 +11,7 @@ import Input, {
 import LoadImage from 'Assets/Tempus-Ui/Components/LoadImage/LoadImage';
 import { useAuth } from 'Hooks/useAuth';
 import { motion } from 'framer-motion';
-import { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 interface SettingsUserModal {
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -21,6 +21,10 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
     const [userPhoto, setUserPhoto] = useState('');
     const [userDisplayName, setUserDisplayName] = useState('');
     const [userAge, setUserAge] = useState('');
+    const [userSpec, setUserSpec] = useState('');
+
+    const [allSpecializations, setAllSpecializations] =
+        useState<{ id: string; name: string }[]>();
     const { UserId } = useAuth();
 
     function ChangeFunction() {
@@ -33,8 +37,24 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
         if (userAge !== '') {
             changeRequest('users/' + UserId, '/age', userAge);
         }
+        if (userSpec !== '') {
+            changeRequest('users/' + UserId, '/specialization', userSpec);
+        }
         CloseModal();
     }
+
+    useEffect(() => {
+        fetch('https://api.hh.ru/specializations')
+            .then((response) => response.json())
+            .then((data) => {
+                setAllSpecializations(data[0].specializations);
+            });
+    }, []);
+
+    const selectSpec = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        // Переделать
+        setUserSpec(e.target.value);
+    };
 
     return (
         <IsModal setModalOpen={setModalOpen}>
@@ -61,6 +81,18 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
                     Value={userAge}
                     Type={InputTypes.number}
                 ></Input>
+                <select onChange={(e) => selectSpec(e)}>
+                    {allSpecializations && (
+                        <>
+                            <option value="">Выберите профессию</option>
+                            {allSpecializations.map((spec) => (
+                                <option key={spec.id} value={spec.name}>
+                                    {spec.name}
+                                </option>
+                            ))}
+                        </>
+                    )}
+                </select>
                 <Button
                     Title="Применить"
                     Click={ChangeFunction}

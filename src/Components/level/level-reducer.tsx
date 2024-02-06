@@ -9,10 +9,10 @@ interface LevelReducer {
 }
 
 export default function LevelReducer({ children }: LevelReducer) {
-    const { UserLevel, UserExperience, UserId } = useAuth();
+    const { UserLevel, UserExperience, UserId, UserIsAuth } = useAuth();
 
     useEffect(() => {
-        if (UserExperience >= MaxXpToNextLevel(UserLevel)) {
+        if (UserExperience >= MaxXpToNextLevel(UserLevel) && UserIsAuth) {
             LevelUP(UserId, UserLevel, UserExperience);
             MassageNotification(`Новый уровень ${UserLevel + 1}!`);
         }

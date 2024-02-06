@@ -58,7 +58,7 @@ const SettingsTeamModal: FC<SettingsTeamModal> = ({ setModalOpen, team }) => {
                     Change={(e) => {
                         setTeamDesc(e.currentTarget.value);
                     }}
-                    Value={teamTitle}
+                    Value={teamDesc}
                     Type={InputTypes.text}
                 ></Input>
                 <Button

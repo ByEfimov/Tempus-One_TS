@@ -6,11 +6,13 @@ import {
     formContainer,
     formItem,
 } from 'Assets/Tempus-Ui/Animation/Form-animate';
+import Button, {
+    ButtonTypes,
+} from 'Assets/Tempus-Ui/Components/Buttons/Button';
 import Preloader from 'Assets/Tempus-Ui/Components/Preloader/Preloader';
 import ButtonIcons, {
     buttonIcons,
 } from 'Assets/Tempus-Ui/Icons/Buttons/Button-icons';
-import ButtonVoid from 'Components/mini-components/button';
 import SubscribeButton from 'Components/mini-components/subscribe-button';
 import SettingsTeamModal from 'Components/modals/settings-modal/settings-team-modal';
 import { ErrorNotification } from 'Components/notifications/notifications';
@@ -29,7 +31,7 @@ export default function TeamPage() {
     const { UserId } = useAuth();
     const [OpenTeam, setOpenTeam] = useState<OpenTeamType | null>(null);
     const [UserAdmin, setUserAdmin] = useState(false);
-    const [settingsModalOpen, setSettingsModalOpen] = useState(false);
+
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -67,25 +69,7 @@ export default function TeamPage() {
                 animate="visible"
                 className={Styles.TeamPage}
             >
-                {settingsModalOpen && (
-                    <SettingsTeamModal
-                        setModalOpen={setSettingsModalOpen}
-                        team={OpenTeam}
-                    />
-                )}
-
-                <TeamData OpenTeam={OpenTeam}></TeamData>
-
-                {UserAdmin && (
-                    <ButtonVoid
-                        clickHandler={() => {
-                            setSettingsModalOpen(true);
-                        }}
-                        title="Настройки"
-                        padding={false}
-                        classes={Styles.buttonSettings}
-                    />
-                )}
+                <TeamData UserAdmin={UserAdmin} OpenTeam={OpenTeam}></TeamData>
 
                 <TeamInfo OpenTeam={OpenTeam}></TeamInfo>
 
@@ -129,16 +113,34 @@ interface CustomCSSProperties extends React.CSSProperties {
     '--progress-value'?: number;
 }
 
-function TeamData({ OpenTeam }: { OpenTeam: OpenTeamType }) {
+function TeamData({
+    OpenTeam,
+    UserAdmin,
+}: {
+    OpenTeam: OpenTeamType;
+    UserAdmin: boolean;
+}) {
     const progressValue =
         OpenTeam.experience &&
         Math.round(
             (OpenTeam.experience / MaxXpToNextLevel(OpenTeam.level || 0)) * 100,
         );
+    const [settingsModalOpen, setSettingsModalOpen] = useState(false);
 
     return (
         <motion.div className={Styles.UserData} variants={formItem}>
-            <div className={Styles.TopBar}>
+            {settingsModalOpen && (
+                <SettingsTeamModal
+                    setModalOpen={setSettingsModalOpen}
+                    team={OpenTeam}
+                />
+            )}
+            <motion.div
+                variants={formContainer}
+                initial="hidden"
+                animate="visible"
+                className={Styles.TopBar}
+            >
                 <div className={Styles.UserPhoto}>
                     <img
                         className={OpenTeam.image ? Styles.Photo : Styles.Fake}
@@ -161,7 +163,7 @@ function TeamData({ OpenTeam }: { OpenTeam: OpenTeamType }) {
                         value={OpenTeam.experience || 0}
                     ></progress>
                 </div>
-            </div>
+            </motion.div>
 
             <motion.ul
                 variants={formContainer}
@@ -178,6 +180,17 @@ function TeamData({ OpenTeam }: { OpenTeam: OpenTeamType }) {
                 <motion.li variants={formItem} className={Styles.UserLevel}>
                     {OpenTeam.level || 1} уровень
                 </motion.li>
+                {UserAdmin && (
+                    <Button
+                        Click={() => {
+                            setSettingsModalOpen(true);
+                        }}
+                        Variants={formItem}
+                        Title="Настройки"
+                        Class={Styles.buttonSettings}
+                        Type={ButtonTypes.default}
+                    />
+                )}
             </motion.ul>
         </motion.div>
     );

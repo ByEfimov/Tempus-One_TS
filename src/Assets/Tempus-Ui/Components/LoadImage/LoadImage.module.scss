@@ -1,38 +1,70 @@
 .LoadImage {
-    height: 150px;
-    width: 100%;
     display: flex;
-    border-radius: 500px;
-    overflow: hidden;
     justify-content: center;
-    img {
-        width: 150px;
-        height: 150px;
-        border-radius: 500px;
-        background-color: var(--PrimaryBackgroundColor);
+    margin-top: 15px;
+    width: 100%;
+    .editedImage {
+        width: 200px;
+        height: 200px;
         object-fit: cover;
+        background: var(--PrimaryBackgroundColor);
+        border-radius: 50%;
         box-shadow: var(--AccentBackgroundShadow);
     }
+    .changeImage {
+        .Buttons {
+            display: flex;
+            justify-content: space-between;
+            button {
+                width: 35px;
+                height: 35px;
+            }
+            input {
+                width: 150px;
+            }
+            input::-webkit-slider-runnable-track {
+                background: var(--PrimaryBackgroundColor);
+                border-radius: 10px;
+                height: 10px;
+            }
+            input::-moz-range-track {
+                border-radius: 10px;
+                background: var(--PrimaryBackgroundColor);
+                height: 10px;
+            }
+            input::-webkit-slider-thumb {
+                margin-top: -2.5px;
+                background: var(--AccentBorderColor);
+                background-color: var(--AccentBorderColor);
+            }
+        }
 
-    .input {
-        width: 150px;
-        overflow: hidden;
-        height: 150px;
-        border-radius: 500px;
-        background-color: var(--PrimaryBackgroundColor);
-        object-fit: cover;
+        .editor {
+            border-radius: 50%;
+            overflow: hidden;
+            height: 198px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 198px;
+            border: 5px solid var(--PrimaryBackgroundColor);
+        }
+    }
+    .Dropzone {
+        cursor: pointer;
+        padding: 20px;
         display: flex;
         justify-content: center;
         align-items: center;
-        box-shadow: var(--AccentBackgroundShadow);
-        input {
-            opacity: 0;
-            height: 100%;
-        }
-        svg {
-            position: absolute;
-            width: 40px;
-            height: 40px;
+        text-align: center;
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+        background-color: var(--PrimaryBackgroundColor);
+        .Image {
+            width: 50px;
+            height: 50px;
+            color: var(--SecondaryTextColor);
         }
     }
 }

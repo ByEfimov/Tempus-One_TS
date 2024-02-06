@@ -18,6 +18,7 @@ export type UserType = {
     experience: number | null;
     level: number | null;
     selectedVariants: Record<string, string> | null;
+    specialization?: string;
 };
 
 const initialState: UserType = {
