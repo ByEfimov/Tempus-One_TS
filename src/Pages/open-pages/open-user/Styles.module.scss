@@ -58,6 +58,17 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
+        .UserStatus {
+            position: absolute;
+            bottom: 10px;
+            z-index: 100;
+            margin-right: -115px;
+            img {
+                width: 35px;
+                height: 35px;
+            }
+        }
         .UserPhoto {
             width: 150px;
             height: 150px;

@@ -51,11 +51,6 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
             });
     }, []);
 
-    const selectSpec = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        // Переделать
-        setUserSpec(e.target.value);
-    };
-
     return (
         <IsModal setModalOpen={setModalOpen}>
             <motion.div className={Styles.SettingsModal}>
@@ -81,7 +76,7 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
                     Value={userAge}
                     Type={InputTypes.number}
                 ></Input>
-                <select onChange={(e) => selectSpec(e)}>
+                <select onChange={(e) => setUserSpec(e.target.value)}>
                     {allSpecializations && (
                         <>
                             <option value="">Выберите профессию</option>

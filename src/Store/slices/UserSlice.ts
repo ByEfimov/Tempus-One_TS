@@ -19,6 +19,7 @@ export type UserType = {
     level: number | null;
     selectedVariants: Record<string, string> | null;
     specialization?: string;
+    status?: string;
 };
 
 const initialState: UserType = {

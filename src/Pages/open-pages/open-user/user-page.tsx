@@ -7,6 +7,7 @@ import {
 } from 'Assets/Tempus-Ui/Animation/Form-animate';
 import Preloader from 'Assets/Tempus-Ui/Components/Preloader/Preloader';
 import SubscribeButton from 'Components/mini-components/subscribe-button';
+import StatusModal from 'Components/modals/status-modal/status-modal';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import ShowPosts from 'Components/show-posts/posts/show-posts';
 import ShowUserOrTeam from 'Components/show-users-or-team/show-users-or-team';
@@ -107,58 +108,20 @@ const ShowTeams = ({
     );
 };
 
-interface UserDataProps {
-    OpenUser: OpenUserType | UserType;
-}
 interface CustomCSSProperties extends React.CSSProperties {
     '--progress-value'?: number;
 }
 
-const UserData = ({ OpenUser }: UserDataProps) => {
-    const progressValue =
-        OpenUser.experience &&
-        Math.round(
-            (OpenUser.experience / MaxXpToNextLevel(OpenUser.level || 0)) * 100,
-        );
-
+const UserData = ({ OpenUser }: { OpenUser: OpenUserType | UserType }) => {
     return (
         <motion.div className={Styles.UserData}>
-            <motion.div
-                variants={formContainer}
-                initial="hidden"
-                animate="visible"
-                className={Styles.TopBar}
-            >
-                <div className={Styles.UserPhoto}>
-                    <img
-                        className={OpenUser.photo ? Styles.Photo : Styles.Fake}
-                        src={OpenUser.photo || UserIcon}
-                        alt="UserPhoto"
-                    />
-                </div>
-
-                <div
-                    className="progress-bar css"
-                    style={
-                        {
-                            '--progress-value': progressValue,
-                        } as CustomCSSProperties
-                    }
-                >
-                    <progress
-                        id="css"
-                        max={MaxXpToNextLevel(OpenUser.level || 0)}
-                        value={OpenUser.experience || 0}
-                    ></progress>
-                </div>
-            </motion.div>
-
             <motion.ul
                 variants={formContainer}
                 initial="hidden"
                 animate="visible"
                 className={Styles.UserTexts}
             >
+                <UserLogo OpenUser={OpenUser}></UserLogo>
                 <motion.li variants={formItem} className={Styles.UserName}>
                     {OpenUser.name}
                 </motion.li>
@@ -171,6 +134,76 @@ const UserData = ({ OpenUser }: UserDataProps) => {
                     {OpenUser.level} уровень
                 </motion.li>
             </motion.ul>
+        </motion.div>
+    );
+};
+
+export type statusType = {
+    desc: string;
+    id: string;
+    name: string;
+    image: string;
+};
+
+const UserLogo = ({ OpenUser }: { OpenUser: OpenUserType | UserType }) => {
+    const [statusModalOpen, setStatusModalOpen] = useState(false);
+    const [userStatus, setUserStatus] = useState<statusType>();
+
+    const progressValue =
+        OpenUser.experience &&
+        Math.round(
+            (OpenUser.experience / MaxXpToNextLevel(OpenUser.level || 0)) * 100,
+        );
+
+    useEffect(() => {
+        getRequestObject('achievements/' + OpenUser.status).then((achive) =>
+            setUserStatus(achive),
+        );
+    }, []);
+
+    return (
+        <motion.div
+            variants={formContainer}
+            initial="hidden"
+            animate="visible"
+            className={Styles.TopBar}
+        >
+            {statusModalOpen && (
+                <StatusModal
+                    status={userStatus}
+                    setModalOpen={setStatusModalOpen}
+                ></StatusModal>
+            )}
+            <div
+                className={Styles.UserStatus}
+                onClick={() => {
+                    setStatusModalOpen(true);
+                }}
+            >
+                <img src={userStatus?.image} alt="" />
+            </div>
+            <div className={Styles.UserPhoto}>
+                <img
+                    className={OpenUser.photo ? Styles.Photo : Styles.Fake}
+                    src={OpenUser.photo || UserIcon}
+                    alt="UserPhoto"
+                />
+            </div>
+
+            <div
+                className="progress-bar css"
+                style={
+                    {
+                        '--progress-value': progressValue,
+                    } as CustomCSSProperties
+                }
+            >
+                <progress
+                    id="css"
+                    max={MaxXpToNextLevel(OpenUser.level || 0)}
+                    value={OpenUser.experience || 0}
+                ></progress>
+            </div>
         </motion.div>
     );
 };

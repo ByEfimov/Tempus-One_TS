@@ -13,4 +13,5 @@ export type OpenUserType = {
         users?: Record<string, string>;
     };
     specialization?: string;
+    status?: string;
 };
