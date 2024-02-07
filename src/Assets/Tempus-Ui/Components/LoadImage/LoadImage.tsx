@@ -3,7 +3,9 @@ import Styles from './LoadImage.module.scss';
 import ButtonIcons, {
     buttonIcons,
 } from 'Assets/Tempus-Ui/Icons/Buttons/Button-icons';
+import { useAuth } from 'Hooks/useAuth';
 import FeatherIcon from 'feather-icons-react';
+import { getStorage, ref, uploadBytes } from 'firebase/storage';
 import { useRef, useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import { useDropzone } from 'react-dropzone';
@@ -16,8 +18,11 @@ const LoadImage = ({
     Image: string;
 }) => {
     const [image, setImage] = useState<string | null>(null);
+    const { UserId } = useAuth();
     const editorRef = useRef<AvatarEditor | null>(null);
     const [scale, setScale] = useState<number>(1);
+    const storage = getStorage();
+    const storageRef = ref(storage, '/logos/' + UserId);
 
     const onDrop = (acceptedFiles: File[]) => {
         const file = acceptedFiles[0];
@@ -29,7 +34,20 @@ const LoadImage = ({
             const editedImage = editorRef.current
                 .getImageScaledToCanvas()
                 .toDataURL();
-            Callback(editedImage);
+
+            fetch(editedImage)
+                .then((res) => res.blob())
+                .then((blob) => {
+                    uploadBytes(storageRef, blob).then((snapshot) => {
+                        const downloadURL = `https://firebasestorage.googleapis.com/v0/b/${
+                            snapshot.ref.bucket
+                        }/o/${encodeURIComponent(
+                            snapshot.ref.fullPath,
+                        )}?alt=media`;
+
+                        Callback(downloadURL);
+                    });
+                });
         }
     };
 

@@ -156,9 +156,11 @@ const UserLogo = ({ OpenUser }: { OpenUser: OpenUserType | UserType }) => {
         );
 
     useEffect(() => {
-        getRequestObject('achievements/' + OpenUser.status).then((achive) =>
-            setUserStatus(achive),
-        );
+        if (OpenUser.status) {
+            getRequestObject('achievements/' + OpenUser.status).then((achive) =>
+                setUserStatus(achive),
+            );
+        }
     }, []);
 
     return (
@@ -174,14 +176,16 @@ const UserLogo = ({ OpenUser }: { OpenUser: OpenUserType | UserType }) => {
                     setModalOpen={setStatusModalOpen}
                 ></StatusModal>
             )}
-            <div
-                className={Styles.UserStatus}
-                onClick={() => {
-                    setStatusModalOpen(true);
-                }}
-            >
-                <img src={userStatus?.image} alt="" />
-            </div>
+            {userStatus && (
+                <div
+                    className={Styles.UserStatus}
+                    onClick={() => {
+                        setStatusModalOpen(true);
+                    }}
+                >
+                    <img src={userStatus?.image} alt="" />
+                </div>
+            )}
             <div className={Styles.UserPhoto}>
                 <img
                     className={OpenUser.photo ? Styles.Photo : Styles.Fake}
