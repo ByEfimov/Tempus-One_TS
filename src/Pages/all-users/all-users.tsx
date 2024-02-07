@@ -10,15 +10,19 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 export default function AllUsers() {
-    const [users, setUsers] = useState<OpenUserType[] | null>(null);
+    const [users, setUsers] = useState<OpenUserType[]>();
     const { HeaderSearchBar } = useHeader();
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
-            getRequestArray('users/').then((users) => {
+            if (HeaderSearchBar) {
                 const filteredUsers = filterUsers(HeaderSearchBar, users);
                 setUsers(filteredUsers);
-            });
+            } else {
+                getRequestArray('users/').then((users) => {
+                    setUsers(users);
+                });
+            }
         }, 1000);
 
         return () => {

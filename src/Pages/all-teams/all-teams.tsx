@@ -10,15 +10,19 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 export default function AllTeams() {
-    const [teams, setTeams] = useState<OpenTeamType[] | null>(null);
+    const [teams, setTeams] = useState<OpenTeamType[]>();
     const { HeaderSearchBar } = useHeader();
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
-            getRequestArray('teams/').then((teams) => {
-                const filteredTeams = filterTeams(HeaderSearchBar, teams);
-                setTeams(filteredTeams);
-            });
+            if (HeaderSearchBar) {
+                const filteredUsers = filterTeams(HeaderSearchBar, teams);
+                setTeams(filteredUsers);
+            } else {
+                getRequestArray('teams/').then((users) => {
+                    setTeams(users);
+                });
+            }
         }, 1000);
 
         return () => {

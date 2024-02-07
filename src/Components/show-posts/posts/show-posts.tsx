@@ -25,7 +25,7 @@ const ShowPosts = ({
     ShowFilters?: boolean;
     ShowTitle?: boolean;
 }) => {
-    const [posts, setPosts] = useState<Post[] | undefined>();
+    const [posts, setPosts] = useState<Post[]>();
     const [selectFilter, setSelectFilter] = useState<string>('Default');
     const { UserSubscriptions, UserId } = useAuth();
     const { HeaderSearchBar } = useHeader();
@@ -33,18 +33,22 @@ const ShowPosts = ({
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
-            getRequestArray('/posts').then((posts) => {
+            if (HeaderSearchBar) {
                 const filteredPosts = aplyFilterPosts(
-                    posts,
                     selectFilter,
                     UserSubscriptions,
                     UserId,
                     HeaderSearchBar,
                     AuthorFilter,
+                    posts,
                 );
                 setPosts(filteredPosts);
-                dispatch(setLastPostKey(Object.keys(posts).pop()));
-            });
+            } else {
+                getRequestArray('/posts').then((posts) => {
+                    setPosts(posts);
+                    dispatch(setLastPostKey(Object.keys(posts).pop()));
+                });
+            }
         }, 1000);
 
         return () => {

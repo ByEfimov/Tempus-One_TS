@@ -1,7 +1,6 @@
 import { Post } from 'Types/TypesOfData/post/post';
 
 export function aplyFilterPosts(
-    array: Post[],
     filter: string,
     UserSubscriptions:
         | {
@@ -21,18 +20,19 @@ export function aplyFilterPosts(
     UserId: string,
     HeaderSearchBar: string,
     AuthorFilter: string,
+    array?: Post[],
 ) {
     let filterOfGroup;
     if (filter === FiltersPosts[0].value) {
         filterOfGroup = array;
     } else if (filter === FiltersPosts[1].value && UserSubscriptions) {
-        filterOfGroup = array.filter((post) => {
+        filterOfGroup = array?.filter((post) => {
             return Object.values(UserSubscriptions).some(
                 (obj) => post.PostAuthorId in obj,
             );
         });
     } else if (filter === FiltersPosts[2].value) {
-        filterOfGroup = array.filter((post) => post.PostAuthorId === UserId);
+        filterOfGroup = array?.filter((post) => post.PostAuthorId === UserId);
     }
 
     if (filterOfGroup) {
