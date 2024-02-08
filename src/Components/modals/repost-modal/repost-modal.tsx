@@ -3,6 +3,10 @@ import Styles from '../style.module.scss';
 import getUserAdmins from 'Api/Teams/get-user-admins';
 import { changeRequest } from 'Api/requests/change-request';
 import { postRequestWithNewId } from 'Api/requests/post-requests-with-new-id';
+import {
+    defaultContainer,
+    defaultItem,
+} from 'Assets/Tempus-Ui/Animation/Form-animate';
 import ShowLogo from 'Components/mini-components/show-logo';
 import {
     ErrorNotification,
@@ -14,6 +18,7 @@ import { Post } from 'Types/TypesOfData/post/post';
 import AppRoutes from 'Utils/routes/app-routes';
 import { countEmptyValues } from 'Utils/validate-data/count-empty-values';
 import { getUnixTime } from 'date-fns';
+import { motion } from 'framer-motion';
 import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -69,23 +74,33 @@ const RepostModal: FC<RepostModal> = ({ setModalOpen, post }) => {
 
     return (
         <IsModal setModalOpen={setModalOpen}>
-            <div className={Styles.RepostModal}>
-                <button onClick={repostToYou} className={Styles.RepostToYou}>
+            <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={defaultContainer}
+                className={Styles.RepostModal}
+            >
+                <motion.button
+                    variants={defaultItem}
+                    onClick={repostToYou}
+                    className={Styles.RepostToYou}
+                >
                     <ShowLogo ImageUrl={UserPhoto}></ShowLogo>
                     <p className={Styles.name}>Себе</p>
-                </button>
+                </motion.button>
                 {teamsAdmin &&
                     teamsAdmin.map((team) => (
-                        <button
+                        <motion.button
+                            variants={defaultItem}
                             key={team.TeamId}
                             onClick={repostToYou}
                             className={Styles.RepostToTeam}
                         >
                             <ShowLogo ImageUrl={team.TeamImage}></ShowLogo>
                             <p className={Styles.name}>{team.TeamName}</p>
-                        </button>
+                        </motion.button>
                     ))}
-            </div>
+            </motion.div>
         </IsModal>
     );
 };

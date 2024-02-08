@@ -3,6 +3,7 @@
     gap: 10px;
     overflow-y: auto;
     transition: all 0.5s;
+    opacity: 1;
     .Item {
         padding: 5px;
         padding-left: 12px;
@@ -32,9 +33,14 @@
     justify-content: center;
     align-items: center;
     min-height: 45px;
+
     * {
-        font-weight: 400;
-        color: var(--PrimaryTextColor) !important;
+        font-weight: 400 !important;
+        outline: none !important;
+        font-size: 16px !important;
         font-family: 'sfPro' !important;
+    }
+    svg {
+        color: var(--SecondaryTextColor);
     }
 }

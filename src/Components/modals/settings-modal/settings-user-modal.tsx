@@ -1,6 +1,10 @@
 import { CloseModal, IsModal } from '../is-modal';
 import Styles from '../style.module.scss';
 import { changeRequest } from 'Api/requests/change-request';
+import {
+    formContainer,
+    formItem,
+} from 'Assets/Tempus-Ui/Animation/Form-animate';
 import Button, {
     ButtonTypes,
 } from 'Assets/Tempus-Ui/Components/Buttons/Button';
@@ -65,12 +69,18 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
 
     return (
         <IsModal setModalOpen={setModalOpen}>
-            <motion.div className={Styles.SettingsModal}>
+            <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={formContainer}
+                className={Styles.SettingsModal}
+            >
                 <LoadImage
                     Callback={setUserPhoto}
                     Path="UsersLogos"
                     Image={userPhoto}
                     Colors={LoadImageColors.Primary}
+                    Variants={formItem}
                 ></LoadImage>
                 <Input
                     Placeholder="Имя"
@@ -79,6 +89,7 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
                         setUserDisplayName(e.currentTarget.value);
                     }}
                     Value={userDisplayName}
+                    Variants={formItem}
                     Type={InputTypes.text}
                 ></Input>
                 <Input
@@ -88,6 +99,7 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
                         setUserAge(e.currentTarget.value);
                     }}
                     Value={userAge}
+                    Variants={formItem}
                     Type={InputTypes.number}
                 ></Input>
 
@@ -100,6 +112,7 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
                 ></Select>
 
                 <Button
+                    Variants={formItem}
                     Title="Применить"
                     Click={ChangeFunction}
                     Type={ButtonTypes.active}

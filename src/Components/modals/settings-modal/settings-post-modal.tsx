@@ -2,6 +2,10 @@ import { CloseModal, IsModal } from '../is-modal';
 import Styles from '../style.module.scss';
 import { changeRequest } from 'Api/requests/change-request';
 import { removeRequest } from 'Api/requests/remove-request';
+import {
+    formContainer,
+    formItem,
+} from 'Assets/Tempus-Ui/Animation/Form-animate';
 import Button, {
     ButtonTypes,
 } from 'Assets/Tempus-Ui/Components/Buttons/Button';
@@ -48,8 +52,14 @@ const SettingsPostModal: FC<SettingsPostModal> = ({
 
     return (
         <IsModal setModalOpen={setModalOpen}>
-            <motion.div className={Styles.SettingsModal}>
+            <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={formContainer}
+                className={Styles.SettingsModal}
+            >
                 <Input
+                    Variants={formItem}
                     Placeholder="Заголовок"
                     Color={InputColors.primary}
                     Change={(e) => {
@@ -59,6 +69,7 @@ const SettingsPostModal: FC<SettingsPostModal> = ({
                     Type={InputTypes.text}
                 ></Input>
                 <Input
+                    Variants={formItem}
                     Placeholder="Основной текст"
                     Color={InputColors.primary}
                     Change={(e) => {
@@ -68,11 +79,13 @@ const SettingsPostModal: FC<SettingsPostModal> = ({
                     Type={InputTypes.text}
                 ></Input>
                 <Button
+                    Variants={formItem}
                     Title="Применить"
                     Click={ChangeFunction}
                     Type={ButtonTypes.active}
                 ></Button>
                 <Button
+                    Variants={formItem}
                     Title="Удалить пост"
                     Click={() => {
                         removeRequest('posts/', post.id);

@@ -14,9 +14,14 @@ import LoadImage, {
     LoadImageColors,
 } from 'Assets/Tempus-Ui/Components/LoadImage/LoadImage';
 import Select, { SelectTypes } from 'Assets/Tempus-Ui/Components/Select/Select';
+import { ErrorNotification } from 'Components/notifications/notifications';
 import { useAuth } from 'Hooks/useAuth';
-import { teamDirections } from 'Types/TypesOfData/team-or-user/team-directions';
+import {
+    teamDirections,
+    teamMembers,
+} from 'Types/TypesOfData/team-or-user/team-directions';
 import AppRoutes from 'Utils/routes/app-routes';
+import isObjectValuesNotEmpty from 'Utils/validate-data/not-empty-values';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
@@ -29,25 +34,32 @@ const CreateTeam = () => {
     const [description, setDescription] = useState('');
     const [image, setImage] = useState('');
     const [direction, setDirection] = useState('');
+    const [creators, setCreators] = useState('');
 
     const NewTeam = {
         title: title,
         desc: description,
         image: image,
         direction: direction,
+        creators: creators,
         members: {
             [UserId]: { UserId: UserId, UserRole: 'Administrator' },
         },
     };
+
     function createNewTeam() {
-        postRequestWithNewId('teams/', NewTeam).then(() => {
-            changeRequest(
-                'users/' + UserId,
-                '/experience',
-                UserExperience + 80,
-            );
-            navigate(AppRoutes.TEAMS);
-        });
+        if (isObjectValuesNotEmpty(NewTeam)) {
+            postRequestWithNewId('teams/', NewTeam).then(() => {
+                changeRequest(
+                    'users/' + UserId,
+                    '/experience',
+                    UserExperience + 80,
+                );
+                navigate(AppRoutes.TEAMS);
+            });
+        } else {
+            ErrorNotification('Не все поля заполнены.');
+        }
     }
 
     if (UserCanChanging) {
@@ -85,6 +97,12 @@ const CreateTeam = () => {
                         Placeholder="Выберите направление"
                         Array={teamDirections}
                         setSelect={setDirection}
+                    ></Select>
+                    <Select
+                        Type={SelectTypes.Input}
+                        Placeholder="Участники команды"
+                        Array={teamMembers}
+                        setSelect={setCreators}
                     ></Select>
                     <Button
                         Click={createNewTeam}

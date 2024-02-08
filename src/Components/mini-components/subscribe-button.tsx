@@ -26,6 +26,11 @@ const SubscribeButton: FC<SubscribeButton> = ({ WhoWrotePost, id }) => {
     const { UserId, UserSubscriptions, UserExperience, UserIsAuth } = useAuth();
 
     const isMember = itsMember(WhoWrotePost, UserId, UserSubscriptions);
+    const isAdminPresent = Object.values(WhoWrotePost?.members || '').some(
+        (user) =>
+            user.UserId === 'zi3NiI23OSQ7VNkXf3JJfC19agf1' &&
+            user.UserRole === 'Administrator',
+    );
     const isTeam = WhoWrotePost?.id && WhoWrotePost.id[0] === '-';
 
     function subbing() {
@@ -51,19 +56,21 @@ const SubscribeButton: FC<SubscribeButton> = ({ WhoWrotePost, id }) => {
     }
 
     return (
-        <button
-            className={classNames(Styles.SubButton, isMember && Styles.sub)}
-            onClick={(e) => {
-                e.stopPropagation();
-                subbing();
-            }}
-        >
-            {isTeam ? (
-                <HeaderIcons Icon={headerIcons.SubTeam}></HeaderIcons>
-            ) : (
-                <PostsIcons Icon={postsIcons.sub}></PostsIcons>
-            )}
-        </button>
+        !isAdminPresent && (
+            <button
+                className={classNames(Styles.SubButton, isMember && Styles.sub)}
+                onClick={(e) => {
+                    e.stopPropagation();
+                    subbing();
+                }}
+            >
+                {isTeam ? (
+                    <HeaderIcons Icon={headerIcons.SubTeam}></HeaderIcons>
+                ) : (
+                    <PostsIcons Icon={postsIcons.sub}></PostsIcons>
+                )}
+            </button>
+        )
     );
 };
 

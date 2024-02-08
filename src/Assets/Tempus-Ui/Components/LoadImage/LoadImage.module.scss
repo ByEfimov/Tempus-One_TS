@@ -20,7 +20,11 @@
                 height: 35px;
             }
             input {
-                width: 150px;
+                width: 120px;
+            }
+            input[type='range'] {
+                appearance: none;
+                -webkit-appearance: none;
             }
             input::-webkit-slider-runnable-track {
                 background: var(--PrimaryBackgroundColor);
@@ -32,10 +36,14 @@
                 background: var(--PrimaryBackgroundColor);
                 height: 10px;
             }
+
             input::-webkit-slider-thumb {
-                margin-top: -2.5px;
+                -webkit-appearance: none;
+                width: 15px;
+                height: 15px;
+                margin-top: -2.01px;
+                border-radius: 50%;
                 background: var(--AccentBorderColor);
-                background-color: var(--AccentBorderColor);
             }
         }
 

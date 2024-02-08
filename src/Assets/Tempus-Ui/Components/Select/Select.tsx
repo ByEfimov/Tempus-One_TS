@@ -1,12 +1,11 @@
 import { InputColors } from '../Inputs/Input';
 import Styles from './Select.module.scss';
-import './Select.scss';
 import {
     defaultContainer,
     defaultItem,
     formItem,
 } from 'Assets/Tempus-Ui/Animation/Form-animate';
-import { Select as AntdSelect } from 'antd';
+import { Select as AntdSelect, ConfigProvider } from 'antd';
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
 
@@ -62,12 +61,39 @@ const Select = ({
                     Color === InputColors.primary && 'Primary',
                 )}
             >
-                <AntdSelect
-                    placeholder={Placeholder}
-                    className={Styles.SelectInput}
-                    onChange={(value: string) => setSelect(value)}
-                    options={Array}
-                />
+                <ConfigProvider
+                    theme={{
+                        components: {
+                            Select: {
+                                borderRadius: 10,
+                                colorBgContainer:
+                                    Color === InputColors.primary
+                                        ? 'var(--PrimaryBackgroundColor)'
+                                        : 'var(--SecondaryBackgroundColor)',
+                                colorBorder: 'none',
+                                controlOutlineWidth: 1,
+                                controlOutline: 'var(--AccentBorderColor)',
+                                controlItemBgActive: 'var(--TransparentColor)',
+                                colorBgElevated:
+                                    Color === InputColors.primary
+                                        ? 'var(--PrimaryBackgroundColor)'
+                                        : 'var(--SecondaryBackgroundColor)',
+                                colorText: 'var(--PrimaryTextColor)',
+                                colorTextPlaceholder:
+                                    'var(--SecondaryTextColor)',
+
+                                zIndexPopup: 9999999,
+                            },
+                        },
+                    }}
+                >
+                    <AntdSelect
+                        placeholder={Placeholder}
+                        className={Styles.SelectInput}
+                        onChange={(value: string) => setSelect(value)}
+                        options={Array}
+                    />
+                </ConfigProvider>
             </motion.div>
         );
     }
