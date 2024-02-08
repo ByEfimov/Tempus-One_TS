@@ -175,7 +175,8 @@ function TeamData({
                     {OpenTeam.title}
                 </motion.li>
                 <motion.li variants={formItem} className={Styles.UserEmail}>
-                    {Object.values(OpenTeam.members).length} подписчиков
+                    {OpenTeam.direction ||
+                        Object.values(OpenTeam.members).length + ' подписчиков'}
                 </motion.li>
                 <motion.li variants={formItem} className={Styles.UserLevel}>
                     {OpenTeam.level || 1} уровень

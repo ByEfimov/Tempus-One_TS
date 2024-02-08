@@ -6,7 +6,7 @@ import {
     defaultItem,
 } from 'Assets/Tempus-Ui/Animation/Form-animate';
 import Preloader from 'Assets/Tempus-Ui/Components/Preloader/Preloader';
-import Select from 'Assets/Tempus-Ui/Components/Select/Select';
+import Select, { SelectTypes } from 'Assets/Tempus-Ui/Components/Select/Select';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';
 import { useHeader } from 'Hooks/useHeader';
@@ -45,7 +45,15 @@ const ShowPosts = ({
                 setPosts(filteredPosts);
             } else {
                 getRequestArray('/posts').then((posts) => {
-                    setPosts(posts);
+                    const filteredPosts = aplyFilterPosts(
+                        selectFilter,
+                        UserSubscriptions,
+                        UserId,
+                        HeaderSearchBar,
+                        AuthorFilter,
+                        posts,
+                    );
+                    setPosts(filteredPosts);
                     dispatch(setLastPostKey(Object.keys(posts).pop()));
                 });
             }
@@ -62,7 +70,8 @@ const ShowPosts = ({
                 <Select
                     Array={FiltersPosts}
                     setSelect={setSelectFilter}
-                    selectFilter={selectFilter}
+                    Select={selectFilter}
+                    Type={SelectTypes.Row}
                 ></Select>
             )}
             {posts ? (

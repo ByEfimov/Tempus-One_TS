@@ -8,7 +8,10 @@ import Input, {
     InputColors,
     InputTypes,
 } from 'Assets/Tempus-Ui/Components/Inputs/Input';
-import LoadImage from 'Assets/Tempus-Ui/Components/LoadImage/LoadImage';
+import TextArea from 'Assets/Tempus-Ui/Components/Inputs/TextArea';
+import LoadImage, {
+    LoadImageColors,
+} from 'Assets/Tempus-Ui/Components/LoadImage/LoadImage';
 import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';
 import { motion } from 'framer-motion';
 import { FC, useState } from 'react';
@@ -40,6 +43,8 @@ const SettingsTeamModal: FC<SettingsTeamModal> = ({ setModalOpen, team }) => {
         <IsModal setModalOpen={setModalOpen}>
             <motion.div className={Styles.SettingsModal}>
                 <LoadImage
+                    Path="TeamsLogos"
+                    Colors={LoadImageColors.Primary}
                     Callback={setTeamPhoto}
                     Image={teamPhoto}
                 ></LoadImage>
@@ -52,15 +57,12 @@ const SettingsTeamModal: FC<SettingsTeamModal> = ({ setModalOpen, team }) => {
                     Value={teamTitle}
                     Type={InputTypes.text}
                 ></Input>
-                <Input
+                <TextArea
                     Placeholder="Описание"
-                    Color={InputColors.primary}
-                    Change={(e) => {
-                        setTeamDesc(e.currentTarget.value);
-                    }}
+                    Change={(e) => setTeamDesc(e.target.value)}
                     Value={teamDesc}
-                    Type={InputTypes.text}
-                ></Input>
+                    Color={InputColors.primary}
+                ></TextArea>
                 <Button
                     Title="Применить"
                     Click={ChangeFunction}

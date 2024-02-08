@@ -1,28 +1,42 @@
 import Button, { ButtonTypes } from '../Buttons/Button';
 import Styles from './LoadImage.module.scss';
+import { formItemType } from 'Assets/Tempus-Ui/Animation/Form-animate';
 import ButtonIcons, {
     buttonIcons,
 } from 'Assets/Tempus-Ui/Icons/Buttons/Button-icons';
 import { useAuth } from 'Hooks/useAuth';
+import classNames from 'classnames';
 import FeatherIcon from 'feather-icons-react';
 import { getStorage, ref, uploadBytes } from 'firebase/storage';
+import { motion } from 'framer-motion';
 import { useRef, useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import { useDropzone } from 'react-dropzone';
 
+export enum LoadImageColors {
+    Default = 'Default',
+    Primary = 'Primary',
+}
+
 const LoadImage = ({
     Callback,
     Image,
+    Path,
+    Colors,
+    Variants,
 }: {
     Callback: (value: React.SetStateAction<string>) => void;
     Image: string;
+    Path: string;
+    Colors: LoadImageColors;
+    Variants?: formItemType;
 }) => {
     const [image, setImage] = useState<string | null>(null);
     const { UserId } = useAuth();
     const editorRef = useRef<AvatarEditor | null>(null);
     const [scale, setScale] = useState<number>(1);
     const storage = getStorage();
-    const storageRef = ref(storage, '/logos/' + UserId);
+    const storageRef = ref(storage, '/' + Path + '/' + UserId);
 
     const onDrop = (acceptedFiles: File[]) => {
         const file = acceptedFiles[0];
@@ -54,7 +68,13 @@ const LoadImage = ({
     const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
     return (
-        <div className={Styles.LoadImage}>
+        <motion.div
+            variants={Variants}
+            className={classNames(
+                Styles.LoadImage,
+                Colors === LoadImageColors.Default && Styles.Default,
+            )}
+        >
             {image && !Image ? (
                 <div className={Styles.changeImage}>
                     <div className={Styles.editor}>
@@ -100,7 +120,7 @@ const LoadImage = ({
                 )
             )}
             {Image && <img className={Styles.editedImage} src={Image} alt="" />}
-        </div>
+        </motion.div>
     );
 };
 

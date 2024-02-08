@@ -8,8 +8,12 @@ import Input, {
     InputColors,
     InputTypes,
 } from 'Assets/Tempus-Ui/Components/Inputs/Input';
-import LoadImage from 'Assets/Tempus-Ui/Components/LoadImage/LoadImage';
+import LoadImage, {
+    LoadImageColors,
+} from 'Assets/Tempus-Ui/Components/LoadImage/LoadImage';
+import Select, { SelectTypes } from 'Assets/Tempus-Ui/Components/Select/Select';
 import { useAuth } from 'Hooks/useAuth';
+import axios from 'axios';
 import { motion } from 'framer-motion';
 import React, { FC, useEffect, useState } from 'react';
 
@@ -24,31 +28,39 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
     const [userSpec, setUserSpec] = useState('');
 
     const [allSpecializations, setAllSpecializations] =
-        useState<{ id: string; name: string }[]>();
+        useState<{ label: string; value: string }[]>();
     const { UserId } = useAuth();
 
     function ChangeFunction() {
+        const defaultPath = 'users/' + UserId;
+
         if (userPhoto !== '') {
-            changeRequest('users/' + UserId, '/photo', userPhoto);
+            changeRequest(defaultPath, '/photo', userPhoto);
         }
         if (userDisplayName !== '') {
-            changeRequest('users/' + UserId, '/name', userDisplayName);
+            changeRequest(defaultPath, '/name', userDisplayName);
         }
         if (userAge !== '') {
-            changeRequest('users/' + UserId, '/age', userAge);
+            changeRequest(defaultPath, '/age', userAge);
         }
         if (userSpec !== '') {
-            changeRequest('users/' + UserId, '/specialization', userSpec);
+            changeRequest(defaultPath, '/specialization', userSpec);
         }
         CloseModal();
     }
 
     useEffect(() => {
-        fetch('https://api.hh.ru/specializations')
-            .then((response) => response.json())
-            .then((data) => {
-                setAllSpecializations(data[0].specializations);
-            });
+        axios.get('https://api.hh.ru/specializations').then((response) => {
+            const data = response.data;
+            setAllSpecializations(
+                data[0].specializations.map(
+                    (specialization: { name: string }) => ({
+                        label: specialization.name,
+                        value: specialization.name,
+                    }),
+                ),
+            );
+        });
     }, []);
 
     return (
@@ -56,7 +68,9 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
             <motion.div className={Styles.SettingsModal}>
                 <LoadImage
                     Callback={setUserPhoto}
+                    Path="UsersLogos"
                     Image={userPhoto}
+                    Colors={LoadImageColors.Primary}
                 ></LoadImage>
                 <Input
                     Placeholder="Имя"
@@ -76,18 +90,15 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
                     Value={userAge}
                     Type={InputTypes.number}
                 ></Input>
-                <select onChange={(e) => setUserSpec(e.target.value)}>
-                    {allSpecializations && (
-                        <>
-                            <option value="">Выберите профессию</option>
-                            {allSpecializations.map((spec) => (
-                                <option key={spec.id} value={spec.name}>
-                                    {spec.name}
-                                </option>
-                            ))}
-                        </>
-                    )}
-                </select>
+
+                <Select
+                    Array={allSpecializations}
+                    setSelect={setUserSpec}
+                    Placeholder="Выберите профессию"
+                    Type={SelectTypes.Input}
+                    Color={InputColors.primary}
+                ></Select>
+
                 <Button
                     Title="Применить"
                     Click={ChangeFunction}

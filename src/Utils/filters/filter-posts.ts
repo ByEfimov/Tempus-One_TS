@@ -52,7 +52,7 @@ export function aplyFilterPosts(
 }
 
 export const FiltersPosts = [
-    { name: 'Все посты', value: 'Default' },
-    { name: 'Интересное', value: 'Interesting' },
-    { name: 'Только мои', value: 'OnlyMy' },
+    { label: 'Все посты', value: 'Default' },
+    { label: 'Интересное', value: 'Interesting' },
+    { label: 'Только мои', value: 'OnlyMy' },
 ];

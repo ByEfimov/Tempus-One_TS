@@ -23,3 +23,18 @@
         background-color: var(--FourBackgroundColor);
     }
 }
+
+.SelectInput {
+    position: relative;
+    border-radius: 10px;
+    width: 100%;
+    transition: all 0.2s;
+    justify-content: center;
+    align-items: center;
+    min-height: 45px;
+    * {
+        font-weight: 400;
+        color: var(--PrimaryTextColor) !important;
+        font-family: 'sfPro' !important;
+    }
+}

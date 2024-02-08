@@ -2,6 +2,7 @@ import Styles from './Styles.module.scss';
 import { getRequestObject } from 'Api/requests/get-requests';
 import UserIcon from 'Assets/Icons/User/user.svg';
 import {
+    defaultItem,
     formContainer,
     formItem,
 } from 'Assets/Tempus-Ui/Animation/Form-animate';
@@ -177,14 +178,15 @@ const UserLogo = ({ OpenUser }: { OpenUser: OpenUserType | UserType }) => {
                 ></StatusModal>
             )}
             {userStatus && (
-                <div
+                <motion.div
+                    variants={defaultItem}
                     className={Styles.UserStatus}
                     onClick={() => {
                         setStatusModalOpen(true);
                     }}
                 >
                     <img src={userStatus?.image} alt="" />
-                </div>
+                </motion.div>
             )}
             <div className={Styles.UserPhoto}>
                 <img
