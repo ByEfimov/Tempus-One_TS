@@ -1,0 +1,36 @@
+.Button {
+    border-radius: 10px;
+    padding: 10px;
+    background: var(--SecondaryBackgroundColor);
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 0.3px;
+    transition: scale 0.2s;
+    width: 100%;
+    img {
+        width: 30px;
+    }
+}
+
+.ButtonActive {
+    background: var(--AccentBackgroundGradient);
+    border-radius: 50px;
+    box-shadow: var(--AccentBackgroundShadow);
+}
+
+.Button:active {
+    scale: 0.98;
+}
+
+.ButtonError {
+    background: var(--ErrorBackgroundGradient);
+}
+
+.ButtonIcon {
+    width: fit-content;
+    padding: 0px;
+    background: inherit;
+}
