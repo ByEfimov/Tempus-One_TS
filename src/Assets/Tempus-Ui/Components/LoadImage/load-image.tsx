@@ -1,9 +1,11 @@
-import Button, { ButtonTypes } from '../Buttons/Button';
-import Styles from './LoadImage.module.scss';
-import { formItemType } from 'Assets/Tempus-Ui/Animation/Form-animate';
-import ButtonIcons, {
+import Styles from './load-image.module.scss';
+import {
+    Button,
+    ButtonIcons,
+    ButtonTypes,
     buttonIcons,
-} from 'Assets/Tempus-Ui/Icons/Buttons/Button-icons';
+    formItemType,
+} from 'Assets/Tempus-Ui';
 import { useAuth } from 'Hooks/useAuth';
 import classNames from 'classnames';
 import FeatherIcon from 'feather-icons-react';

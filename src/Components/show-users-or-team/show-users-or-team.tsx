@@ -1,5 +1,5 @@
 import Styles from './Styles.module.scss';
-import { formItem } from 'Assets/Tempus-Ui/Animation/Form-animate';
+import { formItem } from 'Assets/Tempus-Ui';
 import ShowLogo from 'Components/mini-components/show-logo';
 import SubscribeButton from 'Components/mini-components/subscribe-button';
 import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';

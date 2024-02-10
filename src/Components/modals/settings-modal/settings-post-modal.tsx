@@ -3,16 +3,14 @@ import Styles from '../style.module.scss';
 import { changeRequest } from 'Api/requests/change-request';
 import { removeRequest } from 'Api/requests/remove-request';
 import {
-    formContainer,
-    formItem,
-} from 'Assets/Tempus-Ui/Animation/Form-animate';
-import Button, {
+    Button,
     ButtonTypes,
-} from 'Assets/Tempus-Ui/Components/Buttons/Button';
-import Input, {
+    Input,
     InputColors,
     InputTypes,
-} from 'Assets/Tempus-Ui/Components/Inputs/Input';
+    formContainer,
+    formItem,
+} from 'Assets/Tempus-Ui';
 import { Post } from 'Types/TypesOfData/post/post';
 import AppRoutes from 'Utils/routes/app-routes';
 import { motion } from 'framer-motion';

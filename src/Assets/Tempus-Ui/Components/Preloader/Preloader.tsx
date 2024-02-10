@@ -1,4 +1,4 @@
-import Styles from './Preloader.module.scss';
+import Styles from './preloader.module.scss';
 import { motion } from 'framer-motion';
 
 const Preloader = () => {

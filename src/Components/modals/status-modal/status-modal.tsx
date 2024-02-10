@@ -1,9 +1,6 @@
 import { IsModal } from '../is-modal';
 import Styles from '../style.module.scss';
-import {
-    formContainer,
-    formItem,
-} from 'Assets/Tempus-Ui/Animation/Form-animate';
+import { formContainer, formItem } from 'Assets/Tempus-Ui';
 import { statusType } from 'Pages/open-pages/open-user/user-page';
 import { motion } from 'framer-motion';
 

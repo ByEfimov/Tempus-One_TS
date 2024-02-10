@@ -3,21 +3,19 @@ import Styles from '../style.module.scss';
 import { changeRequest } from 'Api/requests/change-request';
 import { removeRequest } from 'Api/requests/remove-request';
 import {
-    formContainer,
-    formItem,
-} from 'Assets/Tempus-Ui/Animation/Form-animate';
-import Button, {
+    Button,
     ButtonTypes,
-} from 'Assets/Tempus-Ui/Components/Buttons/Button';
-import Input, {
+    Input,
     InputColors,
     InputTypes,
-} from 'Assets/Tempus-Ui/Components/Inputs/Input';
-import TextArea from 'Assets/Tempus-Ui/Components/Inputs/TextArea';
-import LoadImage, {
+    LoadImage,
     LoadImageColors,
-} from 'Assets/Tempus-Ui/Components/LoadImage/LoadImage';
-import Select, { SelectTypes } from 'Assets/Tempus-Ui/Components/Select/Select';
+    Select,
+    SelectTypes,
+    TextArea,
+    formContainer,
+    formItem,
+} from 'Assets/Tempus-Ui';
 import { useAuth } from 'Hooks/useAuth';
 import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';
 import { teamMembers } from 'Types/TypesOfData/team-or-user/team-directions';

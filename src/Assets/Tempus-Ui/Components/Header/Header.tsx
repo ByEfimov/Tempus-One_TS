@@ -1,15 +1,18 @@
-import Input, { IconPositions, InputTypes } from '../Inputs/Input';
 import Styles from './Header.module.scss';
-import HeaderIcons, {
+import {
+    HeaderIcons,
+    IconPositions,
+    Input,
+    InputTypes,
     headerIcons,
-} from 'Assets/Tempus-Ui/Icons/Header/Header-Icons';
+} from 'Assets/Tempus-Ui';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useHeader } from 'Hooks/useHeader';
 import { setInputSearchBar } from 'Store/slices/header/header-slice';
 import { TypesOfHeader } from 'Types/TypesOfData/header/header-type';
 import { motion } from 'framer-motion';
 
-export default function Header() {
+const Header = () => {
     const {
         HeaderTitle,
         HeaderSearchBar,
@@ -73,4 +76,5 @@ export default function Header() {
             </motion.header>
         );
     }
-}
+};
+export default Header;

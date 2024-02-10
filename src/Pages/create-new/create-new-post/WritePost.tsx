@@ -8,12 +8,12 @@ import TextMode from './ModsOfWrite/TextMode';
 import Styles from './Styles.module.scss';
 import { changeRequest } from 'Api/requests/change-request';
 import { postRequestWithNewId } from 'Api/requests/post-requests-with-new-id';
-import Button, {
+import {
+    Button,
+    ButtonIcons,
     ButtonTypes,
-} from 'Assets/Tempus-Ui/Components/Buttons/Button';
-import ButtonIcons, {
     buttonIcons,
-} from 'Assets/Tempus-Ui/Icons/Buttons/Button-icons';
+} from 'Assets/Tempus-Ui';
 import ButtonVoid from 'Components/mini-components/button';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';

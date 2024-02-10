@@ -2,11 +2,11 @@ import Styles from './Styles.module.scss';
 import { getRequestObject } from 'Api/requests/get-requests';
 import UserIcon from 'Assets/Icons/User/user.svg';
 import {
+    Preloader,
     defaultItem,
     formContainer,
     formItem,
-} from 'Assets/Tempus-Ui/Animation/Form-animate';
-import Preloader from 'Assets/Tempus-Ui/Components/Preloader/Preloader';
+} from 'Assets/Tempus-Ui';
 import SubscribeButton from 'Components/mini-components/subscribe-button';
 import StatusModal from 'Components/modals/status-modal/status-modal';
 import { ErrorNotification } from 'Components/notifications/notifications';

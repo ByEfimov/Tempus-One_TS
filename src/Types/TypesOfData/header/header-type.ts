@@ -1,4 +1,4 @@
-import { headerIcons } from 'Assets/Tempus-Ui/Icons/Header/Header-Icons';
+import { headerIcons } from 'Assets/Tempus-Ui/Icons/Header/header-icons';
 import { ReactNode } from 'react';
 
 export type HeaderType = {

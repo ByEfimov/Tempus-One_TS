@@ -3,10 +3,7 @@ import Styles from '../style.module.scss';
 import getUserAdmins from 'Api/Teams/get-user-admins';
 import { changeRequest } from 'Api/requests/change-request';
 import { postRequestWithNewId } from 'Api/requests/post-requests-with-new-id';
-import {
-    defaultContainer,
-    defaultItem,
-} from 'Assets/Tempus-Ui/Animation/Form-animate';
+import { defaultContainer, defaultItem } from 'Assets/Tempus-Ui';
 import ShowLogo from 'Components/mini-components/show-logo';
 import {
     ErrorNotification,

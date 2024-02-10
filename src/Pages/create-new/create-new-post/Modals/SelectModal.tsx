@@ -1,7 +1,5 @@
 import Styles from '../Styles.module.scss';
-import Button, {
-    ButtonTypes,
-} from 'Assets/Tempus-Ui/Components/Buttons/Button';
+import { Button, ButtonTypes } from 'Assets/Tempus-Ui';
 import { CloseModal, IsModal } from 'Components/modals/is-modal';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useWritePost } from 'Hooks/useWritePost';

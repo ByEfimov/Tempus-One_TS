@@ -1,14 +1,12 @@
 import Styles from './my-profile.module.scss';
 import {
+    Button,
+    ButtonIcons,
+    ButtonTypes,
+    buttonIcons,
     formContainer,
     formItem,
-} from 'Assets/Tempus-Ui/Animation/Form-animate';
-import Button, {
-    ButtonTypes,
-} from 'Assets/Tempus-Ui/Components/Buttons/Button';
-import ButtonIcons, {
-    buttonIcons,
-} from 'Assets/Tempus-Ui/Icons/Buttons/Button-icons';
+} from 'Assets/Tempus-Ui';
 import SettingsUserModal from 'Components/modals/settings-modal/settings-user-modal';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import { useAppDispatch, useAppSelector } from 'Hooks/redux-hooks';

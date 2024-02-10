@@ -2,20 +2,18 @@ import { CloseModal, IsModal } from '../is-modal';
 import Styles from '../style.module.scss';
 import { changeRequest } from 'Api/requests/change-request';
 import {
-    formContainer,
-    formItem,
-} from 'Assets/Tempus-Ui/Animation/Form-animate';
-import Button, {
+    Button,
     ButtonTypes,
-} from 'Assets/Tempus-Ui/Components/Buttons/Button';
-import Input, {
+    Input,
     InputColors,
     InputTypes,
-} from 'Assets/Tempus-Ui/Components/Inputs/Input';
-import LoadImage, {
+    LoadImage,
     LoadImageColors,
-} from 'Assets/Tempus-Ui/Components/LoadImage/LoadImage';
-import Select, { SelectTypes } from 'Assets/Tempus-Ui/Components/Select/Select';
+    Select,
+    SelectTypes,
+    formContainer,
+    formItem,
+} from 'Assets/Tempus-Ui';
 import { useAuth } from 'Hooks/useAuth';
 import axios from 'axios';
 import { motion } from 'framer-motion';

@@ -1,12 +1,12 @@
 import Styles from './styles.module.scss';
 import { Subscription } from 'Api/Users/interaction/subscription';
 import { changeRequest } from 'Api/requests/change-request';
-import HeaderIcons, {
+import {
+    HeaderIcons,
+    PostIcons,
     headerIcons,
-} from 'Assets/Tempus-Ui/Icons/Header/Header-Icons';
-import PostsIcons, {
-    postsIcons,
-} from 'Assets/Tempus-Ui/Icons/Posts/Posts-Icons';
+    postIcons,
+} from 'Assets/Tempus-Ui';
 import {
     ErrorNotification,
     MassageNotification,
@@ -67,7 +67,7 @@ const SubscribeButton: FC<SubscribeButton> = ({ WhoWrotePost, id }) => {
                 {isTeam ? (
                     <HeaderIcons Icon={headerIcons.SubTeam}></HeaderIcons>
                 ) : (
-                    <PostsIcons Icon={postsIcons.sub}></PostsIcons>
+                    <PostIcons Icon={postIcons.sub}></PostIcons>
                 )}
             </button>
         )

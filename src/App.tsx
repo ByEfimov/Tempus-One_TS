@@ -1,6 +1,4 @@
-import Header from 'Assets/Tempus-Ui/Components/Header/Header';
-import NavBar from 'Assets/Tempus-Ui/Components/Nav-bar/Nav-bar';
-import { footerIcons } from 'Assets/Tempus-Ui/Icons/Footer/footer-icons';
+import { Header, NavBar, navBarIcons } from 'Assets/Tempus-Ui';
 import { Notifications } from 'Components/notifications/notifications';
 import { useAuth } from 'Hooks/useAuth';
 import AllTeams from 'Pages/all-teams/all-teams';
@@ -26,12 +24,12 @@ function App() {
         {
             name: 'Home',
             path: [AppRoutes.DEFAULT, AppRoutes.POST],
-            icon: footerIcons.Home,
+            icon: navBarIcons.Home,
         },
         {
             name: 'Services',
             path: [AppRoutes.SERVICES],
-            icon: footerIcons.Services,
+            icon: navBarIcons.Services,
         },
         {
             name: 'Users',
@@ -42,12 +40,12 @@ function App() {
                 AppRoutes.USER,
             ],
             blackList: [PathToProfile],
-            icon: footerIcons.Users,
+            icon: navBarIcons.Users,
         },
         {
             name: 'Statistic',
             path: [AppRoutes.STATISTIC],
-            icon: footerIcons.Statistic,
+            icon: navBarIcons.Statistic,
         },
         {
             name: 'Profile',
@@ -55,7 +53,7 @@ function App() {
                 UserIsAuth ? AppRoutes.MYPROFILE : AppRoutes.LOGIN,
                 PathToProfile,
             ],
-            icon: footerIcons.User,
+            icon: navBarIcons.User,
         },
     ];
 

@@ -1,6 +1,5 @@
-import { InputColors } from './Input';
 import Styles from './Input.module.scss';
-import { formItemType } from 'Assets/Tempus-Ui/Animation/Form-animate';
+import { InputColors, formItemType } from 'Assets/Tempus-Ui';
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
 

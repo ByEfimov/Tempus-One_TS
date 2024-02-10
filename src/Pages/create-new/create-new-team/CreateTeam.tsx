@@ -2,18 +2,18 @@ import Styles from './Styles.module.scss';
 import { changeRequest } from 'Api/requests/change-request';
 import { postRequestWithNewId } from 'Api/requests/post-requests-with-new-id';
 import {
+    Button,
+    ButtonTypes,
+    Input,
+    InputTypes,
+    LoadImage,
+    LoadImageColors,
+    Select,
+    SelectTypes,
+    TextArea,
     formContainer,
     formItem,
-} from 'Assets/Tempus-Ui/Animation/Form-animate';
-import Button, {
-    ButtonTypes,
-} from 'Assets/Tempus-Ui/Components/Buttons/Button';
-import Input, { InputTypes } from 'Assets/Tempus-Ui/Components/Inputs/Input';
-import TextArea from 'Assets/Tempus-Ui/Components/Inputs/TextArea';
-import LoadImage, {
-    LoadImageColors,
-} from 'Assets/Tempus-Ui/Components/LoadImage/LoadImage';
-import Select, { SelectTypes } from 'Assets/Tempus-Ui/Components/Select/Select';
+} from 'Assets/Tempus-Ui';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import { useAuth } from 'Hooks/useAuth';
 import {

@@ -1,7 +1,6 @@
 import Styles from './Styles.module.scss';
 import { getRequestArray } from 'Api/requests/get-requests';
-import { defaultContainer } from 'Assets/Tempus-Ui/Animation/Form-animate';
-import Preloader from 'Assets/Tempus-Ui/Components/Preloader/Preloader';
+import { Preloader, defaultContainer } from 'Assets/Tempus-Ui';
 import ShowUserOrTeam from 'Components/show-users-or-team/show-users-or-team';
 import { useHeader } from 'Hooks/useHeader';
 import { OpenUserType } from 'Types/TypesOfData/team-or-user/open-user-type';

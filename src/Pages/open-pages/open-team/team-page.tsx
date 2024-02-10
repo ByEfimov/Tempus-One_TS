@@ -3,16 +3,14 @@ import TeamInfoModal from './team-info-modal';
 import getUserAdmins from 'Api/Teams/get-user-admins';
 import { getRequestObject } from 'Api/requests/get-requests';
 import {
+    Button,
+    ButtonIcons,
+    ButtonTypes,
+    Preloader,
+    buttonIcons,
     formContainer,
     formItem,
-} from 'Assets/Tempus-Ui/Animation/Form-animate';
-import Button, {
-    ButtonTypes,
-} from 'Assets/Tempus-Ui/Components/Buttons/Button';
-import Preloader from 'Assets/Tempus-Ui/Components/Preloader/Preloader';
-import ButtonIcons, {
-    buttonIcons,
-} from 'Assets/Tempus-Ui/Icons/Buttons/Button-icons';
+} from 'Assets/Tempus-Ui';
 import SubscribeButton from 'Components/mini-components/subscribe-button';
 import SettingsTeamModal from 'Components/modals/settings-modal/settings-team-modal';
 import { ErrorNotification } from 'Components/notifications/notifications';

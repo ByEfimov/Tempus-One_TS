@@ -1,10 +1,10 @@
-import { InputColors } from '../Inputs/Input';
-import Styles from './Select.module.scss';
+import Styles from './select.module.scss';
 import {
+    InputColors,
     defaultContainer,
     defaultItem,
     formItem,
-} from 'Assets/Tempus-Ui/Animation/Form-animate';
+} from 'Assets/Tempus-Ui';
 import { Select as AntdSelect, ConfigProvider } from 'antd';
 import classNames from 'classnames';
 import { motion } from 'framer-motion';

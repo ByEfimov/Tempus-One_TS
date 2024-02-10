@@ -1,8 +1,5 @@
 import Styles from './members.module.scss';
-import {
-    defaultContainer,
-    defaultItem,
-} from 'Assets/Tempus-Ui/Animation/Form-animate';
+import { defaultContainer, defaultItem } from 'Assets/Tempus-Ui';
 import { OpenUserType } from 'Types/TypesOfData/team-or-user/open-user-type';
 import AppRoutes from 'Utils/routes/app-routes';
 import { motion } from 'framer-motion';

@@ -1,9 +1,6 @@
 import Styles from './Styles.module.scss';
 import { getRequestObject } from 'Api/requests/get-requests';
-import {
-    formContainer,
-    formItem,
-} from 'Assets/Tempus-Ui/Animation/Form-animate';
+import { formContainer, formItem } from 'Assets/Tempus-Ui';
 import Members from 'Assets/Tempus-Ui/Components/Members/members';
 import { IsModal } from 'Components/modals/is-modal';
 import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';

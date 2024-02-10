@@ -1,5 +1,5 @@
 import Styles from './Input.module.scss';
-import { formItemType } from 'Assets/Tempus-Ui/Animation/Form-animate';
+import { formItemType } from 'Assets/Tempus-Ui';
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import { ReactNode } from 'react';

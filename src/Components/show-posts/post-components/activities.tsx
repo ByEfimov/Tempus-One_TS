@@ -1,9 +1,7 @@
 import Styles from '../posts/Styles.module.scss';
 import { postRequestWithoutNewId } from 'Api/requests/post-requests-with-new-id';
 import { removeRequest } from 'Api/requests/remove-request';
-import PostsIcons, {
-    postsIcons,
-} from 'Assets/Tempus-Ui/Icons/Posts/Posts-Icons';
+import { PostIcons, postIcons } from 'Assets/Tempus-Ui';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import { useAuth } from 'Hooks/useAuth';
 import { Post } from 'Types/TypesOfData/post/post';
@@ -59,7 +57,7 @@ const Activities: FC<ActivitiesProps> = ({
                     }}
                     className={(ItPostLiked && Styles.LikeHeart) || undefined}
                 >
-                    <PostsIcons Icon={postsIcons.like}></PostsIcons>
+                    <PostIcons Icon={postIcons.like}></PostIcons>
                     <h1>{PostLikes}</h1>
                 </button>
                 <button
@@ -68,7 +66,7 @@ const Activities: FC<ActivitiesProps> = ({
                         setCommentsOpen(true);
                     }}
                 >
-                    <PostsIcons Icon={postsIcons.comment}></PostsIcons>
+                    <PostIcons Icon={postIcons.comment}></PostIcons>
                     <h1>{PostComments}</h1>
                 </button>
                 <button
@@ -77,12 +75,12 @@ const Activities: FC<ActivitiesProps> = ({
                         setRepostModalOpen(true);
                     }}
                 >
-                    <PostsIcons Icon={postsIcons.repost}></PostsIcons>
+                    <PostIcons Icon={postIcons.repost}></PostIcons>
                     <h1>{post.PostReposts}</h1>
                 </button>
             </div>
             <button className={Styles.Shows}>
-                <PostsIcons Icon={postsIcons.eye}></PostsIcons>
+                <PostIcons Icon={postIcons.eye}></PostIcons>
                 <h1> {Object.keys(post.PostShows).length}</h1>
             </button>
         </div>

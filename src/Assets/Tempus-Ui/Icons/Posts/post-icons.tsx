@@ -1,4 +1,4 @@
-export enum postsIcons {
+export enum postIcons {
     sub = 'sub',
     like = 'like',
     comment = 'comment',
@@ -6,7 +6,7 @@ export enum postsIcons {
     eye = 'eye',
 }
 
-const PostsIcons = ({ Icon }: { Icon: postsIcons }) => {
+const PostIcons = ({ Icon }: { Icon: postIcons }) => {
     switch (Icon) {
         case 'sub':
             return (
@@ -106,4 +106,4 @@ const PostsIcons = ({ Icon }: { Icon: postsIcons }) => {
     }
 };
 
-export default PostsIcons;
+export default PostIcons;

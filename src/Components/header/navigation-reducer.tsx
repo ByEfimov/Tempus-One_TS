@@ -1,4 +1,4 @@
-import { headerIcons } from 'Assets/Tempus-Ui/Icons/Header/Header-Icons';
+import { headerIcons } from 'Assets/Tempus-Ui/Icons/Header/header-icons';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { setHeader, setTypeOfHeader } from 'Store/slices/header/header-slice';
 import { TypesOfHeader } from 'Types/TypesOfData/header/header-type';

@@ -2,11 +2,12 @@ import Styles from './Styles.module.scss';
 import PostRender from './post-render';
 import { getRequestArray } from 'Api/requests/get-requests';
 import {
+    Preloader,
+    Select,
+    SelectTypes,
     defaultContainer,
     defaultItem,
-} from 'Assets/Tempus-Ui/Animation/Form-animate';
-import Preloader from 'Assets/Tempus-Ui/Components/Preloader/Preloader';
-import Select, { SelectTypes } from 'Assets/Tempus-Ui/Components/Select/Select';
+} from 'Assets/Tempus-Ui';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';
 import { useHeader } from 'Hooks/useHeader';

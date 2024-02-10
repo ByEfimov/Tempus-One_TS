@@ -1,4 +1,4 @@
-import Styles from './Texts.module.scss';
+import Styles from './texts.module.scss';
 import { motion } from 'framer-motion';
 
 interface TextWithLine {

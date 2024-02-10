@@ -1,7 +1,5 @@
-import Styles from './Nav-bar.module.scss';
-import FooterIcons, {
-    footerIcons,
-} from 'Assets/Tempus-Ui/Icons/Footer/footer-icons';
+import Styles from './nav-bar.module.scss';
+import { NavBarIcons, navBarIcons } from 'Assets/Tempus-Ui';
 import { useHeader } from 'Hooks/useHeader';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -9,7 +7,7 @@ interface NavBar {
     Links: {
         name: string;
         path: string[];
-        icon: footerIcons;
+        icon: navBarIcons;
         blackList?: string[];
     }[];
 }
@@ -35,7 +33,7 @@ const NavBar = ({ Links }: NavBar) => {
                         }
                         to={link.path[0]}
                     >
-                        <FooterIcons Icon={link.icon} />
+                        <NavBarIcons Icon={link.icon} />
                     </Link>
                 ))}
             </nav>

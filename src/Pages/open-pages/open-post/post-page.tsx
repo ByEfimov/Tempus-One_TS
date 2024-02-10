@@ -1,11 +1,11 @@
 import { getRequestObject } from 'Api/requests/get-requests';
-import { defaultContainer } from 'Assets/Tempus-Ui/Animation/Form-animate';
-import Button, {
+import {
+    Button,
+    ButtonIcons,
     ButtonTypes,
-} from 'Assets/Tempus-Ui/Components/Buttons/Button';
-import ButtonIcons, {
     buttonIcons,
-} from 'Assets/Tempus-Ui/Icons/Buttons/Button-icons';
+    defaultContainer,
+} from 'Assets/Tempus-Ui';
 import FakePost from 'Components/fake-data/fake-post';
 import SettingsPostModal from 'Components/modals/settings-modal/settings-post-modal';
 import { ErrorNotification } from 'Components/notifications/notifications';

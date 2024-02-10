@@ -4,11 +4,7 @@ import CommentRender from './comment-render';
 import { getRequestArray } from 'Api/requests/get-requests';
 import { postRequestWithNewId } from 'Api/requests/post-requests-with-new-id';
 import SendIcon from 'Assets/Icons/Post/message.svg';
-import Input, {
-    InputColors,
-    InputTypes,
-} from 'Assets/Tempus-Ui/Components/Inputs/Input';
-import Preloader from 'Assets/Tempus-Ui/Components/Preloader/Preloader';
+import { Input, InputColors, InputTypes, Preloader } from 'Assets/Tempus-Ui';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import { useAuth } from 'Hooks/useAuth';
 import { Comments } from 'Types/TypesOfData/post/comments';

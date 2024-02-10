@@ -1,11 +1,11 @@
 import { getRequestObject } from 'Api/requests/get-requests';
 import { postRequestWithoutNewId } from 'Api/requests/post-requests-with-new-id';
-import Button, {
+import {
+    Button,
+    ButtonIcons,
     ButtonTypes,
-} from 'Assets/Tempus-Ui/Components/Buttons/Button';
-import ButtonIcons, {
     buttonIcons,
-} from 'Assets/Tempus-Ui/Icons/Buttons/Button-icons';
+} from 'Assets/Tempus-Ui';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { setCurrentUser } from 'Store/slices/UserSlice';
