@@ -1,4 +1,4 @@
-import Styles from './Button.module.scss';
+import Styles from './button.module.scss';
 import { formItemType } from 'Assets/Tempus-Ui';
 import classNames from 'classnames';
 import { motion } from 'framer-motion';

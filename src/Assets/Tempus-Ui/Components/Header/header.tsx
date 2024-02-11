@@ -1,4 +1,4 @@
-import Styles from './Header.module.scss';
+import Styles from './header.module.scss';
 import {
     HeaderIcons,
     IconPositions,
