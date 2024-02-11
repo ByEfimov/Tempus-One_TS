@@ -9,9 +9,14 @@
     align-items: center;
     letter-spacing: 0.3px;
     transition: scale 0.2s;
+    gap: 5px;
     width: 100%;
     img {
         width: 30px;
+    }
+    svg {
+        fill: var(--PrimaryTextColor);
+        width: 23px;
     }
 }
 

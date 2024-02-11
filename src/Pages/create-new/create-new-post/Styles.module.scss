@@ -1,4 +1,57 @@
 .WritePost {
     margin: 10px;
     margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .block {
+        border-radius: 10px;
+        min-height: 150px;
+        padding: 5px;
+        font-size: 16px;
+        position: relative;
+        font-weight: 300;
+        border: 1px solid transparent;
+
+        transition: all 0.3s;
+        background-color: var(--SecondaryBackgroundColor);
+        .bottomInfo {
+            bottom: 5px;
+            right: 10px;
+            position: absolute;
+            font-size: 15px;
+            display: flex;
+            gap: 10px;
+            color: var(--SecondaryTextColor);
+            svg {
+                fill: var(--SecondaryTextColor);
+                height: 15px;
+            }
+        }
+        div {
+            height: 100%;
+            font-size: unset;
+            word-wrap: break-word;
+        }
+        textarea {
+            padding: 5px;
+            outline: none;
+            font-weight: 300;
+            top: 0;
+            left: 0;
+            bottom: 32px;
+            position: absolute;
+            text-align: start;
+            width: 100%;
+        }
+    }
+    .block:has(textarea:focus) {
+        border: 1px solid var(--AccentBorderColor);
+        box-shadow: var(--AccentBackgroundShadow);
+    }
+}
+.Modal {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }

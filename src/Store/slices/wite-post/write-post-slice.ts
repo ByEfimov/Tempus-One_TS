@@ -10,40 +10,41 @@ export enum blockTypes {
 }
 
 export type TextData = {
-    content: string;
+    content?: string;
 };
 export type CodeData = {
-    code: string;
+    code?: string;
 };
 export type SurveyData = {
-    question: string;
-    variants: Array<{
+    question?: string;
+    variants?: Array<{
         text: string;
         selected?: Record<string, string>;
         id: number;
     }>;
 };
 export type ImageData = {
-    imageUrl: string;
+    imageUrl?: string;
 };
 
-export type blocksType = Array<
-    | {
-          type: blockTypes;
-          data: blockTypes.Text extends typeof blockTypes
-              ? TextData
-              : blockTypes.Code extends typeof blockTypes
-              ? CodeData
-              : blockTypes.Image extends typeof blockTypes
-              ? ImageData
-              : blockTypes.Survey extends typeof blockTypes
-              ? SurveyData
-              : unknown;
-          isEditing: boolean;
-          id: number;
-      }
-    | undefined
->;
+type BlockTypeData<T extends blockTypes> = T extends blockTypes.Code
+    ? CodeData
+    : T extends blockTypes.Survey
+    ? SurveyData
+    : T extends blockTypes.Text
+    ? TextData
+    : T extends blockTypes.Image
+    ? ImageData
+    : never;
+
+export type blockType = {
+    type: blockTypes;
+    data: BlockTypeData<blockTypes>;
+    isEditing: boolean;
+    id: number;
+};
+
+export type blocksType = Array<blockType | undefined>;
 
 type PostType = {
     author?: string;
@@ -71,15 +72,39 @@ const WritePostSlice = createSlice({
             state,
             action: PayloadAction<{ newBlockType: blockTypes }>,
         ) {
+            for (let i = 0; i < state.blocks.length; i++) {
+                state.blocks[i]!.isEditing = false;
+            }
+
             const newBlockStructure = getNewBlockStructure(
                 action.payload.newBlockType,
                 state.blocks.length,
             );
-
             state.blocks.push(newBlockStructure);
+        },
+        activeEditing(state, action: PayloadAction<{ blockId: number }>) {
+            for (let i = 0; i < state.blocks.length; i++) {
+                state.blocks[i]!.isEditing = false;
+            }
+
+            state.blocks[action.payload.blockId]!.isEditing = true;
+        },
+        changeDataBlock(
+            state,
+            action: PayloadAction<{ blockId: number; content?: string }>,
+        ) {
+            const block = state.blocks[action.payload.blockId];
+            if (block && 'data' in block && 'content' in block.data) {
+                block.data.content = action.payload.content;
+            }
+        },
+
+        changeAuthorPost(state, action: PayloadAction<{ authorId: string }>) {
+            state.author = action.payload.authorId;
         },
     },
 });
-export const { addNewBlock } = WritePostSlice.actions;
+export const { addNewBlock, activeEditing, changeDataBlock, changeAuthorPost } =
+    WritePostSlice.actions;
 
 export default WritePostSlice.reducer;

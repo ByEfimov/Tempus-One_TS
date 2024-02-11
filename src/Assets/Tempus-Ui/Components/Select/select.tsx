@@ -23,7 +23,9 @@ const Select = ({
     Color = InputColors.default,
 }: {
     Array?: { label: string; value: string }[];
-    setSelect: React.Dispatch<React.SetStateAction<string>>;
+    setSelect:
+        | ((value: string) => void)
+        | React.Dispatch<React.SetStateAction<string>>;
     Select?: string;
     Type: SelectTypes;
     Placeholder?: string;
