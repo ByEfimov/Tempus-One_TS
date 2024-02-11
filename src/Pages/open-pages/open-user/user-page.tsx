@@ -11,11 +11,9 @@ import SubscribeButton from 'Components/mini-components/subscribe-button';
 import StatusModal from 'Components/modals/status-modal/status-modal';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import ShowPosts from 'Components/show-posts/posts/show-posts';
-import ShowUserOrTeam from 'Components/show-users-or-team/show-users-or-team';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { UserType } from 'Store/slices/UserSlice';
 import { setExecuteButton } from 'Store/slices/header/header-slice';
-import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';
 import { OpenUserType } from 'Types/TypesOfData/team-or-user/open-user-type';
 import MaxXpToNextLevel from 'Utils/users-or-teams/max-xp-to-next-level';
 import { motion } from 'framer-motion';
@@ -56,9 +54,6 @@ export default function UserPage() {
             <>
                 <UserData OpenUser={OpenUser} />
 
-                <ShowTeams
-                    UserSubscriptions={OpenUser.subscriptions}
-                ></ShowTeams>
                 <ShowPosts ShowTitle AuthorFilter={OpenUser.id}></ShowPosts>
             </>
         );
@@ -66,48 +61,6 @@ export default function UserPage() {
         return <Preloader></Preloader>;
     }
 }
-
-const ShowTeams = ({
-    UserSubscriptions,
-}: {
-    UserSubscriptions: {
-        teams?: Record<string, string>;
-        users?: Record<string, string>;
-    };
-}) => {
-    const [firstTeam, setFirstTeam] = useState<OpenTeamType>();
-
-    useEffect(() => {
-        async function getFirstTeam() {
-            if (UserSubscriptions?.teams) {
-                const team = await getRequestObject(
-                    'teams/' + Object.values(UserSubscriptions?.teams)[0],
-                );
-                setFirstTeam(team);
-            }
-        }
-
-        getFirstTeam();
-    }, []);
-
-    return (
-        UserSubscriptions?.teams &&
-        firstTeam && (
-            <motion.ul
-                variants={formContainer}
-                initial="hidden"
-                animate="visible"
-                className={Styles.ShowTeams}
-            >
-                <motion.li variants={formItem} className={Styles.TitleTeams}>
-                    Сообщества
-                    <div>{Object.values(UserSubscriptions?.teams).length}</div>
-                </motion.li>
-                <ShowUserOrTeam Team={firstTeam}></ShowUserOrTeam>
-            </motion.ul>
-        )
-    );
-};
 
 interface CustomCSSProperties extends React.CSSProperties {
     '--progress-value'?: number;

@@ -26,7 +26,8 @@
 }
 
 .ButtonError {
-    background: var(--ErrorBackgroundGradient);
+    border: 1px solid var(--ErrorBackgroundGradient);
+    background-color: #491d1d;
 }
 
 .ButtonIcon {

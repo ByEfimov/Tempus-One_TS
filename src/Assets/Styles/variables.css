@@ -13,7 +13,7 @@ html {
     --AccentBorderColor: #700cf5;
     --AccentBackgroundShadow: 0px 0px 10px 0px rgba(113, 13, 245, 0.1);
 
-    --ErrorBackgroundGradient: linear-gradient(94deg, #993a33 0%, #ad4c43 100%);
+    --ErrorBackgroundGradient: #993a33;
     --TransparentColor: #60658320;
 
     --PrimaryPaddingSize: 12px;

@@ -75,20 +75,17 @@ const ShowPosts = ({
                     Type={SelectTypes.Row}
                 ></Select>
             )}
+            {ShowTitle && (
+                <motion.div variants={defaultItem} className={Styles.Title}>
+                    Посты <div>{posts?.length || 0}</div>
+                </motion.div>
+            )}
             {posts ? (
                 <motion.div
                     initial="hidden"
                     animate="visible"
                     variants={defaultContainer}
                 >
-                    {ShowTitle && (
-                        <motion.div
-                            variants={defaultItem}
-                            className={Styles.Title}
-                        >
-                            Посты <div>{posts.length}</div>
-                        </motion.div>
-                    )}
                     <motion.div
                         className={Styles.Render}
                         variants={defaultItem}
