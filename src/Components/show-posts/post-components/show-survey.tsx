@@ -14,6 +14,7 @@ const ShowSurvey: FC<ShowSurvey> = ({ block, postId }) => {
     const [SelectVariant, setSelectVariant] = useState<
         number | null | undefined
     >(null);
+
     const [ItPostSelect, setItPostSelect] = useState(
         'variants' in block.data &&
             Object.values(block.data.variants || 0).some(
@@ -34,15 +35,15 @@ const ShowSurvey: FC<ShowSurvey> = ({ block, postId }) => {
     function selectVariant(Variant: {
         id: number | undefined;
         text: string;
-        selected?: { [key: string]: string };
+        selected?: Record<string, string>;
     }) {
-        if (!ItPostSelect && UserIsAuth) {
+        if (ItPostSelect === false && UserIsAuth) {
             postRequestWithoutNewId(
                 'posts/' +
                     postId +
-                    '/PostDataBlocks/' +
+                    '/blocks/' +
                     block.id +
-                    '/variants/' +
+                    '/data/variants/' +
                     Variant.id +
                     '/selected/' +
                     UserId,
@@ -60,43 +61,49 @@ const ShowSurvey: FC<ShowSurvey> = ({ block, postId }) => {
             </div>
             <div className={Styles.variants}>
                 {'variants' in block.data &&
-                    block.data.variants?.map((variant) =>
-                        ItPostSelect ? (
-                            <div
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    selectVariant(variant);
-                                }}
-                                className={Styles.variant}
-                                key={variant.id}
-                            >
-                                <progress
-                                    max={selectedUsers.length}
-                                    value={
-                                        variant.id === SelectVariant
+                    block.data.variants?.map((variant) => (
+                        <div
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                selectVariant(variant);
+                            }}
+                            className={Styles.variant}
+                            key={variant.id}
+                        >
+                            <progress
+                                max={
+                                    typeof SelectVariant === 'number'
+                                        ? selectedUsers.length + 1
+                                        : selectedUsers.length
+                                }
+                                value={
+                                    ItPostSelect
+                                        ? SelectVariant === variant.id
                                             ? Object.values(
-                                                  variant.selected || 0,
+                                                  variant.selected || '',
                                               ).length + 1
                                             : Object.values(
-                                                  variant.selected || 0,
+                                                  variant.selected || '',
                                               ).length
-                                    }
-                                ></progress>
-                                {variant.text}{' '}
-                            </div>
-                        ) : (
-                            <div
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    selectVariant(variant);
-                                }}
-                                className={Styles.variant}
-                                key={variant.id}
-                            >
-                                {variant.text}
-                            </div>
-                        ),
-                    )}
+                                        : 0
+                                }
+                            ></progress>
+                            {variant.text}
+                            {ItPostSelect && (
+                                <div className={Styles.stat}>
+                                    {SelectVariant === variant.id
+                                        ? Object.values(variant.selected || '')
+                                              .length + 1
+                                        : Object.values(variant.selected || '')
+                                              .length}
+                                    /
+                                    {typeof SelectVariant === 'number'
+                                        ? selectedUsers.length + 1
+                                        : selectedUsers.length}
+                                </div>
+                            )}
+                        </div>
+                    ))}
             </div>
         </div>
     );

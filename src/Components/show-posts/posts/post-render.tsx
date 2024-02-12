@@ -1,6 +1,7 @@
 import Activities from '../post-components/activities';
 import AuthorDataRender from '../post-components/author-data-render';
 import BlocksRender from '../post-components/blocks-render';
+import LinkToOrig from '../post-components/link-to-orig';
 import PostDataRender from '../post-components/post-data-render';
 import Styles from './Styles.module.scss';
 import { getRequestObject } from 'Api/requests/get-requests';
@@ -81,25 +82,8 @@ const PostRender = ({ post }: { post: PostType }) => {
             >
                 <AuthorDataRender post={post} WhoWrotePost={WhoWrotePost} />
                 <PostDataRender post={post} />
-
-                <BlocksRender
-                    Blocks={post.blocks}
-                    postId={post.id}
-                ></BlocksRender>
-
-                {post.PostWithRepostUs && (
-                    <a
-                        className={Styles.repost}
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            navigate(
-                                AppRoutes.POST + '/' + post.PostWithRepostUs,
-                            );
-                        }}
-                    >
-                        Ссылка на оригинал.
-                    </a>
-                )}
+                <BlocksRender Blocks={post.blocks} postId={post.id} />
+                <LinkToOrig post={post} />
                 <Activities
                     setCommentsOpen={setCommentsOpen}
                     setRepostModalOpen={setRepostModalOpen}
