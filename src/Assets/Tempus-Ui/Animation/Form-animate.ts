@@ -28,7 +28,7 @@ export const formContainer = {
         opacity: 1,
         scale: 1,
         transition: {
-            delayChildren: 0.3,
+            delayChildren: 0.2,
             staggerChildren: 0.2,
         },
     },
@@ -40,8 +40,8 @@ export const defaultContainer = {
         opacity: 1,
         scale: 1,
         transition: {
-            delayChildren: 0.3,
-            staggerChildren: 0.3,
+            delayChildren: 0.1,
+            staggerChildren: 0.1,
         },
     },
 };

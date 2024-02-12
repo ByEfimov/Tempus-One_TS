@@ -37,7 +37,7 @@ const WritePost = () => {
                 '/experience',
                 UserExperience + 40,
             );
-            postRequestWithNewId('posts/', '');
+            postRequestWithNewId('posts/', NewPost);
             navigate(AppRoutes.DEFAULT);
         }
         dispatch(

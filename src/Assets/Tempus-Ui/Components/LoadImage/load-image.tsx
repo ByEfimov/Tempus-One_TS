@@ -6,7 +6,6 @@ import {
     buttonIcons,
     formItemType,
 } from 'Assets/Tempus-Ui';
-import { useAuth } from 'Hooks/useAuth';
 import classNames from 'classnames';
 import FeatherIcon from 'feather-icons-react';
 import { getStorage, ref, uploadBytes } from 'firebase/storage';
@@ -14,10 +13,16 @@ import { motion } from 'framer-motion';
 import { useRef, useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import { useDropzone } from 'react-dropzone';
+import { v4 as uuidv4 } from 'uuid';
 
 export enum LoadImageColors {
     Default = 'Default',
     Primary = 'Primary',
+}
+
+export enum LoadImageSizes {
+    Small = 'Small',
+    Large = 'Large',
 }
 
 const LoadImage = ({
@@ -26,19 +31,22 @@ const LoadImage = ({
     Path,
     Colors,
     Variants,
+    Size,
 }: {
-    Callback: (value: React.SetStateAction<string>) => void;
-    Image: string;
+    Callback:
+        | ((imageUrl: string) => void)
+        | React.Dispatch<React.SetStateAction<string>>;
+    Image?: string;
     Path: string;
     Colors: LoadImageColors;
     Variants?: formItemType;
+    Size?: LoadImageSizes;
 }) => {
     const [image, setImage] = useState<string | null>(null);
-    const { UserId } = useAuth();
     const editorRef = useRef<AvatarEditor | null>(null);
     const [scale, setScale] = useState<number>(1);
     const storage = getStorage();
-    const storageRef = ref(storage, '/' + Path + '/' + UserId);
+    const storageRef = ref(storage, '/' + Path + '/' + uuidv4());
 
     const onDrop = (acceptedFiles: File[]) => {
         const file = acceptedFiles[0];
@@ -75,6 +83,7 @@ const LoadImage = ({
             className={classNames(
                 Styles.LoadImage,
                 Colors === LoadImageColors.Default && Styles.Default,
+                Size === LoadImageSizes.Large && Styles.Large,
             )}
         >
             {image && !Image ? (
@@ -83,9 +92,9 @@ const LoadImage = ({
                         <AvatarEditor
                             ref={editorRef}
                             image={image}
-                            width={200}
-                            height={200}
-                            borderRadius={200}
+                            width={Size === LoadImageSizes.Large ? 400 : 200}
+                            height={Size === LoadImageSizes.Large ? 260 : 200}
+                            borderRadius={0}
                             border={0}
                             scale={scale}
                             style={{ touchAction: 'none' }}
@@ -96,7 +105,7 @@ const LoadImage = ({
                         <input
                             style={{ touchAction: 'none' }}
                             type="range"
-                            min={0.6}
+                            min={0.3}
                             max={1.5}
                             step={0.01}
                             value={scale}

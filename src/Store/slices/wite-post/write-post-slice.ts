@@ -91,20 +91,117 @@ const WritePostSlice = createSlice({
         },
         changeDataBlock(
             state,
-            action: PayloadAction<{ blockId: number; content?: string }>,
+            action: PayloadAction<{
+                blockId: number;
+                content?: string;
+                imageUrl?: string;
+                code?: string;
+                type: blockTypes;
+                question?: string;
+            }>,
         ) {
             const block = state.blocks[action.payload.blockId];
-            if (block && 'data' in block && 'content' in block.data) {
+
+            if (
+                block &&
+                'data' in block &&
+                'content' in block.data &&
+                action.payload.type === blockTypes.Text
+            ) {
                 block.data.content = action.payload.content;
+            }
+            if (
+                block &&
+                'data' in block &&
+                'imageUrl' in block.data &&
+                action.payload.type === blockTypes.Image
+            ) {
+                block.data.imageUrl = action.payload.imageUrl;
+            }
+            if (
+                block &&
+                'data' in block &&
+                'code' in block.data &&
+                action.payload.type === blockTypes.Code
+            ) {
+                block.data.code = action.payload.code;
+            }
+            if (
+                block &&
+                'data' in block &&
+                'question' in block.data &&
+                action.payload.type === blockTypes.Survey
+            ) {
+                block.data.question = action.payload.question;
+            }
+        },
+
+        changeVariantData(
+            state,
+            action: PayloadAction<{
+                blockId: number;
+                variantId: number;
+                variant: string;
+                type: blockTypes;
+            }>,
+        ) {
+            const block = state.blocks[action.payload.blockId];
+
+            if (
+                block &&
+                'data' in block &&
+                'variants' in block.data &&
+                block.data.variants &&
+                action.payload.type === blockTypes.Survey
+            ) {
+                block.data.variants[action.payload.variantId].text =
+                    action.payload.variant;
             }
         },
 
         changeAuthorPost(state, action: PayloadAction<{ authorId: string }>) {
             state.author = action.payload.authorId;
         },
+        removeBlock(state, action: PayloadAction<{ blockId: number }>) {
+            if (state.blocks.length > 1) {
+                state.blocks.splice(action.payload.blockId, 1);
+            }
+        },
+        removeVariant(
+            state,
+            action: PayloadAction<{ blockId: number; variantId: number }>,
+        ) {
+            const block = state.blocks[action.payload.blockId];
+            if (
+                block &&
+                'variants' in block.data &&
+                'data' in block &&
+                block.data.variants &&
+                block.data.variants?.length > 1
+            ) {
+                block.data.variants.splice(action.payload.variantId, 1);
+            }
+        },
+        addVariant(state, action: PayloadAction<{ blockId: number }>) {
+            const block = state.blocks[action.payload.blockId];
+            if (block && 'variants' in block.data && 'data' in block) {
+                block.data.variants?.push({
+                    text: `Вариант ответа ${block.data.variants.length + 1}`,
+                    id: block.data.variants.length,
+                });
+            }
+        },
     },
 });
-export const { addNewBlock, activeEditing, changeDataBlock, changeAuthorPost } =
-    WritePostSlice.actions;
+export const {
+    addNewBlock,
+    activeEditing,
+    changeDataBlock,
+    removeBlock,
+    changeVariantData,
+    changeAuthorPost,
+    removeVariant,
+    addVariant,
+} = WritePostSlice.actions;
 
 export default WritePostSlice.reducer;

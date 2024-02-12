@@ -15,14 +15,14 @@ export default function getNewBlockStructure(
     if (newBlockType === blockTypes.Code) {
         return {
             type: blockTypes.Code,
-            data: { code: 'Пиши свой код здесь...' },
+            data: { code: '<div>Пиши свой код здесь...</div>' },
             isEditing: true,
             id: newId,
         };
     }
     if (newBlockType === blockTypes.Survey) {
         return {
-            type: blockTypes.Code,
+            type: blockTypes.Survey,
             data: {
                 question: 'Твой вопрос здесь...',
                 variants: [{ text: 'Вариант ответа 1', id: 0 }],
@@ -33,8 +33,8 @@ export default function getNewBlockStructure(
     }
     if (newBlockType === blockTypes.Image) {
         return {
-            type: blockTypes.Code,
-            data: { imageUrl: 'blockImage' },
+            type: blockTypes.Image,
+            data: { imageUrl: '' },
             isEditing: true,
             id: newId,
         };
