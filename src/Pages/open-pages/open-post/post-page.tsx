@@ -7,13 +7,12 @@ import {
     defaultContainer,
 } from 'Assets/Tempus-Ui';
 import FakePost from 'Components/fake-data/fake-post';
-import SettingsPostModal from 'Components/modals/settings-modal/settings-post-modal';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import PostRender from 'Components/show-posts/posts/post-render';
 import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';
 import { setExecuteButton } from 'Store/slices/header/header-slice';
-import { Post } from 'Types/TypesOfData/post/post';
+import { PostType } from 'Store/slices/wite-post/write-post-slice';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -21,8 +20,8 @@ import { useParams } from 'react-router-dom';
 export default function PostPage() {
     const { id } = useParams();
     const { UserId } = useAuth();
-    const [OpenPost, setOpenPost] = useState<Post | null>(null);
-    const [SettingsModalOpen, setSettingsModalOpen] = useState(false);
+    const [OpenPost, setOpenPost] = useState<PostType | null>(null);
+
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -33,12 +32,10 @@ export default function PostPage() {
                     setExecuteButton({
                         button: {
                             icon: '',
-                            component: OpenPost?.PostAuthorId === UserId && (
+                            component: OpenPost?.author === UserId && (
                                 <Button
                                     Type={ButtonTypes.icon}
-                                    Click={() => {
-                                        setSettingsModalOpen(true);
-                                    }}
+                                    Click={() => {}}
                                 >
                                     <ButtonIcons Icon={buttonIcons.Settings} />
                                 </Button>
@@ -58,13 +55,13 @@ export default function PostPage() {
                 variants={defaultContainer}
                 style={{ padding: 10, paddingTop: 20 }}
             >
-                {SettingsModalOpen && (
+                {/* {SettingsModalOpen && (
                     <SettingsPostModal
                         setModalOpen={setSettingsModalOpen}
                         postid={id}
                         post={OpenPost}
                     ></SettingsPostModal>
-                )}
+                )} */}
                 <PostRender post={OpenPost}></PostRender>
             </motion.div>
         );
