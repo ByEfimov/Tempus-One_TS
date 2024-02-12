@@ -31,7 +31,10 @@
             font-weight: 400;
         }
         .Text {
+            max-height: 40px;
+            overflow: hidden;
             color: var(--DarkTextColor);
+            font-weight: 300;
         }
     }
     .BlocksData {

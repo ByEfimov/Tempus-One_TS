@@ -1,17 +1,25 @@
 import Styles from '../posts/Styles.module.scss';
-import { Post } from 'Types/TypesOfData/post/post';
+import { PostType } from 'Store/slices/wite-post/write-post-slice';
 import { FC } from 'react';
 
 interface PostDataRenderProps {
-    post: Post;
+    post: PostType;
 }
 
 const PostDataRender: FC<PostDataRenderProps> = ({ post }) => {
+    const filteredArray = post.blocks.filter((obj) => obj?.type === 'Text');
+
     return (
         <div className={Styles.PostData}>
-            <div className={Styles.Title}>{post.PostTitle}</div>
-            {!post.PostDataBlocks[1] && (
-                <div className={Styles.Text}>{post.PostDataBlocks[0].text}</div>
+            {filteredArray && (
+                <div className={Styles.Text}>
+                    {filteredArray.map(
+                        (text) =>
+                            text &&
+                            'content' in text.data &&
+                            text?.data.content + ' ',
+                    )}
+                </div>
             )}
         </div>
     );

@@ -1,12 +1,12 @@
 import Styles from '../posts/Styles.module.scss';
 import { postRequestWithoutNewId } from 'Api/requests/post-requests-with-new-id';
 import { useAuth } from 'Hooks/useAuth';
-import { PostBlock } from 'Types/TypesOfData/post/post';
+import { blockType } from 'Store/slices/wite-post/write-post-slice';
 import { FC, useState } from 'react';
 
 interface ShowSurvey {
-    block: PostBlock;
-    postId: string;
+    block: blockType;
+    postId: string | undefined;
 }
 
 const ShowSurvey: FC<ShowSurvey> = ({ block, postId }) => {
@@ -15,21 +15,21 @@ const ShowSurvey: FC<ShowSurvey> = ({ block, postId }) => {
         number | null | undefined
     >(null);
     const [ItPostSelect, setItPostSelect] = useState(
-        Object.values(block.variants || 0).some(
-            (obj) => obj.selected && obj.selected[UserId] === UserId,
-        ),
+        'variants' in block.data &&
+            Object.values(block.data.variants || 0).some(
+                (obj) => obj.selected && obj.selected[UserId] === UserId,
+            ),
     );
 
-    const selectedUsers = Object.values(block.variants || 0).reduce(
-        (acc, obj) => {
-            if (obj.selected) {
-                const users = Object.keys(obj.selected);
-                acc.push(...users);
-            }
-            return acc;
-        },
-        [],
-    );
+    const selectedUsers = Object.values(
+        ('variants' in block.data && block.data.variants) || 0,
+    ).reduce((acc, obj) => {
+        if (obj.selected) {
+            const users = Object.keys(obj.selected);
+            acc.push(...users);
+        }
+        return acc;
+    }, []);
 
     function selectVariant(Variant: {
         id: number | undefined;
@@ -55,43 +55,48 @@ const ShowSurvey: FC<ShowSurvey> = ({ block, postId }) => {
 
     return (
         <div className={Styles.SurveyMode}>
-            <div className={Styles.title}>{block.title}</div>
+            <div className={Styles.title}>
+                {'question' in block.data && block.data.question}
+            </div>
             <div className={Styles.variants}>
-                {block.variants?.map((variant) =>
-                    ItPostSelect ? (
-                        <div
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                selectVariant(variant);
-                            }}
-                            className={Styles.variant}
-                            key={variant.id}
-                        >
-                            <progress
-                                max={selectedUsers.length}
-                                value={
-                                    variant.id === SelectVariant
-                                        ? Object.values(variant.selected || 0)
-                                              .length + 1
-                                        : Object.values(variant.selected || 0)
-                                              .length
-                                }
-                            ></progress>
-                            {variant.text}{' '}
-                        </div>
-                    ) : (
-                        <div
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                selectVariant(variant);
-                            }}
-                            className={Styles.variant}
-                            key={variant.id}
-                        >
-                            {variant.text}
-                        </div>
-                    ),
-                )}
+                {'variants' in block.data &&
+                    block.data.variants?.map((variant) =>
+                        ItPostSelect ? (
+                            <div
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    selectVariant(variant);
+                                }}
+                                className={Styles.variant}
+                                key={variant.id}
+                            >
+                                <progress
+                                    max={selectedUsers.length}
+                                    value={
+                                        variant.id === SelectVariant
+                                            ? Object.values(
+                                                  variant.selected || 0,
+                                              ).length + 1
+                                            : Object.values(
+                                                  variant.selected || 0,
+                                              ).length
+                                    }
+                                ></progress>
+                                {variant.text}{' '}
+                            </div>
+                        ) : (
+                            <div
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    selectVariant(variant);
+                                }}
+                                className={Styles.variant}
+                                key={variant.id}
+                            >
+                                {variant.text}
+                            </div>
+                        ),
+                    )}
             </div>
         </div>
     );

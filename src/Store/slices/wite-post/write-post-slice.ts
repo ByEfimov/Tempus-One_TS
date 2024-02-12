@@ -46,14 +46,16 @@ export type blockType = {
 
 export type blocksType = Array<blockType | undefined>;
 
-type PostType = {
+export type PostType = {
     author?: string;
     date: number;
     blocks: blocksType;
     comments?: Array<{ date: number; text: string; commentator: string }>;
     likes?: Record<string, string>;
     reposts?: number;
+    id?: string;
     views?: Record<string, string>;
+    PostWithRepostUs?: string;
 };
 
 const currentDate = new Date();

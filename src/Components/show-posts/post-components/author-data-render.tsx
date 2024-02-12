@@ -2,14 +2,14 @@ import Styles from '../posts/Styles.module.scss';
 import { WhoWrotePost } from '../posts/post-render';
 import ShowLogo from 'Components/mini-components/show-logo';
 import SubscribeButton from 'Components/mini-components/subscribe-button';
-import { Post } from 'Types/TypesOfData/post/post';
+import { PostType } from 'Store/slices/wite-post/write-post-slice';
 import formatTimeAgo from 'Utils/post-utils/format-time-ago';
 import ItsUser from 'Utils/users-or-teams/Its-user';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface AuthorDataRenderProps {
-    post: Post;
+    post: PostType;
     WhoWrotePost: WhoWrotePost | null;
 }
 
@@ -42,7 +42,7 @@ const AuthorDataRender: FC<AuthorDataRenderProps> = ({
                         {WhoWrotePost?.name || WhoWrotePost?.title}
                     </div>
                     <div className={Styles.Date}>
-                        {formatTimeAgo(post.PostDate)}
+                        {formatTimeAgo(post.date)}
                     </div>
                 </div>
             </div>

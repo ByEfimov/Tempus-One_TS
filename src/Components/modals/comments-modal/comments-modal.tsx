@@ -14,7 +14,7 @@ import { motion } from 'framer-motion';
 import React, { FC, useEffect, useState } from 'react';
 
 interface CommentsModalProps {
-    PostId: string;
+    PostId: string | undefined;
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -24,7 +24,7 @@ const CommentsModal: FC<CommentsModalProps> = ({ setModalOpen, PostId }) => {
     const [comments, setComments] = useState<Comments[]>();
 
     function getCommentsOfPost() {
-        getRequestArray('posts/' + PostId + '/PostComments/').then((comments) =>
+        getRequestArray('posts/' + PostId + '/comments/').then((comments) =>
             setComments(comments),
         );
     }
@@ -37,7 +37,7 @@ const CommentsModal: FC<CommentsModalProps> = ({ setModalOpen, PostId }) => {
         const currentDate = new Date();
         const currentUnixTime = getUnixTime(currentDate);
         const commentText = filterBadWords(commentInput);
-        const commentPath = 'posts/' + PostId + '/PostComments/';
+        const commentPath = 'posts/' + PostId + '/comments/';
         if (commentInput && UserIsAuth) {
             const NewComment = {
                 CommentatorId: UserId,

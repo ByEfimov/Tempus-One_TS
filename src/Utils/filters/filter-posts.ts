@@ -1,4 +1,4 @@
-import { Post } from 'Types/TypesOfData/post/post';
+import { PostType } from 'Store/slices/wite-post/write-post-slice';
 
 export function aplyFilterPosts(
     filter: string,
@@ -20,7 +20,7 @@ export function aplyFilterPosts(
     UserId: string,
     HeaderSearchBar: string,
     AuthorFilter: string,
-    array?: Post[],
+    array?: PostType[],
 ) {
     let filterOfGroup;
     if (filter === FiltersPosts[0].value) {
@@ -28,24 +28,31 @@ export function aplyFilterPosts(
     } else if (filter === FiltersPosts[1].value && UserSubscriptions) {
         filterOfGroup = array?.filter((post) => {
             return Object.values(UserSubscriptions).some(
-                (obj) => post.PostAuthorId in obj,
+                (obj) => post.author && post.author in obj,
             );
         });
     } else if (filter === FiltersPosts[2].value) {
-        filterOfGroup = array?.filter((post) => post.PostAuthorId === UserId);
+        filterOfGroup = array?.filter((post) => post.author === UserId);
     }
 
     if (filterOfGroup) {
-        return filterOfGroup.filter(
-            (post) =>
-                (post.PostTitle.toLocaleLowerCase().includes(
-                    HeaderSearchBar.toLocaleLowerCase(),
-                ) ||
-                    post.PostDataBlocks[0].text
-                        .toLocaleLowerCase()
-                        .includes(HeaderSearchBar.toLocaleLowerCase())) &&
-                post.PostAuthorId.includes(AuthorFilter),
-        );
+        return filterOfGroup.filter((post) => {
+            const filteredArray = post.blocks.filter(
+                (obj) => obj?.type === 'Text',
+            );
+
+            return (
+                (
+                    ('content' in filteredArray[0]!.data &&
+                        filteredArray[0]?.data.content) ||
+                    ''
+                )
+                    .toLocaleLowerCase()
+                    .includes(HeaderSearchBar.toLocaleLowerCase()) &&
+                post.author &&
+                post.author.includes(AuthorFilter)
+            );
+        });
     } else {
         return filterOfGroup;
     }

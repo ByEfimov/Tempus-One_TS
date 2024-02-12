@@ -4,11 +4,11 @@ import { removeRequest } from 'Api/requests/remove-request';
 import { PostIcons, postIcons } from 'Assets/Tempus-Ui';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import { useAuth } from 'Hooks/useAuth';
-import { Post } from 'Types/TypesOfData/post/post';
+import { PostType } from 'Store/slices/wite-post/write-post-slice';
 import { FC, useState } from 'react';
 
 interface ActivitiesProps {
-    post: Post;
+    post: PostType;
     setCommentsOpen: React.Dispatch<React.SetStateAction<boolean>>;
     setRepostModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -20,23 +20,23 @@ const Activities: FC<ActivitiesProps> = ({
 }) => {
     const { UserId, UserCanChanging } = useAuth();
     const [PostLikes, setPostLikes] = useState(
-        post.PostLikes ? Object.values(post.PostLikes).length : 0,
+        post.likes ? Object.values(post.likes).length : 0,
     );
     const [ItPostLiked, setItPostLiked] = useState(
-        post.PostLikes ? Object.values(post.PostLikes).includes(UserId) : false,
+        post.likes ? Object.values(post.likes).includes(UserId) : false,
     );
 
-    const PostComments = Object.keys(post.PostComments || []).length;
+    const PostComments = Object.keys(post.comments || []).length;
 
     const LikePost = () => {
         if (UserCanChanging) {
             if (ItPostLiked) {
                 setPostLikes(PostLikes - 1);
-                removeRequest('posts/' + post.id + '/PostLikes/', UserId);
+                removeRequest('posts/' + post.id + '/likes/', UserId);
                 setItPostLiked(false);
             } else {
                 postRequestWithoutNewId(
-                    'posts/' + post.id + '/PostLikes/' + UserId,
+                    'posts/' + post.id + '/likes/' + UserId,
                     UserId,
                 );
                 setPostLikes(PostLikes + 1);
@@ -76,12 +76,12 @@ const Activities: FC<ActivitiesProps> = ({
                     }}
                 >
                     <PostIcons Icon={postIcons.repost}></PostIcons>
-                    <h1>{post.PostReposts}</h1>
+                    <h1>{post.reposts || 0}</h1>
                 </button>
             </div>
             <button className={Styles.Shows}>
                 <PostIcons Icon={postIcons.eye}></PostIcons>
-                <h1> {Object.keys(post.PostShows).length}</h1>
+                <h1> {Object.keys(post.views || '').length}</h1>
             </button>
         </div>
     );

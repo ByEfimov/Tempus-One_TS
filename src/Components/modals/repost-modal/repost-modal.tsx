@@ -10,10 +10,8 @@ import {
     MassageNotification,
 } from 'Components/notifications/notifications';
 import { useAuth } from 'Hooks/useAuth';
-import { NewPostType } from 'Types/TypesOfData/post/new-post-type';
-import { Post } from 'Types/TypesOfData/post/post';
+import { PostType } from 'Store/slices/wite-post/write-post-slice';
 import AppRoutes from 'Utils/routes/app-routes';
-import { countEmptyValues } from 'Utils/validate-data/count-empty-values';
 import { getUnixTime } from 'date-fns';
 import { motion } from 'framer-motion';
 import { FC, useEffect, useState } from 'react';
@@ -21,7 +19,7 @@ import { useNavigate } from 'react-router-dom';
 
 interface RepostModal {
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    post: Post;
+    post: PostType;
 }
 
 const RepostModal: FC<RepostModal> = ({ setModalOpen, post }) => {
@@ -41,22 +39,20 @@ const RepostModal: FC<RepostModal> = ({ setModalOpen, post }) => {
         const currentDate = new Date();
         const currentUnixTime = getUnixTime(currentDate);
 
-        const NewPost: NewPostType = {
+        const NewPost: PostType = {
             ...post,
-            PostAuthorId: UserId,
-            PostId: null,
-            PostDate: currentUnixTime,
             PostWithRepostUs: post.id,
-            id: null,
+            author: UserId,
+            date: currentUnixTime,
         };
 
-        if (countEmptyValues(NewPost) - 5 >= 0 && UserIsAuth) {
+        if (UserIsAuth) {
             postRequestWithNewId('posts/', NewPost);
 
             changeRequest(
                 'posts/' + post.id,
-                '/PostReposts/',
-                post.PostReposts + 1,
+                '/reposts/',
+                (post.reposts || 0) + 1,
             );
             navigate(AppRoutes.USER + '/' + UserId);
             MassageNotification('Пост отправлен!');

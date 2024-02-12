@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { LivePreview, LiveProvider } from 'react-live';
 
 interface ShowCodeProps {
-    UserCode: string;
+    UserCode: string | undefined;
 }
 
 const ShowCode: FC<ShowCodeProps> = ({ UserCode }) => {

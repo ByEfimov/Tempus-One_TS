@@ -12,7 +12,7 @@ import { useAppDispatch } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';
 import { useHeader } from 'Hooks/useHeader';
 import { setLastPostKey } from 'Store/slices/PostsSlice';
-import { Post } from 'Types/TypesOfData/post/post';
+import { PostType } from 'Store/slices/wite-post/write-post-slice';
 import { FiltersPosts, aplyFilterPosts } from 'Utils/filters/filter-posts';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
@@ -26,7 +26,7 @@ const ShowPosts = ({
     ShowFilters?: boolean;
     ShowTitle?: boolean;
 }) => {
-    const [posts, setPosts] = useState<Post[]>();
+    const [posts, setPosts] = useState<PostType[]>();
     const [selectFilter, setSelectFilter] = useState<string>('Default');
     const { UserSubscriptions, UserId } = useAuth();
     const { HeaderSearchBar } = useHeader();

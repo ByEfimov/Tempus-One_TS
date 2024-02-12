@@ -2,60 +2,68 @@ import Styles from '../posts/Styles.module.scss';
 import ShowCode from './show-code';
 import ShowImage from './show-image';
 import ShowSurvey from './show-survey';
-import { PostBlock } from 'Types/TypesOfData/post/post';
-import { ModsOfWritePost } from 'Utils/mods-of-comps';
+import {
+    blockTypes,
+    blocksType,
+} from 'Store/slices/wite-post/write-post-slice';
 import { FC } from 'react';
 import 'swiper/css';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 interface BlocksRender {
-    Blocks: PostBlock[];
-    postId: string;
+    Blocks: blocksType;
+    postId: string | undefined;
 }
 
 const BlocksRender: FC<BlocksRender> = ({ Blocks, postId }) => {
     return (
-        <Swiper
-            spaceBetween={20}
-            slidesPerView={1}
-            pagination={{
-                type: 'fraction',
-            }}
-            modules={[Pagination]}
-        >
-            {Blocks.map((block) => {
-                if (
-                    block.type === ModsOfWritePost.image ||
-                    block.type === ModsOfWritePost.code ||
-                    block.type === ModsOfWritePost.survey
-                ) {
-                    return (
-                        <SwiperSlide key={block.id}>
-                            {block.type === ModsOfWritePost.image ? (
-                                <div className={Styles.ImageBlock}>
-                                    <ShowImage
-                                        imageSrc={block.text}
-                                    ></ShowImage>
-                                </div>
-                            ) : block.type === ModsOfWritePost.code ? (
-                                <div
-                                    key={block.id}
-                                    className={Styles.CodePostBlock}
-                                >
-                                    <ShowCode UserCode={block.text}></ShowCode>
-                                </div>
-                            ) : (
-                                <ShowSurvey
-                                    postId={postId}
-                                    block={block}
-                                ></ShowSurvey>
-                            )}
-                        </SwiperSlide>
-                    );
-                }
-            })}
-        </Swiper>
+        <div className={Styles.BlocksData}>
+            <Swiper
+                spaceBetween={20}
+                slidesPerView={1}
+                pagination={{
+                    type: 'fraction',
+                }}
+                modules={[Pagination]}
+            >
+                {Blocks.map((block) => {
+                    if (
+                        block?.type === blockTypes.Code ||
+                        block?.type === blockTypes.Image ||
+                        block?.type === blockTypes.Survey
+                    ) {
+                        return (
+                            <SwiperSlide key={block.id}>
+                                {block.type === blockTypes.Image &&
+                                'imageUrl' in block.data ? (
+                                    <div className={Styles.ImageBlock}>
+                                        <ShowImage
+                                            imageSrc={block.data.imageUrl}
+                                        ></ShowImage>
+                                    </div>
+                                ) : block.type === blockTypes.Code &&
+                                  'code' in block.data ? (
+                                    <div
+                                        key={block.id}
+                                        className={Styles.CodePostBlock}
+                                    >
+                                        <ShowCode
+                                            UserCode={block.data.code}
+                                        ></ShowCode>
+                                    </div>
+                                ) : (
+                                    <ShowSurvey
+                                        postId={postId}
+                                        block={block}
+                                    ></ShowSurvey>
+                                )}
+                            </SwiperSlide>
+                        );
+                    }
+                })}
+            </Swiper>
+        </div>
     );
 };
 
