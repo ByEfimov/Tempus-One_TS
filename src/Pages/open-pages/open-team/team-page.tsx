@@ -37,7 +37,7 @@ export default function TeamPage() {
             .then((team) => {
                 setOpenTeam(team);
                 getUserAdmins(UserId).then((teams) => {
-                    setUserAdmin(teams.some((team) => team.TeamId === id));
+                    setUserAdmin(teams.some((team) => team.value === id));
                 });
             })
             .catch(() => ErrorNotification('Сообщество не найдено.'));
@@ -47,7 +47,6 @@ export default function TeamPage() {
         dispatch(
             setExecuteButton({
                 button: {
-                    icon: '',
                     component: (
                         <SubscribeButton
                             WhoWrotePost={OpenTeam}

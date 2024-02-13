@@ -52,7 +52,6 @@ export default function PostPage() {
                 dispatch(
                     setExecuteButton({
                         button: {
-                            icon: '',
                             component: OpenPost?.author === UserId && (
                                 <Button
                                     Type={ButtonTypes.icon}
