@@ -1,6 +1,7 @@
 import Styles from './Styles.module.scss';
 import RenderBlocks from './render-blocks';
 import SelectBlockModal from './select-block-modal';
+import getUserAdmins from 'Api/Teams/get-user-admins';
 import { changeRequest } from 'Api/requests/change-request';
 import { postRequestWithNewId } from 'Api/requests/post-requests-with-new-id';
 import {
@@ -25,12 +26,15 @@ import { Navigate, useNavigate } from 'react-router-dom';
 const WritePost = () => {
     const { UserExperience, UserId, UserCanChanging } = useAuth();
     const [selectBlockModalOpen, setSelectBlockModalOpen] = useState(false);
+    const [UserAdmins, setUserAdmins] =
+        useState<{ value: string; label: string }[]>();
     const NewPost = useAppSelector((state) => state.WritePost);
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
+        getUserAdmins(UserId).then((teams) => setUserAdmins(teams));
         function sendNewPost() {
             changeRequest(
                 'users/' + UserId,
@@ -40,6 +44,7 @@ const WritePost = () => {
             postRequestWithNewId('posts/', NewPost);
             navigate(AppRoutes.DEFAULT);
         }
+
         dispatch(
             setExecuteButton({
                 button: {
@@ -68,7 +73,12 @@ const WritePost = () => {
             >
                 <Select
                     Type={SelectTypes.Input}
-                    Array={[{ label: 'От меня', value: UserId }]}
+                    Array={
+                        UserAdmins && [
+                            ...UserAdmins,
+                            { label: 'От меня', value: UserId },
+                        ]
+                    }
                     setSelect={(value: string) => {
                         dispatch(changeAuthorPost({ authorId: value }));
                     }}
