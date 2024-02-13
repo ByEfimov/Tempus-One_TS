@@ -1,10 +1,12 @@
 import Styles from '../posts/Styles.module.scss';
 import { WhoWrotePost } from '../posts/post-render';
+import { formItem } from 'Assets/Tempus-Ui';
 import ShowLogo from 'Components/mini-components/show-logo';
 import SubscribeButton from 'Components/mini-components/subscribe-button';
 import { PostType } from 'Store/slices/wite-post/write-post-slice';
 import formatTimeAgo from 'Utils/post-utils/format-time-ago';
 import ItsUser from 'Utils/users-or-teams/Its-user';
+import { motion } from 'framer-motion';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -20,7 +22,8 @@ const AuthorDataRender: FC<AuthorDataRenderProps> = ({
     const navigate = useNavigate();
 
     return (
-        <div
+        <motion.div
+            variants={formItem}
             className={Styles.AuthorData}
             onClick={(e) => {
                 e.stopPropagation();
@@ -51,7 +54,7 @@ const AuthorDataRender: FC<AuthorDataRenderProps> = ({
                 WhoWrotePost={WhoWrotePost}
                 id={WhoWrotePost?.id}
             ></SubscribeButton>
-        </div>
+        </motion.div>
     );
 };
 

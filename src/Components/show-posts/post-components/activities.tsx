@@ -1,10 +1,11 @@
 import Styles from '../posts/Styles.module.scss';
 import { postRequestWithoutNewId } from 'Api/requests/post-requests-with-new-id';
 import { removeRequest } from 'Api/requests/remove-request';
-import { PostIcons, postIcons } from 'Assets/Tempus-Ui';
+import { PostIcons, formItem, postIcons } from 'Assets/Tempus-Ui';
 import { ErrorNotification } from 'Components/notifications/notifications';
 import { useAuth } from 'Hooks/useAuth';
 import { PostType } from 'Store/slices/wite-post/write-post-slice';
+import { motion } from 'framer-motion';
 import { FC, useState } from 'react';
 
 interface ActivitiesProps {
@@ -48,7 +49,7 @@ const Activities: FC<ActivitiesProps> = ({
     };
 
     return (
-        <div className={Styles.PostActivity}>
+        <motion.div variants={formItem} className={Styles.PostActivity}>
             <div className={Styles.Buttons}>
                 <button
                     onClick={(e) => {
@@ -83,7 +84,7 @@ const Activities: FC<ActivitiesProps> = ({
                 <PostIcons Icon={postIcons.eye}></PostIcons>
                 <h1> {Object.keys(post.views || '').length}</h1>
             </button>
-        </div>
+        </motion.div>
     );
 };
 export default Activities;

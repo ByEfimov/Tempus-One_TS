@@ -88,7 +88,7 @@ const ShowSurvey: FC<ShowSurvey> = ({ block, postId }) => {
                                         : 0
                                 }
                             ></progress>
-                            {variant.text}
+                            <div className={Styles.text}>{variant.text}</div>
                             {ItPostSelect && (
                                 <div className={Styles.stat}>
                                     {SelectVariant === variant.id

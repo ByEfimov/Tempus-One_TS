@@ -25,7 +25,7 @@ interface RepostModal {
 const RepostModal: FC<RepostModal> = ({ setModalOpen, post }) => {
     const { UserPhoto, UserId, UserIsAuth, UserSubscriptions } = useAuth();
     const [teamsAdmin, setTeamsAdmin] = useState<
-        { TeamId: string; TeamName: string; TeamImage: string }[] | undefined
+        { label: string; value: string; image?: string }[] | undefined
     >();
     const navigate = useNavigate();
 
@@ -85,12 +85,12 @@ const RepostModal: FC<RepostModal> = ({ setModalOpen, post }) => {
                     teamsAdmin.map((team) => (
                         <motion.button
                             variants={defaultItem}
-                            key={team.TeamId}
+                            key={team.value}
                             onClick={repostToYou}
                             className={Styles.RepostToTeam}
                         >
-                            <ShowLogo ImageUrl={team.TeamImage}></ShowLogo>
-                            <p className={Styles.name}>{team.TeamName}</p>
+                            <ShowLogo ImageUrl={team.image}></ShowLogo>
+                            <p className={Styles.name}>{team.label}</p>
                         </motion.button>
                     ))}
             </motion.div>

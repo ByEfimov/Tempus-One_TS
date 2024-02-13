@@ -25,6 +25,7 @@ export default function getUserAdmins(UserId: string | null) {
                         Array.push({
                             value: team,
                             label: admin.val()[team].title,
+                            image: admin.val()[team].image,
                         });
                     }
                     resolve(Array);

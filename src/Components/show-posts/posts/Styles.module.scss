@@ -68,162 +68,175 @@
             font-weight: 300;
             font-size: 15px;
         }
-        .SurveyMode {
-            background-color: #60658310;
-            padding: 5px;
-            flex-shrink: 0;
-            height: 240px;
-            width: 100%;
-            .title {
-                font-weight: 400;
-                color: var(--PrimaryTextColor);
-                font-size: 20px;
-                background: var(--AccentBackgroundGradient);
-                background-clip: text;
-            }
-            .variants {
-                margin-top: 10px;
-                display: flex;
-                gap: 10px;
-                flex-direction: column;
-                .variant {
-                    background-color: #60658310;
-                    font-weight: 300;
-                    font-size: 15px;
-                    padding: 8px;
-                    overflow: hidden;
-                    width: 100%;
-                    position: relative;
-                    border-radius: 10px;
-                    display: flex;
-                    justify-content: space-between;
-                    progress {
-                        z-index: -1;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        position: absolute;
-                        transition: all 0.3s;
-                        visibility: unset !important;
-                    }
-                    .stat {
-                        color: var(--SecondaryTextColor);
-                    }
+    }
 
-                    ::-webkit-progress-bar {
-                        background-color: var(--PrimaryBackgroundColor);
-                        transition: all 0.3s;
-                    }
-                    ::-webkit-progress-value {
-                        box-shadow: var(--AccentBackgroundShadow);
-                        transition: all 0.3s;
-                        background: var(--AccentBackgroundGradient);
-                    }
-                }
-                .select {
-                    background-color: #333;
-                }
-            }
-        }
-    }
-    .AuthorData {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        .Data {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            .Photo {
-                overflow: hidden;
-                width: 42px;
-                height: 42px;
-                background: var(--ThirdaryBackgroundColor);
-                box-shadow: var(--DarkShadow);
-                border-radius: 50%;
-            }
-            .Text {
-                display: flex;
-                flex-direction: column;
-                gap: 3px;
-                .Name {
-                    color: var(--AccentColor);
-                    font-size: 16px;
-                    line-height: 16px;
-                    font-weight: 400;
-                }
-                .Date {
-                    color: var(--SecondaryTextColor);
-                    font-size: 14px;
-                    font-weight: 300;
-                }
-            }
-        }
-    }
-    .PostActivity {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 10px;
-        font-size: 50px;
-        .Buttons {
-            display: flex;
-            gap: 20px;
-            transition: all 0.3s;
-            color: var(--SecondaryTextColor);
-            align-items: center;
-            svg * {
-                fill: var(--SecondaryTextColor);
-            }
-            svg {
-                height: 18px;
-                width: 18px;
-            }
-            h1 {
-                font-weight: 400;
-            }
-            .LikeHeart {
-                font-weight: 600;
-                background: var(--AccentBackgroundGradient);
-                background-clip: text;
-                -webkit-text-fill-color: transparent;
-                svg * {
-                    transition: all 0.3s;
-                    fill: var(--AccentBorderColor);
-                }
-            }
-        }
-        button {
-            svg * {
-                fill: var(--SecondaryTextColor);
-                transition: all 0.3s;
-            }
-            svg {
-                height: 18px;
-                width: 18px;
-                transition: all 0.3s;
-            }
-            transition: all 0.3s;
-            color: var(--SecondaryTextColor);
-            justify-content: center;
-            display: flex;
-            h1 {
-                color: var(--DarkTextColor);
-                font-weight: 400;
-                transition: all 0.3s;
-            }
-
-            align-items: center;
-            gap: 3px;
-            font-size: 15px;
-            font-weight: 400;
-        }
-    }
     .repost {
         color: var(--SecondaryTextColor);
         font-weight: 300;
         padding-top: 5px;
         font-size: 14px;
+    }
+}
+
+.SurveyMode {
+    background-color: #60658310;
+    padding: 5px;
+    flex-shrink: 0;
+    height: 240px;
+    border-radius: 10px;
+    width: 100%;
+    .title {
+        font-weight: 400;
+        color: var(--PrimaryTextColor);
+        font-size: 20px;
+        background: var(--AccentBackgroundGradient);
+        background-clip: text;
+    }
+    .variants {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+        .variant {
+            background-color: var(--SecondaryBackgroundColor);
+            font-weight: 300;
+            overflow: hidden;
+            font-size: 15px;
+            padding: 8px;
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            * {
+                z-index: 1;
+            }
+            .text {
+                z-index: 1;
+            }
+            progress {
+                z-index: 0;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                transition: all 0.3s;
+                visibility: unset !important;
+            }
+            .stat {
+                z-index: 1;
+                color: var(--SecondaryTextColor);
+            }
+
+            progress::-webkit-progress-bar {
+                background-color: var(--SecondaryBackgroundColor);
+                transition: all 0.3s;
+            }
+            progress::-webkit-progress-value {
+                box-shadow: var(--AccentBackgroundShadow);
+                transition: all 0.3s;
+                background: var(--AccentBackgroundGradient);
+            }
+        }
+        .select {
+            background-color: #333;
+        }
+    }
+}
+
+.PostActivity {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 50px;
+    .Buttons {
+        display: flex;
+        gap: 20px;
+        transition: all 0.3s;
+        color: var(--SecondaryTextColor);
+        align-items: center;
+        svg * {
+            fill: var(--SecondaryTextColor);
+        }
+        svg {
+            height: 18px;
+            width: 18px;
+        }
+        h1 {
+            font-weight: 400;
+        }
+        .LikeHeart {
+            font-weight: 600;
+            background: var(--AccentBackgroundGradient);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            svg * {
+                transition: all 0.3s;
+                fill: var(--AccentBorderColor);
+            }
+        }
+    }
+    button {
+        svg * {
+            fill: var(--SecondaryTextColor);
+            transition: all 0.3s;
+        }
+        svg {
+            height: 18px;
+            width: 18px;
+            transition: all 0.3s;
+        }
+        transition: all 0.3s;
+        color: var(--SecondaryTextColor);
+        justify-content: center;
+        display: flex;
+        h1 {
+            color: var(--DarkTextColor);
+            font-weight: 400;
+            transition: all 0.3s;
+        }
+
+        align-items: center;
+        gap: 3px;
+        font-size: 15px;
+        font-weight: 400;
+    }
+}
+
+.AuthorData {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .Data {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        .Photo {
+            overflow: hidden;
+            width: 42px;
+            height: 42px;
+            background: var(--ThirdaryBackgroundColor);
+            box-shadow: var(--DarkShadow);
+            border-radius: 50%;
+        }
+        .Text {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            .Name {
+                color: var(--AccentColor);
+                font-size: 16px;
+                line-height: 16px;
+                font-weight: 400;
+            }
+            .Date {
+                color: var(--SecondaryTextColor);
+                font-size: 14px;
+                font-weight: 300;
+            }
+        }
     }
 }
