@@ -63,3 +63,9 @@
     box-shadow: var(--AccentBackgroundShadow);
     background-color: var(--FourBackgroundColor);
 }
+
+@media screen and (min-width: 700px) {
+    .Input {
+        border: 1px solid var(--TransparentColor);
+    }
+}

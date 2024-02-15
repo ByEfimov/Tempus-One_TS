@@ -44,3 +44,16 @@
         color: var(--SecondaryTextColor);
     }
 }
+
+@media screen and (min-width: 900px) {
+    .Select {
+        .Item {
+            border: 1px solid var(--TransparentColor);
+        }
+        .Selected {
+            color: var(--PrimaryTextColor);
+            border: 1px solid var(--AccentBorderColor);
+            background-color: var(--FourBackgroundColor);
+        }
+    }
+}

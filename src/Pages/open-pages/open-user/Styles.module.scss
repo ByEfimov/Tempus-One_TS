@@ -95,10 +95,13 @@
 
     .UserTexts {
         margin-top: 5px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+
+        .data {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
         .UserName {
             font-size: 30px;
             font-weight: 500;
@@ -122,5 +125,26 @@
             font-weight: 400;
             background: var(--AccentBackgroundGradient);
         }
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .UserData {
+        background-color: var(--SecondaryBackgroundColor);
+        border-radius: 10px;
+        border: 1px solid var(--TransparentColor);
+        padding: 20px;
+        position: fixed;
+        padding-bottom: 35px;
+        padding-top: 35px;
+        margin-left: 10px;
+        width: 270px;
+        text-align: center;
+        .data {
+            margin-top: 10px;
+        }
+    }
+    .UserPosts {
+        margin-left: 80px;
     }
 }

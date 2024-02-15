@@ -7,6 +7,7 @@ import {
     blockType,
     blockTypes,
 } from 'Store/slices/wite-post/write-post-slice';
+import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import { LivePreview, LiveProvider } from 'react-live';
 
@@ -24,7 +25,10 @@ const BlocksRender = ({ post }: { post: PostType }) => {
                         <RenderText key={block.id} block={block}></RenderText>
                     </motion.li>
                 ) : block?.type === blockTypes.Survey ? (
-                    <motion.li variants={formItem} className={Styles.block}>
+                    <motion.li
+                        variants={formItem}
+                        className={classNames(Styles.block, Styles.SurveyBlock)}
+                    >
                         <ShowSurvey postId={post.id} block={block}></ShowSurvey>
                     </motion.li>
                 ) : block?.type === blockTypes.Image ? (
@@ -41,7 +45,10 @@ const BlocksRender = ({ post }: { post: PostType }) => {
 
 const RenderImage = ({ block }: { block: blockType }) => {
     return (
-        <motion.li variants={formItem} className={Styles.block}>
+        <motion.li
+            variants={formItem}
+            className={classNames(Styles.block, Styles.ImageBlock)}
+        >
             <img
                 src={
                     (block &&

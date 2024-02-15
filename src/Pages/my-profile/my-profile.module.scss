@@ -12,3 +12,18 @@
         justify-content: start;
     }
 }
+
+@media screen and (min-width: 900px) {
+    .ProfilePage {
+        display: flex;
+        gap: 30px;
+        max-width: 1000px;
+        margin: 0 110px;
+        height: calc(100vh - 120px);
+        align-items: center;
+    }
+    .Buttons {
+        margin-left: 300px;
+        width: 100%;
+    }
+}

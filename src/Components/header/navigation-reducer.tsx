@@ -14,13 +14,15 @@ export default function NavigationReducer() {
     useEffect(() => {
         const Path = location.split('/')[1];
 
+        const screenMobile = window.innerWidth < 900;
+
         const ThenHaveSearchBar =
             Path === '' || Path === 'Users' || Path === 'Teams';
         const HeaderHaveSearchBar = ThenHaveSearchBar ? true : false;
 
         let TitleOfHeader = '';
         let PathOfBack = '';
-        let ShowFooter = true;
+        let ShowNavBar = true;
         let placeholderForInput = 'Найти пост...';
         let ExecuteConfig:
             | {
@@ -34,19 +36,19 @@ export default function NavigationReducer() {
             case AppRoutes.WRITENEWPOST:
                 TitleOfHeader = 'Новый пост';
                 PathOfBack = AppRoutes.DEFAULT;
-                ShowFooter = false;
+                ShowNavBar = false;
                 ExecuteConfig = { icon: headerIcons.Add, function: undefined };
                 break;
             case AppRoutes.CREATENEWTEAM:
                 TitleOfHeader = 'Новое сообщество';
                 PathOfBack = AppRoutes.TEAMS;
-                ShowFooter = false;
+                ShowNavBar = false;
                 ExecuteConfig = { icon: headerIcons.Add, function: undefined };
                 break;
             case AppRoutes.TEAM:
                 TitleOfHeader = 'Сообщество';
                 PathOfBack = AppRoutes.TEAMS;
-                ShowFooter = true;
+                ShowNavBar = screenMobile ? true : false;
                 ExecuteConfig = {
                     icon: headerIcons.SubTeam,
                     function: undefined,
@@ -55,13 +57,13 @@ export default function NavigationReducer() {
             case AppRoutes.USER:
                 TitleOfHeader = 'Профиль';
                 PathOfBack = AppRoutes.USERS;
-                ShowFooter = true;
+                ShowNavBar = screenMobile ? true : false;
                 ExecuteConfig = { icon: headerIcons.Sub, function: undefined };
                 break;
             case AppRoutes.POST:
                 TitleOfHeader = 'Пост';
                 PathOfBack = AppRoutes.DEFAULT;
-                ShowFooter = true;
+                ShowNavBar = screenMobile ? true : false;
                 ExecuteConfig = {
                     icon: headerIcons.Settings,
                     function: undefined,
@@ -70,29 +72,29 @@ export default function NavigationReducer() {
             case AppRoutes.LOGIN:
                 TitleOfHeader = 'Tempus-ID';
                 PathOfBack = AppRoutes.DEFAULT;
-                ShowFooter = false;
+                ShowNavBar = false;
                 break;
             case AppRoutes.REGISTER:
                 TitleOfHeader = 'Tempus-ID';
                 PathOfBack = AppRoutes.DEFAULT;
-                ShowFooter = false;
+                ShowNavBar = false;
                 break;
             case AppRoutes.VERIFYINGEMAIL:
                 TitleOfHeader = 'Tempus-ID';
                 PathOfBack = AppRoutes.DEFAULT;
-                ShowFooter = false;
+                ShowNavBar = false;
                 break;
             case AppRoutes.SERVICES:
                 TitleOfHeader = 'Сервисы';
-                ShowFooter = true;
+                ShowNavBar = true;
                 break;
             case AppRoutes.STATISTIC:
                 TitleOfHeader = 'Статистика';
-                ShowFooter = true;
+                ShowNavBar = true;
                 break;
             case AppRoutes.USERS:
                 placeholderForInput = 'Найти профиль...';
-                ShowFooter = true;
+                ShowNavBar = true;
                 ExecuteConfig = {
                     icon: headerIcons.Teams,
                     function: () => navigate(AppRoutes.TEAMS),
@@ -100,7 +102,7 @@ export default function NavigationReducer() {
                 break;
             case AppRoutes.TEAMS:
                 placeholderForInput = 'Найти сообщество...';
-                ShowFooter = true;
+                ShowNavBar = true;
                 ExecuteConfig = {
                     icon: headerIcons.Add,
                     function: () => navigate(AppRoutes.CREATENEWTEAM),
@@ -108,12 +110,12 @@ export default function NavigationReducer() {
                 break;
             case AppRoutes.MYPROFILE:
                 TitleOfHeader = 'Мой профиль';
-                ShowFooter = true;
+                ShowNavBar = screenMobile ? true : false;
                 break;
             case AppRoutes.DEFAULT:
                 TitleOfHeader = '';
                 PathOfBack = '';
-                ShowFooter = true;
+                ShowNavBar = true;
                 ExecuteConfig = {
                     icon: headerIcons.Add,
                     function: () => navigate(AppRoutes.WRITENEWPOST),
@@ -122,7 +124,7 @@ export default function NavigationReducer() {
             default:
                 TitleOfHeader = '';
                 PathOfBack = '';
-                ShowFooter = true;
+                ShowNavBar = true;
                 ExecuteConfig = {
                     icon: headerIcons.Add,
                     function: () => navigate(AppRoutes.WRITENEWPOST),
@@ -142,7 +144,7 @@ export default function NavigationReducer() {
                     Title: TitleOfHeader,
                     Type: TypesOfHeader.WithoutSearchBar,
                     ButtonExecute: ExecuteConfig,
-                    ShowFooter,
+                    ShowNavBar,
                     HeaderClickBack: clickBack,
                 }),
             );
@@ -150,7 +152,7 @@ export default function NavigationReducer() {
             dispatch(
                 setTypeOfHeader({
                     Type: TypesOfHeader.WithSearchBar,
-                    ShowFooter,
+                    ShowNavBar,
                     placeholderForInput,
                     ButtonExecute: ExecuteConfig,
                 }),

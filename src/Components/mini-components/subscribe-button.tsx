@@ -7,10 +7,7 @@ import {
     headerIcons,
     postIcons,
 } from 'Assets/Tempus-Ui';
-import {
-    ErrorNotification,
-    MassageNotification,
-} from 'Components/notifications/notifications';
+import { MassageNotification } from 'Components/notifications/notifications';
 import { WhoWrotePost } from 'Components/show-posts/posts/post-render';
 import { useAuth } from 'Hooks/useAuth';
 import { itsMember } from 'Utils/users-or-teams/ist-member';
@@ -32,7 +29,7 @@ const SubscribeButton: FC<SubscribeButton> = ({ WhoWrotePost, id }) => {
     const isTeam = WhoWrotePost?.id && WhoWrotePost.id[0] === '-';
 
     function subbing() {
-        if (UserIsAuth) {
+        if (UserIsAuth && !isAdminPresent) {
             const message = isMember
                 ? 'Вы успешно отписались!'
                 : 'Вы успешно подписались';
@@ -48,27 +45,26 @@ const SubscribeButton: FC<SubscribeButton> = ({ WhoWrotePost, id }) => {
 
             changeRequest('users/' + UserId, '/experience', NewXp);
             MassageNotification(message);
-        } else {
-            ErrorNotification('Нужно войти в аккаунт.');
         }
     }
 
     return (
-        !isAdminPresent && (
-            <button
-                className={classNames(Styles.SubButton, isMember && Styles.sub)}
-                onClick={(e) => {
-                    e.stopPropagation();
-                    subbing();
-                }}
-            >
-                {isTeam ? (
-                    <HeaderIcons Icon={headerIcons.SubTeam}></HeaderIcons>
-                ) : (
-                    <PostIcons Icon={postIcons.sub}></PostIcons>
-                )}
-            </button>
-        )
+        <button
+            className={classNames(
+                Styles.SubButton,
+                (isMember || isAdminPresent) && Styles.sub,
+            )}
+            onClick={(e) => {
+                e.stopPropagation();
+                subbing();
+            }}
+        >
+            {isTeam ? (
+                <HeaderIcons Icon={headerIcons.SubTeam}></HeaderIcons>
+            ) : (
+                <PostIcons Icon={postIcons.sub}></PostIcons>
+            )}
+        </button>
     );
 };
 

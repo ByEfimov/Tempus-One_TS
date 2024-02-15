@@ -37,7 +37,6 @@ export default function UserPage() {
         dispatch(
             setExecuteButton({
                 button: {
-                    icon: '',
                     component: (
                         <SubscribeButton
                             WhoWrotePost={OpenUser}
@@ -54,7 +53,9 @@ export default function UserPage() {
             <>
                 <UserData OpenUser={OpenUser} />
 
-                <ShowPosts ShowTitle AuthorFilter={OpenUser.id}></ShowPosts>
+                <div className={Styles.UserPosts}>
+                    <ShowPosts ShowTitle AuthorFilter={OpenUser.id}></ShowPosts>
+                </div>
             </>
         );
     } else if (!OpenUser) {
@@ -68,7 +69,7 @@ interface CustomCSSProperties extends React.CSSProperties {
 
 const UserData = ({ OpenUser }: { OpenUser: OpenUserType | UserType }) => {
     return (
-        <motion.div className={Styles.UserData}>
+        <motion.div className={Styles.UserData} variants={defaultItem}>
             <motion.ul
                 variants={formContainer}
                 initial="hidden"
@@ -76,17 +77,19 @@ const UserData = ({ OpenUser }: { OpenUser: OpenUserType | UserType }) => {
                 className={Styles.UserTexts}
             >
                 <UserLogo OpenUser={OpenUser}></UserLogo>
-                <motion.li variants={formItem} className={Styles.UserName}>
-                    {OpenUser.name}
-                </motion.li>
-                <motion.li variants={formItem} className={Styles.UserEmail}>
-                    {OpenUser.specialization
-                        ? OpenUser.specialization
-                        : OpenUser.email}
-                </motion.li>
-                <motion.li variants={formItem} className={Styles.UserLevel}>
-                    {OpenUser.level} уровень
-                </motion.li>
+                <div className={Styles.data}>
+                    <motion.li variants={formItem} className={Styles.UserName}>
+                        {OpenUser.name}
+                    </motion.li>
+                    <motion.li variants={formItem} className={Styles.UserEmail}>
+                        {OpenUser.specialization
+                            ? OpenUser.specialization
+                            : OpenUser.email}
+                    </motion.li>
+                    <motion.li variants={formItem} className={Styles.UserLevel}>
+                        {OpenUser.level} уровень
+                    </motion.li>
+                </div>
             </motion.ul>
         </motion.div>
     );
@@ -118,12 +121,7 @@ const UserLogo = ({ OpenUser }: { OpenUser: OpenUserType | UserType }) => {
     }, []);
 
     return (
-        <motion.div
-            variants={formContainer}
-            initial="hidden"
-            animate="visible"
-            className={Styles.TopBar}
-        >
+        <motion.div className={Styles.TopBar}>
             {statusModalOpen && (
                 <StatusModal
                     status={userStatus}

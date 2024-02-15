@@ -9,3 +9,11 @@
         gap: 15px;
     }
 }
+
+@media screen and (min-width: 900px) {
+    .Container {
+        max-width: 1000px;
+        margin: 0 200px;
+        margin-top: 10px;
+    }
+}

@@ -43,17 +43,30 @@ html {
 
 body {
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
     padding-top: 64px;
     padding-bottom: 55px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 900px) {
+    body {
+        padding-bottom: 0px;
+    }
 }
 html {
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
-
+::-webkit-scrollbar {
+    background-color: var(--PrimaryBackgroundColor);
+    width: 0px;
+}
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
+    background-color: var(--SecondaryBackgroundColor);
+    cursor: pointer;
 }
 
 .swiper-slide {
@@ -75,8 +88,16 @@ html {
     padding-right: 8px;
     font-weight: 300;
     color: var(--SecondaryTextColor);
-    background: #00000010;
+    background: var(--SecondaryBackgroundColor);
     border-radius: 10px;
+}
+
+@media screen and (min-width: 900px) {
+    .swiper-pagination {
+        bottom: 5px;
+        right: 5px;
+        top: unset;
+    }
 }
 .sortable-handler {
     touch-action: none;

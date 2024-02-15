@@ -2,7 +2,7 @@ import Activities from '../post-components/activities';
 import AuthorDataRender from '../post-components/author-data-render';
 import BlocksRender from '../post-components/blocks-render';
 import LinkToOrig from '../post-components/link-to-orig';
-import PostDataRender from '../post-components/post-data-render';
+import PostTextRender from '../post-components/post-text-render';
 import Styles from './Styles.module.scss';
 import { getRequestObject } from 'Api/requests/get-requests';
 import { postRequestWithoutNewId } from 'Api/requests/post-requests-with-new-id';
@@ -81,7 +81,7 @@ const PostRender = ({ post }: { post: PostType }) => {
                 className={Styles.Post}
             >
                 <AuthorDataRender post={post} WhoWrotePost={WhoWrotePost} />
-                <PostDataRender post={post} />
+                <PostTextRender post={post} />
                 <BlocksRender Blocks={post.blocks} postId={post.id} />
                 <LinkToOrig post={post} />
                 <Activities

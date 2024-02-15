@@ -17,7 +17,10 @@ import {
 import { useAppDispatch, useAppSelector } from 'Hooks/redux-hooks';
 import { useAuth } from 'Hooks/useAuth';
 import { setExecuteButton } from 'Store/slices/header/header-slice';
-import { changeAuthorPost } from 'Store/slices/wite-post/write-post-slice';
+import {
+    changeAuthorPost,
+    removePost,
+} from 'Store/slices/wite-post/write-post-slice';
 import AppRoutes from 'Utils/routes/app-routes';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
@@ -35,6 +38,7 @@ const WritePost = () => {
 
     useEffect(() => {
         getUserAdmins(UserId).then((teams) => setUserAdmins(teams));
+
         function sendNewPost() {
             changeRequest(
                 'users/' + UserId,
@@ -42,6 +46,7 @@ const WritePost = () => {
                 UserExperience + 40,
             );
             postRequestWithNewId('posts/', NewPost);
+            dispatch(removePost());
             navigate(AppRoutes.DEFAULT);
         }
 

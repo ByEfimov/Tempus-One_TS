@@ -21,6 +21,9 @@
     min-height: 26px;
     max-width: 26px;
     max-height: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     svg * {
         fill: var(--AccentBorderColor);
     }

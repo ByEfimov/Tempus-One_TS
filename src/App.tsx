@@ -20,19 +20,19 @@ import { Route, Routes } from 'react-router-dom';
 function App() {
     const { PathToProfile, UserIsAuth } = useAuth();
 
-    const navBarLinks = [
+    const navBarLinksMobile = [
         {
-            name: 'Home',
+            name: 'Главная',
             path: [AppRoutes.DEFAULT, AppRoutes.POST],
             icon: navBarIcons.Home,
         },
         {
-            name: 'Services',
+            name: 'Сервисы',
             path: [AppRoutes.SERVICES],
             icon: navBarIcons.Services,
         },
         {
-            name: 'Users',
+            name: 'Пользователи',
             path: [
                 AppRoutes.USERS,
                 AppRoutes.TEAM,
@@ -43,17 +43,46 @@ function App() {
             icon: navBarIcons.Users,
         },
         {
-            name: 'Statistic',
+            name: 'Статистика',
             path: [AppRoutes.STATISTIC],
             icon: navBarIcons.Statistic,
         },
         {
-            name: 'Profile',
+            name: 'Профиль',
             path: [
                 UserIsAuth ? AppRoutes.MYPROFILE : AppRoutes.LOGIN,
                 PathToProfile,
             ],
             icon: navBarIcons.User,
+        },
+    ];
+
+    const navBarLinksDesctop = [
+        {
+            name: 'Главная',
+            path: [AppRoutes.DEFAULT, AppRoutes.POST],
+            icon: navBarIcons.Home,
+        },
+        {
+            name: 'Сервисы',
+            path: [AppRoutes.SERVICES],
+            icon: navBarIcons.Services,
+        },
+        {
+            name: 'Пользователи',
+            path: [AppRoutes.USERS, AppRoutes.USER],
+            blackList: [PathToProfile],
+            icon: navBarIcons.Users,
+        },
+        {
+            name: 'Сообщества',
+            path: [AppRoutes.TEAMS, AppRoutes.TEAM],
+            icon: navBarIcons.Users,
+        },
+        {
+            name: 'Статистика',
+            path: [AppRoutes.STATISTIC],
+            icon: navBarIcons.Statistic,
         },
     ];
 
@@ -86,7 +115,13 @@ function App() {
                     element={<ForgotPasswordPage />}
                 />
             </Routes>
-            <NavBar Links={navBarLinks}></NavBar>
+            <NavBar
+                Links={
+                    window.innerWidth > 900
+                        ? navBarLinksDesctop
+                        : navBarLinksMobile
+                }
+            ></NavBar>
         </>
     );
 }

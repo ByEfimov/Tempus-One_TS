@@ -1,8 +1,10 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { headerIcons } from 'Assets/Tempus-Ui';
 import {
     HeaderType,
     TypesOfHeader,
 } from 'Types/TypesOfData/header/header-type';
+import { ReactNode } from 'react';
 
 const initialState: HeaderType = {
     Title: '',
@@ -10,7 +12,7 @@ const initialState: HeaderType = {
     Type: TypesOfHeader.WithSearchBar,
     HeaderClickBack: undefined,
     ButtonExecute: undefined,
-    ShowFooter: true,
+    ShowNavBar: true,
     PlaceholderForInput: 'Найти пост...',
 };
 
@@ -23,13 +25,23 @@ const HeaderSlice = createSlice({
         },
         setHeader(
             state,
-            action: PayloadAction<
-                Omit<Omit<HeaderType, 'SearchBar'>, 'PlaceholderForInput'>
-            >,
+            action: PayloadAction<{
+                Title: string;
+                Type: TypesOfHeader.WithoutSearchBar;
+                ButtonExecute:
+                    | {
+                          icon: headerIcons;
+                          function?: (() => void) | undefined;
+                          component?: ReactNode;
+                      }
+                    | undefined;
+                ShowNavBar: boolean;
+                HeaderClickBack?: () => void;
+            }>,
         ) {
             state.Title = action.payload.Title;
             state.Type = action.payload.Type;
-            state.ShowFooter = action.payload.ShowFooter;
+            state.ShowNavBar = action.payload.ShowNavBar;
             state.ButtonExecute = action.payload.ButtonExecute;
             state.HeaderClickBack = action.payload.HeaderClickBack;
         },
@@ -41,7 +53,7 @@ const HeaderSlice = createSlice({
         },
         setTypeOfHeader(state, action) {
             state.Type = action.payload.Type;
-            state.ShowFooter = action.payload.ShowFooter;
+            state.ShowNavBar = action.payload.ShowNavBar;
             state.ButtonExecute = action.payload.ButtonExecute;
             state.PlaceholderForInput = action.payload.placeholderForInput;
         },

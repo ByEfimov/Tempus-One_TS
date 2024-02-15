@@ -79,7 +79,7 @@
         .UserEmail {
             background: var(--AccentBackgroundGradient);
             background-clip: text;
-            margin-top: 2px;
+            margin-top: 5px;
             font-size: 16px;
             font-weight: 300;
             -webkit-text-fill-color: transparent;
@@ -95,5 +95,44 @@
             font-weight: 400;
             background: var(--AccentBackgroundGradient);
         }
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .UserData {
+        background-color: var(--SecondaryBackgroundColor);
+        border-radius: 10px;
+        border: 1px solid var(--TransparentColor);
+        padding: 20px;
+        position: fixed;
+        padding-bottom: 20px;
+        padding-top: 20px;
+        margin-left: 10px;
+        width: 270px;
+        text-align: center;
+        .data {
+            margin-top: 10px;
+        }
+    }
+    .TeamPosts {
+        margin-left: 80px;
+    }
+    .TeamInfo {
+        cursor: pointer;
+        padding: 10px;
+        width: 100%;
+        padding-top: 20px;
+        .Title {
+            display: flex;
+            font-size: 20px;
+            align-items: center;
+            color: var(--SecondaryTextColor);
+            justify-content: space-between;
+        }
+    }
+    .buttonSettings {
+        width: 100%;
+        margin-top: 10px;
+        background-color: var(--PrimaryBackgroundColor);
     }
 }

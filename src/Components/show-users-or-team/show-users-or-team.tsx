@@ -1,5 +1,6 @@
 import Styles from './Styles.module.scss';
 import { formItem } from 'Assets/Tempus-Ui';
+import UserLogo from 'Components/header/user-logo';
 import ShowLogo from 'Components/mini-components/show-logo';
 import SubscribeButton from 'Components/mini-components/subscribe-button';
 import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';
@@ -26,7 +27,7 @@ export default function ShowUserOrTeam({
             >
                 <div className={Styles.Data}>
                     <div className={Styles.Photo}>
-                        <ShowLogo ImageUrl={User.photo}></ShowLogo>
+                        <UserLogo Logo={User.photo}></UserLogo>
                     </div>
                     <div className={Styles.Text}>
                         <div className={Styles.Title}>{User.name}</div>

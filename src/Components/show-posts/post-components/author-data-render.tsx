@@ -1,7 +1,7 @@
 import Styles from '../posts/Styles.module.scss';
 import { WhoWrotePost } from '../posts/post-render';
 import { formItem } from 'Assets/Tempus-Ui';
-import ShowLogo from 'Components/mini-components/show-logo';
+import UserLogo from 'Components/header/user-logo';
 import SubscribeButton from 'Components/mini-components/subscribe-button';
 import { PostType } from 'Store/slices/wite-post/write-post-slice';
 import formatTimeAgo from 'Utils/post-utils/format-time-ago';
@@ -36,9 +36,9 @@ const AuthorDataRender: FC<AuthorDataRenderProps> = ({
         >
             <div className={Styles.Data}>
                 <div className={Styles.Photo}>
-                    <ShowLogo
-                        ImageUrl={WhoWrotePost?.image || WhoWrotePost?.photo}
-                    ></ShowLogo>
+                    <UserLogo
+                        Logo={WhoWrotePost?.image || WhoWrotePost?.photo}
+                    ></UserLogo>
                 </div>
                 <div className={Styles.Text}>
                     <div className={Styles.Name}>

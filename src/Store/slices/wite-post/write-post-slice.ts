@@ -193,6 +193,9 @@ const WritePostSlice = createSlice({
                 });
             }
         },
+        removePost(state) {
+            state.blocks = [getNewBlockStructure(blockTypes.Text, 0)];
+        },
     },
 });
 export const {
@@ -204,6 +207,7 @@ export const {
     changeAuthorPost,
     removeVariant,
     addVariant,
+    removePost,
 } = WritePostSlice.actions;
 
 export default WritePostSlice.reducer;

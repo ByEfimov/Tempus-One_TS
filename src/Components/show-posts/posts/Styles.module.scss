@@ -5,7 +5,7 @@
     padding-left: 10px;
     padding-right: 10px;
     position: relative;
-    padding-top: 15px;
+    padding-top: 11px;
     .Render {
         gap: 10px;
         display: flex;
@@ -17,6 +17,7 @@
         font-size: 20px;
         color: var(--SecondaryTextColor);
         justify-content: space-between;
+        cursor: pointer;
     }
 }
 .Post {
@@ -25,6 +26,7 @@
     border-radius: 15px;
     .PostData {
         margin-top: 5px;
+        cursor: pointer;
         .Title {
             color: var(--DarkTextColor);
             font-size: 15px;
@@ -51,7 +53,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-
+            cursor: pointer;
             overflow: hidden;
             img {
                 width: 100%;
@@ -64,6 +66,7 @@
             padding: 5px;
             flex-shrink: 0;
             height: 240px;
+            cursor: pointer;
             width: 100%;
             font-weight: 300;
             font-size: 15px;
@@ -75,6 +78,7 @@
         font-weight: 300;
         padding-top: 5px;
         font-size: 14px;
+        cursor: pointer;
     }
 }
 
@@ -98,6 +102,7 @@
         gap: 10px;
         flex-direction: column;
         .variant {
+            cursor: pointer;
             background-color: var(--SecondaryBackgroundColor);
             font-weight: 300;
             overflow: hidden;
@@ -210,6 +215,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
+
     .Data {
         display: flex;
         gap: 10px;
@@ -236,6 +243,38 @@
                 color: var(--SecondaryTextColor);
                 font-size: 14px;
                 font-weight: 300;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .Posts {
+        max-width: 1000px;
+        margin: 0 56px;
+        margin-left: 220px;
+        margin-top: 10px;
+        .Render {
+            margin-top: 9px;
+        }
+        .Post {
+            border: 1px solid var(--TransparentColor);
+            .BlocksData {
+                .SurveyMode {
+                    height: 350px;
+                }
+                .CodePostBlock {
+                    height: 350px;
+                }
+                .ImageBlock {
+                    height: 350px;
+                }
+            }
+            .PostData {
+                margin-top: 10px;
+                .Text {
+                    max-height: 60px;
+                }
             }
         }
     }

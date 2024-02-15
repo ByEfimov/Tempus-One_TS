@@ -13,11 +13,11 @@ interface NavBar {
 }
 
 const NavBar = ({ Links }: NavBar) => {
-    const { ShowFooter } = useHeader();
+    const { ShowNavBar } = useHeader();
     const location = useLocation().pathname;
 
     return (
-        ShowFooter && (
+        ShowNavBar && (
             <nav className={Styles.NavBar}>
                 {Links.map((link) => (
                     <Link
@@ -33,6 +33,7 @@ const NavBar = ({ Links }: NavBar) => {
                         }
                         to={link.path[0]}
                     >
+                        <div className={Styles.name}>{link.name}</div>
                         <NavBarIcons Icon={link.icon} />
                     </Link>
                 ))}

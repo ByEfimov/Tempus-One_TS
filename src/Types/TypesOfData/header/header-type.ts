@@ -13,7 +13,7 @@ export type HeaderType = {
               component?: ReactNode;
           }
         | undefined;
-    ShowFooter: boolean;
+    ShowNavBar: boolean;
     PlaceholderForInput: string;
 };
 

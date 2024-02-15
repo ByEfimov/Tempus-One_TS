@@ -29,6 +29,8 @@ export default function TeamPage() {
     const { UserId } = useAuth();
     const [OpenTeam, setOpenTeam] = useState<OpenTeamType | null>(null);
     const [UserAdmin, setUserAdmin] = useState(false);
+    const [settingsModalOpen, setSettingsModalOpen] = useState(false);
+    const [infoModalOpen, setInfoModalOpen] = useState(false);
 
     const dispatch = useAppDispatch();
 
@@ -66,11 +68,28 @@ export default function TeamPage() {
                 animate="visible"
                 className={Styles.TeamPage}
             >
-                <TeamData UserAdmin={UserAdmin} OpenTeam={OpenTeam}></TeamData>
+                {settingsModalOpen && (
+                    <SettingsTeamModal
+                        setModalOpen={setSettingsModalOpen}
+                        team={OpenTeam}
+                    />
+                )}
+                {infoModalOpen && (
+                    <TeamInfoModal
+                        setModalOpen={setInfoModalOpen}
+                        OpenTeam={OpenTeam}
+                    ></TeamInfoModal>
+                )}
+                <TeamData
+                    setInfoModalOpen={setInfoModalOpen}
+                    setSettingsModalOpen={setSettingsModalOpen}
+                    UserAdmin={UserAdmin}
+                    OpenTeam={OpenTeam}
+                ></TeamData>
 
-                <TeamInfo OpenTeam={OpenTeam}></TeamInfo>
-
-                <ShowPosts ShowTitle AuthorFilter={OpenTeam.id}></ShowPosts>
+                <div className={Styles.TeamPosts}>
+                    <ShowPosts ShowTitle AuthorFilter={OpenTeam.id} />
+                </div>
             </motion.div>
         );
     } else if (!OpenTeam) {
@@ -78,22 +97,20 @@ export default function TeamPage() {
     }
 }
 
-function TeamInfo({ OpenTeam }: { OpenTeam: OpenTeamType }) {
-    const [modalInfoOpen, setModalInfoOpen] = useState(false);
-
+function TeamInfo({
+    OpenTeam,
+    setInfoModalOpen,
+}: {
+    OpenTeam: OpenTeamType;
+    setInfoModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
     return (
         OpenTeam && (
             <motion.div variants={formItem} className={Styles.TeamInfo}>
-                {modalInfoOpen && (
-                    <TeamInfoModal
-                        setModalOpen={setModalInfoOpen}
-                        OpenTeam={OpenTeam}
-                    ></TeamInfoModal>
-                )}
                 <motion.div
                     className={Styles.Title}
                     onClick={() => {
-                        setModalInfoOpen(true);
+                        setInfoModalOpen(true);
                     }}
                 >
                     Информация
@@ -113,25 +130,22 @@ interface CustomCSSProperties extends React.CSSProperties {
 function TeamData({
     OpenTeam,
     UserAdmin,
+    setSettingsModalOpen,
+    setInfoModalOpen,
 }: {
     OpenTeam: OpenTeamType;
     UserAdmin: boolean;
+    setSettingsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setInfoModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
     const progressValue =
         OpenTeam.experience &&
         Math.round(
             (OpenTeam.experience / MaxXpToNextLevel(OpenTeam.level || 0)) * 100,
         );
-    const [settingsModalOpen, setSettingsModalOpen] = useState(false);
 
     return (
         <motion.div className={Styles.UserData} variants={formItem}>
-            {settingsModalOpen && (
-                <SettingsTeamModal
-                    setModalOpen={setSettingsModalOpen}
-                    team={OpenTeam}
-                />
-            )}
             <motion.div
                 variants={formContainer}
                 initial="hidden"
@@ -178,6 +192,10 @@ function TeamData({
                 <motion.li variants={formItem} className={Styles.UserLevel}>
                     {OpenTeam.level || 1} уровень
                 </motion.li>
+                <TeamInfo
+                    setInfoModalOpen={setInfoModalOpen}
+                    OpenTeam={OpenTeam}
+                ></TeamInfo>
                 {UserAdmin && (
                     <Button
                         Click={() => {
