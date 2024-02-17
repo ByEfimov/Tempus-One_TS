@@ -60,6 +60,7 @@
         align-items: center;
         position: relative;
         .UserStatus {
+            cursor: pointer;
             position: absolute;
             bottom: 10px;
             z-index: 100;
@@ -145,6 +146,7 @@
         }
     }
     .UserPosts {
+        z-index: 0;
         margin-left: 80px;
     }
 }

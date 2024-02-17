@@ -42,7 +42,7 @@
         box-shadow: 2px 4px 5px 0px rgba(0, 0, 0, 0.25);
         position: fixed;
         animation: openModal 0.5s forwards;
-        z-index: 1000;
+        z-index: 9999999999999999;
         padding-bottom: 20px;
         overflow-y: auto;
         .Input {
@@ -305,5 +305,24 @@
     }
     to {
         opacity: 1;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    @keyframes openModal {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    @keyframes closeNav {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
     }
 }
