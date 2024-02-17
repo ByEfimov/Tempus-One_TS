@@ -14,6 +14,7 @@ import MyProfile from 'Pages/my-profile/my-profile';
 import PostPage from 'Pages/open-pages/open-post/post-page';
 import TeamPage from 'Pages/open-pages/open-team/team-page';
 import UserPage from 'Pages/open-pages/open-user/user-page';
+import Services from 'Pages/services/services';
 import AppRoutes from 'Utils/routes/app-routes';
 import { Route, Routes } from 'react-router-dom';
 
@@ -105,6 +106,7 @@ function App() {
                 />
                 <Route path={AppRoutes.USERS} element={<AllUsers />} />
                 <Route path={AppRoutes.TEAMS} element={<AllTeams />} />
+                <Route path={AppRoutes.SERVICES} element={<Services />} />
                 <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
                 <Route path={AppRoutes.MYPROFILE} element={<MyProfile />} />
                 <Route path={AppRoutes.USER + '/:id'} element={<UserPage />} />

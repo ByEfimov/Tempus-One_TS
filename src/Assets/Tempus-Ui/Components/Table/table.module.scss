@@ -1,0 +1,43 @@
+.Table {
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: var(--SecondaryBackgroundColor);
+    thead {
+        TH {
+            cursor: pointer;
+        }
+        TD,
+        TH {
+            padding: 10px;
+            border: 1px solid var(--TransparentColor);
+        }
+        .th {
+            display: flex;
+            gap: 10px;
+            .direction {
+                user-select: none;
+                transform: rotate(90deg);
+            }
+        }
+    }
+    tbody {
+        TD,
+        TH {
+            cursor: default;
+            padding: 10px;
+            border: 1px solid var(--TransparentColor);
+            color: var(--SecondaryTextColor);
+        }
+        TR:hover {
+            background-color: var(--TransparentColor);
+            transition: all 0.3s;
+
+            TD,
+            TH {
+                color: var(--PrimaryTextColor);
+            }
+        }
+    }
+}

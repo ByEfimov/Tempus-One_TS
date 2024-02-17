@@ -1,5 +1,11 @@
 import { PostType } from 'Store/slices/wite-post/write-post-slice';
 
+export const FiltersPosts = [
+    { label: 'Все посты', value: 'Default' },
+    { label: 'Интересное', value: 'Interesting' },
+    { label: 'Только мои', value: 'OnlyMy' },
+];
+
 export function aplyFilterPosts(
     filter: string,
     UserSubscriptions:
@@ -40,13 +46,15 @@ export function aplyFilterPosts(
             const filteredArray = post.blocks.filter(
                 (obj) => obj?.type === 'Text',
             );
+            const contentValues = filteredArray
+                .map(
+                    (item) =>
+                        item && 'content' in item.data && item.data.content,
+                )
+                .join(' ');
 
             return (
-                (
-                    ('content' in filteredArray[0]!.data &&
-                        filteredArray[0]?.data.content) ||
-                    ''
-                )
+                contentValues
                     .toLocaleLowerCase()
                     .includes(HeaderSearchBar.toLocaleLowerCase()) &&
                 post.author &&
@@ -57,9 +65,3 @@ export function aplyFilterPosts(
         return filterOfGroup;
     }
 }
-
-export const FiltersPosts = [
-    { label: 'Все посты', value: 'Default' },
-    { label: 'Интересное', value: 'Interesting' },
-    { label: 'Только мои', value: 'OnlyMy' },
-];
