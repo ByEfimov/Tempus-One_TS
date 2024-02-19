@@ -84,6 +84,7 @@ const Select = ({
                         className={Styles.SelectInput}
                         onChange={(value: string) => setSelect(value)}
                         options={Array}
+                        defaultValue={Array && Array[0].value}
                     />
                 </ConfigProvider>
             </motion.div>

@@ -76,20 +76,20 @@ export function PostPage() {
                     repostsModalOpen={repostsModalOpen}
                     setRepostsModalOpen={setRepostsModalOpen}
                     OpenPost={openPost}
-                ></PostModals>
+                />
                 <motion.div variants={formItem} className={Styles.author}>
                     <AuthorDataRender
                         post={openPost}
                         WhoWrotePost={whoWrotePost}
-                    ></AuthorDataRender>
+                    />
                 </motion.div>
-                <BlocksRender post={openPost}></BlocksRender>
+                <BlocksRender post={openPost} />
                 <motion.div variants={formItem} className={Styles.activities}>
                     <Activities
                         setCommentsOpen={setCommentsModalOpen}
                         setRepostModalOpen={setRepostsModalOpen}
                         post={openPost}
-                    ></Activities>
+                    />
                 </motion.div>
             </motion.div>
         );

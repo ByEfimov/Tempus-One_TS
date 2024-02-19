@@ -25,16 +25,18 @@ import { Navigate, useNavigate } from 'react-router-dom';
 const CreatePostPage = () => {
     const { UserExperience, UserId, UserCanChanging } = useAuth();
     const [selectBlockModalOpen, setSelectBlockModalOpen] = useState(false);
-    const [UserAdmins, setUserAdmins] =
+    const [userAdmins, setUserAdmins] =
         useState<{ value: string; label: string }[]>();
-    const NewPost = useAppSelector((state) => state.WritePost);
+    const newPost = useAppSelector((state) => state.WritePost);
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
         getUserAdmins(UserId).then((teams) => setUserAdmins(teams));
+    });
 
+    useEffect(() => {
         dispatch(
             setExecuteButton({
                 button: {
@@ -44,7 +46,7 @@ const CreatePostPage = () => {
                                 sendNewPost(
                                     UserId,
                                     UserExperience,
-                                    NewPost,
+                                    newPost,
                                     dispatch,
                                     navigate,
                                 )
@@ -57,41 +59,56 @@ const CreatePostPage = () => {
                 },
             }),
         );
-    }, [NewPost]);
+    }, [newPost]);
 
     return UserCanChanging ? (
-        <>
-            {selectBlockModalOpen && (
-                <SelectBlockModal
-                    setModalOpen={setSelectBlockModalOpen}
-                ></SelectBlockModal>
-            )}
-            <motion.div className={Styles.WritePost} {...formContainer}>
-                <Select
-                    Type={SelectTypes.Input}
-                    Array={
-                        UserAdmins && [
-                            ...UserAdmins,
-                            { label: 'От меня', value: UserId },
-                        ]
-                    }
-                    setSelect={(value: string) => {
-                        dispatch(changeAuthorPost({ authorId: value }));
-                    }}
-                    Placeholder="От кого пост"
-                ></Select>
-                <RenderBlocks blocksData={NewPost.blocks}></RenderBlocks>
-                <Button
-                    Variants={formItem}
-                    Title="Добавить блок"
-                    Type={ButtonTypes.default}
-                    Click={() => setSelectBlockModalOpen(true)}
-                ></Button>
-            </motion.div>
-        </>
+        <motion.div className={Styles.WritePost} {...formContainer}>
+            <CreatePostModals
+                selectBlockModalOpen={selectBlockModalOpen}
+                setSelectBlockModalOpen={setSelectBlockModalOpen}
+            ></CreatePostModals>
+            <Select
+                Type={SelectTypes.Input}
+                Array={
+                    userAdmins && [
+                        { label: 'От меня', value: UserId },
+                        ...userAdmins,
+                    ]
+                }
+                setSelect={(value: string) => {
+                    dispatch(changeAuthorPost({ authorId: value }));
+                }}
+                Placeholder="От кого пост"
+            ></Select>
+            <RenderBlocks blocksData={newPost.blocks}></RenderBlocks>
+            <Button
+                Variants={formItem}
+                Title="Добавить блок"
+                Type={ButtonTypes.default}
+                Click={() => setSelectBlockModalOpen(true)}
+            ></Button>
+        </motion.div>
     ) : (
         <Navigate to={AppRoutes.DEFAULT}></Navigate>
     );
 };
+
+interface CreatePostModalsProps {
+    selectBlockModalOpen: boolean;
+    setSelectBlockModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function CreatePostModals({
+    selectBlockModalOpen,
+    setSelectBlockModalOpen,
+}: CreatePostModalsProps) {
+    return (
+        selectBlockModalOpen && (
+            <SelectBlockModal
+                setModalOpen={setSelectBlockModalOpen}
+            ></SelectBlockModal>
+        )
+    );
+}
 
 export { CreatePostPage };

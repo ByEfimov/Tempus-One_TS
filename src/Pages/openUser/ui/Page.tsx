@@ -53,7 +53,7 @@ export function UserPage() {
             <>
                 <UserData OpenUser={OpenUser} />
                 <motion.div className={Styles.UserPosts}>
-                    <ShowPosts ShowTitle AuthorFilter={OpenUser.id}></ShowPosts>
+                    <ShowPosts ShowTitle AuthorFilter={OpenUser.id} />
                 </motion.div>
             </>
         );
