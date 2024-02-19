@@ -1,5 +1,5 @@
+import MaxXpToNextLevel from '@/Utils/users-or-teams/max-xp-to-next-level';
 import { getDatabase, ref, set } from '@firebase/database';
-import MaxXpToNextLevel from 'Utils/users-or-teams/max-xp-to-next-level';
 
 export default function LevelUP(
     UserId: string | null,

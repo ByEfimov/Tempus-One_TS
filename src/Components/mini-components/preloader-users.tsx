@@ -1,5 +1,5 @@
 import Styles from './styles.module.scss';
-import FakeUser from 'Components/fake-data/fake-user';
+import FakeUser from '@/Components/fake-data/fake-user';
 
 export default function PreloaderUsers() {
     return (

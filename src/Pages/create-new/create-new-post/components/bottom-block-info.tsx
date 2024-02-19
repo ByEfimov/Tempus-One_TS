@@ -1,15 +1,15 @@
-import Styles from '../Styles.module.scss';
+import Styles from '../../../createNewPost/ui/styles.module.scss';
 import {
     ButtonIcons,
     buttonIcons,
     defaultContainer,
     defaultItem,
-} from 'Assets/Tempus-Ui';
-import { useAppDispatch } from 'Hooks/redux-hooks';
+} from '@/Assets/Tempus-Ui';
+import { useAppDispatch } from '@/Hooks/redux-hooks';
 import {
     blockType,
     removeBlock,
-} from 'Store/slices/wite-post/write-post-slice';
+} from '@/Store/slices/wite-post/write-post-slice';
 import { motion } from 'framer-motion';
 
 const BottomInfo = ({
@@ -28,12 +28,7 @@ const BottomInfo = ({
 
     return (
         block.isEditing && (
-            <motion.ul
-                variants={defaultContainer}
-                className={Styles.bottomInfo}
-                initial="hidden"
-                animate="visible"
-            >
+            <motion.ul {...defaultContainer} className={Styles.bottomInfo}>
                 {children}
                 <motion.li
                     onClick={() =>

@@ -1,5 +1,5 @@
 import Styles from './styles.module.scss';
-import UserIcon from 'Assets/Icons/Header/user.svg';
+import UserIcon from '@/Assets/Icons/Header/user.svg';
 import { FC } from 'react';
 
 const ShowLogo: FC<{ ImageUrl: string | undefined | null }> = ({

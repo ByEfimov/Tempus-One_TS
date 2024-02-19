@@ -4,14 +4,14 @@ import BlocksRender from '../post-components/blocks-render';
 import LinkToOrig from '../post-components/link-to-orig';
 import PostTextRender from '../post-components/post-text-render';
 import Styles from './Styles.module.scss';
-import { getRequestObject } from 'Api/requests/get-requests';
-import { postRequestWithoutNewId } from 'Api/requests/post-requests-with-new-id';
-import { defaultItem } from 'Assets/Tempus-Ui';
-import CommentsModal from 'Components/modals/comments-modal/comments-modal';
-import RepostModal from 'Components/modals/repost-modal/repost-modal';
-import { useAuth } from 'Hooks/useAuth';
-import { PostType } from 'Store/slices/wite-post/write-post-slice';
-import AppRoutes from 'Utils/routes/app-routes';
+import { getRequestObject } from '@/Api/requests/get-requests';
+import { postRequestWithoutNewId } from '@/Api/requests/post-requests-with-new-id';
+import { defaultItem } from '@/Assets/Tempus-Ui';
+import CommentsModal from '@/Components/modals/comments-modal/comments-modal';
+import RepostModal from '@/Components/modals/repost-modal/repost-modal';
+import { useAuth } from '@/Hooks/useAuth';
+import { PostType } from '@/Store/slices/wite-post/write-post-slice';
+import AppRoutes from '@/Utils/routes/app-routes';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -26,7 +26,7 @@ export interface WhoWrotePost {
 }
 
 const PostRender = ({ post }: { post: PostType }) => {
-    const [WhoWrotePost, setWhoWrotePost] = useState<WhoWrotePost | null>(null);
+    const [WhoWrotePost, setWhoWrotePost] = useState<WhoWrotePost>();
     const [CommentsOpen, setCommentsOpen] = useState(false);
     const [RepostModalOpen, setRepostModalOpen] = useState(false);
     const { UserId, UserIsAuth } = useAuth();

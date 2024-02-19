@@ -5,7 +5,7 @@ import {
     ButtonTypes,
     buttonIcons,
     formItemType,
-} from 'Assets/Tempus-Ui';
+} from '@/Assets/Tempus-Ui';
 import classNames from 'classnames';
 import FeatherIcon from 'feather-icons-react';
 import { getStorage, ref, uploadBytes } from 'firebase/storage';

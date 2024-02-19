@@ -1,4 +1,4 @@
-import Styles from './Styles.module.scss';
+import Styles from '../../createNewPost/ui/styles.module.scss';
 import {
     Button,
     ButtonIcons,
@@ -8,13 +8,13 @@ import {
     formContainer,
     formItem,
     navBarIcons,
-} from 'Assets/Tempus-Ui';
-import { CloseModal, IsModal } from 'Components/modals/is-modal';
-import { useAppDispatch } from 'Hooks/redux-hooks';
+} from '@/Assets/Tempus-Ui';
+import { CloseModal, IsModal } from '@/Components/modals/is-modal';
+import { useAppDispatch } from '@/Hooks/redux-hooks';
 import {
     addNewBlock,
     blockTypes,
-} from 'Store/slices/wite-post/write-post-slice';
+} from '@/Store/slices/wite-post/write-post-slice';
 import { motion } from 'framer-motion';
 
 const SelectBlockModal = ({
@@ -25,12 +25,7 @@ const SelectBlockModal = ({
     const dispatch = useAppDispatch();
     return (
         <IsModal setModalOpen={setModalOpen}>
-            <motion.ul
-                variants={formContainer}
-                initial="hidden"
-                animate="visible"
-                className={Styles.Modal}
-            >
+            <motion.ul {...formContainer} className={Styles.Modal}>
                 <Button
                     Variants={formItem}
                     Type={ButtonTypes.active}

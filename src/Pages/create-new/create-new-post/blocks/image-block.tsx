@@ -1,16 +1,16 @@
-import Styles from '../Styles.module.scss';
+import Styles from '../../../createNewPost/ui/styles.module.scss';
 import BottomInfo from '../components/bottom-block-info';
-import { formItem } from 'Assets/Tempus-Ui';
+import { formItem } from '@/Assets/Tempus-Ui';
 import LoadImage, {
     LoadImageColors,
     LoadImageSizes,
-} from 'Assets/Tempus-Ui/Components/LoadImage/load-image';
-import { useAppDispatch } from 'Hooks/redux-hooks';
+} from '@/Assets/Tempus-Ui/Components/LoadImage/load-image';
+import { useAppDispatch } from '@/Hooks/redux-hooks';
 import {
     blockType,
     changeDataBlock,
     removeBlock,
-} from 'Store/slices/wite-post/write-post-slice';
+} from '@/Store/slices/wite-post/write-post-slice';
 import classNames from 'classnames';
 import { deleteObject, getStorage, ref } from 'firebase/storage';
 import { motion } from 'framer-motion';

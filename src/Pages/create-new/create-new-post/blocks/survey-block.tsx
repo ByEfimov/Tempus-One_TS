@@ -1,4 +1,4 @@
-import Styles from '../Styles.module.scss';
+import Styles from '../../../createNewPost/ui/styles.module.scss';
 import BottomInfo from '../components/bottom-block-info';
 import {
     ButtonIcons,
@@ -8,15 +8,15 @@ import {
     formContainer,
     formItem,
     headerIcons,
-} from 'Assets/Tempus-Ui';
-import { useAppDispatch } from 'Hooks/redux-hooks';
+} from '@/Assets/Tempus-Ui';
+import { useAppDispatch } from '@/Hooks/redux-hooks';
 import {
     addVariant,
     blockType,
     changeDataBlock,
     changeVariantData,
     removeVariant,
-} from 'Store/slices/wite-post/write-post-slice';
+} from '@/Store/slices/wite-post/write-post-slice';
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
 
@@ -75,12 +75,7 @@ const EditingMode = ({ block }: { block: blockType }) => {
                     />
                 </div>
 
-                <motion.ul
-                    variants={formContainer}
-                    initial="hidden"
-                    animate="visible"
-                    className={Styles.variants}
-                >
+                <motion.ul {...formContainer} className={Styles.variants}>
                     {block.data.variants?.map((variant) => (
                         <motion.li
                             key={variant.id}
@@ -129,12 +124,7 @@ const RenderMode = ({ block }: { block: blockType }) => {
         'question' in block.data && (
             <>
                 <div className={Styles.Quest}>{block.data.question}</div>
-                <motion.ul
-                    variants={formContainer}
-                    initial="hidden"
-                    animate="visible"
-                    className={Styles.variants}
-                >
+                <motion.ul {...formContainer} className={Styles.variants}>
                     {block.data.variants?.map((variant) => (
                         <motion.li
                             key={variant.id}

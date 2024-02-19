@@ -1,7 +1,6 @@
-import { WhoWrotePost } from 'Components/show-posts/posts/post-render';
+import { WhoWrotePost } from '@/Components/show-posts/posts/post-render';
 
 export const itsMember = (
-    WhoWrotePost: WhoWrotePost | null,
     UserId: string | null,
     UserSubscriptions:
         | {
@@ -18,6 +17,7 @@ export const itsMember = (
           }
         | null
         | undefined,
+    WhoWrotePost?: WhoWrotePost,
 ) =>
     WhoWrotePost?.id === UserId ||
     (UserSubscriptions?.users &&

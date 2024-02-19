@@ -1,6 +1,6 @@
 import Styles from '../posts/Styles.module.scss';
-import { PostType } from 'Store/slices/wite-post/write-post-slice';
-import AppRoutes from 'Utils/routes/app-routes';
+import { PostType } from '@/Store/slices/wite-post/write-post-slice';
+import AppRoutes from '@/Utils/routes/app-routes';
 import { useNavigate } from 'react-router-dom';
 
 const LinkToOrig = ({ post }: { post: PostType }) => {

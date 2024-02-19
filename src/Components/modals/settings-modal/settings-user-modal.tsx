@@ -1,6 +1,6 @@
 import { CloseModal, IsModal } from '../is-modal';
 import Styles from '../style.module.scss';
-import { changeRequest } from 'Api/requests/change-request';
+import { changeRequest } from '@/Api/requests/change-request';
 import {
     Button,
     ButtonTypes,
@@ -13,8 +13,8 @@ import {
     SelectTypes,
     formContainer,
     formItem,
-} from 'Assets/Tempus-Ui';
-import { useAuth } from 'Hooks/useAuth';
+} from '@/Assets/Tempus-Ui';
+import { useAuth } from '@/Hooks/useAuth';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import React, { FC, useEffect, useState } from 'react';
@@ -67,12 +67,7 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
 
     return (
         <IsModal setModalOpen={setModalOpen}>
-            <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={formContainer}
-                className={Styles.SettingsModal}
-            >
+            <motion.div {...formContainer} className={Styles.SettingsModal}>
                 <LoadImage
                     Callback={setUserPhoto}
                     Path="UsersLogos"

@@ -1,5 +1,5 @@
 import Styles from './styles.module.scss';
-import FakePost from 'Components/fake-data/fake-post';
+import FakePost from '@/Components/fake-data/fake-post';
 
 export default function PreloaderPosts() {
     return (

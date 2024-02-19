@@ -13,6 +13,7 @@
         "@firebase/database": "^1.0.1",
         "@reduxjs/toolkit": "^1.9.7",
         "@types/feather-icons": "^4.29.3",
+        "@types/node": "^20.11.19",
         "@types/react-router-dom": "^5.3.3",
         "antd": "^5.14.0",
         "axios": "^1.6.7",

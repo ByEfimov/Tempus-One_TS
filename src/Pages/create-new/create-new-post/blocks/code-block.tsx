@@ -1,16 +1,16 @@
-import Styles from '../Styles.module.scss';
+import Styles from '../../../createNewPost/ui/styles.module.scss';
 import BottomInfo from '../components/bottom-block-info';
 import {
     ButtonIcons,
     buttonIcons,
     defaultItem,
     formItem,
-} from 'Assets/Tempus-Ui';
-import { useAppDispatch } from 'Hooks/redux-hooks';
+} from '@/Assets/Tempus-Ui';
+import { useAppDispatch } from '@/Hooks/redux-hooks';
 import {
     blockType,
     changeDataBlock,
-} from 'Store/slices/wite-post/write-post-slice';
+} from '@/Store/slices/wite-post/write-post-slice';
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import { LiveEditor, LivePreview, LiveProvider } from 'react-live';

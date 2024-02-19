@@ -5,7 +5,7 @@ import ShowSurvey from './show-survey';
 import {
     blockTypes,
     blocksType,
-} from 'Store/slices/wite-post/write-post-slice';
+} from '@/Store/slices/wite-post/write-post-slice';
 import { FC } from 'react';
 import 'swiper/css';
 import { Pagination } from 'swiper/modules';

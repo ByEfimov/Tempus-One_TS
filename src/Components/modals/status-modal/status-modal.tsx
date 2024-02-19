@@ -1,7 +1,7 @@
 import { IsModal } from '../is-modal';
 import Styles from '../style.module.scss';
-import { formContainer, formItem } from 'Assets/Tempus-Ui';
-import { statusType } from 'Pages/open-pages/open-user/user-page';
+import { formContainer, formItem } from '@/Assets/Tempus-Ui';
+import { statusType } from '@/Pages/openUser/ui/Page';
 import { motion } from 'framer-motion';
 
 const StatusModal = ({
@@ -13,12 +13,7 @@ const StatusModal = ({
 }) => {
     return (
         <IsModal setModalOpen={setModalOpen}>
-            <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={formContainer}
-                className={Styles.StatusModal}
-            >
+            <motion.div {...formContainer} className={Styles.StatusModal}>
                 <motion.div variants={formItem} className={Styles.image}>
                     <img src={status?.image} alt="" />
                 </motion.div>

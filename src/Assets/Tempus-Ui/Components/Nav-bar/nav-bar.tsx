@@ -1,6 +1,6 @@
+import { NavBarIcons, navBarIcons } from '../..';
 import Styles from './nav-bar.module.scss';
-import { NavBarIcons, navBarIcons } from 'Assets/Tempus-Ui';
-import { useHeader } from 'Hooks/useHeader';
+import { useHeader } from '@/Hooks/useHeader';
 import { Link, useLocation } from 'react-router-dom';
 
 interface NavBar {

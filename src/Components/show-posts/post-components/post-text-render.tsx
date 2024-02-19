@@ -1,5 +1,5 @@
 import Styles from '../posts/Styles.module.scss';
-import { PostType } from 'Store/slices/wite-post/write-post-slice';
+import { PostType } from '@/Store/slices/wite-post/write-post-slice';
 import { FC } from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
@@ -17,10 +17,11 @@ const PostTextRender: FC<PostTextRenderProps> = ({ post }) => {
             {filteredArray && (
                 <div className={Styles.Text}>
                     {filteredArray.map(
-                        (text) =>
+                        (text, index: number) =>
                             text &&
                             'content' in text.data && (
                                 <ReactMarkdown
+                                    key={index}
                                     skipHtml
                                     rehypePlugins={[rehypeHighlight]}
                                     remarkPlugins={[remarkGfm]}

@@ -2,12 +2,14 @@ import CodeBlock from './blocks/code-block';
 import ImageBlock from './blocks/image-block';
 import SurveyBlock from './blocks/survey-block';
 import TextBlock from './blocks/text-block';
-import { useAppDispatch } from 'Hooks/redux-hooks';
+import { useAppDispatch } from '@/Hooks/redux-hooks';
 import {
     activeEditing,
     blockTypes,
     blocksType,
-} from 'Store/slices/wite-post/write-post-slice';
+} from '@/Store/slices/wite-post/write-post-slice';
+
+//Переделать
 
 const RenderBlocks = ({ blocksData }: { blocksData: blocksType }) => {
     const dispatch = useAppDispatch();

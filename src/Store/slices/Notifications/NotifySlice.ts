@@ -1,9 +1,8 @@
-/* eslint-disable import/order */
-import { createSlice } from '@reduxjs/toolkit';
 import {
     NotifyType,
     TypesOfNotifications,
-} from 'Types/TypesOfData/notifications/notify-type';
+} from '@/Types/TypesOfData/notifications/notify-type';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: NotifyType = {
     Type: TypesOfNotifications.Massage,

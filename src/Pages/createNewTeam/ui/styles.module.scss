@@ -1,0 +1,19 @@
+@import '/src/Assets/Styles/variables.css';
+
+.Container {
+    margin: 10px;
+    margin-top: 5px;
+    .Form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .Container {
+        max-width: 1000px;
+        margin: 0 200px;
+        margin-top: 10px;
+    }
+}

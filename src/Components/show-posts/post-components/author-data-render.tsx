@@ -1,18 +1,18 @@
 import Styles from '../posts/Styles.module.scss';
 import { WhoWrotePost } from '../posts/post-render';
-import { formItem } from 'Assets/Tempus-Ui';
-import UserLogo from 'Components/header/user-logo';
-import SubscribeButton from 'Components/mini-components/subscribe-button';
-import { PostType } from 'Store/slices/wite-post/write-post-slice';
-import formatTimeAgo from 'Utils/post-utils/format-time-ago';
-import ItsUser from 'Utils/users-or-teams/Its-user';
+import { formItem } from '@/Assets/Tempus-Ui';
+import UserLogo from '@/Components/header/user-logo';
+import SubscribeButton from '@/Components/mini-components/subscribe-button';
+import { PostType } from '@/Store/slices/wite-post/write-post-slice';
+import formatTimeAgo from '@/Utils/post-utils/format-time-ago';
+import ItsUser from '@/Utils/users-or-teams/Its-user';
 import { motion } from 'framer-motion';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface AuthorDataRenderProps {
     post: PostType;
-    WhoWrotePost: WhoWrotePost | null;
+    WhoWrotePost?: WhoWrotePost;
 }
 
 const AuthorDataRender: FC<AuthorDataRenderProps> = ({

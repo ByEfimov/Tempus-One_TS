@@ -1,11 +1,11 @@
+import UserLogo from '../header/user-logo';
+import ShowLogo from '../mini-components/show-logo';
+import SubscribeButton from '../mini-components/subscribe-button';
 import Styles from './Styles.module.scss';
-import { formItem } from 'Assets/Tempus-Ui';
-import UserLogo from 'Components/header/user-logo';
-import ShowLogo from 'Components/mini-components/show-logo';
-import SubscribeButton from 'Components/mini-components/subscribe-button';
-import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';
-import { OpenUserType } from 'Types/TypesOfData/team-or-user/open-user-type';
-import AppRoutes from 'Utils/routes/app-routes';
+import { formItem } from '@/Assets/Tempus-Ui';
+import { OpenTeamType } from '@/Types/TypesOfData/team-or-user/open-team-type';
+import { OpenUserType } from '@/Types/TypesOfData/team-or-user/open-user-type';
+import AppRoutes from '@/Utils/routes/app-routes';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 

@@ -1,10 +1,5 @@
+import { InputColors, defaultContainer, defaultItem, formItem } from '../..';
 import Styles from './select.module.scss';
-import {
-    InputColors,
-    defaultContainer,
-    defaultItem,
-    formItem,
-} from 'Assets/Tempus-Ui';
 import { Select as AntdSelect, ConfigProvider } from 'antd';
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
@@ -33,12 +28,7 @@ const Select = ({
 }) => {
     if (Type === SelectTypes.Row) {
         return (
-            <motion.div
-                variants={defaultContainer}
-                initial="hidden"
-                animate="visible"
-                className={Styles.Select}
-            >
+            <motion.div {...defaultContainer} className={Styles.Select}>
                 {Array?.map((item) => (
                     <motion.button
                         key={item.value}

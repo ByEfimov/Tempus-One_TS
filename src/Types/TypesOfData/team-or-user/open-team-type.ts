@@ -1,5 +1,5 @@
 export type OpenTeamType = {
-    desc: string;
+    descriprion: string;
     image: string;
     members: { UserId: string; UserRole: string }[];
     title: string;

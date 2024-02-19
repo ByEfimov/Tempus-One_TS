@@ -1,12 +1,16 @@
-import { headerIcons } from 'Assets/Tempus-Ui/Icons/Header/header-icons';
-import { useAppDispatch } from 'Hooks/redux-hooks';
-import { setHeader, setTypeOfHeader } from 'Store/slices/header/header-slice';
-import { TypesOfHeader } from 'Types/TypesOfData/header/header-type';
-import AppRoutes from 'Utils/routes/app-routes';
+import { headerIcons } from '@/Assets/Tempus-Ui';
+import { useAppDispatch } from '@/Hooks/redux-hooks';
+import { setHeader, setTypeOfHeader } from '@/Store/slices/header/header-slice';
+import { TypesOfHeader } from '@/Types/TypesOfData/header/header-type';
+import AppRoutes from '@/Utils/routes/app-routes';
 import { ReactNode, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-export default function NavigationReducer() {
+export default function NavigationReducer({
+    children,
+}: {
+    children: React.ReactChild | React.ReactNode;
+}) {
     const location = useLocation().pathname;
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -160,5 +164,5 @@ export default function NavigationReducer() {
         }
     }, [location]);
 
-    return <></>;
+    return children;
 }

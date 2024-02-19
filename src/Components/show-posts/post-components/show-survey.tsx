@@ -1,7 +1,7 @@
 import Styles from '../posts/Styles.module.scss';
-import { postRequestWithoutNewId } from 'Api/requests/post-requests-with-new-id';
-import { useAuth } from 'Hooks/useAuth';
-import { blockType } from 'Store/slices/wite-post/write-post-slice';
+import { postRequestWithoutNewId } from '@/Api/requests/post-requests-with-new-id';
+import { useAuth } from '@/Hooks/useAuth';
+import { blockType } from '@/Store/slices/wite-post/write-post-slice';
 import { FC, useState } from 'react';
 
 interface ShowSurvey {

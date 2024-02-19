@@ -1,10 +1,10 @@
 import Styles from '../posts/Styles.module.scss';
-import { postRequestWithoutNewId } from 'Api/requests/post-requests-with-new-id';
-import { removeRequest } from 'Api/requests/remove-request';
-import { PostIcons, formItem, postIcons } from 'Assets/Tempus-Ui';
-import { ErrorNotification } from 'Components/notifications/notifications';
-import { useAuth } from 'Hooks/useAuth';
-import { PostType } from 'Store/slices/wite-post/write-post-slice';
+import { postRequestWithoutNewId } from '@/Api/requests/post-requests-with-new-id';
+import { removeRequest } from '@/Api/requests/remove-request';
+import { PostIcons, formItem, postIcons } from '@/Assets/Tempus-Ui';
+import { ErrorNotification } from '@/Components/notifications/notifications';
+import { useAuth } from '@/Hooks/useAuth';
+import { PostType } from '@/Store/slices/wite-post/write-post-slice';
 import { motion } from 'framer-motion';
 import { FC, useState } from 'react';
 

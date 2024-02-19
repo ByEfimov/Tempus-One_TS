@@ -20,16 +20,9 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true,
-        "baseUrl": "src",
+        "baseUrl": ".",
         "paths": {
-            "Api/*": ["Api/*"],
-            "Assets/*": ["Assets/*"],
-            "Components/*": ["Components/*"],
-            "Hooks/*": ["Hooks/*"],
-            "Pages/*": ["Pages/*"],
-            "Store/*": ["Store/*"],
-            "Types/*": ["Types/*"],
-            "Utils/*": ["Utils/*"]
+            "@/*": ["src/*"]
         }
     },
     "include": ["src/**/*", "src/pages/authentication/login/.tsx"],

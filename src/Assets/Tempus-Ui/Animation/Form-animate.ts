@@ -22,7 +22,7 @@ export const defaultItem = {
     },
 };
 
-export const formContainer = {
+const containerForm = {
     hidden: { opacity: 1, scale: 0 },
     visible: {
         opacity: 1,
@@ -34,7 +34,13 @@ export const formContainer = {
     },
 };
 
-export const defaultContainer = {
+export const formContainer = {
+    initial: 'hidden',
+    animate: 'visible',
+    variants: containerForm,
+};
+
+const containerDefault = {
     hidden: { opacity: 1, scale: 1 },
     visible: {
         opacity: 1,
@@ -44,4 +50,10 @@ export const defaultContainer = {
             staggerChildren: 0.1,
         },
     },
+};
+
+export const defaultContainer = {
+    initial: 'hidden',
+    animate: 'visible',
+    variants: containerDefault,
 };

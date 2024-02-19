@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Styles from './Styles.module.scss';
-import BellIcon from 'Assets/Icons/Notification/bell.svg';
-import ErrorIcon from 'Assets/Icons/Notification/exclamation-triangle.svg';
-import { useAppDispatch } from 'Hooks/redux-hooks';
-import { useNotify } from 'Hooks/useNotify';
+import BellIcon from '@/Assets/Icons/Notification/bell.svg';
+import ErrorIcon from '@/Assets/Icons/Notification/exclamation-triangle.svg';
+import { useAppDispatch } from '@/Hooks/redux-hooks';
+import { useNotify } from '@/Hooks/useNotify';
 import {
     clearNotify,
     setNotification,
-} from 'Store/slices/Notifications/NotifySlice';
-import { TypesOfNotifications } from 'Types/TypesOfData/notifications/notify-type';
+} from '@/Store/slices/Notifications/NotifySlice';
+import { TypesOfNotifications } from '@/Types/TypesOfData/notifications/notify-type';
 import React, { LegacyRef, useEffect } from 'react';
 
 let ErrorNotification = (_error: string) => {};

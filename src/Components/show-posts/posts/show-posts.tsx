@@ -1,19 +1,19 @@
 import Styles from './Styles.module.scss';
 import PostRender from './post-render';
-import { getRequestArray } from 'Api/requests/get-requests';
+import { getRequestArray } from '@/Api/requests/get-requests';
 import {
     Preloader,
     Select,
     SelectTypes,
     defaultContainer,
     defaultItem,
-} from 'Assets/Tempus-Ui';
-import { useAppDispatch } from 'Hooks/redux-hooks';
-import { useAuth } from 'Hooks/useAuth';
-import { useHeader } from 'Hooks/useHeader';
-import { setLastPostKey } from 'Store/slices/PostsSlice';
-import { PostType } from 'Store/slices/wite-post/write-post-slice';
-import { FiltersPosts, aplyFilterPosts } from 'Utils/filters/filter-posts';
+} from '@/Assets/Tempus-Ui';
+import { useAppDispatch } from '@/Hooks/redux-hooks';
+import { useAuth } from '@/Hooks/useAuth';
+import { useHeader } from '@/Hooks/useHeader';
+import { setLastPostKey } from '@/Store/slices/PostsSlice';
+import { PostType } from '@/Store/slices/wite-post/write-post-slice';
+import { FiltersPosts, aplyFilterPosts } from '@/Utils/filters/filter-posts';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
@@ -81,11 +81,7 @@ const ShowPosts = ({
                 </motion.div>
             )}
             {posts ? (
-                <motion.div
-                    initial="hidden"
-                    animate="visible"
-                    variants={defaultContainer}
-                >
+                <motion.div {...defaultContainer}>
                     <motion.div
                         className={Styles.Render}
                         variants={defaultItem}

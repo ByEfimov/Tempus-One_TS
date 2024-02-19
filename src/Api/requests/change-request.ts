@@ -1,5 +1,5 @@
+import filterBadWords from '@/Utils/post-utils/filter-bad-words';
 import { getDatabase, ref, set } from '@firebase/database';
-import filterBadWords from 'Utils/post-utils/filter-bad-words';
 
 export async function changeRequest<T>(
     Path: string,

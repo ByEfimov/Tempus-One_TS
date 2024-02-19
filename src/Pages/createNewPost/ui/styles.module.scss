@@ -1,0 +1,116 @@
+.WritePost {
+    margin: 10px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .block {
+        border-radius: 10px;
+        min-height: 150px;
+        padding: 5px;
+        font-size: 16px;
+        position: relative;
+        font-weight: 300;
+        border: 1px solid transparent;
+        transition: all 0.3s;
+        background-color: var(--SecondaryBackgroundColor);
+        .bottomInfo {
+            bottom: 5px;
+            right: 10px;
+            position: absolute;
+            font-size: 15px;
+            display: flex;
+            gap: 5px;
+            color: var(--SecondaryTextColor);
+            svg {
+                fill: var(--SecondaryTextColor);
+                height: 18px;
+            }
+            .trash {
+                cursor: pointer;
+                svg {
+                    fill: var(--ErrorBackgroundGradient);
+                }
+            }
+        }
+        div {
+            height: 100%;
+            font-size: unset;
+            word-wrap: break-word;
+        }
+        pre {
+            background-color: transparent !important;
+            color: var(--AccentTextColor) !important;
+            padding: 0 !important;
+            min-height: 100px;
+        }
+        textarea {
+            resize: none;
+            padding: 5px;
+            outline: none;
+            font-weight: 300;
+            top: 0;
+            left: 0;
+            bottom: 32px;
+            position: absolute;
+            text-align: start;
+            width: 100%;
+        }
+    }
+    .active {
+        box-shadow: var(--AccentBackgroundShadow);
+        border: 1px solid var(--AccentBorderColor);
+    }
+    .Quest {
+        width: 100%;
+        font-size: 18px !important;
+        font-weight: 300;
+        input {
+            width: 100%;
+            font-size: 18px;
+            font-weight: 300;
+        }
+        margin-bottom: 8px;
+    }
+    .variants {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        .variant {
+            display: flex;
+            font-size: 18;
+            height: 18px;
+            justify-content: space-between;
+            input {
+                font-size: 18;
+                font-weight: 300;
+                width: 100%;
+            }
+            svg {
+                width: 18px;
+                height: 18px;
+                fill: var(--SecondaryTextColor);
+            }
+        }
+    }
+    .block:has(.bottomInfo) {
+        .variants {
+            margin-bottom: 35px;
+        }
+    }
+}
+
+.Modal {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+@media screen and (min-width: 900px) {
+    .WritePost {
+        max-width: 1000px;
+        margin: 0 200px;
+        margin-top: 20px;
+    }
+}

@@ -1,5 +1,5 @@
-import { OpenTeamType } from 'Types/TypesOfData/team-or-user/open-team-type';
-import { OpenUserType } from 'Types/TypesOfData/team-or-user/open-user-type';
+import { OpenTeamType } from '@/Types/TypesOfData/team-or-user/open-team-type';
+import { OpenUserType } from '@/Types/TypesOfData/team-or-user/open-user-type';
 
 export function filterUsers(filter: string, array?: OpenUserType[]) {
     const filteredArray = array;

@@ -1,17 +1,17 @@
 import { CloseModal, IsModal } from '../is-modal';
 import Styles from '../style.module.scss';
-import getUserAdmins from 'Api/Teams/get-user-admins';
-import { changeRequest } from 'Api/requests/change-request';
-import { postRequestWithNewId } from 'Api/requests/post-requests-with-new-id';
-import { defaultContainer, defaultItem } from 'Assets/Tempus-Ui';
-import ShowLogo from 'Components/mini-components/show-logo';
+import getUserAdmins from '@/Api/Teams/get-user-admins';
+import { changeRequest } from '@/Api/requests/change-request';
+import { postRequestWithNewId } from '@/Api/requests/post-requests-with-new-id';
+import { defaultContainer, defaultItem } from '@/Assets/Tempus-Ui';
+import ShowLogo from '@/Components/mini-components/show-logo';
 import {
     ErrorNotification,
     MassageNotification,
-} from 'Components/notifications/notifications';
-import { useAuth } from 'Hooks/useAuth';
-import { PostType } from 'Store/slices/wite-post/write-post-slice';
-import AppRoutes from 'Utils/routes/app-routes';
+} from '@/Components/notifications/notifications';
+import { useAuth } from '@/Hooks/useAuth';
+import { PostType } from '@/Store/slices/wite-post/write-post-slice';
+import AppRoutes from '@/Utils/routes/app-routes';
 import { getUnixTime } from 'date-fns';
 import { motion } from 'framer-motion';
 import { FC, useEffect, useState } from 'react';
@@ -67,12 +67,7 @@ const RepostModal: FC<RepostModal> = ({ setModalOpen, post }) => {
 
     return (
         <IsModal setModalOpen={setModalOpen}>
-            <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={defaultContainer}
-                className={Styles.RepostModal}
-            >
+            <motion.div {...defaultContainer} className={Styles.RepostModal}>
                 <motion.button
                     variants={defaultItem}
                     onClick={repostToYou}

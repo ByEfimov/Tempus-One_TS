@@ -7,22 +7,29 @@ import {
     TextWithLine,
     formContainer,
     formItem,
-} from 'Assets/Tempus-Ui';
-import AuthWithGoogle from 'Pages/authentication/auth-with-google';
-import AppRoutes from 'Utils/routes/app-routes';
-import { validateAuthenticationForm } from 'Utils/validate-data/validate-authentication-form';
+} from '@/Assets/Tempus-Ui';
+import AuthWithGoogle from '@/Pages/authentication/Page';
+import AppRoutes from '@/Utils/routes/app-routes';
+import { validateAuthenticationForm } from '@/Utils/validate-data/validate-authentication-form';
 import { motion } from 'framer-motion';
 import { FC, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
+export type AuthenticationFromData = {
+    email: string;
+    password: string;
+    name?: string;
+    age?: string;
+};
+
 interface AuthenticationFromProps {
     title: string;
-    handlerSubmit: (
-        Email: string,
-        Pass: string,
-        Name: string,
-        Age: string,
-    ) => void;
+    handlerSubmit: ({
+        email,
+        password,
+        name,
+        age,
+    }: AuthenticationFromData) => void;
 }
 
 const AuthenticationFrom: FC<AuthenticationFromProps> = ({
@@ -32,29 +39,30 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({
     const location = useLocation().pathname;
     const Path = '/' + location.split('/')[1];
 
-    const [Email, setEmail] = useState('');
-    const [Pass, setPass] = useState('');
-    const [Name, setName] = useState('');
-    const [Age, setAge] = useState('');
+    const [form, setForm] = useState({
+        email: '',
+        password: '',
+        name: '',
+        age: '',
+    });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setForm({
+            ...form,
+            [name]: value,
+        });
+    };
 
     return (
         <>
             <motion.form
                 onSubmit={(e) => {
                     e.preventDefault();
-                    validateAuthenticationForm(
-                        Pass,
-                        Email,
-                        Name,
-                        Age,
-                        title,
-                        handlerSubmit,
-                    );
+                    validateAuthenticationForm(form, title, handlerSubmit);
                 }}
                 className={FormsStyles.AuthForm}
-                variants={formContainer}
-                initial="hidden"
-                animate="visible"
+                {...formContainer}
             >
                 <motion.h1
                     variants={formItem}
@@ -66,16 +74,16 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({
                 <div className={FormsStyles.AuthForm__InputWrapper}>
                     <Input
                         Placeholder="Ваша почта"
-                        Change={(e) => setEmail(e.target.value)}
-                        Value={Email}
+                        Change={handleChange}
+                        Value={form.email}
                         Variants={formItem}
                         Type={InputTypes.email}
                     ></Input>
 
                     <Input
                         Placeholder="Ваш пароль"
-                        Change={(e) => setPass(e.target.value)}
-                        Value={Pass}
+                        Change={handleChange}
+                        Value={form.password}
                         Type={InputTypes.password}
                         Variants={formItem}
                     ></Input>
@@ -87,15 +95,15 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({
                         >
                             <Input
                                 Placeholder="Имя"
-                                Change={(e) => setName(e.target.value)}
-                                Value={Name}
+                                Change={handleChange}
+                                Value={form.name}
                                 Type={InputTypes.text}
                                 MaxLength={15}
                             ></Input>
                             <Input
                                 Placeholder="Возраст"
-                                Change={(e) => setAge(e.target.value)}
-                                Value={Age}
+                                Change={handleChange}
+                                Value={form.age}
                                 Type={InputTypes.number}
                             ></Input>
                         </motion.div>

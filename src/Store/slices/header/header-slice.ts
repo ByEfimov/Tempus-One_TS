@@ -1,9 +1,9 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { headerIcons } from 'Assets/Tempus-Ui';
+import { headerIcons } from '@/Assets/Tempus-Ui';
 import {
     HeaderType,
     TypesOfHeader,
-} from 'Types/TypesOfData/header/header-type';
+} from '@/Types/TypesOfData/header/header-type';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { ReactNode } from 'react';
 
 const initialState: HeaderType = {
