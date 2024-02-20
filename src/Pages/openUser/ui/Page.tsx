@@ -7,15 +7,15 @@ import {
     formContainer,
     formItem,
 } from '@/Assets/Tempus-Ui';
-import SubscribeButton from '@/Components/mini-components/subscribe-button';
-import StatusModal from '@/Components/modals/status-modal/status-modal';
-import { ErrorNotification } from '@/Components/notifications/notifications';
-import ShowPosts from '@/Components/show-posts/posts/show-posts';
 import { useAppDispatch } from '@/Hooks/redux-hooks';
 import { UserType } from '@/Store/slices/UserSlice';
 import { setExecuteButton } from '@/Store/slices/header/header-slice';
 import { OpenUserType } from '@/Types/TypesOfData/team-or-user/open-user-type';
 import MaxXpToNextLevel from '@/Utils/users-or-teams/max-xp-to-next-level';
+import ShowPosts from '@/entities/post/showPosts';
+import { ErrorNotification } from '@/features/notifications/notifications';
+import SubscribeButton from '@/features/subscribeButton/SubscribeButton';
+import StatusModal from '@/widgets/statusModal/statusModal';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';

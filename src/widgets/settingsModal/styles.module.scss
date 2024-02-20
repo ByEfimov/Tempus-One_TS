@@ -1,0 +1,28 @@
+.SettingsModal {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    select {
+        display: flex;
+        position: relative;
+        border-radius: 10px;
+        padding: 12px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        font-size: 16px;
+        width: 100%;
+        transition: all 0.2s;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid transparent;
+        background-color: var(--PrimaryBackgroundColor);
+        min-height: 45px;
+        outline: none;
+    }
+    select:focus {
+        border: 1px solid var(--AccentBorderColor);
+        border-image-slice: 1;
+        box-shadow: var(--AccentBackgroundShadow);
+        background-color: var(--FourBackgroundColor);
+    }
+}

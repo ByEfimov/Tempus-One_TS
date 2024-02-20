@@ -1,8 +1,8 @@
 import loginUser from '../api/loginUser';
-import AuthenticationFrom from '@/Components/forms/authentication-form';
 import { useAppDispatch } from '@/Hooks/redux-hooks';
 import { useAuth } from '@/Hooks/useAuth';
 import AppRoutes from '@/Utils/routes/app-routes';
+import AuthenticationFrom from '@/entities/authenticationForm/authenticationForm';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 export function LoginPage() {

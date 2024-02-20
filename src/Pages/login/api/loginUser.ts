@@ -1,8 +1,8 @@
-import { ErrorNotification } from '@/Components/notifications/notifications';
 import { setCurrentUser } from '@/Store/slices/UserSlice';
 import { encryptData } from '@/Utils/crypt-data/cripting-data';
 import AppRoutes from '@/Utils/routes/app-routes';
 import { AppDispatch } from '@/app/appStore';
+import { ErrorNotification } from '@/features/notifications/notifications';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import Cookies from 'js-cookie';
 import { NavigateFunction } from 'react-router-dom';

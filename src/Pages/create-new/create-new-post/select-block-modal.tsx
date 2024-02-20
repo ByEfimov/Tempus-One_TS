@@ -9,12 +9,12 @@ import {
     formItem,
     navBarIcons,
 } from '@/Assets/Tempus-Ui';
-import { CloseModal, IsModal } from '@/Components/modals/is-modal';
 import { useAppDispatch } from '@/Hooks/redux-hooks';
 import {
     addNewBlock,
     blockTypes,
 } from '@/Store/slices/wite-post/write-post-slice';
+import { CloseModal, IsModal } from '@/shared/isModal';
 import { motion } from 'framer-motion';
 
 const SelectBlockModal = ({

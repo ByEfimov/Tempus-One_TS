@@ -1,12 +1,12 @@
 import Styles from './styles.module.scss';
 import { formContainer, formItem } from '@/Assets/Tempus-Ui';
-import ShowSurvey from '@/Components/show-posts/post-components/show-survey';
-import { RenderMode as RenderText } from '@/Pages/create-new/create-new-post/blocks/text-block';
 import {
     PostType,
     blockType,
     blockTypes,
 } from '@/Store/slices/wite-post/write-post-slice';
+import { ShowSurvey } from '@/entities/post/components/blocksRender';
+import { RenderMode as RenderText } from '@/widgets/post/blocks/text-block';
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import { LivePreview, LiveProvider } from 'react-live';

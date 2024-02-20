@@ -1,10 +1,10 @@
 import { postRequestWithoutNewId } from '@/Api/requests/post-requests-with-new-id';
-import { AuthenticationFromData } from '@/Components/forms/authentication-form';
-import { ErrorNotification } from '@/Components/notifications/notifications';
 import { setCurrentUser } from '@/Store/slices/UserSlice';
 import { encryptData } from '@/Utils/crypt-data/cripting-data';
 import AppRoutes from '@/Utils/routes/app-routes';
 import { AppDispatch } from '@/app/appStore';
+import { AuthenticationFromData } from '@/entities/authenticationForm/authenticationForm';
+import { ErrorNotification } from '@/features/notifications/notifications';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import Cookies from 'js-cookie';
 import { NavigateFunction } from 'react-router-dom';

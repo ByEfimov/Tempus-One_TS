@@ -4,12 +4,12 @@
     margin-top: 15px;
     width: 100%;
     .editedImage {
-        width: 100%;
-        height: 100%;
+        width: 178px;
         object-fit: cover;
         background: var(--PrimaryBackgroundColor);
         border-radius: 50%;
         box-shadow: var(--AccentBackgroundShadow);
+        height: 178px;
     }
     .changeImage {
         .Buttons {
@@ -107,6 +107,7 @@
         height: 260px;
         box-shadow: none;
         width: 100%;
+        max-width: 400px;
     }
     .changeImage {
         width: 100%;

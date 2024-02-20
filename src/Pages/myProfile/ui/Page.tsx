@@ -7,13 +7,13 @@ import {
     formContainer,
     formItem,
 } from '@/Assets/Tempus-Ui';
-import SettingsUserModal from '@/Components/modals/settings-modal/settings-user-modal';
-import { ErrorNotification } from '@/Components/notifications/notifications';
 import { useAppDispatch, useAppSelector } from '@/Hooks/redux-hooks';
 import { useAuth } from '@/Hooks/useAuth';
 import { UserData } from '@/Pages/openUser/ui/Page';
 import { UserType, removeUser } from '@/Store/slices/UserSlice';
 import AppRoutes from '@/Utils/routes/app-routes';
+import { ErrorNotification } from '@/features/notifications/notifications';
+import SettingsUserModal from '@/widgets/settingsModal/settingsUserModal';
 import { getAuth, signOut } from 'firebase/auth';
 import { motion } from 'framer-motion';
 import Cookies from 'js-cookie';

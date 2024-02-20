@@ -1,6 +1,5 @@
 import { createNewTeam } from '../api/createNewTeam';
 import CreateNewTeamForm from './form';
-import Styles from './styles.module.scss';
 import { Button, ButtonTypes, formItem } from '@/Assets/Tempus-Ui';
 import { useAuth } from '@/Hooks/useAuth';
 import AppRoutes from '@/Utils/routes/app-routes';
@@ -17,7 +16,7 @@ export type NewTeamType = {
 };
 
 const CreateTeamPage = () => {
-    const { UserCanChanging, UserId, UserExperience } = useAuth();
+    const { UserCanChanging, UserId } = useAuth();
     const navigate = useNavigate();
     const [newTeam, setNewTeam] = useState<NewTeamType>({
         title: '',
@@ -32,23 +31,14 @@ const CreateTeamPage = () => {
 
     if (UserCanChanging) {
         return (
-            <div className={Styles.Container}>
-                <CreateNewTeamForm newTeam={newTeam} setNewTeam={setNewTeam}>
-                    <Button
-                        Click={() =>
-                            createNewTeam(
-                                newTeam,
-                                UserId,
-                                UserExperience,
-                                navigate,
-                            )
-                        }
-                        Type={ButtonTypes.active}
-                        Title="Создать команду"
-                        Variants={formItem}
-                    />
-                </CreateNewTeamForm>
-            </div>
+            <CreateNewTeamForm newTeam={newTeam} setNewTeam={setNewTeam}>
+                <Button
+                    Click={() => createNewTeam(newTeam, navigate)}
+                    Type={ButtonTypes.active}
+                    Title="Создать команду"
+                    Variants={formItem}
+                />
+            </CreateNewTeamForm>
         );
     } else if (!UserCanChanging) {
         return <Navigate to={AppRoutes.TEAMS} />;

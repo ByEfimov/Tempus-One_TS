@@ -10,16 +10,16 @@ import {
     defaultContainer,
     formItem,
 } from '@/Assets/Tempus-Ui';
-import CommentsModal from '@/Components/modals/comments-modal/comments-modal';
-import RepostModal from '@/Components/modals/repost-modal/repost-modal';
-import { ErrorNotification } from '@/Components/notifications/notifications';
-import Activities from '@/Components/show-posts/post-components/activities';
-import AuthorDataRender from '@/Components/show-posts/post-components/author-data-render';
-import { WhoWrotePost } from '@/Components/show-posts/posts/post-render';
 import { useAppDispatch } from '@/Hooks/redux-hooks';
 import { useAuth } from '@/Hooks/useAuth';
 import { setExecuteButton } from '@/Store/slices/header/header-slice';
 import { PostType } from '@/Store/slices/wite-post/write-post-slice';
+import Activities from '@/entities/post/components/activities';
+import AuthorDataRender from '@/entities/post/components/authorDataRender';
+import { WhoWrotePost } from '@/entities/post/postRender';
+import { ErrorNotification } from '@/features/notifications/notifications';
+import CommentsModal from '@/widgets/commentsModal/commentsModal';
+import RepostModal from '@/widgets/repostModal/repostModal';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';

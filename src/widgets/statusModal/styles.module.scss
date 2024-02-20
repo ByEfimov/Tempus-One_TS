@@ -1,0 +1,29 @@
+.StatusModal {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    height: max-content;
+    .image {
+        min-width: 100px;
+        height: 100px;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .text {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        h1 {
+            font-size: 20px;
+            font-weight: 500;
+        }
+        h2 {
+            font-size: 16px;
+            color: var(--SecondaryTextColor);
+            font-weight: 400;
+        }
+    }
+}

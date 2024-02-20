@@ -1,7 +1,7 @@
 import validateEmail from './validate-email';
 import validatePassword from './validate-password';
-import { AuthenticationFromData } from '@/Components/forms/authentication-form';
-import { ErrorNotification } from '@/Components/notifications/notifications';
+import { AuthenticationFromData } from '@/entities/authenticationForm/authenticationForm';
+import { ErrorNotification } from '@/features/notifications/notifications';
 
 export const validateAuthenticationForm = (
     { email, password, name, age }: AuthenticationFromData,

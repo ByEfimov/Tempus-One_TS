@@ -1,0 +1,55 @@
+.Obj {
+    display: flex;
+    padding: 10px;
+    border-radius: 10px;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--SecondaryBackgroundColor);
+    .Data {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .Photo {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        overflow: hidden;
+        flex-shrink: 0;
+        img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+            background: var(--ThirdaryBackgroundColor);
+        }
+    }
+    .Text {
+        display: flex;
+
+        flex-direction: column;
+        gap: 3px;
+        .Title {
+            color: var(--AccentColor);
+            font-size: 16px;
+            line-height: 16px;
+            font-weight: 400;
+            max-height: 16px;
+            overflow: hidden;
+        }
+        .Members {
+            color: var(--SecondaryTextColor);
+            font-size: 14px;
+            font-weight: 300;
+        }
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .Obj {
+        border: 1px solid var(--TransparentColor);
+        width: 48.5%;
+        cursor: pointer;
+    }
+}

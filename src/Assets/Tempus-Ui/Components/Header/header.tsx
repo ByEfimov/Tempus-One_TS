@@ -7,13 +7,13 @@ import {
     headerIcons,
 } from '../../index';
 import Styles from './header.module.scss';
-import UserLogo from '@/Components/header/user-logo';
 import { useAppDispatch } from '@/Hooks/redux-hooks';
 import { useAuth } from '@/Hooks/useAuth';
 import { useHeader } from '@/Hooks/useHeader';
 import { setInputSearchBar } from '@/Store/slices/header/header-slice';
 import { TypesOfHeader } from '@/Types/TypesOfData/header/header-type';
 import AppRoutes from '@/Utils/routes/app-routes';
+import UserLogo from '@/shared/userLogo';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 

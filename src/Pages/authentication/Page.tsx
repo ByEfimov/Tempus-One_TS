@@ -6,11 +6,11 @@ import {
     ButtonTypes,
     buttonIcons,
 } from '@/Assets/Tempus-Ui';
-import { ErrorNotification } from '@/Components/notifications/notifications';
 import { useAppDispatch } from '@/Hooks/redux-hooks';
 import { setCurrentUser } from '@/Store/slices/UserSlice';
 import { encryptData } from '@/Utils/crypt-data/cripting-data';
 import AppRoutes from '@/Utils/routes/app-routes';
+import { ErrorNotification } from '@/features/notifications/notifications';
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';

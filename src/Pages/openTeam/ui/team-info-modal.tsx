@@ -1,9 +1,9 @@
 import Styles from './Styles.module.scss';
 import { getRequestObject } from '@/Api/requests/get-requests';
 import { Members, formContainer, formItem } from '@/Assets/Tempus-Ui';
-import { IsModal } from '@/Components/modals/is-modal';
 import { OpenTeamType } from '@/Types/TypesOfData/team-or-user/open-team-type';
 import { OpenUserType } from '@/Types/TypesOfData/team-or-user/open-user-type';
+import { IsModal } from '@/shared/isModal';
 import { motion } from 'framer-motion';
 import moment from 'moment';
 import { useEffect, useState } from 'react';

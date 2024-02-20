@@ -1,4 +1,4 @@
-import ShowPosts from '@/Components/show-posts/posts/show-posts';
+import ShowPosts from '@/entities/post/showPosts';
 
 export function MainPage() {
     return <ShowPosts ShowFilters />;

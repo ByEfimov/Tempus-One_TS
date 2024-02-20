@@ -1,6 +1,6 @@
-import RenderBlocks from '../../create-new/create-new-post/render-blocks';
-import SelectBlockModal from '../../create-new/create-new-post/select-block-modal';
+import RenderBlocks from '../../../widgets/post/renderBlocks';
 import { sendNewPost } from '../api/sendNewPost';
+import CreatePostModals from './modals';
 import Styles from './styles.module.scss';
 import getUserAdmins from '@/Api/Teams/get-user-admins';
 import {
@@ -23,7 +23,7 @@ import { useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 const CreatePostPage = () => {
-    const { UserExperience, UserId, UserCanChanging } = useAuth();
+    const { UserId, UserCanChanging } = useAuth();
     const [selectBlockModalOpen, setSelectBlockModalOpen] = useState(false);
     const [userAdmins, setUserAdmins] =
         useState<{ value: string; label: string }[]>();
@@ -43,13 +43,7 @@ const CreatePostPage = () => {
                     component: (
                         <Button
                             Click={() =>
-                                sendNewPost(
-                                    UserId,
-                                    UserExperience,
-                                    newPost,
-                                    dispatch,
-                                    navigate,
-                                )
+                                sendNewPost(newPost, dispatch, navigate)
                             }
                             Type={ButtonTypes.icon}
                         >
@@ -61,6 +55,11 @@ const CreatePostPage = () => {
         );
     }, [newPost]);
 
+    const Authors = userAdmins && [
+        { label: 'От меня', value: UserId },
+        ...userAdmins,
+    ];
+
     return UserCanChanging ? (
         <motion.div className={Styles.WritePost} {...formContainer}>
             <CreatePostModals
@@ -69,12 +68,7 @@ const CreatePostPage = () => {
             ></CreatePostModals>
             <Select
                 Type={SelectTypes.Input}
-                Array={
-                    userAdmins && [
-                        { label: 'От меня', value: UserId },
-                        ...userAdmins,
-                    ]
-                }
+                Array={Authors}
                 setSelect={(value: string) => {
                     dispatch(changeAuthorPost({ authorId: value }));
                 }}
@@ -92,23 +86,5 @@ const CreatePostPage = () => {
         <Navigate to={AppRoutes.DEFAULT}></Navigate>
     );
 };
-
-interface CreatePostModalsProps {
-    selectBlockModalOpen: boolean;
-    setSelectBlockModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-function CreatePostModals({
-    selectBlockModalOpen,
-    setSelectBlockModalOpen,
-}: CreatePostModalsProps) {
-    return (
-        selectBlockModalOpen && (
-            <SelectBlockModal
-                setModalOpen={setSelectBlockModalOpen}
-            ></SelectBlockModal>
-        )
-    );
-}
 
 export { CreatePostPage };

@@ -1,4 +1,4 @@
-import { MassageNotification } from '@/Components/notifications/notifications';
+import { MassageNotification } from '@/features/notifications/notifications';
 import { getAuth, sendEmailVerification } from 'firebase/auth';
 
 export function sendMailForVerifying() {

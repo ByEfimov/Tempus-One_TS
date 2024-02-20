@@ -1,4 +1,4 @@
-import { WhoWrotePost } from '@/Components/show-posts/posts/post-render';
+import { WhoWrotePost } from '@/entities/post/postRender';
 
 export const itsMember = (
     UserId: string | null,

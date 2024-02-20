@@ -1,5 +1,4 @@
 import { Header, NavBar, navBarIcons } from '@/Assets/Tempus-Ui';
-import { Notifications } from '@/Components/notifications/notifications';
 import { useAuth } from '@/Hooks/useAuth';
 import { CreatePostPage } from '@/Pages/createNewPost';
 import { CreateTeamPage } from '@/Pages/createNewTeam';
@@ -16,6 +15,7 @@ import { TeamsPage } from '@/Pages/teams';
 import { UsersPage } from '@/Pages/users';
 import { VerifyingEmailPage } from '@/Pages/verifiedEmail';
 import AppRoutes from '@/Utils/routes/app-routes';
+import { Notifications } from '@/features/notifications/notifications';
 import { Route, Routes } from 'react-router-dom';
 
 function BaseLayout() {
