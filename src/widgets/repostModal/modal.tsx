@@ -5,7 +5,7 @@ import { defaultContainer, defaultItem } from '@/Assets/Tempus-Ui';
 import { useAuth } from '@/Hooks/useAuth';
 import { PostType } from '@/Store/slices/wite-post/write-post-slice';
 import { repostToYou } from '@/features/RepostToYou';
-import UserLogo from '@/shared/userLogo';
+import UserLogo from '@/shared/userLogo/userLogo';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';

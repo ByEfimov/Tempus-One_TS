@@ -5,7 +5,7 @@ import { PostType } from '@/Store/slices/wite-post/write-post-slice';
 import formatTimeAgo from '@/Utils/post-utils/format-time-ago';
 import ItsUser from '@/Utils/users-or-teams/Its-user';
 import SubscribeButton from '@/features/subscribeButton/SubscribeButton';
-import UserLogo from '@/shared/userLogo';
+import UserLogo from '@/shared/userLogo/userLogo';
 import { motion } from 'framer-motion';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -38,7 +38,7 @@ const AuthorDataRender: FC<AuthorDataRenderProps> = ({
                 <div className={Styles.Photo}>
                     <UserLogo
                         Logo={WhoWrotePost?.image || WhoWrotePost?.photo}
-                    ></UserLogo>
+                    />
                 </div>
                 <div className={Styles.Text}>
                     <div className={Styles.Name}>

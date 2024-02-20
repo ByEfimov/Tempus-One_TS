@@ -1,10 +1,10 @@
 import SubscribeButton from '../../features/subscribeButton/SubscribeButton';
-import Styles from './Styles.module.scss';
+import Styles from './styles.module.scss';
 import { formItem } from '@/Assets/Tempus-Ui';
 import { OpenTeamType } from '@/Types/TypesOfData/team-or-user/open-team-type';
 import { OpenUserType } from '@/Types/TypesOfData/team-or-user/open-user-type';
 import AppRoutes from '@/Utils/routes/app-routes';
-import UserLogo from '@/shared/userLogo';
+import UserLogo from '@/shared/userLogo/userLogo';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
@@ -26,7 +26,7 @@ export default function ShowUserOrTeam({
             >
                 <div className={Styles.Data}>
                     <div className={Styles.Photo}>
-                        <UserLogo Logo={User.photo}></UserLogo>
+                        <UserLogo Logo={User.photo} />
                     </div>
                     <div className={Styles.Text}>
                         <div className={Styles.Title}>{User.name}</div>
@@ -55,7 +55,7 @@ export default function ShowUserOrTeam({
             >
                 <div className={Styles.Data}>
                     <div className={Styles.Photo}>
-                        <UserLogo Logo={Team.image}></UserLogo>
+                        <UserLogo Logo={Team.image} />
                     </div>
                     <div className={Styles.Text}>
                         <div className={Styles.Title}>{Team.title}</div>

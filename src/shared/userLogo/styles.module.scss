@@ -1,0 +1,39 @@
+.TopBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  .UserStatus {
+    cursor: pointer;
+    position: absolute;
+    bottom: 10px;
+    z-index: 100;
+    margin-right: -115px;
+    img {
+      width: 35px;
+      height: 35px;
+    }
+  }
+  .UserPhoto {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    border-radius: 500px;
+    align-items: center;
+    background: var(--ThirdaryBackgroundColor);
+    .Photo {
+      background: var(--ThirdaryBackgroundColor);
+      border-radius: 500px;
+      overflow: hidden;
+      width: 100%;
+      object-fit: cover;
+      height: 100%;
+    }
+    .Fake {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}

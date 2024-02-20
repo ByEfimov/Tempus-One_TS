@@ -19,7 +19,7 @@ const BottomInfo = ({
 }: {
     block: blockType;
     removeBlockP?: (blockId: number) => void;
-    children?: React.ReactChild | React.ReactNode;
+    children?: React.ReactNode;
 }) => {
     const dispatch = useAppDispatch();
     function removeBlockF(blockId: number) {

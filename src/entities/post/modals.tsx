@@ -1,6 +1,6 @@
 import { PostType } from '@/Store/slices/wite-post/write-post-slice';
 import CommentsModal from '@/widgets/commentsModal/commentsModal';
-import RepostModal from '@/widgets/repostModal/repostModal';
+import RepostModal from '@/widgets/repostModal/modal';
 
 const PostModals = ({
     CommentsOpen,

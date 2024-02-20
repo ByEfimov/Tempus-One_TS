@@ -1,7 +1,7 @@
-import CodeBlock from './blocks/code-block';
-import ImageBlock from './blocks/image-block';
-import SurveyBlock from './blocks/survey-block';
-import TextBlock from './blocks/text-block';
+import CodeBlock from './post/blocks/code-block';
+import ImageBlock from './post/blocks/image-block';
+import SurveyBlock from './post/blocks/survey-block';
+import TextBlock from './post/blocks/text-block';
 import { useAppDispatch } from '@/Hooks/redux-hooks';
 import {
     activeEditing,

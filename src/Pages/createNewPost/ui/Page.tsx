@@ -1,4 +1,3 @@
-import RenderBlocks from '../../../widgets/post/renderBlocks';
 import { sendNewPost } from '../api/sendNewPost';
 import CreatePostModals from './modals';
 import Styles from './styles.module.scss';
@@ -18,6 +17,7 @@ import { useAuth } from '@/Hooks/useAuth';
 import { setExecuteButton } from '@/Store/slices/header/header-slice';
 import { changeAuthorPost } from '@/Store/slices/wite-post/write-post-slice';
 import AppRoutes from '@/Utils/routes/app-routes';
+import RenderBlocks from '@/widgets/renderBlocks';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
