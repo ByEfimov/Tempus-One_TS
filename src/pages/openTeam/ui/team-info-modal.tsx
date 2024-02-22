@@ -1,4 +1,4 @@
-import Styles from './Styles.module.scss';
+import Styles from './styles.module.scss';
 import { getRequestObject } from '@/app/api/requests/get-requests';
 import { Members, formContainer, formItem } from '@/app/assets/Tempus-Ui';
 import { OpenTeamType } from '@/app/types/TypesOfData/team-or-user/open-team-type';
