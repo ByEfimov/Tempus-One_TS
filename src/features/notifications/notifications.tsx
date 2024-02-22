@@ -1,10 +1,10 @@
 import Styles from './Styles.module.scss';
-import BellIcon from '@/Assets/Icons/Notification/bell.svg';
-import ErrorIcon from '@/Assets/Icons/Notification/exclamation-triangle.svg';
 import { useAppDispatch } from '@/app/hooks/redux-hooks';
 import { useNotify } from '@/app/hooks/useNotify';
 import { clearNotify, setNotification } from '@/app/slices/Notifications/NotifySlice';
 import { TypesOfNotifications } from '@/app/types/TypesOfData/notifications/notify-type';
+import BellIcon from '@app/assets/Icons/Notification/bell.svg';
+import ErrorIcon from '@app/assets/Icons/Notification/exclamation-triangle.svg';
 import React, { LegacyRef, useEffect } from 'react';
 
 let ErrorNotification: (error: string) => void;
