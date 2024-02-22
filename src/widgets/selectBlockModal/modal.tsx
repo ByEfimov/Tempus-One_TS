@@ -7,9 +7,9 @@ import {
   formContainer,
   formItem,
   navBarIcons,
-} from '@/Assets/Tempus-Ui';
-import { useAppDispatch } from '@/Hooks/redux-hooks';
-import { addNewBlock, blockTypes } from '@/Store/slices/wite-post/write-post-slice';
+} from '@/app/assets/Tempus-Ui';
+import { useAppDispatch } from '@/app/hooks/redux-hooks';
+import { addNewBlock, blockTypes } from '@/app/slices/wite-post/write-post-slice';
 import { CloseModal, IsModal } from '@/shared/isModal';
 import { motion } from 'framer-motion';
 

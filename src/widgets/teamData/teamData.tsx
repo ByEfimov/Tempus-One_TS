@@ -1,8 +1,8 @@
 import Styles from './styles.module.scss';
 import TeamInfo from './teamInfo';
-import { Button, ButtonTypes, formContainer, formItem } from '@/Assets/Tempus-Ui';
-import { OpenTeamType } from '@/Types/TypesOfData/team-or-user/open-team-type';
-import MaxXpToNextLevel from '@/Utils/users-or-teams/max-xp-to-next-level';
+import { Button, ButtonTypes, formContainer, formItem } from '@/app/assets/Tempus-Ui';
+import { OpenTeamType } from '@/app/types/TypesOfData/team-or-user/open-team-type';
+import MaxXpToNextLevel from '@/shared/users-or-teams/max-xp-to-next-level';
 import { motion } from 'framer-motion';
 
 interface CustomCSSProperties extends React.CSSProperties {

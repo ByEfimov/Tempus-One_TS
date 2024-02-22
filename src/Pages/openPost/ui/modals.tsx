@@ -1,4 +1,4 @@
-import { PostType } from '@/Store/slices/wite-post/write-post-slice';
+import { PostType } from '@/app/slices/wite-post/write-post-slice';
 import CommentsModal from '@/widgets/commentsModal/commentsModal';
 import RepostModal from '@/widgets/repostModal/modal';
 

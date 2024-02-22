@@ -1,5 +1,5 @@
 import FakeLogo from '@/Assets/Icons/Header/user.svg';
-import { useAuth } from '@/Hooks/useAuth';
+import { useAuth } from '@/app/hooks/useAuth';
 
 const UserLogo = ({ Logo }: { Logo?: string | null }) => {
   const { UserPhoto, UserIsAuth } = useAuth();

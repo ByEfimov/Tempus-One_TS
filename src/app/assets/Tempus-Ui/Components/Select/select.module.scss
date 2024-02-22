@@ -1,0 +1,59 @@
+.Select {
+    display: flex;
+    gap: 10px;
+    overflow-y: auto;
+    transition: all 0.5s;
+    opacity: 1;
+    .Item {
+        padding: 5px;
+        padding-left: 12px;
+        padding-right: 12px;
+        font-weight: 400;
+        border-radius: 500px;
+        font-size: 15px;
+        flex-shrink: 0;
+
+        transition: all 0.3s;
+        border: 1px solid transparent;
+        color: var(--SecondaryTextColor);
+        background: var(--SecondaryBackgroundColor);
+    }
+    .Selected {
+        color: var(--PrimaryTextColor);
+        border: 1px solid var(--AccentBorderColor);
+        background-color: var(--FourBackgroundColor);
+    }
+}
+
+.SelectInput {
+    position: relative;
+    border-radius: 10px;
+    width: 100%;
+    transition: all 0.2s;
+    justify-content: center;
+    align-items: center;
+    min-height: 45px;
+
+    * {
+        font-weight: 400 !important;
+        outline: none !important;
+        font-size: 16px !important;
+        font-family: 'sfPro' !important;
+    }
+    svg {
+        color: var(--SecondaryTextColor);
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .Select {
+        .Item {
+            border: 1px solid var(--TransparentColor);
+        }
+        .Selected {
+            color: var(--PrimaryTextColor);
+            border: 1px solid var(--AccentBorderColor);
+            background-color: var(--FourBackgroundColor);
+        }
+    }
+}

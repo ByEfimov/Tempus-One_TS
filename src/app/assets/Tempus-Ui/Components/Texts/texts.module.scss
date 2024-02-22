@@ -1,0 +1,27 @@
+.TextWithLine {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    font-size: 16px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+    .line1 {
+        width: 42%;
+        border-radius: 5px;
+        height: 4px;
+        background-color: var(--SecondaryBackgroundColor);
+    }
+    .text {
+        color: var(--SecondaryTextColor);
+        flex-shrink: 0;
+    }
+    .line2 {
+        width: 42%;
+        border-radius: 5px;
+        height: 4px;
+        background-color: var(--SecondaryBackgroundColor);
+    }
+}

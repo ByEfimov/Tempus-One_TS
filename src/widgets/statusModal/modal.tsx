@@ -1,6 +1,6 @@
 import { IsModal } from '../../shared/isModal';
 import Styles from './styles.module.scss';
-import { formContainer, formItem } from '@/Assets/Tempus-Ui';
+import { formContainer, formItem } from '@/app/assets/Tempus-Ui';
 import { statusType } from '@/shared/userLogo/userLogoWithXp';
 import { motion } from 'framer-motion';
 

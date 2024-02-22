@@ -1,10 +1,10 @@
 import { CloseModal } from '../../shared/isModal';
 import Styles from './styles.module.scss';
-import { getRequestObject } from '@/Api/requests/get-requests';
-import { Comments } from '@/Types/TypesOfData/post/comments';
-import { OpenUserType } from '@/Types/TypesOfData/team-or-user/open-user-type';
-import formatTimeAgo from '@/Utils/post-utils/format-time-ago';
-import AppRoutes from '@/Utils/routes/app-routes';
+import { getRequestObject } from '@/app/api/requests/get-requests';
+import { Comments } from '@/app/types/TypesOfData/post/comments';
+import { OpenUserType } from '@/app/types/TypesOfData/team-or-user/open-user-type';
+import formatTimeAgo from '@/shared/post-utils/format-time-ago';
+import AppRoutes from '@/shared/routes/app-routes';
 import UserLogo from '@/shared/userLogo/userLogo';
 import { motion } from 'framer-motion';
 import { FC, useEffect, useState } from 'react';

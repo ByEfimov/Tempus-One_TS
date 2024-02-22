@@ -1,9 +1,9 @@
 import Styles from './styles.module.scss';
-import { getRequestObject } from '@/Api/requests/get-requests';
-import { Preloader } from '@/Assets/Tempus-Ui';
-import { useAppDispatch } from '@/Hooks/redux-hooks';
-import { setExecuteButton } from '@/Store/slices/header/header-slice';
-import { OpenUserType } from '@/Types/TypesOfData/team-or-user/open-user-type';
+import { getRequestObject } from '@/app/api/requests/get-requests';
+import { Preloader } from '@/app/assets/Tempus-Ui';
+import { useAppDispatch } from '@/app/hooks/redux-hooks';
+import { setExecuteButton } from '@/app/slices/header/header-slice';
+import { OpenUserType } from '@/app/types/TypesOfData/team-or-user/open-user-type';
 import ShowPosts from '@/entities/post/showPosts';
 import { ErrorNotification } from '@/features/notifications/notifications';
 import SubscribeButton from '@/features/subscribeButton/SubscribeButton';

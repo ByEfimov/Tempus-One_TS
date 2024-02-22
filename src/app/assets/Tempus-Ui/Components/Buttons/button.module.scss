@@ -1,0 +1,51 @@
+.Button {
+    border-radius: 10px;
+    padding: 10px;
+    background: var(--SecondaryBackgroundColor);
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 0.3px;
+    transition: scale 0.2s;
+    gap: 5px;
+    width: 100%;
+    img {
+        width: 30px;
+    }
+    svg {
+        fill: var(--PrimaryTextColor);
+        width: 23px;
+    }
+}
+
+.ButtonActive {
+    background: var(--AccentBackgroundGradient);
+    border-radius: 50px;
+    box-shadow: var(--AccentBackgroundShadow);
+}
+
+.Button:active {
+    scale: 0.98;
+}
+
+.ButtonError {
+    border: 1px solid var(--ErrorBackgroundGradient);
+    background-color: #491d1d;
+}
+
+.ButtonIcon {
+    width: fit-content;
+    padding: 0px;
+    background: inherit;
+}
+
+@media screen and (min-width: 900px) {
+    .Button {
+        border: 1px solid var(--TransparentColor);
+    }
+    .ButtonError {
+        border: 1px solid var(--ErrorBackgroundGradient);
+    }
+}

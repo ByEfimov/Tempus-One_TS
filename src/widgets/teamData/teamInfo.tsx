@@ -1,6 +1,6 @@
 import Styles from './styles.module.scss';
-import { ButtonIcons, buttonIcons, formItem } from '@/Assets/Tempus-Ui';
-import { OpenTeamType } from '@/Types/TypesOfData/team-or-user/open-team-type';
+import { ButtonIcons, buttonIcons, formItem } from '@/app/assets/Tempus-Ui';
+import { OpenTeamType } from '@/app/types/TypesOfData/team-or-user/open-team-type';
 import { motion } from 'framer-motion';
 
 export default function TeamInfo({

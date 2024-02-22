@@ -1,8 +1,8 @@
 import { getFilteredUsers } from '../api/getFilteredUsers';
 import Styles from './styles.module.scss';
-import { Preloader, defaultContainer } from '@/Assets/Tempus-Ui';
-import { useHeader } from '@/Hooks/useHeader';
-import { OpenUserType } from '@/Types/TypesOfData/team-or-user/open-user-type';
+import { Preloader, defaultContainer } from '@/app/assets/Tempus-Ui';
+import { useHeader } from '@/app/hooks/useHeader';
+import { OpenUserType } from '@/app/types/TypesOfData/team-or-user/open-user-type';
 import ShowUserOrTeam from '@/entities/showUsersOrTeam/showUsersOrTeam';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';

@@ -1,7 +1,7 @@
 import BlocksRender from './blocks-render';
 import { PostModals } from './modals';
 import Styles from './styles.module.scss';
-import { getRequestObject } from '@/Api/requests/get-requests';
+import { getRequestObject } from '@/app/api/requests/get-requests';
 import {
   Button,
   ButtonIcons,
@@ -10,11 +10,11 @@ import {
   buttonIcons,
   defaultContainer,
   formItem,
-} from '@/Assets/Tempus-Ui';
-import { useAppDispatch } from '@/Hooks/redux-hooks';
-import { useAuth } from '@/Hooks/useAuth';
-import { setExecuteButton } from '@/Store/slices/header/header-slice';
-import { PostType } from '@/Store/slices/wite-post/write-post-slice';
+} from '@/app/assets/Tempus-Ui';
+import { useAppDispatch } from '@/app/hooks/redux-hooks';
+import { useAuth } from '@/app/hooks/useAuth';
+import { setExecuteButton } from '@/app/slices/header/header-slice';
+import { PostType } from '@/app/slices/wite-post/write-post-slice';
 import Activities from '@/entities/post/components/activities';
 import AuthorDataRender from '@/entities/post/components/authorDataRender';
 import { WhoWrotePost } from '@/entities/post/postRender';

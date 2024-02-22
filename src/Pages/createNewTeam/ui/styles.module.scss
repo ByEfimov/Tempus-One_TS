@@ -1,17 +1,15 @@
-@import '/src/Assets/Styles/variables.css';
-
 .Form {
-    margin: 10px;
-    margin-top: 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  margin: 10px;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 @media screen and (min-width: 900px) {
-    .Form {
-        max-width: 1000px;
-        margin: 0 200px;
-        margin-top: 10px;
-    }
+  .Form {
+    max-width: 1000px;
+    margin: 0 200px;
+    margin-top: 10px;
+  }
 }

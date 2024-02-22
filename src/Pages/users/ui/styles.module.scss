@@ -1,18 +1,18 @@
 .Users {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    padding-top: 25px;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  padding-top: 25px;
+  gap: 15px;
 }
 
 @media screen and (min-width: 900px) {
-    .Users {
-        margin-left: 220px;
-        margin-right: 56px;
+  .Users {
+    margin-left: 220px;
+    margin-right: 56px;
 
-        flex-wrap: wrap;
-        justify-content: space-between;
-        flex-direction: row;
-    }
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: row;
+  }
 }

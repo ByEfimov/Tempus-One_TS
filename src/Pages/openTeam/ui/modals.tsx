@@ -1,5 +1,5 @@
 import TeamInfoModal from './team-info-modal';
-import { OpenTeamType } from '@/Types/TypesOfData/team-or-user/open-team-type';
+import { OpenTeamType } from '@/app/types/TypesOfData/team-or-user/open-team-type';
 import SettingsTeamModal from '@/widgets/settingsModal/modalTeam';
 
 interface modalInterface {

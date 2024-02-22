@@ -1,6 +1,6 @@
 import Styles from './styles.module.scss';
-import { changeRequest } from '@/Api/requests/change-request';
-import { removeRequest } from '@/Api/requests/remove-request';
+import { changeRequest } from '@/app/api/requests/change-request';
+import { removeRequest } from '@/app/api/requests/remove-request';
 import {
   Button,
   ButtonTypes,
@@ -14,12 +14,12 @@ import {
   TextArea,
   formContainer,
   formItem,
-} from '@/Assets/Tempus-Ui';
-import { useAuth } from '@/Hooks/useAuth';
-import { OpenTeamType } from '@/Types/TypesOfData/team-or-user/open-team-type';
-import { teamMembers } from '@/Types/TypesOfData/team-or-user/team-directions';
-import AppRoutes from '@/Utils/routes/app-routes';
+} from '@/app/assets/Tempus-Ui';
+import { useAuth } from '@/app/hooks/useAuth';
+import { OpenTeamType } from '@/app/types/TypesOfData/team-or-user/open-team-type';
+import { teamMembers } from '@/app/types/TypesOfData/team-or-user/team-directions';
 import { CloseModal, IsModal } from '@/shared/isModal';
+import AppRoutes from '@/shared/routes/app-routes';
 import { motion } from 'framer-motion';
 import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';

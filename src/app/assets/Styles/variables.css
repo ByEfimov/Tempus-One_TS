@@ -1,0 +1,16 @@
+html {
+  --PrimaryTextColor: #fff;
+  --SecondaryTextColor: #bdbdbd;
+  --PrimaryBackgroundColor: #18191e;
+  --SecondaryBackgroundColor: #1d1f2a;
+  --ThirdaryBackgroundColor: #3d3f48;
+  --FourBackgroundColor: #20182c;
+  --AccentBackgroundGradient: linear-gradient(91deg, #7728e1 0%, #700cf5 100%);
+  --AccentBorderColor: #700cf5;
+  --AccentBackgroundShadow: 0px 0px 10px 0px rgba(113, 13, 245, 0.1);
+
+  --ErrorBackgroundGradient: #993a33;
+  --TransparentColor: #60658320;
+
+  --PrimaryPaddingSize: 12px;
+}

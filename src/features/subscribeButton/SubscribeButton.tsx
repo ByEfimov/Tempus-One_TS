@@ -1,70 +1,51 @@
 import { WhoWrotePost } from '../../entities/post/postRender';
 import { MassageNotification } from '../notifications/notifications';
 import Styles from './styles.module.scss';
-import { Subscription } from '@/Api/Users/interaction/subscription';
-import { changeRequest } from '@/Api/requests/change-request';
-import {
-    HeaderIcons,
-    PostIcons,
-    headerIcons,
-    postIcons,
-} from '@/Assets/Tempus-Ui';
-import { useAuth } from '@/Hooks/useAuth';
-import { itsMember } from '@/Utils/users-or-teams/ist-member';
+import { Subscription } from '@/app/api/Users/interaction/subscription';
+import { changeRequest } from '@/app/api/requests/change-request';
+import { HeaderIcons, PostIcons, headerIcons, postIcons } from '@/app/assets/Tempus-Ui';
+import { useAuth } from '@/app/hooks/useAuth';
+import { itsMember } from '@/shared/users-or-teams/ist-member';
 import classNames from 'classnames';
 
 interface SubscribeButton {
-    WhoWrotePost?: WhoWrotePost;
-    id: string | undefined;
+  WhoWrotePost?: WhoWrotePost;
+  id: string | undefined;
 }
 
 const SubscribeButton = ({ WhoWrotePost, id }: SubscribeButton) => {
-    const { UserId, UserSubscriptions, UserExperience, UserIsAuth } = useAuth();
+  const { UserId, UserSubscriptions, UserExperience, UserIsAuth } = useAuth();
 
-    const isMember = itsMember(UserId, UserSubscriptions, WhoWrotePost);
-    const isAdminPresent = Object.values(WhoWrotePost?.members || '').some(
-        (user) => user.UserId === UserId && user.UserRole === 'Administrator',
-    );
-    const isTeam = WhoWrotePost?.id && WhoWrotePost.id[0] === '-';
+  const isMember = itsMember(UserId, UserSubscriptions, WhoWrotePost);
+  const isAdminPresent = Object.values(WhoWrotePost?.members || '').some(
+    (user) => user.UserId === UserId && user.UserRole === 'Administrator',
+  );
+  const isTeam = WhoWrotePost?.id && WhoWrotePost.id[0] === '-';
 
-    function subbing() {
-        if (UserIsAuth && !isAdminPresent) {
-            const message = isMember
-                ? 'Вы успешно отписались!'
-                : 'Вы успешно подписались';
+  function subbing() {
+    if (UserIsAuth && !isAdminPresent) {
+      const message = isMember ? 'Вы успешно отписались!' : 'Вы успешно подписались';
 
-            const NewXp = isMember ? UserExperience - 10 : UserExperience + 10;
+      const NewXp = isMember ? UserExperience - 10 : UserExperience + 10;
 
-            Subscription(
-                isTeam ? 'team' : 'user',
-                id,
-                UserId,
-                isMember ? true : false,
-            );
+      Subscription(isTeam ? 'team' : 'user', id, UserId, isMember ? true : false);
 
-            changeRequest('users/' + UserId, '/experience', NewXp);
-            MassageNotification(message);
-        }
+      changeRequest('users/' + UserId, '/experience', NewXp);
+      MassageNotification(message);
     }
+  }
 
-    return (
-        <button
-            className={classNames(
-                Styles.SubButton,
-                (isMember || isAdminPresent) && Styles.sub,
-            )}
-            onClick={(e) => {
-                e.stopPropagation();
-                subbing();
-            }}
-        >
-            {isTeam ? (
-                <HeaderIcons Icon={headerIcons.SubTeam}></HeaderIcons>
-            ) : (
-                <PostIcons Icon={postIcons.sub}></PostIcons>
-            )}
-        </button>
-    );
+  return (
+    <button
+      className={classNames(Styles.SubButton, (isMember || isAdminPresent) && Styles.sub)}
+      onClick={(e) => {
+        e.stopPropagation();
+        subbing();
+      }}
+    >
+      {isTeam ? <HeaderIcons Icon={headerIcons.SubTeam}></HeaderIcons> : <PostIcons Icon={postIcons.sub}></PostIcons>}
+    </button>
+  );
 };
 
 export default SubscribeButton;
