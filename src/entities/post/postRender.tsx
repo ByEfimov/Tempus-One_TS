@@ -9,7 +9,7 @@ import { getRequestObject } from '@/app/api/requests/get-requests';
 import { postRequestWithoutNewId } from '@/app/api/requests/post-requests-with-new-id';
 import { defaultItem } from '@/app/assets/Tempus-Ui';
 import { useAuth } from '@/app/hooks/useAuth';
-import { PostType } from '@/app/slices/wite-post/write-post-slice';
+import { PostType, blockTypes } from '@/app/slices/wite-post/write-post-slice';
 import AppRoutes from '@/shared/routes/app-routes';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
@@ -28,6 +28,7 @@ const PostRender = ({ post }: { post: PostType }) => {
   const [whoWrotePost, setWhoWrotePost] = useState<WhoWrotePost>();
   const [commentsOpen, setCommentsOpen] = useState(false);
   const [repostModalOpen, setRepostOpen] = useState(false);
+  const haveBlockNoText = post.blocks.find((block) => block?.type !== blockTypes.Text);
   const { UserId, UserIsAuth } = useAuth();
   const navigate = useNavigate();
 
@@ -62,8 +63,10 @@ const PostRender = ({ post }: { post: PostType }) => {
       ></PostModals>
       <motion.div onClick={navigateToPost} variants={defaultItem} className={Styles.Post}>
         <AuthorDataRender post={post} WhoWrotePost={whoWrotePost} />
-        <PostTextRender post={post} />
-        <BlocksRender Blocks={post.blocks} postId={post.id} />
+        <motion.div className={haveBlockNoText ? Styles.main : undefined}>
+          <PostTextRender post={post} />
+          <BlocksRender Blocks={post.blocks} postId={post.id} />
+        </motion.div>
         <LinkToOrig post={post} />
         <Activities setCommentsOpen={setCommentsOpen} setRepostModalOpen={setRepostOpen} post={post} />
       </motion.div>
