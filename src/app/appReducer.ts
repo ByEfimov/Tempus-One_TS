@@ -1,4 +1,3 @@
-import NotifySlice from '@/app/slices/Notifications/NotifySlice';
 import PostsSlice from '@/app/slices/PostsSlice';
 import userReducer from '@/app/slices/UserSlice';
 import HeaderSlice from '@/app/slices/header/header-slice';
@@ -10,5 +9,4 @@ export const rootReducer = combineReducers({
   Posts: PostsSlice,
   WritePost: WritePostSlice,
   Header: HeaderSlice,
-  Notify: NotifySlice,
 });

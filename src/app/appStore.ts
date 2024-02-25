@@ -4,19 +4,19 @@ import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/es/storage';
 
 const persistConfig = {
-    key: 'root',
-    storage,
-    blacklist: ['WritePost', 'Header', 'Notify', 'user'],
+  key: 'root',
+  storage,
+  blacklist: ['WritePost', 'Header', 'user'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-    reducer: persistedReducer,
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({
-            serializableCheck: false,
-        }),
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export type AppDispatch = typeof store.dispatch;

@@ -7,11 +7,11 @@ import { postRequestWithNewId } from '@/app/api/requests/post-requests-with-new-
 import { Input, InputColors, InputTypes, Preloader } from '@/app/assets/Tempus-Ui';
 import { useAuth } from '@/app/hooks/useAuth';
 import { Comments } from '@/app/types/TypesOfData/post/comments';
-import { ErrorNotification } from '@/features/notifications/notifications';
 import filterBadWords from '@/shared/post-utils/filter-bad-words';
 import { getUnixTime } from 'date-fns';
 import { motion } from 'framer-motion';
 import React, { FC, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 interface CommentsModalProps {
   PostId: string | undefined;
@@ -46,7 +46,7 @@ const CommentsModal: FC<CommentsModalProps> = ({ setModalOpen, PostId }) => {
       getCommentsOfPost();
       setCommentInput('');
     } else if (!UserIsAuth) {
-      ErrorNotification('Нужно войти в аккаунт.');
+      toast.error('Нужно войти в аккаунт.');
     }
   };
 

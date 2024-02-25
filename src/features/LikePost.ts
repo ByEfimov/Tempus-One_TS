@@ -1,7 +1,7 @@
 import { postRequestWithoutNewId } from '@/app/api/requests/post-requests-with-new-id';
 import { removeRequest } from '@/app/api/requests/remove-request';
 import { PostType } from '@/app/slices/wite-post/write-post-slice';
-import { ErrorNotification } from '@/features/notifications/notifications';
+import { toast } from 'react-toastify';
 
 export const LikePost = ({
   UserCanChanging,
@@ -31,6 +31,6 @@ export const LikePost = ({
       setItPostLiked(true);
     }
   } else {
-    ErrorNotification('Нужно войти в аккаунт.');
+    toast.error('Нужно войти в аккаунт.');
   }
 };

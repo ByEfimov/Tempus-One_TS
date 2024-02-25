@@ -5,12 +5,12 @@ import { useAppDispatch } from '@/app/hooks/redux-hooks';
 import { setExecuteButton } from '@/app/slices/header/header-slice';
 import { OpenUserType } from '@/app/types/TypesOfData/team-or-user/open-user-type';
 import ShowPosts from '@/entities/post/showPosts';
-import { ErrorNotification } from '@/features/notifications/notifications';
 import SubscribeButton from '@/features/subscribeButton/SubscribeButton';
 import UserData from '@/widgets/userData/userData';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export function UserPage() {
   const { id } = useParams();
@@ -22,7 +22,7 @@ export function UserPage() {
       .then((user) => {
         setOpenUser(user);
       })
-      .catch(() => ErrorNotification('Пользователь не найден.'));
+      .catch(() => toast.error('Пользователь не найден.'));
   }, []);
 
   useEffect(() => {

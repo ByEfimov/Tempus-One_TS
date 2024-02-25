@@ -23,7 +23,7 @@ export enum InputColors {
 interface Input {
   Placeholder: string;
   Change: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  Value: string | number;
+  Value?: string | number;
   DefaultValue?: string;
   Icon?: string | ReactNode;
   MaxLength?: number;

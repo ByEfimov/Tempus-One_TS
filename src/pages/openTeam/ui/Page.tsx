@@ -7,11 +7,11 @@ import { useAuth } from '@/app/hooks/useAuth';
 import { setExecuteButton } from '@/app/slices/header/header-slice';
 import { OpenTeamType } from '@/app/types/TypesOfData/team-or-user/open-team-type';
 import ShowPosts from '@/entities/post/showPosts';
-import { ErrorNotification } from '@/features/notifications/notifications';
 import SubscribeButton from '@/features/subscribeButton/SubscribeButton';
 import TeamData from '@/widgets/teamData/teamData';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export function TeamPage() {
   const { id } = useParams();
@@ -31,7 +31,7 @@ export function TeamPage() {
           setUserAdmin(teams.some((team) => team.value === id));
         });
       })
-      .catch(() => ErrorNotification('Сообщество не найдено.'));
+      .catch(() => toast.error('Сообщество не найдено.'));
   }, []);
 
   useEffect(() => {

@@ -1,6 +1,5 @@
 import { Header, NavBar, navBarIcons } from '../assets/Tempus-Ui';
 import { useAuth } from '../hooks/useAuth';
-import { Notifications } from '@/features/notifications/notifications';
 import { CreatePostPage } from '@/pages/createNewPost';
 import { CreateTeamPage } from '@/pages/createNewTeam';
 import { ForgotPasswordPage } from '@/pages/forgotPassword';
@@ -17,6 +16,8 @@ import { UsersPage } from '@/pages/users';
 import { VerifyingEmailPage } from '@/pages/verifiedEmail';
 import AppRoutes from '@/shared/routes/app-routes';
 import { Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function BaseLayout() {
   const { PathToProfile, UserIsAuth } = useAuth();
@@ -79,10 +80,22 @@ function BaseLayout() {
     },
   ];
 
+  const toastConfig = {
+    autoClose: 4000,
+    hideProgressBar: false,
+    newestOnTop: false,
+    closeOnClick: true,
+    rtl: false,
+    pauseOnFocusLoss: true,
+    draggable: true,
+    pauseOnHover: true,
+    theme: 'dark',
+  };
+
   return (
     <>
       <Header />
-      <Notifications />
+      <ToastContainer position="bottom-left" {...toastConfig} />
       <Routes>
         <Route path={AppRoutes.DEFAULT} element={<MainPage />} />
         <Route path={AppRoutes.LOGIN} element={<LoginPage />} />

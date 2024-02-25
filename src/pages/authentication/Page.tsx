@@ -3,12 +3,12 @@ import { postRequestWithoutNewId } from '@/app/api/requests/post-requests-with-n
 import { Button, ButtonIcons, ButtonTypes, buttonIcons } from '@/app/assets/Tempus-Ui';
 import { useAppDispatch } from '@/app/hooks/redux-hooks';
 import { setCurrentUser } from '@/app/slices/UserSlice';
-import { ErrorNotification } from '@/features/notifications/notifications';
 import { encryptData } from '@/shared/crypt-data/cripting-data';
 import AppRoutes from '@/shared/routes/app-routes';
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 type User = {
   email: string | null;
@@ -72,7 +72,7 @@ const AuthWithGoogle = () => {
           });
       })
       .catch(() => {
-        ErrorNotification('Вход не выполнен.');
+        toast.error('Нужно войти в аккаунт.');
       });
   }
 

@@ -1,11 +1,11 @@
 import { AppDispatch } from '@/app/appStore';
 import { setCurrentUser } from '@/app/slices/UserSlice';
-import { ErrorNotification } from '@/features/notifications/notifications';
 import { encryptData } from '@/shared/crypt-data/cripting-data';
 import AppRoutes from '@/shared/routes/app-routes';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import Cookies from 'js-cookie';
 import { NavigateFunction } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function loginUser(
   { email, password }: { email: string; password: string },
@@ -27,6 +27,6 @@ export default function loginUser(
       navigate(AppRoutes.DEFAULT);
     })
     .catch(() => {
-      ErrorNotification('Пароль или почта не подходят.');
+      toast.error('Пароль или почта не подходят.');
     });
 }

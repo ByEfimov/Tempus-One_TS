@@ -2,12 +2,12 @@ import { postRequestWithoutNewId } from '@/app/api/requests/post-requests-with-n
 import { AppDispatch } from '@/app/appStore';
 import { setCurrentUser } from '@/app/slices/UserSlice';
 import { AuthenticationFromData } from '@/entities/authenticationForm/authenticationForm';
-import { ErrorNotification } from '@/features/notifications/notifications';
 import { encryptData } from '@/shared/crypt-data/cripting-data';
 import AppRoutes from '@/shared/routes/app-routes';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import Cookies from 'js-cookie';
 import { NavigateFunction } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export function registerUser(
   { email, password, name, age }: AuthenticationFromData,
@@ -40,6 +40,6 @@ export function registerUser(
       navigate(AppRoutes.DEFAULT);
     })
     .catch(() => {
-      ErrorNotification('Ошибка при регистрации.');
+      toast.error('Ошибка при регистрации.');
     });
 }

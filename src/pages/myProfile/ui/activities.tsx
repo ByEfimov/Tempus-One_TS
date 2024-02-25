@@ -3,12 +3,12 @@ import { Button, ButtonIcons, ButtonTypes, buttonIcons, formContainer, formItem 
 import { useAppDispatch } from '@/app/hooks/redux-hooks';
 import { useAuth } from '@/app/hooks/useAuth';
 import { removeUser } from '@/app/slices/UserSlice';
-import { ErrorNotification } from '@/features/notifications/notifications';
 import AppRoutes from '@/shared/routes/app-routes';
 import { getAuth, signOut } from 'firebase/auth';
 import { motion } from 'framer-motion';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const ActiveButtons = ({
   setSettingsModalOpen,
@@ -27,7 +27,7 @@ const ActiveButtons = ({
         navigate(AppRoutes.LOGIN);
       })
       .catch(() => {
-        ErrorNotification('Ошибка выхода.');
+        toast.error('Ошибка выхода.');
       });
   }
   return (

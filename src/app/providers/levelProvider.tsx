@@ -1,9 +1,9 @@
 import LevelUP from '../api/Users/level/level-up';
 import { changeRequest } from '../api/requests/change-request';
 import { useAuth } from '../hooks/useAuth';
-import { MassageNotification } from '@/features/notifications/notifications';
 import MaxXpToNextLevel from '@/shared/users-or-teams/max-xp-to-next-level';
 import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 let AddUserXp: (xp: number) => void;
 
@@ -13,7 +13,7 @@ export default function LevelProvider({ children }: { children: React.ReactChild
   useEffect(() => {
     if (UserExperience >= MaxXpToNextLevel(UserLevel) && UserIsAuth) {
       LevelUP(UserId, UserLevel, UserExperience);
-      MassageNotification(`Новый уровень ${UserLevel + 1}!`);
+      toast.info(`Новый уровень ${UserLevel + 1}!`);
     }
 
     AddUserXp = function (xp: number) {

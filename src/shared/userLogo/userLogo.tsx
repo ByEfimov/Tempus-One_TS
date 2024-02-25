@@ -9,7 +9,7 @@ const UserLogo = ({ Logo }: { Logo?: string | null }) => {
         UserIsAuth || Logo
           ? { width: '100%', height: '100%', borderRadius: '50%' }
           : !UserIsAuth && !Logo
-          ? { padding: '15px' }
+          ? { padding: '10px' }
           : undefined
       }
       src={(Logo && Logo) || (UserIsAuth && UserPhoto) || FakeLogo}

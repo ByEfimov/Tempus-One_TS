@@ -4,6 +4,7 @@ import { useAuth } from '@/app/hooks/useAuth';
 import { blockType, blockTypes, blocksType } from '@/app/slices/wite-post/write-post-slice';
 import { FC, useState } from 'react';
 import { LivePreview, LiveProvider } from 'react-live';
+import { toast } from 'react-toastify';
 import 'swiper/css';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -95,13 +96,17 @@ const ShowSurvey = ({ block, postId }: ShowSurvey) => {
   }, []);
 
   function selectVariant(Variant: { id: number | undefined; text: string; selected?: Record<string, string> }) {
-    if (ItPostSelect === false && UserIsAuth) {
+    if (!ItPostSelect && UserIsAuth) {
       postRequestWithoutNewId(
         'posts/' + postId + '/blocks/' + block.id + '/data/variants/' + Variant.id + '/selected/' + UserId,
         UserId,
       );
       setSelectVariant(Variant.id);
       setItPostSelect(true);
+    } else if (!UserIsAuth) {
+      toast.error('Нужно войти в аккаунт.');
+    } else if (ItPostSelect) {
+      toast.warning('Вы уже выбирали ответ на этом посте.');
     }
   }
 

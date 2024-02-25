@@ -18,10 +18,10 @@ import { PostType } from '@/app/slices/wite-post/write-post-slice';
 import Activities from '@/entities/post/components/activities';
 import AuthorDataRender from '@/entities/post/components/authorDataRender';
 import { WhoWrotePost } from '@/entities/post/postRender';
-import { ErrorNotification } from '@/features/notifications/notifications';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export function PostPage() {
   const { id } = useParams();
@@ -56,7 +56,7 @@ export function PostPage() {
           }),
         );
       })
-      .catch(() => ErrorNotification('Пост не найден.'));
+      .catch(() => toast.error('Пост не найден.'));
   }, []);
 
   if (openPost) {

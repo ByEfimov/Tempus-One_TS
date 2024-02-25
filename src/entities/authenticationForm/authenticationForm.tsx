@@ -53,32 +53,14 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({ title, handlerSubmit 
         </motion.h1>
 
         <div className={FormsStyles.AuthForm__InputWrapper}>
-          <Input
-            Placeholder="Ваша почта"
-            Change={handleChange}
-            Value={form.email}
-            Variants={formItem}
-            Type={InputTypes.email}
-          ></Input>
+          <Input Placeholder="Ваша почта" Change={handleChange} Variants={formItem} Type={InputTypes.email}></Input>
 
-          <Input
-            Placeholder="Ваш пароль"
-            Change={handleChange}
-            Value={form.password}
-            Type={InputTypes.password}
-            Variants={formItem}
-          ></Input>
+          <Input Placeholder="Ваш пароль" Change={handleChange} Type={InputTypes.password} Variants={formItem}></Input>
 
           {Path === AppRoutes.REGISTER && (
             <motion.div variants={formItem} className={FormsStyles.moreInputs}>
-              <Input
-                Placeholder="Имя"
-                Change={handleChange}
-                Value={form.name}
-                Type={InputTypes.text}
-                MaxLength={15}
-              ></Input>
-              <Input Placeholder="Возраст" Change={handleChange} Value={form.age} Type={InputTypes.number}></Input>
+              <Input Placeholder="Имя" Change={handleChange} Type={InputTypes.text} MaxLength={15}></Input>
+              <Input Placeholder="Возраст" Change={handleChange} Type={InputTypes.number}></Input>
             </motion.div>
           )}
         </div>

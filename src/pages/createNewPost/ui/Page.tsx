@@ -33,7 +33,7 @@ const CreatePostPage = () => {
 
   useEffect(() => {
     getUserAdmins(UserId).then((teams) => setUserAdmins(teams));
-  });
+  }, []);
 
   useEffect(() => {
     dispatch(
