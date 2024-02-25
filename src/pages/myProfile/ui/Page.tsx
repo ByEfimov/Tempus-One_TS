@@ -3,7 +3,7 @@ import { MyProfileModals } from './modals';
 import Styles from './styles.module.scss';
 import { useAppSelector } from '@/app/hooks/redux-hooks';
 import { useAuth } from '@/app/hooks/useAuth';
-import { UserType } from '@/app/slices/UserSlice';
+import { UserType } from '@/app/slices/userSlice';
 import AppRoutes from '@/shared/routes/app-routes';
 import UserData from '@/widgets/userData/userData';
 import { motion } from 'framer-motion';

@@ -18,23 +18,27 @@ const NavBar = ({ Links }: NavBar) => {
 
   return (
     ShowNavBar && (
-      <nav className={Styles.NavBar}>
-        {Links.map((link) => (
-          <Link
-            key={link.path[0]}
-            className={
-              (link.path.includes(location) || link.path.includes('/' + location.split('/')[1])) &&
-              !link.blackList?.includes(location)
-                ? Styles.Select
-                : undefined
-            }
-            to={link.path[0]}
-          >
-            <div className={Styles.name}>{link.name}</div>
-            <NavBarIcons Icon={link.icon} />
-          </Link>
-        ))}
-      </nav>
+      <div className={Styles.Wraapper}>
+        <div className={Styles.container}>
+          <nav className={Styles.NavBar}>
+            {Links.map((link) => (
+              <Link
+                key={link.path[0]}
+                className={
+                  (link.path.includes(location) || link.path.includes('/' + location.split('/')[1])) &&
+                  !link.blackList?.includes(location)
+                    ? Styles.Select
+                    : undefined
+                }
+                to={link.path[0]}
+              >
+                <div className={Styles.name}>{link.name}</div>
+                <NavBarIcons Icon={link.icon} />
+              </Link>
+            ))}
+          </nav>
+        </div>
+      </div>
     )
   );
 };

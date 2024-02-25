@@ -2,7 +2,7 @@ import Styles from './styles.module.scss';
 import { Button, ButtonIcons, ButtonTypes, buttonIcons, formContainer, formItem } from '@/app/assets/Tempus-Ui';
 import { useAppDispatch } from '@/app/hooks/redux-hooks';
 import { useAuth } from '@/app/hooks/useAuth';
-import { removeUser } from '@/app/slices/UserSlice';
+import { removeUser } from '@/app/slices/userSlice';
 import AppRoutes from '@/shared/routes/app-routes';
 import { getAuth, signOut } from 'firebase/auth';
 import { motion } from 'framer-motion';

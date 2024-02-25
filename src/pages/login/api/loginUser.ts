@@ -1,5 +1,5 @@
 import { AppDispatch } from '@/app/appStore';
-import { setCurrentUser } from '@/app/slices/UserSlice';
+import { setCurrentUser } from '@/app/slices/userSlice';
 import { encryptData } from '@/shared/crypt-data/cripting-data';
 import AppRoutes from '@/shared/routes/app-routes';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';

@@ -1,6 +1,6 @@
 import Styles from './styles.module.scss';
 import { defaultItem, formContainer, formItem } from '@/app/assets/Tempus-Ui';
-import { UserType } from '@/app/slices/UserSlice';
+import { UserType } from '@/app/slices/userSlice';
 import { OpenUserType } from '@/app/types/TypesOfData/team-or-user/open-user-type';
 import { UserLogoWithXp } from '@/shared/userLogo/userLogoWithXp';
 import { motion } from 'framer-motion';

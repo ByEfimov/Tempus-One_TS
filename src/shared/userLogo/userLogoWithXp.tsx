@@ -3,7 +3,7 @@ import Styles from './styles.module.scss';
 import UserLogo from './userLogo';
 import { getRequestObject } from '@/app/api/requests/get-requests';
 import { defaultItem } from '@/app/assets/Tempus-Ui';
-import { UserType } from '@/app/slices/UserSlice';
+import { UserType } from '@/app/slices/userSlice';
 import { OpenUserType } from '@/app/types/TypesOfData/team-or-user/open-user-type';
 import StatusModal from '@/widgets/statusModal/modal';
 import { motion } from 'framer-motion';

@@ -1,6 +1,6 @@
 import { useAppDispatch } from '../hooks/redux-hooks';
 import { useAuth } from '../hooks/useAuth';
-import { removeUser, setUser } from '../slices/UserSlice';
+import { removeUser, setUser } from '../slices/userSlice';
 import { decryptData } from '@/shared/crypt-data/cripting-data';
 import { getAuth, signOut } from 'firebase/auth';
 import { getDatabase, onValue, ref } from 'firebase/database';
