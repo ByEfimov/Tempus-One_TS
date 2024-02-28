@@ -1,10 +1,10 @@
 import Styles from './styles.module.scss';
-import { getRequestObject } from '@/app/api/requests/get-requests';
 import { Preloader } from '@/app/assets/Tempus-Ui';
 import { useAppDispatch } from '@/app/hooks/redux-hooks';
 import { setExecuteButton } from '@/app/slices/header/header-slice';
 import { OpenUserType } from '@/app/types/TypesOfData/team-or-user/open-user-type';
 import ShowPosts from '@/entities/post/showPosts';
+import { getRequestObject } from '@/features/api/requests/get-requests';
 import SubscribeButton from '@/features/subscribeButton/SubscribeButton';
 import UserData from '@/widgets/userData/userData';
 import { motion } from 'framer-motion';

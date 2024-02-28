@@ -13,14 +13,13 @@ interface ActivitiesProps {
 }
 
 const Activities: FC<ActivitiesProps> = ({ post, setCommentsOpen, setRepostModalOpen }) => {
-  const { UserId, UserCanChanging } = useAuth();
+  const { UserId } = useAuth();
   const [PostLikes, setPostLikes] = useState(post.likes ? Object.values(post.likes).length : 0);
   const [ItPostLiked, setItPostLiked] = useState(post.likes ? Object.values(post.likes).includes(UserId) : false);
 
   const PostComments = Object.keys(post.comments || []).length;
 
   const LikePostConfig = {
-    UserCanChanging,
     ItPostLiked,
     setPostLikes,
     setItPostLiked,

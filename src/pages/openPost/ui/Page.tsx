@@ -1,7 +1,6 @@
 import BlocksRender from './blocks-render';
 import { PostModals } from './modals';
 import Styles from './styles.module.scss';
-import { getRequestObject } from '@/app/api/requests/get-requests';
 import {
   Button,
   ButtonIcons,
@@ -18,6 +17,7 @@ import { PostType } from '@/app/slices/wite-post/write-post-slice';
 import Activities from '@/entities/post/components/activities';
 import AuthorDataRender from '@/entities/post/components/authorDataRender';
 import { WhoWrotePost } from '@/entities/post/postRender';
+import { getRequestObject } from '@/features/api/requests/get-requests';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';

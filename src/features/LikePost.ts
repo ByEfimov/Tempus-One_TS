@@ -1,10 +1,9 @@
-import { postRequestWithoutNewId } from '@/app/api/requests/post-requests-with-new-id';
-import { removeRequest } from '@/app/api/requests/remove-request';
+import { postRequestWithoutNewId } from './api/requests/post-requests-with-new-id';
+import { removeRequest } from './api/requests/remove-request';
 import { PostType } from '@/app/slices/wite-post/write-post-slice';
 import { toast } from 'react-toastify';
 
 export const LikePost = ({
-  UserCanChanging,
   ItPostLiked,
   setPostLikes,
   setItPostLiked,
@@ -12,7 +11,6 @@ export const LikePost = ({
   post,
   PostLikes,
 }: {
-  UserCanChanging: boolean;
   ItPostLiked: boolean;
   setPostLikes: React.Dispatch<React.SetStateAction<number>>;
   setItPostLiked: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,7 +18,7 @@ export const LikePost = ({
   post: PostType;
   PostLikes: number;
 }) => {
-  if (UserCanChanging) {
+  if (UserId) {
     if (ItPostLiked) {
       setPostLikes(PostLikes - 1);
       removeRequest('posts/' + post.id + '/likes/', UserId);

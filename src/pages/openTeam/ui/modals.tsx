@@ -1,6 +1,6 @@
 import TeamInfoModal from './team-info-modal';
 import { OpenTeamType } from '@/app/types/TypesOfData/team-or-user/open-team-type';
-import SettingsTeamModal from '@/widgets/settingsModal/modalTeam';
+import SettingsTeamModal from '@/widgets/settingsModal/teamSettings';
 
 interface modalInterface {
   setSettingsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;

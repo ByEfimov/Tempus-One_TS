@@ -64,8 +64,7 @@ const Header = () => {
           }}
           Placeholder={PlaceholderForInput}
           Icon={<HeaderIcons Icon={headerIcons.Search} />}
-          SearchFun={ButtonExecute?.function}
-          IconPosition={IconPositions.rigth}
+          IconPosition={IconPositions.right}
         ></Input>
         {ButtonExecute && (
           <motion.button onClick={() => ButtonExecute.function && ButtonExecute.function()}>

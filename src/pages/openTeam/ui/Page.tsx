@@ -1,12 +1,12 @@
 import TeamModals from './modals';
-import getUserAdmins from '@/app/api/Teams/get-user-admins';
-import { getRequestObject } from '@/app/api/requests/get-requests';
 import { Preloader } from '@/app/assets/Tempus-Ui';
 import { useAppDispatch } from '@/app/hooks/redux-hooks';
 import { useAuth } from '@/app/hooks/useAuth';
 import { setExecuteButton } from '@/app/slices/header/header-slice';
 import { OpenTeamType } from '@/app/types/TypesOfData/team-or-user/open-team-type';
 import ShowPosts from '@/entities/post/showPosts';
+import getUserAdmins from '@/features/api/Teams/get-user-admins';
+import { getRequestObject } from '@/features/api/requests/get-requests';
 import SubscribeButton from '@/features/subscribeButton/SubscribeButton';
 import TeamData from '@/widgets/teamData/teamData';
 import { useEffect, useState } from 'react';

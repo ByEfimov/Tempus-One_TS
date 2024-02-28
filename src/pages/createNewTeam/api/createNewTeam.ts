@@ -1,6 +1,6 @@
 import { NewTeamType } from '../ui/Page';
-import { postRequestWithNewId } from '@/app/api/requests/post-requests-with-new-id';
 import { AddUserXp } from '@/app/providers/levelProvider';
+import { postRequestWithNewId } from '@/features/api/requests/post-requests-with-new-id';
 import AppRoutes from '@/shared/routes/app-routes';
 import isObjectValuesNotEmpty from '@/shared/validate-data/not-empty-values';
 import { NavigateFunction } from 'react-router-dom';

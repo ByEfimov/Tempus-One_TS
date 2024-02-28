@@ -1,8 +1,8 @@
 import Styles from './styles.module.scss';
-import { getRequestObject } from '@/app/api/requests/get-requests';
 import { Members, formContainer, formItem } from '@/app/assets/Tempus-Ui';
 import { OpenTeamType } from '@/app/types/TypesOfData/team-or-user/open-team-type';
 import { OpenUserType } from '@/app/types/TypesOfData/team-or-user/open-user-type';
+import { getRequestObject } from '@/features/api/requests/get-requests';
 import { IsModal } from '@/shared/isModal';
 import { motion } from 'framer-motion';
 import moment from 'moment';

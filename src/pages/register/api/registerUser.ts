@@ -1,7 +1,7 @@
-import { postRequestWithoutNewId } from '@/app/api/requests/post-requests-with-new-id';
 import { AppDispatch } from '@/app/appStore';
 import { setCurrentUser } from '@/app/slices/userSlice';
 import { AuthenticationFromData } from '@/entities/authenticationForm/authenticationForm';
+import { postRequestWithoutNewId } from '@/features/api/requests/post-requests-with-new-id';
 import { encryptData } from '@/shared/crypt-data/cripting-data';
 import AppRoutes from '@/shared/routes/app-routes';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';

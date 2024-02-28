@@ -1,12 +1,12 @@
 import { IsModal } from '../../shared/isModal';
 import CommentRender from './commentRender';
 import Styles from './styles.module.scss';
-import { getRequestArray } from '@/app/api/requests/get-requests';
-import { postRequestWithNewId } from '@/app/api/requests/post-requests-with-new-id';
 import SendIcon from '@/app/assets/Icons/Post/message.svg';
-import { Button, ButtonTypes, Input, InputColors, InputTypes, Preloader } from '@/app/assets/Tempus-Ui';
+import { Input, InputColors, InputTypes, Preloader } from '@/app/assets/Tempus-Ui';
 import { useAuth } from '@/app/hooks/useAuth';
 import { Comments } from '@/app/types/TypesOfData/post/comments';
+import { getRequestArray } from '@/features/api/requests/get-requests';
+import { postRequestWithNewId } from '@/features/api/requests/post-requests-with-new-id';
 import filterBadWords from '@/shared/post-utils/filter-bad-words';
 import { getUnixTime } from 'date-fns';
 import { motion } from 'framer-motion';
@@ -17,6 +17,9 @@ interface CommentsModalProps {
   PostId: string | undefined;
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+const CURRENT_DATE = new Date();
+const CURRENT_UNIX_TIME = getUnixTime(CURRENT_DATE);
 
 const CommentsModal: FC<CommentsModalProps> = ({ setModalOpen, PostId }) => {
   const { UserId, UserIsAuth } = useAuth();
@@ -32,15 +35,13 @@ const CommentsModal: FC<CommentsModalProps> = ({ setModalOpen, PostId }) => {
   }, []);
 
   const sendComment = () => {
-    const currentDate = new Date();
-    const currentUnixTime = getUnixTime(currentDate);
     const commentText = filterBadWords(commentInput);
     const commentPath = 'posts/' + PostId + '/comments/';
     if (commentInput && UserIsAuth) {
       const NewComment = {
         CommentatorId: UserId,
         CommentText: commentText,
-        CommentDate: currentUnixTime,
+        CommentDate: CURRENT_UNIX_TIME,
       };
       postRequestWithNewId(commentPath, NewComment);
       getCommentsOfPost();
@@ -52,29 +53,27 @@ const CommentsModal: FC<CommentsModalProps> = ({ setModalOpen, PostId }) => {
 
   return (
     <IsModal setModalOpen={setModalOpen}>
-      <motion.div className={Styles.CommentsModal}>
-        <div className={Styles.Comments}>
-          <div className={Styles.Wrapper}>
-            {comments ? (
-              comments.map((comment) => <CommentRender key={comment.id} comment={comment} />)
-            ) : (
-              <Preloader></Preloader>
-            )}
-          </div>
+      <div className={Styles.Comments}>
+        <div className={Styles.Wrapper}>
+          {comments ? (
+            comments.map((comment) => <CommentRender key={comment.id} comment={comment} />)
+          ) : (
+            <Preloader></Preloader>
+          )}
         </div>
+      </div>
 
-        <motion.div className={Styles.Input}>
-          <Input
-            Placeholder="Новый комментарий"
-            Change={(e) => setCommentInput(e.target.value)}
-            Value={commentInput}
-            Type={InputTypes.text}
-            Color={InputColors.primary}
-          ></Input>
-          <Button Type={ButtonTypes.icon} Class={Styles.buttonSend} Click={() => sendComment()}>
-            <img src={SendIcon} alt="" />
-          </Button>
-        </motion.div>
+      <motion.div className={Styles.Input}>
+        <Input
+          Placeholder="Новый комментарий"
+          Change={(e) => setCommentInput(e.target.value)}
+          Value={commentInput}
+          Type={InputTypes.text}
+          Color={InputColors.primary}
+        ></Input>
+        <button onClick={() => sendComment()}>
+          <img src={SendIcon} alt="" />
+        </button>
       </motion.div>
     </IsModal>
   );

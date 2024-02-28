@@ -1,7 +1,6 @@
 import { sendNewPost } from '../api/sendNewPost';
 import CreatePostModals from './modals';
 import Styles from './styles.module.scss';
-import getUserAdmins from '@/app/api/Teams/get-user-admins';
 import {
   Button,
   ButtonIcons,
@@ -16,6 +15,7 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks/redux-hooks';
 import { useAuth } from '@/app/hooks/useAuth';
 import { setExecuteButton } from '@/app/slices/header/header-slice';
 import { changeAuthorPost } from '@/app/slices/wite-post/write-post-slice';
+import getUserAdmins from '@/features/api/Teams/get-user-admins';
 import AppRoutes from '@/shared/routes/app-routes';
 import RenderBlocks from '@/widgets/renderBlocks';
 import { motion } from 'framer-motion';
@@ -39,7 +39,7 @@ const CreatePostPage = () => {
       setExecuteButton({
         button: {
           component: (
-            <Button Click={() => sendNewPost(newPost, dispatch, navigate)} Type={ButtonTypes.icon}>
+            <Button Click={() => UserCanChanging && sendNewPost(newPost, dispatch, navigate)} Type={ButtonTypes.icon}>
               <ButtonIcons Icon={buttonIcons.Sent} />
             </Button>
           ),

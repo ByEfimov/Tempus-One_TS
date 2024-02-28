@@ -1,7 +1,7 @@
-import { postRequestWithNewId } from '@/app/api/requests/post-requests-with-new-id';
 import { AppDispatch } from '@/app/appStore';
 import { AddUserXp } from '@/app/providers/levelProvider';
 import { removePost } from '@/app/slices/wite-post/write-post-slice';
+import { postRequestWithNewId } from '@/features/api/requests/post-requests-with-new-id';
 import AppRoutes from '@/shared/routes/app-routes';
 import { NavigateFunction } from 'react-router-dom';
 

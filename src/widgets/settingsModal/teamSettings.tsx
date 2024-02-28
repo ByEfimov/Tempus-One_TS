@@ -1,6 +1,4 @@
 import Styles from './styles.module.scss';
-import { changeRequest } from '@/app/api/requests/change-request';
-import { removeRequest } from '@/app/api/requests/remove-request';
 import {
   Button,
   ButtonTypes,
@@ -15,9 +13,11 @@ import {
   formContainer,
   formItem,
 } from '@/app/assets/Tempus-Ui';
-import { useAuth } from '@/app/hooks/useAuth';
+import { takeUserXp } from '@/app/providers/levelProvider';
 import { OpenTeamType } from '@/app/types/TypesOfData/team-or-user/open-team-type';
 import { teamMembers } from '@/app/types/TypesOfData/team-or-user/team-directions';
+import { changeRequest } from '@/features/api/requests/change-request';
+import { removeRequest } from '@/features/api/requests/remove-request';
 import { CloseModal, IsModal } from '@/shared/isModal';
 import AppRoutes from '@/shared/routes/app-routes';
 import { motion } from 'framer-motion';
@@ -31,11 +31,9 @@ interface SettingsTeamModal {
 
 const SettingsTeamModal: FC<SettingsTeamModal> = ({ setModalOpen, team }) => {
   const navigator = useNavigate();
-  const { UserId, UserExperience } = useAuth();
-  const [photo, setPhoto] = useState('');
-  const [creators, setCreators] = useState('');
-
   const [form, setForm] = useState({
+    photo: '',
+    creators: '',
     title: '',
     description: '',
   });
@@ -48,26 +46,20 @@ const SettingsTeamModal: FC<SettingsTeamModal> = ({ setModalOpen, team }) => {
     });
   };
 
-  function ChangeFunction() {
+  const ChangeFunction = () => {
     const defaultPath = 'teams/' + team.id;
-    if (photo !== '') {
-      changeRequest(defaultPath, '/image', photo);
-    }
-    if (form.title !== '') {
-      changeRequest(defaultPath, '/title', form.title);
-    }
-    if (form.description !== '') {
-      changeRequest(defaultPath, '/desc', form.description);
-    }
-    if (creators !== '') {
-      changeRequest(defaultPath, '/creators', creators);
-    }
+    (Object.keys(form) as (keyof typeof form)[]).forEach((field) => {
+      if (form[field] !== '') {
+        changeRequest(defaultPath, `/${field}`, form[field]);
+      }
+    });
+
     CloseModal();
-  }
+  };
 
   function removeTeam() {
     removeRequest('teams/', team.id);
-    changeRequest('users/' + UserId, '/experience', UserExperience - 80);
+    takeUserXp(80);
     navigator(AppRoutes.TEAMS);
   }
 
@@ -78,8 +70,10 @@ const SettingsTeamModal: FC<SettingsTeamModal> = ({ setModalOpen, team }) => {
           Variants={formItem}
           Path="TeamsLogos"
           Colors={LoadImageColors.Primary}
-          Callback={setPhoto}
-          Image={photo}
+          Callback={(imageUrl: string) => {
+            setForm({ ...form, photo: imageUrl });
+          }}
+          Image={form.photo}
         ></LoadImage>
         <Input
           Variants={formItem}
@@ -99,7 +93,7 @@ const SettingsTeamModal: FC<SettingsTeamModal> = ({ setModalOpen, team }) => {
         <Select
           Array={teamMembers}
           setSelect={(select: string) => {
-            setCreators(select);
+            setForm({ ...form, creators: select });
           }}
           Placeholder="Участники команды"
           Type={SelectTypes.Input}

@@ -1,12 +1,12 @@
 import PostRender from './postRender';
 import Styles from './styles.module.scss';
-import { getRequestArray } from '@/app/api/requests/get-requests';
 import { Select, SelectTypes, defaultContainer, defaultItem } from '@/app/assets/Tempus-Ui';
 import { useAppDispatch } from '@/app/hooks/redux-hooks';
 import { useAuth } from '@/app/hooks/useAuth';
 import { useHeader } from '@/app/hooks/useHeader';
 import { setLastPostKey } from '@/app/slices/postsSlice';
 import { PostType } from '@/app/slices/wite-post/write-post-slice';
+import { getRequestArray } from '@/features/api/requests/get-requests';
 import { FiltersPosts, aplyFilterPosts } from '@/shared/filters/filter-posts';
 import ShowDataOrPreloader from '@/shared/showDataOrPreloader';
 import { motion } from 'framer-motion';

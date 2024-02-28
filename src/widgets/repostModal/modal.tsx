@@ -1,9 +1,9 @@
 import Styles from './styles.module.scss';
-import getUserAdmins from '@/app/api/Teams/get-user-admins';
 import { defaultContainer, defaultItem } from '@/app/assets/Tempus-Ui';
 import { useAuth } from '@/app/hooks/useAuth';
 import { PostType } from '@/app/slices/wite-post/write-post-slice';
 import { repostToYou } from '@/features/RepostToYou';
+import getUserAdmins from '@/features/api/Teams/get-user-admins';
 import { IsModal } from '@/shared/isModal';
 import UserLogo from '@/shared/userLogo/userLogo';
 import { motion } from 'framer-motion';

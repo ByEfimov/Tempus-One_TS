@@ -1,4 +1,4 @@
-import SettingsUserModal from '@/widgets/settingsModal/modalUser';
+import SettingsUserModal from '@/widgets/settingsModal/userSettings';
 
 interface MyProfileModalsProps {
   settingsModalOpen: boolean;

@@ -1,6 +1,5 @@
 import { CloseModal, IsModal } from '../../shared/isModal';
 import Styles from './styles.module.scss';
-import { changeRequest } from '@/app/api/requests/change-request';
 import {
   Button,
   ButtonTypes,
@@ -16,6 +15,7 @@ import {
 } from '@/app/assets/Tempus-Ui';
 import { useAuth } from '@/app/hooks/useAuth';
 import { getSpecializations } from '@/features/GetSpecializations';
+import { changeRequest } from '@/features/api/requests/change-request';
 import { motion } from 'framer-motion';
 import React, { FC, useEffect, useState } from 'react';
 
@@ -26,30 +26,24 @@ interface SettingsUserModal {
 const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
   const [allSpecializations, setAllSpecializations] = useState<{ label: string; value: string }[]>();
   const { UserId } = useAuth();
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<{ photo: string; name: string; age: string; specialization: string }>({
     photo: '',
     name: '',
     age: '',
     specialization: '',
   });
 
-  function ChangeFunction() {
+  const ChangeFunction = () => {
     const defaultPath = 'users/' + UserId;
 
-    if (form.photo !== '') {
-      changeRequest(defaultPath, '/photo', form.photo);
-    }
-    if (form.name !== '') {
-      changeRequest(defaultPath, '/name', form.name);
-    }
-    if (form.age !== '') {
-      changeRequest(defaultPath, '/age', form.age);
-    }
-    if (form.specialization !== '') {
-      changeRequest(defaultPath, '/specialization', form.specialization);
-    }
+    (Object.keys(form) as (keyof typeof form)[]).forEach((field) => {
+      if (form[field] !== '') {
+        changeRequest(defaultPath, `/${field}`, form[field]);
+      }
+    });
+
     CloseModal();
-  }
+  };
 
   useEffect(() => {
     getSpecializations(setAllSpecializations);
@@ -57,10 +51,11 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setForm({
-      ...form,
+
+    setForm((prevForm) => ({
+      ...prevForm,
       [name]: value,
-    });
+    }));
   };
 
   return (

@@ -1,7 +1,7 @@
 import { WhoWrotePost } from '../../entities/post/postRender';
+import { Subscription } from '../api/Users/interaction/subscription';
+import { changeRequest } from '../api/requests/change-request';
 import Styles from './styles.module.scss';
-import { Subscription } from '@/app/api/Users/interaction/subscription';
-import { changeRequest } from '@/app/api/requests/change-request';
 import { HeaderIcons, PostIcons, headerIcons, postIcons } from '@/app/assets/Tempus-Ui';
 import { useAuth } from '@/app/hooks/useAuth';
 import { itsMember } from '@/shared/users-or-teams/ist-member';
@@ -23,8 +23,8 @@ const SubscribeButton = ({ WhoWrotePost, id }: SubscribeButton) => {
   const isTeam = WhoWrotePost?.id && WhoWrotePost.id[0] === '-';
 
   function subbing() {
-    if (UserIsAuth && !isAdminPresent) {
-      const message = isMember ? 'Вы отписались!' : 'Вы подписались';
+    if (UserIsAuth && !isAdminPresent && WhoWrotePost?.id !== UserId) {
+      const message = isMember ? 'Вы отписались!' : 'Вы подписались!';
 
       const NewXp = isMember ? UserExperience - 10 : UserExperience + 10;
 
@@ -33,7 +33,15 @@ const SubscribeButton = ({ WhoWrotePost, id }: SubscribeButton) => {
       changeRequest('users/' + UserId, '/experience', NewXp);
       toast.info(message);
     } else {
-      toast.error('Нужно войти в аккаунт.');
+      if (isAdminPresent) {
+        toast.warning('Это сообщество принадлежит вам.');
+      }
+      if (WhoWrotePost?.id === UserId) {
+        toast.warning('Этот аккаунт принадлежит вам.');
+      }
+      if (!UserIsAuth) {
+        toast.error('Нужно войти в аккаунт.');
+      }
     }
   }
 

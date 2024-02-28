@@ -1,10 +1,10 @@
 import MaxXpToNextLevel from '../users-or-teams/max-xp-to-next-level';
 import Styles from './styles.module.scss';
 import UserLogo from './userLogo';
-import { getRequestObject } from '@/app/api/requests/get-requests';
 import { defaultItem } from '@/app/assets/Tempus-Ui';
 import { UserType } from '@/app/slices/userSlice';
 import { OpenUserType } from '@/app/types/TypesOfData/team-or-user/open-user-type';
+import { getRequestObject } from '@/features/api/requests/get-requests';
 import StatusModal from '@/widgets/statusModal/modal';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';

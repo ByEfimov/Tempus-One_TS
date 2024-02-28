@@ -1,8 +1,8 @@
-import { getRequestObject } from '@/app/api/requests/get-requests';
-import { postRequestWithoutNewId } from '@/app/api/requests/post-requests-with-new-id';
 import { Button, ButtonIcons, ButtonTypes, buttonIcons } from '@/app/assets/Tempus-Ui';
 import { useAppDispatch } from '@/app/hooks/redux-hooks';
 import { setCurrentUser } from '@/app/slices/userSlice';
+import { getRequestObject } from '@/features/api/requests/get-requests';
+import { postRequestWithoutNewId } from '@/features/api/requests/post-requests-with-new-id';
 import { encryptData } from '@/shared/crypt-data/cripting-data';
 import AppRoutes from '@/shared/routes/app-routes';
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';

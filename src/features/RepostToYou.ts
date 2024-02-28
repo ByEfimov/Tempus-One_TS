@@ -1,5 +1,5 @@
-import { changeRequest } from '@/app/api/requests/change-request';
-import { postRequestWithNewId } from '@/app/api/requests/post-requests-with-new-id';
+import { changeRequest } from './api/requests/change-request';
+import { postRequestWithNewId } from './api/requests/post-requests-with-new-id';
 import { PostType } from '@/app/slices/wite-post/write-post-slice';
 import { CloseModal } from '@/shared/isModal';
 import AppRoutes from '@/shared/routes/app-routes';

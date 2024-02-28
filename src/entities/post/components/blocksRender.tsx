@@ -1,7 +1,7 @@
 import Styles from '../styles.module.scss';
-import { postRequestWithoutNewId } from '@/app/api/requests/post-requests-with-new-id';
 import { useAuth } from '@/app/hooks/useAuth';
 import { blockType, blockTypes, blocksType } from '@/app/slices/wite-post/write-post-slice';
+import { postRequestWithoutNewId } from '@/features/api/requests/post-requests-with-new-id';
 import { FC, useState } from 'react';
 import { LivePreview, LiveProvider } from 'react-live';
 import { toast } from 'react-toastify';

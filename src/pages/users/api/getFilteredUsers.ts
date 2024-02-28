@@ -1,5 +1,5 @@
-import { getRequestArray } from '@/app/api/requests/get-requests';
 import { OpenUserType } from '@/app/types/TypesOfData/team-or-user/open-user-type';
+import { getRequestArray } from '@/features/api/requests/get-requests';
 import { filterUsers } from '@/shared/filters/filter-users';
 
 export function getFilteredUsers(
