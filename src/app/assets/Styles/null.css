@@ -105,6 +105,9 @@ body {
     padding-right: 10px;
     padding-bottom: 10px;
   }
+  .Toastify__toast {
+    border-radius: 10px;
+  }
 }
 html {
   overflow-x: hidden;
