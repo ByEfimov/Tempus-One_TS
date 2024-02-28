@@ -3,7 +3,7 @@ import Styles from './nav-bar.module.scss';
 import { useHeader } from '@/app/hooks/useHeader';
 import { Link, useLocation } from 'react-router-dom';
 
-interface NavBar {
+interface NavBarProps {
   Links: {
     name: string;
     path: string[];
@@ -12,13 +12,13 @@ interface NavBar {
   }[];
 }
 
-const NavBar = ({ Links }: NavBar) => {
+const NavBar = ({ Links }: NavBarProps) => {
   const { ShowNavBar } = useHeader();
   const location = useLocation().pathname;
 
   return (
     ShowNavBar && (
-      <div className={Styles.Wraapper}>
+      <div className={Styles.Wrapper}>
         <div className={Styles.container}>
           <nav className={Styles.NavBar}>
             {Links.map((link) => (

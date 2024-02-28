@@ -5,27 +5,22 @@ import TextBlock from './post/blocks/text-block';
 import { useAppDispatch } from '@/app/hooks/redux-hooks';
 import { activeEditing, blockTypes, blocksType } from '@/app/slices/wite-post/write-post-slice';
 
-//Переделать
-
 const RenderBlocks = ({ blocksData }: { blocksData: blocksType }) => {
   const dispatch = useAppDispatch();
   function selectEditMode(blockId: number) {
     dispatch(activeEditing({ blockId }));
   }
 
+  const componentMap = {
+    [blockTypes.Text]: TextBlock,
+    [blockTypes.Image]: ImageBlock,
+    [blockTypes.Code]: CodeBlock,
+    [blockTypes.Survey]: SurveyBlock,
+  };
+
   return blocksData.map((block) => {
-    if (block?.type === blockTypes.Text) {
-      return <TextBlock key={block.id} block={block} selectEditMode={selectEditMode}></TextBlock>;
-    }
-    if (block?.type === blockTypes.Image) {
-      return <ImageBlock key={block.id} block={block} selectEditMode={selectEditMode}></ImageBlock>;
-    }
-    if (block?.type === blockTypes.Code) {
-      return <CodeBlock key={block.id} block={block} selectEditMode={selectEditMode}></CodeBlock>;
-    }
-    if (block?.type === blockTypes.Survey) {
-      return <SurveyBlock key={block.id} block={block} selectEditMode={selectEditMode}></SurveyBlock>;
-    }
+    const Component = block && componentMap[block!.type];
+    return Component ? <Component key={block!.id} block={block} selectEditMode={selectEditMode} /> : null;
   });
 };
 

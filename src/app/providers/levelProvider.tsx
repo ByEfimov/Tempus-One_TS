@@ -5,9 +5,9 @@ import MaxXpToNextLevel from '@/shared/users-or-teams/max-xp-to-next-level';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 
-let AddUserXp: (xp: number) => void;
+export let AddUserXp: (xp: number) => void;
 
-export default function LevelProvider({ children }: { children: React.ReactChild | React.ReactNode }) {
+const LevelProvider = ({ children }: { children: React.ReactChild | React.ReactNode }) => {
   const { UserLevel, UserExperience, UserId, UserIsAuth } = useAuth();
 
   useEffect(() => {
@@ -16,11 +16,12 @@ export default function LevelProvider({ children }: { children: React.ReactChild
       toast.info(`Новый уровень ${UserLevel + 1}!`);
     }
 
-    AddUserXp = function (xp: number) {
-      changeRequest('users/' + UserId, '/experience', UserExperience + xp);
+    AddUserXp = (xp: number) => {
+      changeRequest(`users/`, `${UserId}/experience`, UserExperience + xp);
     };
   }, [UserExperience]);
 
   return children;
-}
-export { AddUserXp };
+};
+
+export default LevelProvider;

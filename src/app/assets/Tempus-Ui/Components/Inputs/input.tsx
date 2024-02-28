@@ -11,26 +11,27 @@ export enum InputTypes {
   email = 'email',
   phone = 'phone',
 }
+
 export enum IconPositions {
   left = 'left',
-  rigth = 'rigth',
+  right = 'right',
 }
+
 export enum InputColors {
   default = 'default',
   primary = 'primary',
 }
 
-interface Input {
+interface InputProps {
   Placeholder: string;
   Change: (e: React.ChangeEvent<HTMLInputElement>) => void;
   Value?: string | number;
   DefaultValue?: string;
-  Icon?: string | ReactNode;
+  Icon?: ReactNode;
   MaxLength?: number;
   Type: InputTypes;
   Variants?: formItemType;
   IconPosition?: IconPositions;
-  SearchFun?: () => void;
   Color?: InputColors;
 }
 
@@ -43,9 +44,9 @@ const Input = ({
   MaxLength,
   Type,
   Variants,
-  IconPosition = IconPositions.left,
-  Color,
-}: Input) => {
+  IconPosition,
+  Color = InputColors.default,
+}: InputProps) => {
   return (
     <motion.div
       variants={Variants}
@@ -59,7 +60,7 @@ const Input = ({
         defaultValue={DefaultValue}
         value={Value}
         placeholder={Placeholder}
-      ></input>
+      />
     </motion.div>
   );
 };

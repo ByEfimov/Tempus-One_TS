@@ -26,35 +26,29 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({ title, handlerSubmit 
   const [form, setForm] = useState({
     email: '',
     password: '',
-    name: '',
-    age: '',
+    name: Path === AppRoutes.REGISTER ? '' : undefined,
+    age: Path === AppRoutes.REGISTER ? '' : undefined,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setForm({
-      ...form,
-      [name]: value,
-    });
+    setForm((prevForm) => ({ ...prevForm, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    validateAuthenticationForm(form, title, handlerSubmit);
   };
 
   return (
     <>
-      <motion.form
-        onSubmit={(e) => {
-          e.preventDefault();
-          validateAuthenticationForm(form, title, handlerSubmit);
-        }}
-        className={FormsStyles.AuthForm}
-        {...formContainer}
-      >
+      <motion.form onSubmit={handleSubmit} className={FormsStyles.AuthForm} {...formContainer}>
         <motion.h1 variants={formItem} className={FormsStyles.AuthForm__Title}>
           {title}
         </motion.h1>
 
         <div className={FormsStyles.AuthForm__InputWrapper}>
           <Input Placeholder="Ваша почта" Change={handleChange} Variants={formItem} Type={InputTypes.email}></Input>
-
           <Input Placeholder="Ваш пароль" Change={handleChange} Type={InputTypes.password} Variants={formItem}></Input>
 
           {Path === AppRoutes.REGISTER && (
@@ -64,26 +58,26 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({ title, handlerSubmit 
             </motion.div>
           )}
         </div>
+
         <Button
-          Title={Path === AppRoutes.REGISTER ? 'Зарегестрироваться' : 'Войти'}
+          Title={Path === AppRoutes.REGISTER ? 'Зарегистрироваться' : 'Войти'}
           Click={() => {}}
           Variants={formItem}
           Type={ButtonTypes.active}
         ></Button>
       </motion.form>
+
       <div className={FormsStyles.BottomForm}>
         <TextWithLine>Или</TextWithLine>
         <AuthWithGoogle />
+
         <div className={FormsStyles.nextForm}>
-          {Path === AppRoutes.REGISTER ? (
-            <h4>
-              Уже есть аккаунт? <Link to={AppRoutes.LOGIN}>Войди!</Link>
-            </h4>
-          ) : (
-            <h4>
-              Еще нет аккаунта? <Link to={AppRoutes.REGISTER}>Зарегестрируйся!</Link>
-            </h4>
-          )}
+          <h4>
+            {Path === AppRoutes.REGISTER ? 'Уже есть аккаунт? ' : 'Еще нет аккаунта? '}
+            <Link to={Path === AppRoutes.REGISTER ? AppRoutes.LOGIN : AppRoutes.REGISTER}>
+              {Path === AppRoutes.REGISTER ? 'Войди!' : 'Зарегистрируйся!'}
+            </Link>
+          </h4>
         </div>
       </div>
     </>

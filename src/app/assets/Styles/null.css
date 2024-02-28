@@ -97,6 +97,12 @@ body {
   body {
     padding-bottom: 0px;
   }
+  .Toastify__toast-container {
+    z-index: 99999;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+  }
 }
 html {
   overflow-x: hidden;

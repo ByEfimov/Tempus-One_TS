@@ -1,5 +1,5 @@
 import getNewBlockStructure from './get-block-structure';
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { Draft, PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { getUnixTime } from 'date-fns';
 
 export enum blockTypes {
@@ -15,13 +15,15 @@ export type TextData = {
 export type CodeData = {
   code?: string;
 };
+export type VariantData = {
+  text: string;
+  selected?: Record<string, string>;
+  id: number;
+};
+
 export type SurveyData = {
   question?: string;
-  variants?: Array<{
-    text: string;
-    selected?: Record<string, string>;
-    id: number;
-  }>;
+  variants?: VariantData[];
 };
 export type ImageData = {
   imageUrl?: string;
@@ -66,25 +68,34 @@ const initialState: PostType = {
   blocks: [getNewBlockStructure(blockTypes.Text, 0)],
 };
 
+function getNewId(blocks: (Draft<blockType | VariantData> | undefined)[]) {
+  const maxId = Math.max(...blocks.map((block) => (block ? block.id : 0)));
+  return maxId + 1;
+}
+
+function clearAllEditingMods(blocks: (Draft<blockType> | undefined)[]) {
+  if (blocks) {
+    for (let i = 0; i < blocks.length; i++) {
+      blocks[i]!.isEditing = false;
+    }
+  }
+}
+
 const WritePostSlice = createSlice({
   name: 'WritePost',
   initialState,
   reducers: {
     addNewBlock(state, action: PayloadAction<{ newBlockType: blockTypes }>) {
-      for (let i = 0; i < state.blocks.length; i++) {
-        state.blocks[i]!.isEditing = false;
-      }
-
-      const newBlockStructure = getNewBlockStructure(action.payload.newBlockType, state.blocks.length);
-      state.blocks.push(newBlockStructure);
+      clearAllEditingMods(state.blocks);
+      state.blocks.push(getNewBlockStructure(action.payload.newBlockType, getNewId(state.blocks)));
     },
+
     activeEditing(state, action: PayloadAction<{ blockId: number }>) {
-      for (let i = 0; i < state.blocks.length; i++) {
-        state.blocks[i]!.isEditing = false;
-      }
-
-      state.blocks[action.payload.blockId]!.isEditing = true;
+      clearAllEditingMods(state.blocks);
+      const blockToEdit = state.blocks.find((block) => block?.id === action.payload.blockId);
+      if (blockToEdit) blockToEdit.isEditing = true;
     },
+
     changeDataBlock(
       state,
       action: PayloadAction<{
@@ -96,73 +107,63 @@ const WritePostSlice = createSlice({
         question?: string;
       }>,
     ) {
-      const block = state.blocks[action.payload.blockId];
-
-      if (block && 'data' in block && 'content' in block.data && action.payload.type === blockTypes.Text) {
-        block.data.content = action.payload.content;
-      }
-      if (block && 'data' in block && 'imageUrl' in block.data && action.payload.type === blockTypes.Image) {
-        block.data.imageUrl = action.payload.imageUrl;
-      }
-      if (block && 'data' in block && 'code' in block.data && action.payload.type === blockTypes.Code) {
-        block.data.code = action.payload.code;
-      }
-      if (block && 'data' in block && 'question' in block.data && action.payload.type === blockTypes.Survey) {
-        block.data.question = action.payload.question;
+      const block = state.blocks.find((block) => block?.id === action.payload.blockId);
+      if (block && 'data' in block) {
+        switch (action.payload.type) {
+          case blockTypes.Text:
+            if ('content' in block.data) block.data.content = action.payload.content;
+            break;
+          case blockTypes.Image:
+            if ('imageUrl' in block.data) block.data.imageUrl = action.payload.imageUrl;
+            break;
+          case blockTypes.Code:
+            if ('code' in block.data) block.data.code = action.payload.code;
+            break;
+          case blockTypes.Survey:
+            if ('question' in block.data) block.data.question = action.payload.question;
+            break;
+        }
       }
     },
 
     changeVariantData(
       state,
-      action: PayloadAction<{
-        blockId: number;
-        variantId: number;
-        variant: string;
-        type: blockTypes;
-      }>,
+      action: PayloadAction<{ blockId: number; variantId: number; variant: string; type: blockTypes }>,
     ) {
-      const block = state.blocks[action.payload.blockId];
-
-      if (
-        block &&
-        'data' in block &&
-        'variants' in block.data &&
-        block.data.variants &&
-        action.payload.type === blockTypes.Survey
-      ) {
-        block.data.variants[action.payload.variantId].text = action.payload.variant;
+      const block = state.blocks.find((block) => block?.id === action.payload.blockId);
+      if (block && 'data' in block && 'variants' in block.data && action.payload.type === blockTypes.Survey) {
+        const variantToUpdate = block.data.variants!.find((variant) => variant.id === action.payload.variantId);
+        if (variantToUpdate) {
+          variantToUpdate.text = action.payload.variant;
+        }
       }
     },
 
     changeAuthorPost(state, action: PayloadAction<{ authorId: string }>) {
       state.author = action.payload.authorId;
     },
+
     removeBlock(state, action: PayloadAction<{ blockId: number }>) {
-      if (state.blocks.length > 1) {
-        state.blocks.splice(action.payload.blockId, 1);
-      }
+      state.blocks = state.blocks.filter((n) => n?.id !== action.payload.blockId && state.blocks.length > 1);
     },
+
     removeVariant(state, action: PayloadAction<{ blockId: number; variantId: number }>) {
-      const block = state.blocks[action.payload.blockId];
-      if (
-        block &&
-        'variants' in block.data &&
-        'data' in block &&
-        block.data.variants &&
-        block.data.variants?.length > 1
-      ) {
-        block.data.variants.splice(action.payload.variantId, 1);
+      const block = state.blocks.find((block) => block?.id === action.payload.blockId);
+      if (block && 'variants' in block.data && block.data.variants && block.data.variants?.length > 1) {
+        block.data.variants = block.data.variants.filter((n) => n?.id !== action.payload.variantId);
       }
     },
+
     addVariant(state, action: PayloadAction<{ blockId: number }>) {
-      const block = state.blocks[action.payload.blockId];
-      if (block && 'variants' in block.data && 'data' in block) {
+      const block = state.blocks.find((block) => block?.id === action.payload.blockId);
+      if (block && 'variants' in block.data) {
         block.data.variants?.push({
           text: `Вариант ответа ${block.data.variants.length + 1}`,
-          id: block.data.variants.length,
+          id: getNewId(block.data.variants),
         });
       }
     },
+
     removePost(state) {
       state.blocks = [getNewBlockStructure(blockTypes.Text, 0)];
     },

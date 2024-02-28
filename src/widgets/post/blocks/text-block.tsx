@@ -10,19 +10,22 @@ import rehypeHighlight from 'rehype-highlight';
 import remarkGfm from 'remark-gfm';
 
 const TextBlock = ({ block, selectEditMode }: { block: blockType; selectEditMode: (blockId: number) => void }) => {
+  const isEditing = block.isEditing;
+
   return (
     <motion.div
       variants={formItem}
-      className={classNames(Styles.block, block.isEditing && Styles.active)}
+      className={classNames(Styles.block, isEditing && Styles.active)}
       onClick={() => selectEditMode(block.id)}
     >
-      {block.isEditing ? <EditingMode block={block}></EditingMode> : <RenderMode block={block}></RenderMode>}
-
-      <BottomInfo block={block}>
-        <motion.li variants={defaultItem}>
-          <ButtonIcons Icon={buttonIcons.MarkDown}></ButtonIcons>
-        </motion.li>
-      </BottomInfo>
+      {isEditing ? <EditingMode block={block} /> : <RenderMode block={block} />}
+      {isEditing && (
+        <BottomInfo block={block}>
+          <motion.li variants={defaultItem}>
+            <ButtonIcons Icon={buttonIcons.MarkDown}></ButtonIcons>
+          </motion.li>
+        </BottomInfo>
+      )}
     </motion.div>
   );
 };
@@ -30,20 +33,16 @@ const TextBlock = ({ block, selectEditMode }: { block: blockType; selectEditMode
 const EditingMode = ({ block }: { block: blockType }) => {
   const dispatch = useAppDispatch();
   if ('content' in block.data) {
+    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      dispatch(changeDataBlock({ content: e.target.value, blockId: block.id, type: block.type }));
+    };
+
     return (
       <motion.textarea
         value={block.data.content}
         variants={defaultItem}
         autoFocus
-        onChange={(e) =>
-          dispatch(
-            changeDataBlock({
-              content: e.target.value,
-              blockId: block.id,
-              type: block.type,
-            }),
-          )
-        }
+        onChange={handleChange}
       ></motion.textarea>
     );
   }

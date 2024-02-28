@@ -27,7 +27,6 @@ const CreatePostPage = () => {
   const [selectBlockModalOpen, setSelectBlockModalOpen] = useState(false);
   const [userAdmins, setUserAdmins] = useState<{ value: string; label: string }[]>();
   const newPost = useAppSelector((state) => state.WritePost);
-
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -51,6 +50,10 @@ const CreatePostPage = () => {
 
   const Authors = userAdmins && [{ label: 'От меня', value: UserId }, ...userAdmins];
 
+  const handleSelectAuthor = (authorId: string) => {
+    dispatch(changeAuthorPost({ authorId }));
+  };
+
   return UserCanChanging ? (
     <motion.div className={Styles.WritePost} {...formContainer}>
       <CreatePostModals
@@ -60,9 +63,7 @@ const CreatePostPage = () => {
       <Select
         Type={SelectTypes.Input}
         Array={Authors}
-        setSelect={(value: string) => {
-          dispatch(changeAuthorPost({ authorId: value }));
-        }}
+        setSelect={handleSelectAuthor}
         Placeholder="От кого пост"
       ></Select>
       <RenderBlocks blocksData={newPost.blocks}></RenderBlocks>
