@@ -13,8 +13,8 @@ import {
 } from '@/app/assets/Tempus-Ui';
 import { useAppDispatch, useAppSelector } from '@/app/hooks/redux-hooks';
 import { useAuth } from '@/app/hooks/useAuth';
-import { setExecuteButton } from '@/app/slices/header/header-slice';
-import { changeAuthorPost } from '@/app/slices/wite-post/write-post-slice';
+import { setExecuteButton } from '@/app/slices/header/headerSlice';
+import { changeAuthorPost } from '@/app/slices/witePost/writePostSlice';
 import getUserAdmins from '@/features/api/Teams/get-user-admins';
 import AppRoutes from '@/shared/routes/app-routes';
 import RenderBlocks from '@/widgets/renderBlocks';

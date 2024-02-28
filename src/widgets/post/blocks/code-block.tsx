@@ -2,7 +2,7 @@ import BottomInfo from '../create/bottom-block-info';
 import Styles from '../styles.module.scss';
 import { ButtonIcons, buttonIcons, defaultItem, formItem } from '@/app/assets/Tempus-Ui';
 import { useAppDispatch } from '@/app/hooks/redux-hooks';
-import { blockType, changeDataBlock } from '@/app/slices/wite-post/write-post-slice';
+import { blockType, changeDataBlock } from '@/app/slices/witePost/writePostSlice';
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import { LiveEditor, LivePreview, LiveProvider } from 'react-live';

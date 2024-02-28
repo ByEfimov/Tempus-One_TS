@@ -1,7 +1,7 @@
 import Styles from './styles.module.scss';
 import { defaultContainer, defaultItem } from '@/app/assets/Tempus-Ui';
 import { useAuth } from '@/app/hooks/useAuth';
-import { PostType } from '@/app/slices/wite-post/write-post-slice';
+import { PostType } from '@/app/slices/witePost/writePostSlice';
 import { repostToYou } from '@/features/RepostToYou';
 import getUserAdmins from '@/features/api/Teams/get-user-admins';
 import { IsModal } from '@/shared/isModal';

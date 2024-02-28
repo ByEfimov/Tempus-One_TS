@@ -1,7 +1,7 @@
 import { WhoWrotePost } from '../postRender';
 import Styles from '../styles.module.scss';
 import { formItem } from '@/app/assets/Tempus-Ui';
-import { PostType } from '@/app/slices/wite-post/write-post-slice';
+import { PostType } from '@/app/slices/witePost/writePostSlice';
 import SubscribeButton from '@/features/subscribeButton/SubscribeButton';
 import formatTimeAgo from '@/shared/post-utils/format-time-ago';
 import UserLogo from '@/shared/userLogo/userLogo';

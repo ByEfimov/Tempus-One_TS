@@ -1,5 +1,5 @@
 import Styles from '../styles.module.scss';
-import { PostType } from '@/app/slices/wite-post/write-post-slice';
+import { PostType } from '@/app/slices/witePost/writePostSlice';
 import { FC } from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';

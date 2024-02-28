@@ -1,6 +1,6 @@
 import { postRequestWithoutNewId } from './api/requests/post-requests-with-new-id';
 import { removeRequest } from './api/requests/remove-request';
-import { PostType } from '@/app/slices/wite-post/write-post-slice';
+import { PostType } from '@/app/slices/witePost/writePostSlice';
 import { toast } from 'react-toastify';
 
 export const LikePost = ({

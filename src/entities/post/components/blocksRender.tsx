@@ -1,6 +1,6 @@
 import Styles from '../styles.module.scss';
 import { useAuth } from '@/app/hooks/useAuth';
-import { blockType, blockTypes, blocksType } from '@/app/slices/wite-post/write-post-slice';
+import { blockType, blockTypes, blocksType } from '@/app/slices/witePost/writePostSlice';
 import { postRequestWithoutNewId } from '@/features/api/requests/post-requests-with-new-id';
 import { FC, useState } from 'react';
 import { LivePreview, LiveProvider } from 'react-live';

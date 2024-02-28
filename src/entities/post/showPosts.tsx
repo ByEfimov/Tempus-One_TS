@@ -5,7 +5,7 @@ import { useAppDispatch } from '@/app/hooks/redux-hooks';
 import { useAuth } from '@/app/hooks/useAuth';
 import { useHeader } from '@/app/hooks/useHeader';
 import { setLastPostKey } from '@/app/slices/postsSlice';
-import { PostType } from '@/app/slices/wite-post/write-post-slice';
+import { PostType } from '@/app/slices/witePost/writePostSlice';
 import { getRequestArray } from '@/features/api/requests/get-requests';
 import { FiltersPosts, aplyFilterPosts } from '@/shared/filters/filter-posts';
 import ShowDataOrPreloader from '@/shared/showDataOrPreloader';

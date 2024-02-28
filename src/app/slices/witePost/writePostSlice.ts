@@ -1,4 +1,4 @@
-import getNewBlockStructure from './get-block-structure';
+import getNewBlockStructure from './getBlockStructure';
 import { Draft, PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { getUnixTime } from 'date-fns';
 

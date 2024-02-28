@@ -1,6 +1,6 @@
 import { changeRequest } from './api/requests/change-request';
 import { postRequestWithNewId } from './api/requests/post-requests-with-new-id';
-import { PostType } from '@/app/slices/wite-post/write-post-slice';
+import { PostType } from '@/app/slices/witePost/writePostSlice';
 import { CloseModal } from '@/shared/isModal';
 import AppRoutes from '@/shared/routes/app-routes';
 import { getUnixTime } from 'date-fns';

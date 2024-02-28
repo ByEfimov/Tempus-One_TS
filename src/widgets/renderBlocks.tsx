@@ -3,7 +3,7 @@ import ImageBlock from './post/blocks/image-block';
 import SurveyBlock from './post/blocks/survey-block';
 import TextBlock from './post/blocks/text-block';
 import { useAppDispatch } from '@/app/hooks/redux-hooks';
-import { activeEditing, blockTypes, blocksType } from '@/app/slices/wite-post/write-post-slice';
+import { activeEditing, blockTypes, blocksType } from '@/app/slices/witePost/writePostSlice';
 
 const RenderBlocks = ({ blocksData }: { blocksData: blocksType }) => {
   const dispatch = useAppDispatch();

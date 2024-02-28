@@ -9,7 +9,7 @@ import {
   navBarIcons,
 } from '@/app/assets/Tempus-Ui';
 import { useAppDispatch } from '@/app/hooks/redux-hooks';
-import { addNewBlock, blockTypes } from '@/app/slices/wite-post/write-post-slice';
+import { addNewBlock, blockTypes } from '@/app/slices/witePost/writePostSlice';
 import { CloseModal, IsModal } from '@/shared/isModal';
 import { motion } from 'framer-motion';
 

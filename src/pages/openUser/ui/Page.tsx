@@ -1,7 +1,7 @@
 import Styles from './styles.module.scss';
 import { Preloader } from '@/app/assets/Tempus-Ui';
 import { useAppDispatch } from '@/app/hooks/redux-hooks';
-import { setExecuteButton } from '@/app/slices/header/header-slice';
+import { setExecuteButton } from '@/app/slices/header/headerSlice';
 import { OpenUserType } from '@/app/types/TypesOfData/team-or-user/open-user-type';
 import ShowPosts from '@/entities/post/showPosts';
 import { getRequestObject } from '@/features/api/requests/get-requests';

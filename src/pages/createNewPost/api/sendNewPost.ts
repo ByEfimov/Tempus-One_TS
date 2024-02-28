@@ -1,6 +1,6 @@
 import { AppDispatch } from '@/app/appStore';
 import { AddUserXp } from '@/app/providers/levelProvider';
-import { removePost } from '@/app/slices/wite-post/write-post-slice';
+import { removePost } from '@/app/slices/witePost/writePostSlice';
 import { postRequestWithNewId } from '@/features/api/requests/post-requests-with-new-id';
 import AppRoutes from '@/shared/routes/app-routes';
 import { NavigateFunction } from 'react-router-dom';

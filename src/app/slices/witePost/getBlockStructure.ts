@@ -1,4 +1,4 @@
-import { blockTypes } from './write-post-slice';
+import { blockTypes } from './writePostSlice';
 
 export default function getNewBlockStructure(newBlockType: blockTypes, newId: number) {
   const blockStructures = {

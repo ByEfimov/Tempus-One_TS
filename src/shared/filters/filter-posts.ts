@@ -1,4 +1,4 @@
-import { PostType } from '@/app/slices/wite-post/write-post-slice';
+import { PostType } from '@/app/slices/witePost/writePostSlice';
 
 export const FiltersPosts = [
   { label: 'Все посты', value: 'Default' },

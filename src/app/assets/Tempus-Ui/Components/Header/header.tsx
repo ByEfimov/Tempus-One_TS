@@ -3,7 +3,7 @@ import Styles from './header.module.scss';
 import { useAppDispatch } from '@/app/hooks/redux-hooks';
 import { useAuth } from '@/app/hooks/useAuth';
 import { useHeader } from '@/app/hooks/useHeader';
-import { setInputSearchBar } from '@/app/slices/header/header-slice';
+import { setInputSearchBar } from '@/app/slices/header/headerSlice';
 import { TypesOfHeader } from '@/app/types/TypesOfData/header/header-type';
 import AppRoutes from '@/shared/routes/app-routes';
 import UserLogo from '@/shared/userLogo/userLogo';

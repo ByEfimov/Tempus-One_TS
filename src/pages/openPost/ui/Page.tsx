@@ -12,8 +12,8 @@ import {
 } from '@/app/assets/Tempus-Ui';
 import { useAppDispatch } from '@/app/hooks/redux-hooks';
 import { useAuth } from '@/app/hooks/useAuth';
-import { setExecuteButton } from '@/app/slices/header/header-slice';
-import { PostType } from '@/app/slices/wite-post/write-post-slice';
+import { setExecuteButton } from '@/app/slices/header/headerSlice';
+import { PostType } from '@/app/slices/witePost/writePostSlice';
 import Activities from '@/entities/post/components/activities';
 import AuthorDataRender from '@/entities/post/components/authorDataRender';
 import { WhoWrotePost } from '@/entities/post/postRender';

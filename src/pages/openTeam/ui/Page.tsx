@@ -2,7 +2,7 @@ import TeamModals from './modals';
 import { Preloader } from '@/app/assets/Tempus-Ui';
 import { useAppDispatch } from '@/app/hooks/redux-hooks';
 import { useAuth } from '@/app/hooks/useAuth';
-import { setExecuteButton } from '@/app/slices/header/header-slice';
+import { setExecuteButton } from '@/app/slices/header/headerSlice';
 import { OpenTeamType } from '@/app/types/TypesOfData/team-or-user/open-team-type';
 import ShowPosts from '@/entities/post/showPosts';
 import getUserAdmins from '@/features/api/Teams/get-user-admins';

@@ -16,7 +16,7 @@ import {
   changeDataBlock,
   changeVariantData,
   removeVariant,
-} from '@/app/slices/wite-post/write-post-slice';
+} from '@/app/slices/witePost/writePostSlice';
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
 

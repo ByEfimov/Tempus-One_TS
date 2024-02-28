@@ -1,5 +1,5 @@
 import Styles from '../styles.module.scss';
-import { PostType } from '@/app/slices/wite-post/write-post-slice';
+import { PostType } from '@/app/slices/witePost/writePostSlice';
 import AppRoutes from '@/shared/routes/app-routes';
 import { useNavigate } from 'react-router-dom';
 

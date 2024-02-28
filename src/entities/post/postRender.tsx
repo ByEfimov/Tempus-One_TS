@@ -7,7 +7,7 @@ import PostModals from './modals';
 import Styles from './styles.module.scss';
 import { defaultItem } from '@/app/assets/Tempus-Ui';
 import { useAuth } from '@/app/hooks/useAuth';
-import { PostType, blockTypes } from '@/app/slices/wite-post/write-post-slice';
+import { PostType, blockTypes } from '@/app/slices/witePost/writePostSlice';
 import { getRequestObject } from '@/features/api/requests/get-requests';
 import { postRequestWithoutNewId } from '@/features/api/requests/post-requests-with-new-id';
 import AppRoutes from '@/shared/routes/app-routes';

@@ -3,7 +3,7 @@ import Styles from '../styles.module.scss';
 import { LoadImage, LoadImageColors, formItem } from '@/app/assets/Tempus-Ui';
 import { LoadImageSizes } from '@/app/assets/Tempus-Ui/Components/LoadImage/load-image';
 import { useAppDispatch } from '@/app/hooks/redux-hooks';
-import { blockType, changeDataBlock, removeBlock } from '@/app/slices/wite-post/write-post-slice';
+import { blockType, changeDataBlock, removeBlock } from '@/app/slices/witePost/writePostSlice';
 import classNames from 'classnames';
 import { deleteObject, getStorage, ref } from 'firebase/storage';
 import { motion } from 'framer-motion';

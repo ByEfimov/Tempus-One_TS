@@ -1,7 +1,7 @@
 import Styles from '../styles.module.scss';
 import { ButtonIcons, buttonIcons, defaultContainer, defaultItem } from '@/app/assets/Tempus-Ui';
 import { useAppDispatch } from '@/app/hooks/redux-hooks';
-import { blockType, removeBlock } from '@/app/slices/wite-post/write-post-slice';
+import { blockType, removeBlock } from '@/app/slices/witePost/writePostSlice';
 import { motion } from 'framer-motion';
 
 const BottomInfo = ({
