@@ -97,6 +97,8 @@ body {
   body {
     padding-bottom: 0px;
   }
+}
+@media screen and (max-width: 900px) {
   .Toastify__toast-container {
     z-index: 99999;
     padding-left: 10px;
