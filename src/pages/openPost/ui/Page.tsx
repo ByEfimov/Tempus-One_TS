@@ -1,4 +1,4 @@
-import BlocksRender from './blocks-render';
+import BlocksRender from './blocksRender';
 import { PostModals } from './modals';
 import Styles from './styles.module.scss';
 import {
