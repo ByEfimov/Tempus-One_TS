@@ -103,9 +103,10 @@ body {
     z-index: 99999;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 10px;
+    gap: 10px;
   }
   .Toastify__toast {
+    margin-bottom: 10px;
     border-radius: 10px;
   }
 }

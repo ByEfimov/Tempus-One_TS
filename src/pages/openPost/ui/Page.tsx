@@ -61,7 +61,7 @@ export function PostPage() {
 
   if (openPost) {
     return (
-      <motion.div {...defaultContainer} style={{ margin: '20px 0' }}>
+      <motion.div {...defaultContainer} style={{ padding: '20px 10px' }}>
         <PostModals
           commentsModalOpen={commentsModalOpen}
           setCommentsModalOpen={setCommentsModalOpen}

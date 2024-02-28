@@ -12,11 +12,11 @@ const BlocksRender = ({ post }: { post: PostType }) => {
     <motion.ul {...formContainer} className={Styles.container}>
       {post.blocks.map((block) =>
         block?.type === blockTypes.Text ? (
-          <motion.li variants={formItem} className={Styles.block}>
-            <RenderText key={block.id} block={block}></RenderText>
+          <motion.li variants={formItem} key={block.id} className={Styles.block}>
+            <RenderText block={block}></RenderText>
           </motion.li>
         ) : block?.type === blockTypes.Survey ? (
-          <motion.li variants={formItem} className={classNames(Styles.block, Styles.SurveyBlock)}>
+          <motion.li variants={formItem} key={block.id} className={classNames(Styles.block, Styles.SurveyBlock)}>
             <ShowSurvey postId={post.id} block={block}></ShowSurvey>
           </motion.li>
         ) : block?.type === blockTypes.Image ? (
