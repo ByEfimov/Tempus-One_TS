@@ -1,7 +1,7 @@
 import CommentRender from './commentRender';
 import Styles from './styles.module.scss';
 import SendIcon from '@/app/assets/Icons/Post/message.svg';
-import { Input, InputColors, InputTypes, Preloader } from '@/app/assets/Tempus-Ui';
+import { Button, ButtonTypes, Input, InputColors, InputTypes, Preloader } from '@/app/assets/Tempus-Ui';
 import { useAuth } from '@/app/hooks/useAuth';
 import { Comments } from '@/app/types/TypesOfData/post/comments';
 import { getRequestArray } from '@/features/api/requests/get-requests';
@@ -72,9 +72,10 @@ const CommentsModal: FC<CommentsModalProps> = ({ setModalOpen, PostId }) => {
           Type={InputTypes.text}
           Color={InputColors.primary}
         ></Input>
-        <button onClick={() => sendComment()}>
+
+        <Button Type={ButtonTypes.icon} Click={sendComment} Class={Styles.buttonSend}>
           <img src={SendIcon} alt="" />
-        </button>
+        </Button>
       </motion.div>
     </IsModal>
   );

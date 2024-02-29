@@ -15,33 +15,29 @@ interface ActivitiesProps {
 }
 
 const Activities: FC<ActivitiesProps> = ({ post, setCommentsOpen, setRepostModalOpen }) => {
-  const { UserId, UserCanChanging } = useAuth();
-  const [PostLikes, setPostLikes] = useState(post.likes ? Object.values(post.likes).length : 0);
-  const [ItPostLiked, setItPostLiked] = useState(post.likes ? Object.values(post.likes).includes(UserId) : false);
+  const { UserId, UserCanChanging, UserIsAuth } = useAuth();
+  const [postLikes, setPostLikes] = useState(post.likes ? Object.values(post.likes).length : 0);
+  const [itPostLiked, setItPostLiked] = useState(post.likes ? Object.values(post.likes).includes(UserId) : false);
+  const postComments = post.comments ? Object.keys(post.comments).length : 0;
 
-  const PostComments = Object.keys(post.comments || []).length;
-
-  const LikePostConfig = {
-    ItPostLiked,
-    setPostLikes,
-    setItPostLiked,
-    UserId,
-    post,
-    PostLikes,
+  const likePostHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.stopPropagation();
+    LikePost({
+      itPostLiked,
+      setPostLikes,
+      setItPostLiked: setItPostLiked,
+      UserId: UserId,
+      post: post,
+      PostLikes: postLikes,
+    });
   };
 
   return (
     <motion.div variants={formItem} className={Styles.PostActivity}>
       <div className={Styles.Buttons}>
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            LikePost(LikePostConfig);
-          }}
-          className={(ItPostLiked && Styles.LikeHeart) || undefined}
-        >
+        <button onClick={likePostHandler} className={itPostLiked ? Styles.LikeHeart : undefined}>
           <PostIcons Icon={postIcons.like}></PostIcons>
-          <h1>{PostLikes}</h1>
+          <h1>{postLikes}</h1>
         </button>
         <button
           onClick={(e) => {
@@ -50,14 +46,16 @@ const Activities: FC<ActivitiesProps> = ({ post, setCommentsOpen, setRepostModal
           }}
         >
           <PostIcons Icon={postIcons.comment}></PostIcons>
-          <h1>{PostComments}</h1>
+          <h1>{postComments}</h1>
         </button>
         <button
           onClick={(e) => {
             e.stopPropagation();
             if (UserCanChanging) {
               setRepostModalOpen(true);
-            } else {
+            } else if (!UserIsAuth) {
+              toast.error(NOTIFI_TEXTS.ERROR_NOT_AUTH);
+            } else if (!UserCanChanging) {
               toast.warning(NOTIFI_TEXTS.ERROR_NOT_VERIFIED_EMAIL);
             }
           }}
@@ -68,7 +66,7 @@ const Activities: FC<ActivitiesProps> = ({ post, setCommentsOpen, setRepostModal
       </div>
       <button className={Styles.Shows}>
         <PostIcons Icon={postIcons.eye}></PostIcons>
-        <h1> {Object.keys(post.views || '').length}</h1>
+        <h1>{Object.keys(post.views || {}).length}</h1>
       </button>
     </motion.div>
   );

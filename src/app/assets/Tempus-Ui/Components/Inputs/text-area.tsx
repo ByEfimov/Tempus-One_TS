@@ -12,9 +12,10 @@ interface TextArea {
   MaxLength?: number;
   Variants?: formItemType;
   Color?: InputColors;
+  Name?: string;
 }
 
-const TextArea = ({ Placeholder, Change, Value, DefaultValue, MaxLength, Variants, Color }: TextArea) => {
+const TextArea = ({ Placeholder, Change, Value, DefaultValue, MaxLength, Variants, Color, Name }: TextArea) => {
   return (
     <motion.div
       variants={Variants}
@@ -26,6 +27,7 @@ const TextArea = ({ Placeholder, Change, Value, DefaultValue, MaxLength, Variant
         defaultValue={DefaultValue}
         value={Value}
         placeholder={Placeholder}
+        name={Name}
       ></textarea>
     </motion.div>
   );

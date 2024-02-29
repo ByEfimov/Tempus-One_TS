@@ -36,11 +36,18 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
   const ChangeFunction = () => {
     const defaultPath = 'users/' + UserId;
 
-    (Object.keys(form) as (keyof typeof form)[]).forEach((field) => {
-      if (form[field] !== '') {
-        changeRequest(defaultPath, `/${field}`, form[field]);
-      }
-    });
+    if (form.photo !== '') {
+      changeRequest(defaultPath, '/photo', form.photo);
+    }
+    if (form.name !== '') {
+      changeRequest(defaultPath, '/name', form.name);
+    }
+    if (form.age !== '') {
+      changeRequest(defaultPath, '/age', form.age);
+    }
+    if (form.specialization !== '') {
+      changeRequest(defaultPath, '/specialization', form.specialization);
+    }
 
     CloseModal();
   };
@@ -71,6 +78,7 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
           Variants={formItem}
         ></LoadImage>
         <Input
+          Name="name"
           Placeholder="Имя"
           Color={InputColors.primary}
           Change={handleChange}
@@ -79,6 +87,7 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
           Type={InputTypes.text}
         ></Input>
         <Input
+          Name="age"
           Color={InputColors.primary}
           Placeholder="Возраст"
           Change={handleChange}
@@ -86,7 +95,6 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
           Variants={formItem}
           Type={InputTypes.number}
         ></Input>
-
         <Select
           Array={allSpecializations}
           setSelect={(value: string) => {

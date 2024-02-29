@@ -100,7 +100,7 @@ body {
 }
 @media screen and (max-width: 900px) {
   .Toastify__toast-container {
-    z-index: 99999;
+    z-index: 99999999;
     padding-left: 10px;
     padding-right: 10px;
     gap: 10px;

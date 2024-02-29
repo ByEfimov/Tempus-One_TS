@@ -27,6 +27,6 @@ export default function loginUser(
       navigate(AppRoutes.DEFAULT);
     })
     .catch(() => {
-      toast.error('Пароль или почта не подходят.');
+      toast.error('Данные от аккаунта введены не верно.');
     });
 }

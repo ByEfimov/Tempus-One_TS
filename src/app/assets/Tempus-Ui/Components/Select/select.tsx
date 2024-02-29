@@ -62,7 +62,7 @@ const Select = ({
                   Color === InputColors.primary ? 'var(--PrimaryBackgroundColor)' : 'var(--SecondaryBackgroundColor)',
                 colorText: 'var(--PrimaryTextColor)',
                 colorTextPlaceholder: 'var(--SecondaryTextColor)',
-                zIndexPopup: 9999999,
+                zIndexPopup: 99999999,
               },
             },
           }}

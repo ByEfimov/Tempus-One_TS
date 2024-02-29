@@ -49,7 +49,7 @@ const CreatePostPage = () => {
     );
   }, [newPost]);
 
-  const Authors = userAdmins && [{ label: 'От меня', value: UserId }, ...userAdmins];
+  const Authors = [{ label: 'От меня', value: UserId }, ...(userAdmins ? userAdmins : [])];
 
   const handleSelectAuthor = (authorId: string) => {
     dispatch(changeAuthorPost({ authorId }));

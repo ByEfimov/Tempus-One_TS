@@ -48,11 +48,19 @@ const SettingsTeamModal: FC<SettingsTeamModal> = ({ setModalOpen, team }) => {
 
   const ChangeFunction = () => {
     const defaultPath = 'teams/' + team.id;
-    (Object.keys(form) as (keyof typeof form)[]).forEach((field) => {
-      if (form[field] !== '') {
-        changeRequest(defaultPath, `/${field}`, form[field]);
-      }
-    });
+
+    if (form.photo !== '') {
+      changeRequest(defaultPath, '/image', form.photo);
+    }
+    if (form.title !== '') {
+      changeRequest(defaultPath, '/title', form.title);
+    }
+    if (form.description !== '') {
+      changeRequest(defaultPath, '/desc', form.description);
+    }
+    if (form.creators !== '') {
+      changeRequest(defaultPath, '/creators', form.creators);
+    }
 
     CloseModal();
   };
@@ -78,6 +86,7 @@ const SettingsTeamModal: FC<SettingsTeamModal> = ({ setModalOpen, team }) => {
         <Input
           Variants={formItem}
           Placeholder="Название"
+          Name="title"
           Color={InputColors.primary}
           Change={handleChange}
           Value={form.title}
@@ -88,6 +97,7 @@ const SettingsTeamModal: FC<SettingsTeamModal> = ({ setModalOpen, team }) => {
           Placeholder="Описание"
           Change={handleChange}
           Value={form.description}
+          Name="description"
           Color={InputColors.primary}
         ></TextArea>
         <Select

@@ -44,8 +44,15 @@ const CreateNewTeamForm = ({ newTeam, setNewTeam, children }: CreateNewTeamForm)
         Value={newTeam.title}
         Type={InputTypes.text}
         Variants={formItem}
+        Name="title"
       ></Input>
-      <TextArea Placeholder="Описание" Change={handleChange} Value={newTeam.descriprion} Variants={formItem}></TextArea>
+      <TextArea
+        Placeholder="Описание"
+        Name="descriprion"
+        Change={handleChange}
+        Value={newTeam.descriprion}
+        Variants={formItem}
+      ></TextArea>
       <Select
         Type={SelectTypes.Input}
         Placeholder="Выберите направление"

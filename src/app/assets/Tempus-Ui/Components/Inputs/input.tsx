@@ -33,6 +33,7 @@ interface InputProps {
   Variants?: formItemType;
   IconPosition?: IconPositions;
   Color?: InputColors;
+  Name?: string;
 }
 
 const Input = ({
@@ -46,6 +47,7 @@ const Input = ({
   Variants,
   IconPosition,
   Color = InputColors.default,
+  Name,
 }: InputProps) => {
   return (
     <motion.div
@@ -54,6 +56,7 @@ const Input = ({
     >
       {Icon && IconPosition === IconPositions.left && <div className={Styles.Input__Icon}>{Icon}</div>}
       <input
+        name={Name}
         maxLength={MaxLength}
         type={Type}
         onChange={(e) => Change(e)}

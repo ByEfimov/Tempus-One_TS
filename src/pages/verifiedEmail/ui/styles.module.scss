@@ -1,22 +1,28 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 .buttons {
-    padding: 17px;
+  padding: 17px;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  align-items: center;
+  top: 0;
+  justify-content: center;
+  display: flex;
+  padding-top: 100px;
+  max-width: 400px;
+  flex-direction: column;
+  border-radius: var(--DefaultBorderRadius);
+  background-color: var(--GreyColor);
+  gap: 20px;
+  .Title {
     width: 100%;
-    height: 100vh;
-    position: absolute;
-    align-items: center;
-    top: 0;
-    justify-content: center;
-    display: flex;
-    padding-top: 100px;
-    flex-direction: column;
-    border-radius: var(--DefaultBorderRadius);
-    background-color: var(--GreyColor);
-    .Title {
-        width: 100%;
-        color: var(--DarkTextColor);
-        text-align: center;
-        font-size: 20px;
-        font-weight: 700;
-        margin-bottom: 20px;
-    }
+    color: var(--DarkTextColor);
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+  }
 }

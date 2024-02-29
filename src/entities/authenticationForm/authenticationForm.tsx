@@ -32,7 +32,7 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({ title, handlerSubmit 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setForm((prevForm) => ({ ...prevForm, [name]: value }));
+    setForm({ ...form, [name]: value });
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -48,13 +48,25 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({ title, handlerSubmit 
         </motion.h1>
 
         <div className={FormsStyles.AuthForm__InputWrapper}>
-          <Input Placeholder="Ваша почта" Change={handleChange} Variants={formItem} Type={InputTypes.email}></Input>
-          <Input Placeholder="Ваш пароль" Change={handleChange} Type={InputTypes.password} Variants={formItem}></Input>
+          <Input
+            Placeholder="Ваша почта"
+            Change={handleChange}
+            Variants={formItem}
+            Type={InputTypes.email}
+            Name="email"
+          ></Input>
+          <Input
+            Placeholder="Ваш пароль"
+            Change={handleChange}
+            Type={InputTypes.password}
+            Variants={formItem}
+            Name="password"
+          ></Input>
 
           {Path === AppRoutes.REGISTER && (
             <motion.div variants={formItem} className={FormsStyles.moreInputs}>
-              <Input Placeholder="Имя" Change={handleChange} Type={InputTypes.text} MaxLength={15}></Input>
-              <Input Placeholder="Возраст" Change={handleChange} Type={InputTypes.number}></Input>
+              <Input Placeholder="Имя" Change={handleChange} Type={InputTypes.text} MaxLength={15} Name="name"></Input>
+              <Input Placeholder="Возраст" Change={handleChange} Type={InputTypes.number} Name="age"></Input>
             </motion.div>
           )}
         </div>

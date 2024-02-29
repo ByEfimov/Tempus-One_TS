@@ -5,14 +5,14 @@ import { NOTIFI_TEXTS } from '@/shared/notifyTexts/notifyTexts';
 import { toast } from 'react-toastify';
 
 export const LikePost = ({
-  ItPostLiked,
+  itPostLiked,
   setPostLikes,
   setItPostLiked,
   UserId,
   post,
   PostLikes,
 }: {
-  ItPostLiked: boolean;
+  itPostLiked: boolean;
   setPostLikes: React.Dispatch<React.SetStateAction<number>>;
   setItPostLiked: React.Dispatch<React.SetStateAction<boolean>>;
   UserId: string;
@@ -20,7 +20,7 @@ export const LikePost = ({
   PostLikes: number;
 }) => {
   if (UserId) {
-    if (ItPostLiked) {
+    if (itPostLiked) {
       setPostLikes(PostLikes - 1);
       removeRequest('posts/' + post.id + '/likes/', UserId);
       setItPostLiked(false);

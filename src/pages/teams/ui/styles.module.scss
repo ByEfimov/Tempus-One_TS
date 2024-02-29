@@ -1,18 +1,18 @@
 .Teams {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 10px;
-    padding-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px;
+  padding-top: 15px;
 }
 
 @media screen and (min-width: 900px) {
-    .Teams {
-        margin-left: 220px;
-        margin-right: 56px;
+  .Teams {
+    margin-left: 220px;
+    margin-right: 56px;
 
-        flex-wrap: wrap;
-        justify-content: space-between;
-        flex-direction: row;
-    }
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: row;
+  }
 }
