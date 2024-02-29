@@ -32,6 +32,7 @@ const CreatePostPage = () => {
 
   useEffect(() => {
     getUserAdmins(UserId).then((teams) => setUserAdmins(teams));
+    handleSelectAuthor(UserId);
   }, []);
 
   useEffect(() => {
@@ -65,6 +66,7 @@ const CreatePostPage = () => {
         Array={Authors}
         setSelect={handleSelectAuthor}
         Placeholder="От кого пост"
+        DefaultValue={UserId}
       ></Select>
       <RenderBlocks blocksData={newPost.blocks}></RenderBlocks>
       <Button

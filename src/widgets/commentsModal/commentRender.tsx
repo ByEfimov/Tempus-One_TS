@@ -1,4 +1,4 @@
-import { CloseModal } from '../../shared/isModal';
+import { CloseModal } from '../../shared/modals/isModal';
 import Styles from './styles.module.scss';
 import { Comments } from '@/app/types/TypesOfData/post/comments';
 import { OpenUserType } from '@/app/types/TypesOfData/team-or-user/open-user-type';

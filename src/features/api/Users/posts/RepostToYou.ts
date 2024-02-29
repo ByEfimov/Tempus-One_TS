@@ -1,7 +1,7 @@
-import { changeRequest } from './api/requests/change-request';
-import { postRequestWithNewId } from './api/requests/post-requests-with-new-id';
+import { changeRequest } from '../../requests/change-request';
+import { postRequestWithNewId } from '../../requests/post-requests-with-new-id';
 import { PostType } from '@/app/slices/witePost/writePostSlice';
-import { CloseModal } from '@/shared/isModal';
+import { CloseModal } from '@/shared/modals/isModal';
 import AppRoutes from '@/shared/routes/app-routes';
 import { getUnixTime } from 'date-fns';
 import { NavigateFunction } from 'react-router-dom';

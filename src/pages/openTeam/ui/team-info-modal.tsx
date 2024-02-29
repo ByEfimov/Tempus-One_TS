@@ -3,7 +3,7 @@ import { Members, formContainer, formItem } from '@/app/assets/Tempus-Ui';
 import { OpenTeamType } from '@/app/types/TypesOfData/team-or-user/open-team-type';
 import { OpenUserType } from '@/app/types/TypesOfData/team-or-user/open-user-type';
 import { getRequestObject } from '@/features/api/requests/get-requests';
-import { IsModal } from '@/shared/isModal';
+import { IsModal } from '@/shared/modals/isModal';
 import { motion } from 'framer-motion';
 import moment from 'moment';
 import { useEffect, useState } from 'react';

@@ -1,5 +1,5 @@
-import validateEmail from './validate-email';
-import validatePassword from './validate-password';
+import validateEmail from './validateEmail';
+import validatePassword from './validatePassword';
 import { AuthenticationFromData } from '@/entities/authenticationForm/authenticationForm';
 import { toast } from 'react-toastify';
 

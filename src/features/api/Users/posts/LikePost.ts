@@ -1,5 +1,5 @@
-import { postRequestWithoutNewId } from './api/requests/post-requests-with-new-id';
-import { removeRequest } from './api/requests/remove-request';
+import { postRequestWithoutNewId } from '../../requests/post-requests-with-new-id';
+import { removeRequest } from '../../requests/remove-request';
 import { PostType } from '@/app/slices/witePost/writePostSlice';
 import { toast } from 'react-toastify';
 

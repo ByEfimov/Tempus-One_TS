@@ -1,4 +1,4 @@
-import { IsModal } from '../../shared/isModal';
+import { IsModal } from '../../shared/modals/isModal';
 import CommentRender from './commentRender';
 import Styles from './styles.module.scss';
 import SendIcon from '@/app/assets/Icons/Post/message.svg';

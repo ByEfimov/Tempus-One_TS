@@ -2,7 +2,7 @@ import FormsStyles from './styles.module.scss';
 import { Button, ButtonTypes, Input, InputTypes, TextWithLine, formContainer, formItem } from '@/app/assets/Tempus-Ui';
 import AuthWithGoogle from '@/pages/authentication/Page';
 import AppRoutes from '@/shared/routes/app-routes';
-import { validateAuthenticationForm } from '@/shared/validate-data/validate-authentication-form';
+import { validateAuthenticationForm } from '@/shared/validate-data/validateAuthenticationForm';
 import { motion } from 'framer-motion';
 import { FC, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';

@@ -10,7 +10,7 @@ import {
 } from '@/app/assets/Tempus-Ui';
 import { useAppDispatch } from '@/app/hooks/redux-hooks';
 import { addNewBlock, blockTypes } from '@/app/slices/witePost/writePostSlice';
-import { CloseModal, IsModal } from '@/shared/isModal';
+import { CloseModal, IsModal } from '@/shared/modals/isModal';
 import { motion } from 'framer-motion';
 
 const SelectBlockModal = ({ setModalOpen }: { setModalOpen: (value: React.SetStateAction<boolean>) => void }) => {

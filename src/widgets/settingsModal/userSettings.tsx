@@ -1,4 +1,4 @@
-import { CloseModal, IsModal } from '../../shared/isModal';
+import { CloseModal, IsModal } from '../../shared/modals/isModal';
 import Styles from './styles.module.scss';
 import {
   Button,
@@ -14,7 +14,7 @@ import {
   formItem,
 } from '@/app/assets/Tempus-Ui';
 import { useAuth } from '@/app/hooks/useAuth';
-import { getSpecializations } from '@/features/GetSpecializations';
+import { getSpecializations } from '@/features/api/Users/interaction/GetSpecializations';
 import { changeRequest } from '@/features/api/requests/change-request';
 import { motion } from 'framer-motion';
 import React, { FC, useEffect, useState } from 'react';

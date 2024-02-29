@@ -8,7 +8,7 @@ import { setLastPostKey } from '@/app/slices/postsSlice';
 import { PostType } from '@/app/slices/witePost/writePostSlice';
 import { getRequestArray } from '@/features/api/requests/get-requests';
 import { FiltersPosts, aplyFilterPosts } from '@/shared/filters/filter-posts';
-import ShowDataOrPreloader from '@/shared/showDataOrPreloader';
+import ShowDataOrPreloader from '@/shared/validate-data/showDataOrPreloader';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 

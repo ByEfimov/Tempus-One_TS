@@ -21,7 +21,9 @@ const LevelProvider = ({ children }: { children: React.ReactChild | React.ReactN
       UserIsAuth && changeRequest(`users/`, `${UserId}/experience`, UserExperience + xp);
     };
     takeUserXp = (xp: number) => {
-      UserIsAuth && changeRequest('users/', `${UserId}/experience`, UserExperience - xp);
+      if (UserExperience >= xp) {
+        UserIsAuth && changeRequest('users/', `${UserId}/experience`, UserExperience - xp);
+      }
     };
   }, [UserExperience]);
 

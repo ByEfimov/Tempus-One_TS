@@ -1,4 +1,4 @@
-import { IsModal } from '../../shared/isModal';
+import { IsModal } from '../../shared/modals/isModal';
 import Styles from './styles.module.scss';
 import { formContainer, formItem } from '@/app/assets/Tempus-Ui';
 import { statusType } from '@/shared/userLogo/userLogoWithXp';

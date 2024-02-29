@@ -2,7 +2,7 @@ import Styles from '../styles.module.scss';
 import { PostIcons, formItem, postIcons } from '@/app/assets/Tempus-Ui';
 import { useAuth } from '@/app/hooks/useAuth';
 import { PostType } from '@/app/slices/witePost/writePostSlice';
-import { LikePost } from '@/features/LikePost';
+import { LikePost } from '@/features/api/Users/posts/LikePost';
 import { motion } from 'framer-motion';
 import { FC, useState } from 'react';
 

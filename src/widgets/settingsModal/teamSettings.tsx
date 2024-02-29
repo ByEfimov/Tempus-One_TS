@@ -18,7 +18,7 @@ import { OpenTeamType } from '@/app/types/TypesOfData/team-or-user/open-team-typ
 import { teamMembers } from '@/app/types/TypesOfData/team-or-user/team-directions';
 import { changeRequest } from '@/features/api/requests/change-request';
 import { removeRequest } from '@/features/api/requests/remove-request';
-import { CloseModal, IsModal } from '@/shared/isModal';
+import { CloseModal, IsModal } from '@/shared/modals/isModal';
 import AppRoutes from '@/shared/routes/app-routes';
 import { motion } from 'framer-motion';
 import { FC, useState } from 'react';
