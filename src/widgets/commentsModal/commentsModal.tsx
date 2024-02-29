@@ -1,4 +1,3 @@
-import { IsModal } from '../../shared/modals/isModal';
 import CommentRender from './commentRender';
 import Styles from './styles.module.scss';
 import SendIcon from '@/app/assets/Icons/Post/message.svg';
@@ -7,6 +6,8 @@ import { useAuth } from '@/app/hooks/useAuth';
 import { Comments } from '@/app/types/TypesOfData/post/comments';
 import { getRequestArray } from '@/features/api/requests/get-requests';
 import { postRequestWithNewId } from '@/features/api/requests/post-requests-with-new-id';
+import { IsModal } from '@/shared/modals/isModal';
+import { NOTIFI_TEXTS } from '@/shared/notifyTexts/notifyTexts';
 import filterBadWords from '@/shared/post-utils/filter-bad-words';
 import { getUnixTime } from 'date-fns';
 import { motion } from 'framer-motion';
@@ -47,7 +48,7 @@ const CommentsModal: FC<CommentsModalProps> = ({ setModalOpen, PostId }) => {
       getCommentsOfPost();
       setCommentInput('');
     } else if (!UserIsAuth) {
-      toast.error('Нужно войти в аккаунт.');
+      toast.error(NOTIFI_TEXTS.ERROR_NOT_AUTH);
     }
   };
 

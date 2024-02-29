@@ -4,6 +4,7 @@ import { changeRequest } from '../api/requests/change-request';
 import Styles from './styles.module.scss';
 import { HeaderIcons, PostIcons, headerIcons, postIcons } from '@/app/assets/Tempus-Ui';
 import { useAuth } from '@/app/hooks/useAuth';
+import { NOTIFI_TEXTS } from '@/shared/notifyTexts/notifyTexts';
 import { itsMember } from '@/shared/users-or-teams/ist-member';
 import classNames from 'classnames';
 import { toast } from 'react-toastify';
@@ -40,7 +41,7 @@ const SubscribeButton = ({ WhoWrotePost, id }: SubscribeButton) => {
         toast.warning('Этот аккаунт принадлежит вам.');
       }
       if (!UserIsAuth) {
-        toast.error('Нужно войти в аккаунт.');
+        toast.error(NOTIFI_TEXTS.ERROR_NOT_AUTH);
       }
     }
   }

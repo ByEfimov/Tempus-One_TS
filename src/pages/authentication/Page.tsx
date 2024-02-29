@@ -8,7 +8,6 @@ import AppRoutes from '@/shared/routes/app-routes';
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 type User = {
   email: string | null;
@@ -56,24 +55,20 @@ const AuthWithGoogle = () => {
   function startAuth() {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const user = result.user;
-        getRequestObject('users/' + user.uid)
-          .then(() => {
-            loginWithGoogle(user);
-            Cookies.set('UserId', encryptData(user.uid));
-            navigate(AppRoutes.DEFAULT);
-          })
-          .catch(() => {
-            registerWithGoogle(user);
-            Cookies.set('UserId', encryptData(user.uid));
-            navigate(AppRoutes.DEFAULT);
-          });
-      })
-      .catch(() => {
-        toast.error('Нужно войти в аккаунт.');
-      });
+    signInWithPopup(auth, provider).then((result) => {
+      const user = result.user;
+      getRequestObject('users/' + user.uid)
+        .then(() => {
+          loginWithGoogle(user);
+          Cookies.set('UserId', encryptData(user.uid));
+          navigate(AppRoutes.DEFAULT);
+        })
+        .catch(() => {
+          registerWithGoogle(user);
+          Cookies.set('UserId', encryptData(user.uid));
+          navigate(AppRoutes.DEFAULT);
+        });
+    });
   }
 
   return (

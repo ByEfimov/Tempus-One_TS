@@ -1,15 +1,19 @@
 import { headerIcons } from '../assets/Tempus-Ui';
 import { useAppDispatch } from '../hooks/redux-hooks';
+import { useAuth } from '../hooks/useAuth';
 import { setHeader, setTypeOfHeader } from '../slices/header/headerSlice';
 import { TypesOfHeader } from '../types/TypesOfData/header/header-type';
+import { NOTIFI_TEXTS } from '@/shared/notifyTexts/notifyTexts';
 import AppRoutes from '@/shared/routes/app-routes';
 import { ReactNode, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function NavigationReducer({ children }: { children: React.ReactChild | React.ReactNode }) {
   const location = useLocation().pathname;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { UserEmailVerified, UserIsAuth } = useAuth();
 
   useEffect(() => {
     const Path = location.split('/')[1];
@@ -104,7 +108,15 @@ export default function NavigationReducer({ children }: { children: React.ReactC
         ShowNavBar = true;
         ExecuteConfig = {
           icon: headerIcons.Add,
-          function: () => navigate(AppRoutes.CREATENEWTEAM),
+          function: () => {
+            if (UserIsAuth && UserEmailVerified) {
+              navigate(AppRoutes.CREATENEWTEAM);
+            } else if (!UserIsAuth) {
+              toast.error(NOTIFI_TEXTS.ERROR_NOT_AUTH);
+            } else if (!UserEmailVerified) {
+              toast.warning(NOTIFI_TEXTS.ERROR_NOT_VERIFIED_EMAIL);
+            }
+          },
         };
         break;
       case AppRoutes.MYPROFILE:
@@ -117,7 +129,15 @@ export default function NavigationReducer({ children }: { children: React.ReactC
         ShowNavBar = true;
         ExecuteConfig = {
           icon: headerIcons.Add,
-          function: () => navigate(AppRoutes.WRITENEWPOST),
+          function: () => {
+            if (UserIsAuth && UserEmailVerified) {
+              navigate(AppRoutes.WRITENEWPOST);
+            } else if (!UserIsAuth) {
+              toast.error(NOTIFI_TEXTS.ERROR_NOT_AUTH);
+            } else if (!UserEmailVerified) {
+              toast.warning(NOTIFI_TEXTS.ERROR_NOT_VERIFIED_EMAIL);
+            }
+          },
         };
         break;
       default:

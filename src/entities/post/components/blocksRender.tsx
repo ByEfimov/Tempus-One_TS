@@ -2,6 +2,7 @@ import Styles from '../styles.module.scss';
 import { useAuth } from '@/app/hooks/useAuth';
 import { blockType, blockTypes, blocksType } from '@/app/slices/witePost/writePostSlice';
 import { postRequestWithoutNewId } from '@/features/api/requests/post-requests-with-new-id';
+import { NOTIFI_TEXTS } from '@/shared/notifyTexts/notifyTexts';
 import { FC, useState } from 'react';
 import { LivePreview, LiveProvider } from 'react-live';
 import { toast } from 'react-toastify';
@@ -104,7 +105,7 @@ const ShowSurvey = ({ block, postId }: ShowSurvey) => {
       setSelectVariant(Variant.id);
       setItPostSelect(true);
     } else if (!UserIsAuth) {
-      toast.error('Нужно войти в аккаунт.');
+      toast.error(NOTIFI_TEXTS.ERROR_NOT_AUTH);
     } else if (ItPostSelect) {
       toast.warning('Вы уже выбирали ответ на этом посте.');
     }

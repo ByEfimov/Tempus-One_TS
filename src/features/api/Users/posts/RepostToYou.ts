@@ -2,6 +2,7 @@ import { changeRequest } from '../../requests/change-request';
 import { postRequestWithNewId } from '../../requests/post-requests-with-new-id';
 import { PostType } from '@/app/slices/witePost/writePostSlice';
 import { CloseModal } from '@/shared/modals/isModal';
+import { NOTIFI_TEXTS } from '@/shared/notifyTexts/notifyTexts';
 import AppRoutes from '@/shared/routes/app-routes';
 import { getUnixTime } from 'date-fns';
 import { NavigateFunction } from 'react-router-dom';
@@ -34,7 +35,7 @@ export function repostToYou({
     navigate(AppRoutes.USER + '/' + UserId);
     toast.info('Пост отправлен!');
   } else {
-    toast.error('Нужно войти в аккаунт.');
+    toast.error(NOTIFI_TEXTS.ERROR_NOT_VERIFIED_EMAIL);
   }
   CloseModal();
 }

@@ -1,8 +1,8 @@
-import { CloseModal } from '../../shared/modals/isModal';
 import Styles from './styles.module.scss';
 import { Comments } from '@/app/types/TypesOfData/post/comments';
 import { OpenUserType } from '@/app/types/TypesOfData/team-or-user/open-user-type';
 import { getRequestObject } from '@/features/api/requests/get-requests';
+import { CloseModal } from '@/shared/modals/isModal';
 import formatTimeAgo from '@/shared/post-utils/format-time-ago';
 import AppRoutes from '@/shared/routes/app-routes';
 import UserLogo from '@/shared/userLogo/userLogo';

@@ -1,6 +1,7 @@
 import { postRequestWithoutNewId } from '../../requests/post-requests-with-new-id';
 import { removeRequest } from '../../requests/remove-request';
 import { PostType } from '@/app/slices/witePost/writePostSlice';
+import { NOTIFI_TEXTS } from '@/shared/notifyTexts/notifyTexts';
 import { toast } from 'react-toastify';
 
 export const LikePost = ({
@@ -29,6 +30,6 @@ export const LikePost = ({
       setItPostLiked(true);
     }
   } else {
-    toast.error('Нужно войти в аккаунт.');
+    toast.error(NOTIFI_TEXTS.ERROR_NOT_AUTH);
   }
 };

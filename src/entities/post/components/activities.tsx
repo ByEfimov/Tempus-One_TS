@@ -3,8 +3,10 @@ import { PostIcons, formItem, postIcons } from '@/app/assets/Tempus-Ui';
 import { useAuth } from '@/app/hooks/useAuth';
 import { PostType } from '@/app/slices/witePost/writePostSlice';
 import { LikePost } from '@/features/api/Users/posts/LikePost';
+import { NOTIFI_TEXTS } from '@/shared/notifyTexts/notifyTexts';
 import { motion } from 'framer-motion';
 import { FC, useState } from 'react';
+import { toast } from 'react-toastify';
 
 interface ActivitiesProps {
   post: PostType;
@@ -13,7 +15,7 @@ interface ActivitiesProps {
 }
 
 const Activities: FC<ActivitiesProps> = ({ post, setCommentsOpen, setRepostModalOpen }) => {
-  const { UserId } = useAuth();
+  const { UserId, UserCanChanging } = useAuth();
   const [PostLikes, setPostLikes] = useState(post.likes ? Object.values(post.likes).length : 0);
   const [ItPostLiked, setItPostLiked] = useState(post.likes ? Object.values(post.likes).includes(UserId) : false);
 
@@ -53,7 +55,11 @@ const Activities: FC<ActivitiesProps> = ({ post, setCommentsOpen, setRepostModal
         <button
           onClick={(e) => {
             e.stopPropagation();
-            setRepostModalOpen(true);
+            if (UserCanChanging) {
+              setRepostModalOpen(true);
+            } else {
+              toast.warning(NOTIFI_TEXTS.ERROR_NOT_VERIFIED_EMAIL);
+            }
           }}
         >
           <PostIcons Icon={postIcons.repost}></PostIcons>
