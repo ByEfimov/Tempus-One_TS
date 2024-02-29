@@ -144,13 +144,15 @@ const WritePostSlice = createSlice({
     },
 
     removeBlock(state, action: PayloadAction<{ blockId: number }>) {
-      state.blocks = state.blocks.filter((n) => n?.id !== action.payload.blockId && state.blocks.length > 1);
+      if (state.blocks.length > 1) {
+        state.blocks = state.blocks.filter((block) => block?.id !== action.payload.blockId);
+      }
     },
 
     removeVariant(state, action: PayloadAction<{ blockId: number; variantId: number }>) {
       const block = state.blocks.find((block) => block?.id === action.payload.blockId);
       if (block && 'variants' in block.data && block.data.variants && block.data.variants?.length > 1) {
-        block.data.variants = block.data.variants.filter((n) => n?.id !== action.payload.variantId);
+        block.data.variants = block.data.variants.filter((variant) => variant?.id !== action.payload.variantId);
       }
     },
 
