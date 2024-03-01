@@ -16,6 +16,8 @@
 
     .Title {
       width: 100%;
+      display: flex;
+      justify-content: space-between;
     }
     .Content {
       min-height: 80px;
@@ -23,5 +25,20 @@
       padding: 10px;
       background-color: var(--PrimaryBackgroundColor);
     }
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .TeamPosts {
+    z-index: 0;
+    margin-left: 80px;
+    width: 975px;
+  }
+  .TeamData {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    width: 270px;
+    text-align: center;
   }
 }

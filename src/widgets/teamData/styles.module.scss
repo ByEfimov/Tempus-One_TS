@@ -1,6 +1,7 @@
 .TeamInfo {
   padding: 10px;
   padding-top: 20px;
+  width: 100%;
   .Title {
     display: flex;
     font-size: 20px;
@@ -71,23 +72,11 @@
   }
 }
 
-@media screen and (min-width: 900px) {
-  .UserData {
-    background-color: var(--SecondaryBackgroundColor);
-    border-radius: 10px;
-    border: 1px solid var(--TransparentColor);
-    padding: 20px;
-    position: fixed;
-    padding-bottom: 20px;
-    padding-top: 20px;
-    margin-left: 10px;
-    width: 270px;
-    text-align: center;
-    .data {
-      margin-top: 10px;
-    }
-  }
+.buttonSettings {
+  width: calc(100% - 20px);
+}
 
+@media screen and (min-width: 900px) {
   .TeamInfo {
     cursor: pointer;
     padding: 10px;
@@ -103,7 +92,32 @@
   }
   .buttonSettings {
     width: 100%;
-    margin-top: 10px;
+    margin-top: 15px;
     background-color: var(--PrimaryBackgroundColor);
+  }
+
+  .TeamInformation {
+    padding-top: 20px;
+    margin-left: 10px;
+    width: 270px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    .Group {
+      overflow: hidden;
+      padding: 5px;
+      text-align: center;
+      background-color: var(--SecondaryBackgroundColor);
+      border-radius: 10px;
+      border: 1px solid var(--TransparentColor);
+      .Content {
+        color: var(--SecondaryTextColor);
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+      }
+    }
   }
 }

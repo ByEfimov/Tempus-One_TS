@@ -20,7 +20,9 @@ function TeamModals({
   return (
     <>
       {settingsModalOpen && <SettingsTeamModal setModalOpen={setSettingsModalOpen} team={OpenTeam} />}
-      {infoModalOpen && <TeamInfoModal setModalOpen={setInfoModalOpen} OpenTeam={OpenTeam}></TeamInfoModal>}
+      {infoModalOpen && window.innerWidth < 900 && (
+        <TeamInfoModal setModalOpen={setInfoModalOpen} OpenTeam={OpenTeam}></TeamInfoModal>
+      )}
     </>
   );
 }

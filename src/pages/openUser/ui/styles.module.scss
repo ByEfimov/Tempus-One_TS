@@ -94,7 +94,6 @@
     border-radius: 10px;
     border: 1px solid var(--TransparentColor);
     padding: 20px;
-    position: fixed;
     padding-bottom: 35px;
     padding-top: 35px;
     margin-left: 10px;
@@ -103,6 +102,15 @@
     .data {
       margin-top: 10px;
     }
+  }
+  .UserInformation {
+    padding-top: 5px;
+    margin-left: 10px;
+    width: 270px;
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    gap: 15px;
   }
   .UserPosts {
     z-index: 0;

@@ -1,12 +1,9 @@
 import Styles from './styles.module.scss';
 import { Members, formContainer, formItem } from '@/app/assets/Tempus-Ui';
 import { OpenTeamType } from '@/app/types/TypesOfData/team-or-user/open-team-type';
-import { OpenUserType } from '@/app/types/TypesOfData/team-or-user/open-user-type';
-import { getRequestObject } from '@/features/api/requests/get-requests';
 import { IsModal } from '@/shared/modals/isModal';
 import { motion } from 'framer-motion';
 import moment from 'moment';
-import { useEffect, useState } from 'react';
 
 const TeamInfoModal = ({
   setModalOpen,
@@ -15,22 +12,6 @@ const TeamInfoModal = ({
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   OpenTeam: OpenTeamType;
 }) => {
-  const [membersArray, setMembersArray] = useState<OpenUserType[]>([]);
-
-  useEffect(() => {
-    const fetchMembersData = async () => {
-      const memberPromises = Object.values(OpenTeam.members).map(async (user) => {
-        const userget = await getRequestObject('users/' + user.UserId);
-        return { ...userget, UserRole: user.UserRole };
-      });
-
-      const membersData = await Promise.all(memberPromises);
-      setMembersArray(membersData);
-    };
-
-    fetchMembersData();
-  }, [OpenTeam]);
-
   const currentDate = moment().format('DD.MM.YY');
 
   return (
@@ -39,10 +20,10 @@ const TeamInfoModal = ({
         <motion.li variants={formItem} className={Styles.Group}>
           <div className={Styles.Title}>
             Участники
-            <span>{membersArray.length > 0 ? membersArray.length : 10}</span>
+            <span>{OpenTeam.members.length > 0 ? OpenTeam.members.length : 0}</span>
           </div>
           <div className={Styles.Content}>
-            <Members MembersArray={membersArray}></Members>
+            <Members members={OpenTeam.members}></Members>
           </div>
         </motion.li>
         <motion.li variants={formItem} className={Styles.Group}>

@@ -1,29 +1,29 @@
 .Buttons {
-    padding: 10px;
-    padding-top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    .Button {
-        gap: 10px;
-        font-weight: 400;
-        padding-left: 10px;
-        padding-right: 10px;
-        justify-content: start;
-    }
+  padding: 10px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  .Button {
+    gap: 10px;
+    font-weight: 400;
+    padding-left: 10px;
+    padding-right: 10px;
+    justify-content: start;
+  }
 }
 
 @media screen and (min-width: 900px) {
-    .ProfilePage {
-        display: flex;
-        gap: 30px;
-        max-width: 1000px;
-        margin: 0 110px;
-        height: calc(100vh - 120px);
-        align-items: center;
-    }
-    .Buttons {
-        margin-left: 300px;
-        width: 100%;
-    }
+  .ProfilePage {
+    display: flex;
+    margin: 0 110px;
+    height: calc(100vh - 120px);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .Buttons {
+    width: 100%;
+    max-width: 500px;
+  }
 }

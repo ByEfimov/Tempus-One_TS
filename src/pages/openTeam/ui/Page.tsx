@@ -1,4 +1,5 @@
 import TeamModals from './modals';
+import Styles from './styles.module.scss';
 import { Preloader } from '@/app/assets/Tempus-Ui';
 import { useAppDispatch } from '@/app/hooks/redux-hooks';
 import { useAuth } from '@/app/hooks/useAuth';
@@ -9,6 +10,7 @@ import getUserAdmins from '@/features/api/Teams/get-user-admins';
 import { getRequestObject } from '@/features/api/requests/get-requests';
 import SubscribeButton from '@/features/subscribeButton/SubscribeButton';
 import TeamData from '@/widgets/teamData/teamData';
+import TeamInfo from '@/widgets/teamData/teamInfo';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -54,13 +56,17 @@ export function TeamPage() {
           infoModalOpen={infoModalOpen}
           settingsModalOpen={settingsModalOpen}
         />
-        <TeamData
-          setInfoModalOpen={setInfoModalOpen}
-          setSettingsModalOpen={setSettingsModalOpen}
-          UserAdmin={isUserAdmin}
-          OpenTeam={openTeam}
-        />
-        <div style={{ marginLeft: 80 }}>
+
+        <div className={Styles.TeamData}>
+          <TeamData
+            setInfoModalOpen={setInfoModalOpen}
+            setSettingsModalOpen={setSettingsModalOpen}
+            UserAdmin={isUserAdmin}
+            OpenTeam={openTeam}
+          />
+          {window.innerWidth >= 900 && <TeamInfo setInfoModalOpen={setInfoModalOpen} OpenTeam={openTeam}></TeamInfo>}
+        </div>
+        <div className={Styles.TeamPosts}>
           <ShowPosts ShowTitle AuthorFilter={openTeam.id} />
         </div>
       </>

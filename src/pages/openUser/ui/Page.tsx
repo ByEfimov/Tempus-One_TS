@@ -7,6 +7,7 @@ import ShowPosts from '@/entities/post/showPosts';
 import { getRequestObject } from '@/features/api/requests/get-requests';
 import SubscribeButton from '@/features/subscribeButton/SubscribeButton';
 import UserData from '@/widgets/userData/userData';
+import UserInfo from '@/widgets/userData/userInfo';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -40,7 +41,10 @@ export function UserPage() {
   }
   return (
     <>
-      <UserData OpenUser={OpenUser} />
+      <motion.div className={Styles.UserInformation}>
+        <UserData OpenUser={OpenUser} />
+        {window.innerWidth >= 900 && <UserInfo OpenUser={OpenUser} />}
+      </motion.div>
       <motion.div className={Styles.UserPosts}>
         <ShowPosts ShowTitle AuthorFilter={OpenUser.id} />
       </motion.div>
