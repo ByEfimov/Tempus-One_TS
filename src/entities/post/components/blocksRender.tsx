@@ -1,4 +1,5 @@
 import Styles from '../styles.module.scss';
+import { ButtonIcons, buttonIcons } from '@/app/assets/Tempus-Ui';
 import { useAuth } from '@/app/hooks/useAuth';
 import { blockType, blockTypes, blocksType } from '@/app/slices/witePost/writePostSlice';
 import { postRequestWithoutNewId } from '@/features/api/requests/post-requests-with-new-id';
@@ -36,13 +37,9 @@ const BlocksRender: FC<BlocksRender> = ({ Blocks, postId }) => {
               return (
                 <SwiperSlide key={block.id}>
                   {block.type === blockTypes.Image && 'imageUrl' in block.data ? (
-                    <div className={Styles.ImageBlock}>
-                      <ShowImage imageSrc={block.data.imageUrl}></ShowImage>
-                    </div>
+                    <ShowImage imageSrc={block.data.imageUrl}></ShowImage>
                   ) : block.type === blockTypes.Code && 'code' in block.data ? (
-                    <div key={block.id} className={Styles.CodePostBlock}>
-                      <ShowCode UserCode={block.data.code}></ShowCode>
-                    </div>
+                    <ShowCode UserCode={block.data.code}></ShowCode>
                   ) : (
                     <ShowSurvey postId={postId} block={block}></ShowSurvey>
                   )}
@@ -56,30 +53,45 @@ const BlocksRender: FC<BlocksRender> = ({ Blocks, postId }) => {
   );
 };
 
-interface ShowCodeProps {
-  UserCode: string | undefined;
-}
-const ShowCode = ({ UserCode }: ShowCodeProps) => {
+const ShowCode = ({ UserCode }: { UserCode?: string }) => {
   return (
-    <LiveProvider enableTypeScript={true} code={UserCode}>
-      {UserCode ? <LivePreview /> : 'Здесь будет результат.'}
-    </LiveProvider>
+    <div className={Styles.CodePostBlock}>
+      <LiveProvider enableTypeScript={true} code={UserCode}>
+        {UserCode ? <LivePreview /> : 'Здесь будет результат.'}
+      </LiveProvider>
+      <button
+        className={Styles.copy}
+        onClick={(e) => {
+          e.preventDefault();
+          UserCode && navigator.clipboard.writeText(UserCode);
+          toast.info('Код блока скопирован.');
+        }}
+      >
+        <ButtonIcons Icon={buttonIcons.Code}></ButtonIcons>
+      </button>
+    </div>
   );
 };
 
-interface ShowImageProps {
-  imageSrc: string | undefined;
-}
-const ShowImage = ({ imageSrc }: ShowImageProps) => {
-  return imageSrc ? <img src={imageSrc} alt="" /> : 'Картинка сломалась(';
+const ShowImage = ({ imageSrc }: { imageSrc?: string }) => {
+  return (
+    <div className={Styles.ImageBlock}>
+      {imageSrc ? <img src={imageSrc} alt="" /> : 'Картинка сломалась('}
+      <button
+        className={Styles.copy}
+        onClick={(e) => {
+          e.preventDefault();
+          imageSrc && navigator.clipboard.writeText(imageSrc);
+          toast.info('Ссылка на изоброжение скопирована.');
+        }}
+      >
+        <ButtonIcons Icon={buttonIcons.Image}></ButtonIcons>
+      </button>
+    </div>
+  );
 };
 
-interface ShowSurvey {
-  block: blockType;
-  postId: string | undefined;
-}
-
-const ShowSurvey = ({ block, postId }: ShowSurvey) => {
+const ShowSurvey = ({ block, postId }: { block: blockType; postId?: string | undefined }) => {
   const { UserId, UserIsAuth } = useAuth();
   const [SelectVariant, setSelectVariant] = useState<number | null | undefined>(null);
 

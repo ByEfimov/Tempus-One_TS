@@ -46,6 +46,16 @@
     position: relative;
 
     border-radius: 10px;
+    .ImageBlock:hover {
+      .copy {
+        opacity: 1;
+      }
+    }
+    .CodePostBlock:hover {
+      .copy {
+        opacity: 1;
+      }
+    }
     .ImageBlock {
       background-color: #60658310;
       padding: 5px;
@@ -55,8 +65,29 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      cursor: pointer;
+
       overflow: hidden;
+      .copy {
+        position: absolute;
+        right: 55px;
+        bottom: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        color: var(--SecondaryTextColor);
+        height: 29px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        width: 29px;
+        svg {
+          height: 22px;
+          width: 22px;
+          * {
+            fill: var(--SecondaryTextColor);
+          }
+        }
+      }
       img {
         width: 100%;
         object-fit: contain;
@@ -67,11 +98,32 @@
       background-color: #60658310;
       padding: 5px;
       flex-shrink: 0;
-      cursor: pointer;
+
       width: 100%;
       aspect-ratio: 16 / 12;
       font-weight: 300;
       font-size: 15px;
+      .copy {
+        position: absolute;
+        right: 55px;
+        bottom: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        color: var(--SecondaryTextColor);
+        height: 29px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        width: 29px;
+        svg {
+          height: 22px;
+          width: 22px;
+          * {
+            fill: var(--SecondaryTextColor);
+          }
+        }
+      }
     }
   }
 

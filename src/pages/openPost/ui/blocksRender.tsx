@@ -1,11 +1,12 @@
 import Styles from './styles.module.scss';
-import { formContainer, formItem } from '@/app/assets/Tempus-Ui';
+import { ButtonIcons, buttonIcons, formContainer, formItem } from '@/app/assets/Tempus-Ui';
 import { PostType, blockType, blockTypes } from '@/app/slices/witePost/writePostSlice';
 import { ShowSurvey } from '@/entities/post/components/blocksRender';
 import { RenderMode as RenderText } from '@/widgets/post/blocks/text-block';
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import { LivePreview, LiveProvider } from 'react-live';
+import { toast } from 'react-toastify';
 
 const BlocksRender = ({ post }: { post: PostType }) => {
   return (
@@ -33,6 +34,19 @@ const RenderImage = ({ block }: { block: blockType }) => {
   return (
     <motion.li variants={formItem} className={classNames(Styles.block, Styles.ImageBlock)}>
       <img src={(block && 'imageUrl' in block.data && block.data.imageUrl) || ''} alt="" />
+      <button
+        className={Styles.copy}
+        onClick={(e) => {
+          e.preventDefault();
+          block &&
+            'imageUrl' in block.data &&
+            block.data.imageUrl &&
+            navigator.clipboard.writeText(block.data.imageUrl);
+          toast.info('Ссылка на изоброжение скопирована.');
+        }}
+      >
+        <ButtonIcons Icon={buttonIcons.Image}></ButtonIcons>
+      </button>
     </motion.li>
   );
 };
@@ -43,6 +57,16 @@ const CodeMode = ({ block }: { block: blockType }) => {
       <LiveProvider code={(block && 'code' in block.data && block.data.code) || ''}>
         <LivePreview />
       </LiveProvider>
+      <button
+        className={Styles.copy}
+        onClick={(e) => {
+          e.preventDefault();
+          block && 'code' in block.data && block.data.code && navigator.clipboard.writeText(block.data.code);
+          toast.info('Код блока скопирован.');
+        }}
+      >
+        <ButtonIcons Icon={buttonIcons.Code}></ButtonIcons>
+      </button>
     </motion.li>
   );
 };

@@ -1,68 +1,96 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
-    .block {
-        padding: 10px;
-        background-color: var(--SecondaryBackgroundColor);
-        border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+  .block:hover {
+    .copy {
+      opacity: 1;
     }
-    .ImageBlock {
-        img {
-            width: 100%;
+  }
+  .block {
+    padding: 10px;
+    background-color: var(--SecondaryBackgroundColor);
+    border-radius: 10px;
+    position: relative;
+    .copy {
+      position: absolute;
+      right: 5px;
+      bottom: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      color: var(--SecondaryTextColor);
+      height: 29px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      width: 29px;
+      svg {
+        height: 22px;
+        width: 22px;
+        * {
+          fill: var(--SecondaryTextColor);
         }
+      }
     }
-    .SurveyBlock {
-        div {
-            background-color: transparent;
-        }
-        progress::-webkit-progress-bar {
-            background-color: var(--PrimaryBackgroundColor) !important;
-        }
+  }
+  .ImageBlock {
+    position: relative;
+    img {
+      width: 100%;
     }
+  }
+  .SurveyBlock {
+    div {
+      background-color: transparent;
+    }
+    progress::-webkit-progress-bar {
+      background-color: var(--PrimaryBackgroundColor) !important;
+    }
+  }
 }
 .author {
-    cursor: pointer;
-    padding: 10px;
-    background-color: var(--SecondaryBackgroundColor);
-    border-radius: 10px;
+  cursor: pointer;
+  padding: 10px;
+  background-color: var(--SecondaryBackgroundColor);
+  border-radius: 10px;
 }
 .activities {
-    padding: 10px;
-    background-color: var(--SecondaryBackgroundColor);
-    border-radius: 10px;
-    margin-top: 10px;
-    padding-top: 0.1px;
+  padding: 10px;
+  background-color: var(--SecondaryBackgroundColor);
+  border-radius: 10px;
+  margin-top: 10px;
+  padding-top: 0.1px;
 }
 
 @media screen and (min-width: 900px) {
-    .container {
-        max-width: 1000px;
-        margin: 0 180px;
-        .block {
-            border: 1px solid var(--TransparentColor);
-        }
-        .ImageBlock {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            img {
-                width: 100%;
-            }
-        }
+  .container {
+    max-width: 1000px;
+    margin: 0 180px;
+    .block {
+      border: 1px solid var(--TransparentColor);
     }
-    .author {
-        max-width: 1000px;
-        margin: 0 180px;
-        border: 1px solid var(--TransparentColor);
-        margin-bottom: 10px;
+    .ImageBlock {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      img {
+        width: 100%;
+      }
     }
-    .activities {
-        max-width: 1000px;
-        border: 1px solid var(--TransparentColor);
-        margin: 0 180px;
-        margin-top: 10px;
-    }
+  }
+  .author {
+    max-width: 1000px;
+    margin: 0 180px;
+    border: 1px solid var(--TransparentColor);
+    margin-bottom: 10px;
+  }
+  .activities {
+    max-width: 1000px;
+    border: 1px solid var(--TransparentColor);
+    margin: 0 180px;
+    margin-top: 10px;
+  }
 }
