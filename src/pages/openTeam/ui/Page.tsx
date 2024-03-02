@@ -34,7 +34,7 @@ export function TeamPage() {
         });
       })
       .catch(() => toast.error('Сообщество не найдено.'));
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     dispatch(

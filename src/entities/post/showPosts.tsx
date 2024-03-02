@@ -58,7 +58,7 @@ const ShowPosts = ({
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [selectFilter, HeaderSearchBar]);
+  }, [selectFilter, HeaderSearchBar, AuthorFilter]);
 
   return (
     <div className={Styles.Posts}>

@@ -8,7 +8,7 @@ const StatusModal = ({
   setModalOpen,
   status,
 }: {
-  status?: statusType;
+  status: statusType | null;
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   return (

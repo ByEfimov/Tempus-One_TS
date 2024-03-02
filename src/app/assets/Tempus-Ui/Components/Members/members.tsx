@@ -10,16 +10,21 @@ import { useNavigate } from 'react-router-dom';
 const Members = ({
   members,
 }: {
-  members: {
-    UserId: string;
-    UserRole: string;
-  }[];
+  members:
+    | null
+    | {
+        UserId: string;
+        UserRole: string;
+      }[];
 }) => {
   const navigate = useNavigate();
   const [MembersArray, setMembersArray] = useState<OpenUserType[]>([]);
 
   useEffect(() => {
     const fetchMembersData = async () => {
+      if (!members) {
+        return null;
+      }
       const memberPromises = Object.values(members).map(async (user) => {
         const userget = await getRequestObject('users/' + user.UserId);
         return { ...userget, UserRole: user.UserRole };

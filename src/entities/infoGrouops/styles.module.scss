@@ -1,0 +1,16 @@
+.Group {
+  overflow: hidden;
+  padding: 5px;
+  text-align: center;
+  background-color: var(--SecondaryBackgroundColor);
+  border-radius: 10px;
+  border: 1px solid var(--TransparentColor);
+  .Content {
+    color: var(--SecondaryTextColor);
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+  }
+}

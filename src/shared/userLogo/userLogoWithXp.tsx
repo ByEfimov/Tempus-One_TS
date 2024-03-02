@@ -2,8 +2,6 @@ import MaxXpToNextLevel from '../users-or-teams/max-xp-to-next-level';
 import Styles from './styles.module.scss';
 import UserLogo from './userLogo';
 import { defaultItem } from '@/app/assets/Tempus-Ui';
-import { UserType } from '@/app/slices/userSlice';
-import { OpenUserType } from '@/app/types/TypesOfData/team-or-user/open-user-type';
 import { getRequestObject } from '@/features/api/requests/get-requests';
 import StatusModal from '@/widgets/statusModal/modal';
 import { motion } from 'framer-motion';
@@ -20,18 +18,26 @@ interface CustomCSSProperties extends React.CSSProperties {
   '--progress-value'?: number;
 }
 
-const UserLogoWithXp = ({ OpenUser }: { OpenUser: OpenUserType | UserType }) => {
+const UserLogoWithXp = ({
+  OpenUser,
+}: {
+  OpenUser: { experience: number | null; level: number | null; status?: string; photo?: string | null; image?: string };
+}) => {
   const [statusModalOpen, setStatusModalOpen] = useState(false);
-  const [userStatus, setUserStatus] = useState<statusType>();
-
-  const progressValue =
-    OpenUser.experience && Math.round((OpenUser.experience / MaxXpToNextLevel(OpenUser.level || 0)) * 100);
+  const [userStatus, setUserStatus] = useState<statusType | null>(null);
+  const [progressValue, setProgressValue] = useState<number | null>(0);
 
   useEffect(() => {
     if (OpenUser.status) {
-      getRequestObject('achievements/' + OpenUser.status).then((achive) => setUserStatus(achive));
+      getRequestObject('achievements/' + (OpenUser.status || '')).then((achive) => setUserStatus(achive));
+    } else {
+      setUserStatus(null);
     }
-  }, []);
+
+    setProgressValue(
+      OpenUser.experience && Math.round((OpenUser.experience / MaxXpToNextLevel(OpenUser.level || 0)) * 100),
+    );
+  }, [OpenUser]);
 
   return (
     <motion.div className={Styles.TopBar}>
@@ -48,7 +54,7 @@ const UserLogoWithXp = ({ OpenUser }: { OpenUser: OpenUserType | UserType }) => 
         </motion.div>
       )}
       <div className={Styles.UserPhoto}>
-        <UserLogo Logo={OpenUser.photo} />
+        <UserLogo Logo={OpenUser.photo || OpenUser.image} />
       </div>
 
       <div

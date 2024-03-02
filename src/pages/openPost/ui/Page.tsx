@@ -57,7 +57,7 @@ export function PostPage() {
         );
       })
       .catch(() => toast.error('Пост не найден.'));
-  }, []);
+  }, [id]);
 
   if (openPost) {
     return (

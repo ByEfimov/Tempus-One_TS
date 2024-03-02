@@ -2,12 +2,8 @@ import Styles from './styles.module.scss';
 import TeamInfo from './teamInfo';
 import { Button, ButtonTypes, formContainer, formItem } from '@/app/assets/Tempus-Ui';
 import { OpenTeamType } from '@/app/types/TypesOfData/team-or-user/open-team-type';
-import MaxXpToNextLevel from '@/shared/users-or-teams/max-xp-to-next-level';
+import { UserLogoWithXp } from '@/shared/userLogo/userLogoWithXp';
 import { motion } from 'framer-motion';
-
-interface CustomCSSProperties extends React.CSSProperties {
-  '--progress-value'?: number;
-}
 
 export default function TeamData({
   OpenTeam,
@@ -20,29 +16,10 @@ export default function TeamData({
   setSettingsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setInfoModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const progressValue =
-    OpenTeam.experience && Math.round((OpenTeam.experience / MaxXpToNextLevel(OpenTeam.level || 0)) * 100);
-
   return (
     <>
       <motion.div className={Styles.UserData} variants={formItem}>
-        <motion.div {...formContainer} className={Styles.TopBar}>
-          <div className={Styles.UserPhoto}>
-            <img className={OpenTeam.image ? Styles.Photo : Styles.Fake} src={OpenTeam.image} alt="UserPhoto" />
-          </div>
-
-          <div
-            className="progress-bar css"
-            style={
-              {
-                '--progress-value': progressValue,
-              } as CustomCSSProperties
-            }
-          >
-            <progress id="css" max={MaxXpToNextLevel(OpenTeam.level || 0)} value={OpenTeam.experience || 0}></progress>
-          </div>
-        </motion.div>
-
+        <UserLogoWithXp OpenUser={OpenTeam}></UserLogoWithXp>
         <motion.ul {...formContainer} className={Styles.UserTexts}>
           <motion.li variants={formItem} className={Styles.UserName}>
             {OpenTeam.title}

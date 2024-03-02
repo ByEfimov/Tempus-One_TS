@@ -1,5 +1,5 @@
 import Styles from './styles.module.scss';
-import { Preloader } from '@/app/assets/Tempus-Ui';
+import { Preloader, formContainer } from '@/app/assets/Tempus-Ui';
 import { useAppDispatch } from '@/app/hooks/redux-hooks';
 import { setExecuteButton } from '@/app/slices/header/headerSlice';
 import { OpenUserType } from '@/app/types/TypesOfData/team-or-user/open-user-type';
@@ -24,7 +24,7 @@ export function UserPage() {
         setOpenUser(user);
       })
       .catch(() => toast.error('Пользователь не найден.'));
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     dispatch(
@@ -41,7 +41,7 @@ export function UserPage() {
   }
   return (
     <>
-      <motion.div className={Styles.UserInformation}>
+      <motion.div className={Styles.UserInformation} {...formContainer}>
         <UserData OpenUser={OpenUser} />
         {window.innerWidth >= 900 && <UserInfo OpenUser={OpenUser} />}
       </motion.div>

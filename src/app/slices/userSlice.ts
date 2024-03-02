@@ -12,7 +12,7 @@ export type UserType = {
     teams?: { [key: string]: string };
     users?: { [key: string]: string };
   } | null;
-  members: string[] | null;
+  members: { UserId: string; UserRole: string }[] | null;
   postsLiked: Record<string, string> | null;
   viewings: string[] | null;
   experience: number | null;
