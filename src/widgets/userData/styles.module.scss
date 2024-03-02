@@ -1,5 +1,6 @@
 .UserData {
   margin-top: 15px;
+  color: var(--PrimaryTextColor);
   .TopBar {
     display: flex;
     justify-content: center;
@@ -77,6 +78,7 @@
 
 @media screen and (min-width: 900px) {
   .UserData {
+    color: var(--PrimaryTextColor);
     background-color: var(--SecondaryBackgroundColor);
     border-radius: 10px;
     border: 1px solid var(--TransparentColor);

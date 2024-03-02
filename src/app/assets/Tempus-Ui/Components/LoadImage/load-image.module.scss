@@ -1,143 +1,145 @@
 .LoadImage {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  width: 100%;
+  .editedImage {
+    width: 178px;
+    object-fit: cover;
+    background: var(--PrimaryBackgroundColor);
+    border-radius: 50%;
+    box-shadow: var(--AccentBackgroundShadow);
+    height: 178px;
+    border: 1px solid var(--TransparentColor);
+  }
+  .changeImage {
+    .Buttons {
+      display: flex;
+      justify-content: space-between;
+      button {
+        width: 35px;
+        height: 35px;
+      }
+      input {
+        width: 120px;
+      }
+      input[type='range'] {
+        appearance: none;
+        -webkit-appearance: none;
+      }
+      input::-webkit-slider-runnable-track {
+        background: var(--PrimaryBackgroundColor);
+        border-radius: 10px;
+        height: 10px;
+      }
+      input::-moz-range-track {
+        border-radius: 10px;
+        background: var(--PrimaryBackgroundColor);
+        height: 10px;
+      }
+
+      input::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 15px;
+        height: 15px;
+        margin-top: -2.01px;
+        border-radius: 50%;
+        background: var(--AccentBorderColor);
+      }
+    }
+
+    canvas {
+      border: 1px solid var(--PrimaryBackgroundColor);
+      border-radius: 10px;
+    }
+
+    .editor {
+      box-shadow: var(--AccentBackgroundShadow);
+      border-radius: 50%;
+      overflow: hidden;
+      height: 178px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 178px;
+      transform: all 0.3s;
+      border: 1px solid var(--AccentBorderColor);
+    }
+  }
+  .Dropzone {
+    border: 1px solid var(--TransparentColor);
+    cursor: pointer;
+    padding: 20px;
     display: flex;
     justify-content: center;
-    margin-top: 15px;
-    width: 100%;
-    .editedImage {
-        width: 178px;
-        object-fit: cover;
-        background: var(--PrimaryBackgroundColor);
-        border-radius: 50%;
-        box-shadow: var(--AccentBackgroundShadow);
-        height: 178px;
+    align-items: center;
+    text-align: center;
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
+    background-color: var(--PrimaryBackgroundColor);
+    .Image {
+      width: 50px;
+      height: 50px;
+      color: var(--SecondaryTextColor);
     }
-    .changeImage {
-        .Buttons {
-            display: flex;
-            justify-content: space-between;
-            button {
-                width: 35px;
-                height: 35px;
-            }
-            input {
-                width: 120px;
-            }
-            input[type='range'] {
-                appearance: none;
-                -webkit-appearance: none;
-            }
-            input::-webkit-slider-runnable-track {
-                background: var(--PrimaryBackgroundColor);
-                border-radius: 10px;
-                height: 10px;
-            }
-            input::-moz-range-track {
-                border-radius: 10px;
-                background: var(--PrimaryBackgroundColor);
-                height: 10px;
-            }
-
-            input::-webkit-slider-thumb {
-                -webkit-appearance: none;
-                width: 15px;
-                height: 15px;
-                margin-top: -2.01px;
-                border-radius: 50%;
-                background: var(--AccentBorderColor);
-            }
-        }
-
-        canvas {
-            border: 1px solid var(--PrimaryBackgroundColor);
-            border-radius: 10px;
-        }
-
-        .editor {
-            box-shadow: var(--AccentBackgroundShadow);
-            border-radius: 50%;
-            overflow: hidden;
-            height: 178px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 178px;
-            transform: all 0.3s;
-            border: 1px solid var(--AccentBorderColor);
-        }
-    }
-    .Dropzone {
-        cursor: pointer;
-        padding: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        border-radius: 50%;
-        width: 180px;
-        height: 180px;
-        background-color: var(--PrimaryBackgroundColor);
-        .Image {
-            width: 50px;
-            height: 50px;
-            color: var(--SecondaryTextColor);
-        }
-    }
+  }
 }
 
 .Default {
-    .Dropzone {
-        background-color: var(--SecondaryBackgroundColor);
-    }
-    .editedImage {
-        background-color: var(--SecondaryBackgroundColor);
-    }
-    .editor {
-        background-color: var(--SecondaryBackgroundColor);
-    }
+  .Dropzone {
+    background-color: var(--SecondaryBackgroundColor);
+  }
+  .editedImage {
+    background-color: var(--SecondaryBackgroundColor);
+  }
+  .editor {
+    background-color: var(--SecondaryBackgroundColor);
+  }
 }
 
 .Large {
-    height: 100% !important;
-    margin-top: 0px;
-    .Dropzone {
-        height: 250px !important;
+  height: 100% !important;
+  margin-top: 0px;
+  .Dropzone {
+    height: 250px !important;
+  }
+  .editedImage {
+    border-radius: 10px;
+    height: 260px;
+    box-shadow: none;
+    width: 100%;
+    max-width: 400px;
+  }
+  .changeImage {
+    width: 100%;
+    .editor {
+      height: 260px;
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      box-shadow: none;
     }
-    .editedImage {
-        border-radius: 10px;
-        height: 260px;
-        box-shadow: none;
-        width: 100%;
-        max-width: 400px;
-    }
-    .changeImage {
-        width: 100%;
-        .editor {
-            height: 260px;
-            width: 100%;
-            border-radius: 10px;
-            border: 1px solid transparent;
-            box-shadow: none;
+    .Buttons {
+      input {
+        height: 45px;
+        width: 300px;
+      }
+      button {
+        width: 45px;
+        height: 45px;
+        svg {
+          width: 30px;
         }
-        .Buttons {
-            input {
-                height: 45px;
-                width: 300px;
-            }
-            button {
-                width: 45px;
-                height: 45px;
-                svg {
-                    width: 30px;
-                }
-            }
-        }
+      }
     }
+  }
 }
 
 @media screen and (min-width: 900px) {
-    .Buttons {
-        width: 400px !important;
-        margin: 0 auto;
-        margin-top: 5px;
-    }
+  .Buttons {
+    width: 400px !important;
+    margin: 0 auto;
+    margin-top: 5px;
+  }
 }

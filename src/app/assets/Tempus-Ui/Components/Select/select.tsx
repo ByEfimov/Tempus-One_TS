@@ -63,11 +63,14 @@ const Select = ({
                 colorText: 'var(--PrimaryTextColor)',
                 colorTextPlaceholder: 'var(--SecondaryTextColor)',
                 zIndexPopup: 999999999999,
+                colorBorderSecondary: 'var(--TransparentColor);',
+                colorBorderBg: 'var(--TransparentColor);',
               },
             },
           }}
         >
           <AntdSelect
+            style={{ border: '1px solid var(--TransparentColor)' }}
             placeholder={Placeholder}
             className={Styles.SelectInput}
             onChange={(value: string) => setSelect(value)}

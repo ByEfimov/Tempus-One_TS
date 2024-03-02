@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 
 const UserData = ({ OpenUser }: { OpenUser: OpenUserType | UserType }) => {
   return (
-    <motion.div className={Styles.UserData} variants={defaultItem}>
+    <motion.mark className={Styles.UserData} id="UserData" variants={defaultItem}>
       <motion.ul {...formContainer} className={Styles.UserTexts}>
         <UserLogoWithXp OpenUser={OpenUser} />
         <div className={Styles.data}>
@@ -22,7 +22,7 @@ const UserData = ({ OpenUser }: { OpenUser: OpenUserType | UserType }) => {
           </motion.li>
         </div>
       </motion.ul>
-    </motion.div>
+    </motion.mark>
   );
 };
 export default UserData;

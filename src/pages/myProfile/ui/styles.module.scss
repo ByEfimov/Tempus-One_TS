@@ -21,9 +21,17 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    mark {
+      background-color: var(--PrimaryBackgroundColor);
+      width: 500px;
+      color: var(--PrimaryTextColor);
+      border: 0px;
+    }
   }
   .Buttons {
-    width: 100%;
     max-width: 500px;
+    width: 500px;
+    padding: 0px;
+    padding-top: 20px;
   }
 }
