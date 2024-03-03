@@ -22,6 +22,7 @@ export function TeamPage() {
   const [isUserAdmin, setUserAdmin] = useState(false);
   const [settingsModalOpen, setSettingsModalOpen] = useState(false);
   const [infoModalOpen, setInfoModalOpen] = useState(false);
+  const [plansModalOpen, setPlansModalOpen] = useState(false);
 
   const dispatch = useAppDispatch();
 
@@ -50,21 +51,27 @@ export function TeamPage() {
     return (
       <>
         <TeamModals
+          plansModalOpen={plansModalOpen}
+          setPlansModalOpen={setPlansModalOpen}
           setSettingsModalOpen={setSettingsModalOpen}
           OpenTeam={openTeam}
           setInfoModalOpen={setInfoModalOpen}
           infoModalOpen={infoModalOpen}
           settingsModalOpen={settingsModalOpen}
+          UserAdmin={isUserAdmin}
         />
 
         <div className={Styles.TeamData}>
           <TeamData
+            setPlansModalOpen={setPlansModalOpen}
             setInfoModalOpen={setInfoModalOpen}
             setSettingsModalOpen={setSettingsModalOpen}
             UserAdmin={isUserAdmin}
             OpenTeam={openTeam}
           />
-          {window.innerWidth >= 900 && <TeamInfo setInfoModalOpen={setInfoModalOpen} OpenTeam={openTeam}></TeamInfo>}
+          {window.innerWidth >= 900 && (
+            <TeamInfo setPlansModalOpen={setPlansModalOpen} setInfoModalOpen={setInfoModalOpen} OpenTeam={openTeam} />
+          )}
         </div>
         <div className={Styles.TeamPosts}>
           <ShowPosts ShowTitle AuthorFilter={openTeam.id} />

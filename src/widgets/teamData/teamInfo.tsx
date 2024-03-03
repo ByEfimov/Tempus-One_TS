@@ -1,15 +1,17 @@
 import Styles from './styles.module.scss';
 import { ButtonIcons, buttonIcons, formContainer, formItem } from '@/app/assets/Tempus-Ui';
 import { OpenTeamType } from '@/app/types/TypesOfData/team-or-user/open-team-type';
-import { LastQuiz, Plans, Subscribers } from '@/entities/infoGrouops';
+import { Description, LastQuiz, Plans, Subscribers } from '@/entities/infoGrouops';
 import { motion } from 'framer-motion';
 
 export default function TeamInfo({
   OpenTeam,
   setInfoModalOpen,
+  setPlansModalOpen,
 }: {
   OpenTeam: OpenTeamType;
   setInfoModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setPlansModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   if (window.innerWidth < 900) {
     return (
@@ -32,8 +34,9 @@ export default function TeamInfo({
   if (window.innerWidth >= 900) {
     return (
       <motion.ul {...formContainer} className={Styles.TeamInformation}>
+        <Description desc={OpenTeam.desc} />
         <Subscribers errorAuthor="сообщества" members={OpenTeam.members} />
-        <Plans errorAuthor="сообщества" />
+        <Plans setPlansModalOpen={setPlansModalOpen} plans={OpenTeam.plans} errorAuthor="сообщества" />
         <LastQuiz errorAuthor="сообщество" />
       </motion.ul>
     );

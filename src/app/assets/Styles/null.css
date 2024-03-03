@@ -41,6 +41,14 @@ html {
   }
 }
 
+:where(.css-dev-only-do-not-override-1nyomn2).ant-picker-outlined {
+  border: 1px solid var(--TransparentColor);
+}
+
+:where(.css-dev-only-do-not-override-1nyomn2).ant-picker-outlined:focus-within {
+  background-color: var(--FourBackgroundColor);
+}
+
 body {
   overflow-x: hidden;
   overflow-y: scroll;
@@ -50,6 +58,56 @@ body {
   margin: 0 auto;
 }
 
+:where(.css-dev-only-do-not-override-1nyomn2).ant-picker-dropdown
+  .ant-picker-cell-in-view.ant-picker-cell-today
+  .ant-picker-cell-inner::before {
+  border: 1px solid var(--AccentBorderColor);
+}
+
+.ant-select-focused * {
+  background-color: var(--FourBackgroundColor) !important;
+}
+
+:where(.css-dev-only-do-not-override-1nyomn2).ant-picker-dropdown
+  .ant-picker-cell-in-view.ant-picker-cell-selected:not(.ant-picker-cell-disabled)
+  .ant-picker-cell-inner,
+:where(.css-dev-only-do-not-override-1nyomn2).ant-picker-dropdown
+  .ant-picker-cell-in-view.ant-picker-cell-range-start:not(.ant-picker-cell-disabled)
+  .ant-picker-cell-inner,
+:where(.css-dev-only-do-not-override-1nyomn2).ant-picker-dropdown
+  .ant-picker-cell-in-view.ant-picker-cell-range-end:not(.ant-picker-cell-disabled)
+  .ant-picker-cell-inner {
+  background: var(--AccentBorderColor);
+}
+:where(.css-dev-only-do-not-override-1nyomn2) a {
+  color: var(--AccentBorderColor);
+}
+
+:where(.css-dev-only-do-not-override-1nyomn2).ant-picker-dropdown .ant-picker-cell {
+  padding: 6px 0;
+  color: inherit;
+  cursor: pointer;
+}
+:where(.css-dev-only-do-not-override-1nyomn2).ant-picker-dropdown .ant-picker-header button {
+  color: var(--PrimaryTextColor);
+}
+
+:where(.css-dev-only-do-not-override-1nyomn2).ant-picker .ant-picker-clear * {
+  fill: var(--ThirdaryBackgroundColor);
+}
+
+:where(.css-dev-only-do-not-override-1nyomn2).ant-picker .ant-picker-suffix * {
+  fill: var(--ThirdaryBackgroundColor);
+}
+:where(.css-dev-only-do-not-override-1nyomn2).ant-picker-dropdown .ant-picker-header-view button {
+  color: #fff !important;
+}
+
+:where(.css-dev-only-do-not-override-1nyomn2).ant-picker .ant-picker-input > input {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'sfPro';
+}
 :root {
   --toastify-color-light: #fff;
   --toastify-color-dark: var(--SecondaryBackgroundColor);

@@ -1,0 +1,42 @@
+.createPlan {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.row {
+  gap: 5px;
+  display: flex;
+}
+
+.Title {
+  font-size: 18px;
+  padding-left: 5px;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  button {
+    width: 25px;
+  }
+}
+
+.TitleC {
+  font-size: 18px;
+  padding-left: 5px;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+  .row {
+    flex-direction: column;
+  }
+}

@@ -9,7 +9,7 @@
     height: 100dvh;
     width: 100dvw;
     position: fixed;
-    background-color: rgba($color: #000000, $alpha: 0);
+    background-color: rgba($color: #000000, $alpha: 0.4);
     animation: bakModal 0.5s forwards;
   }
   .line {
@@ -143,6 +143,7 @@
       left: 50%;
       border-radius: 20px;
       max-height: 600px;
+      padding-bottom: 10px;
     }
   }
   @keyframes openModal {

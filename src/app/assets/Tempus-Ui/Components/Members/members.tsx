@@ -1,7 +1,7 @@
 import { defaultContainer, defaultItem } from '../..';
 import Styles from './members.module.scss';
 import { OpenUserType } from '@/app/types/TypesOfData/team-or-user/open-user-type';
-import { getRequestObject } from '@/features/api/requests/get-requests';
+import { getUsersFromIdArray } from '@/features/api/Users/getUsersFromIdArray';
 import AppRoutes from '@/shared/routes/app-routes';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
@@ -25,13 +25,7 @@ const Members = ({
       if (!members) {
         return null;
       }
-      const memberPromises = Object.values(members).map(async (user) => {
-        const userget = await getRequestObject('users/' + user.UserId);
-        return { ...userget, UserRole: user.UserRole };
-      });
-
-      const membersData = await Promise.all(memberPromises);
-      setMembersArray(membersData);
+      getUsersFromIdArray(members).then((users) => setMembersArray(users));
     };
 
     fetchMembersData();

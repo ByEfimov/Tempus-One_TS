@@ -1,10 +1,11 @@
 import Styles from './styles.module.scss';
-import { Members } from '@/app/assets/Tempus-Ui';
+import { Members, formItem } from '@/app/assets/Tempus-Ui';
 import { motion } from 'framer-motion';
 
 const Subscribers = ({
   members,
   errorAuthor,
+  style,
 }: {
   members:
     | null
@@ -13,15 +14,14 @@ const Subscribers = ({
         UserRole: string;
       }[];
   errorAuthor: string;
+  style?: Record<string, string>;
 }) => {
   return (
-    <motion.div className={Styles.Group}>
-      <div className={Styles.Title}>Подписчики</div>
-      {members ? (
-        <Members members={members}></Members>
-      ) : (
-        <div className={Styles.Content}>У этого {errorAuthor} еще нет подписчиков.</div>
-      )}
+    <motion.div className={style ? style.Group : Styles.Group} variants={formItem}>
+      <div className={style ? style.Title : Styles.Title}>Участники</div>
+      <div className={style ? style.Content : Styles.Content}>
+        {members ? <Members members={members}></Members> : `У этого ${errorAuthor} еще нет подписчиков.`}
+      </div>
     </motion.div>
   );
 };

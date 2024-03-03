@@ -1,4 +1,4 @@
-import { CloseModal, IsModal } from '../../shared/modals/isModal';
+import { CloseModal, IsModal } from '../../../shared/modals/isModal';
 import Styles from './styles.module.scss';
 import {
   Button,

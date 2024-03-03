@@ -3,7 +3,7 @@ import Styles from './styles.module.scss';
 import UserLogo from './userLogo';
 import { defaultItem } from '@/app/assets/Tempus-Ui';
 import { getRequestObject } from '@/features/api/requests/get-requests';
-import StatusModal from '@/widgets/statusModal/modal';
+import StatusModal from '@/widgets/modals/users/statusModal/modal';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 

@@ -18,7 +18,7 @@ const Select = ({
   Color = InputColors.default,
   DefaultValue,
 }: {
-  Array?: { label: string; value: string }[];
+  Array?: { label: string | null; value: string | null }[];
   setSelect: ((value: string) => void) | React.Dispatch<React.SetStateAction<string>>;
   Select?: string;
   Type: SelectTypes;
@@ -33,7 +33,7 @@ const Select = ({
           <motion.button
             key={item.value}
             variants={defaultItem}
-            onClick={() => setSelect(item.value)}
+            onClick={() => setSelect(item.value || '')}
             className={classNames(Styles.Item, Select === item.value && Styles.Selected)}
           >
             {item.label}

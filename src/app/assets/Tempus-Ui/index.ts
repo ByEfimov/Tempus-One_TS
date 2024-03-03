@@ -16,6 +16,7 @@ export { default as NavBar } from './Components/Nav-bar/nav-bar';
 export { default as Preloader } from './Components/Preloader/preloader';
 
 export { default as Select, SelectTypes } from './Components/Select/select';
+export { default as DatePicker } from './Components/DatePicker/datePicker';
 
 export { default as TextWithLine } from './Components/Texts/text-with-line';
 
@@ -23,4 +24,5 @@ export { default as ButtonIcons, buttonIcons } from './Icons/Buttons/button-icon
 export { default as HeaderIcons, headerIcons } from './Icons/Header/header-icons';
 export { default as NavBarIcons, navBarIcons } from './Icons/Nav-bar/nav-bar';
 export { default as PostIcons, postIcons } from './Icons/Posts/post-icons';
+export { default as TeamIcons, teamIcons } from './Icons/Teams/TeamIcons';
 export { default as Table } from './Components/Table/table';

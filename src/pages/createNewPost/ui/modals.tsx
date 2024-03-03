@@ -1,4 +1,4 @@
-import SelectBlockModal from '@/widgets/selectBlockModal/modal';
+import SelectBlockModal from '@/widgets/modals/posts/selectBlockModal/modal';
 
 interface CreatePostModalsProps {
   selectBlockModalOpen: boolean;

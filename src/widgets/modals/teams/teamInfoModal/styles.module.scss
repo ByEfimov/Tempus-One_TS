@@ -1,0 +1,22 @@
+.TeamInfoModal {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  .Group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    .Title {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+    .Content {
+      font-size: 15px;
+      min-height: 80px;
+      border-radius: 10px;
+      padding: 10px;
+      background-color: var(--PrimaryBackgroundColor);
+    }
+  }
+}

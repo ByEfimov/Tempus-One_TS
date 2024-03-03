@@ -10,9 +10,11 @@ export default function TeamData({
   UserAdmin,
   setSettingsModalOpen,
   setInfoModalOpen,
+  setPlansModalOpen,
 }: {
   OpenTeam: OpenTeamType;
   UserAdmin: boolean;
+  setPlansModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setSettingsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setInfoModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
@@ -30,7 +32,13 @@ export default function TeamData({
           <motion.li variants={formItem} className={Styles.UserLevel}>
             {OpenTeam.level || 1} уровень
           </motion.li>
-          {window.innerWidth < 900 && <TeamInfo setInfoModalOpen={setInfoModalOpen} OpenTeam={OpenTeam}></TeamInfo>}
+          {window.innerWidth < 900 && (
+            <TeamInfo
+              setPlansModalOpen={setPlansModalOpen}
+              setInfoModalOpen={setInfoModalOpen}
+              OpenTeam={OpenTeam}
+            ></TeamInfo>
+          )}
           {UserAdmin && (
             <Button
               Click={() => {

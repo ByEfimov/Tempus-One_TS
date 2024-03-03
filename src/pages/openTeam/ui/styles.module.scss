@@ -5,29 +5,6 @@
   margin-bottom: 0px;
 }
 
-.TeamInfoModal {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  .Group {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    .Title {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-    }
-    .Content {
-      min-height: 80px;
-      border-radius: 10px;
-      padding: 10px;
-      background-color: var(--PrimaryBackgroundColor);
-    }
-  }
-}
-
 @media screen and (min-width: 900px) {
   .TeamPosts {
     z-index: 0;
