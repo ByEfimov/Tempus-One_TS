@@ -93,11 +93,11 @@ body {
 }
 
 :where(.css-dev-only-do-not-override-1nyomn2).ant-picker .ant-picker-clear * {
-  fill: var(--ThirdaryBackgroundColor);
+  fill: var(--SecondaryTextColor);
 }
 
 :where(.css-dev-only-do-not-override-1nyomn2).ant-picker .ant-picker-suffix * {
-  fill: var(--ThirdaryBackgroundColor);
+  fill: var(--SecondaryTextColor);
 }
 :where(.css-dev-only-do-not-override-1nyomn2).ant-picker-dropdown .ant-picker-header-view button {
   color: #fff !important;

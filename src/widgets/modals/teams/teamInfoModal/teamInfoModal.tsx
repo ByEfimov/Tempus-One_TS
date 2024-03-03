@@ -18,8 +18,8 @@ const TeamInfoModal = ({
     <IsModal setModalOpen={setModalOpen}>
       <motion.ul className={Styles.TeamInfoModal} {...formContainer}>
         <Description desc={OpenTeam.desc} style={Styles} />
-        <Subscribers members={OpenTeam.members} errorAuthor="сообщества" style={Styles} />
-        <LastQuiz errorAuthor="сообщество" style={Styles} />
+        <Subscribers title="Участники" members={OpenTeam.members} errorAuthor="сообщества" style={Styles} />
+        <LastQuiz errorAuthor="Это сообщество еще не соревновалось." style={Styles} />
         <Plans
           teamModal
           setPlansModalOpen={setPlansModalOpen}

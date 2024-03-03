@@ -35,9 +35,9 @@ export default function TeamInfo({
     return (
       <motion.ul {...formContainer} className={Styles.TeamInformation}>
         <Description desc={OpenTeam.desc} />
-        <Subscribers errorAuthor="сообщества" members={OpenTeam.members} />
+        <Subscribers title="Участники" errorAuthor="сообщества" members={OpenTeam.members} />
         <Plans setPlansModalOpen={setPlansModalOpen} plans={OpenTeam.plans} errorAuthor="сообщества" />
-        <LastQuiz errorAuthor="сообщество" />
+        <LastQuiz errorAuthor="Это сообщество еще не соревновалось." />
       </motion.ul>
     );
   }

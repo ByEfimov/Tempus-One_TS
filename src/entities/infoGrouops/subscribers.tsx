@@ -6,6 +6,7 @@ const Subscribers = ({
   members,
   errorAuthor,
   style,
+  title,
 }: {
   members:
     | null
@@ -14,11 +15,12 @@ const Subscribers = ({
         UserRole: string;
       }[];
   errorAuthor: string;
+  title: string;
   style?: Record<string, string>;
 }) => {
   return (
     <motion.div className={style ? style.Group : Styles.Group} variants={formItem}>
-      <div className={style ? style.Title : Styles.Title}>Участники</div>
+      <div className={style ? style.Title : Styles.Title}>{title}</div>
       <div className={style ? style.Content : Styles.Content}>
         {members ? <Members members={members}></Members> : `У этого ${errorAuthor} еще нет подписчиков.`}
       </div>

@@ -23,13 +23,14 @@ import { motion } from 'framer-motion';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 
-export type Plan = {
+export interface Plan {
   date: string | string[];
   title: string;
+  id?: string;
   desc: string;
   asigner: string;
   type: string;
-};
+}
 
 const currentDate = moment().format('YYYY-MM-DD');
 const currentDateDayJs = dayjs();

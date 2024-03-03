@@ -6,7 +6,9 @@ const LastQuiz = ({ errorAuthor, style }: { errorAuthor: string; style?: Record<
   return (
     <motion.div variants={formItem} className={style ? style.Group : Styles.Group}>
       <div className={style ? style.Title : Styles.Title}>Последнее соревнование</div>
-      <div className={style ? style.Content : Styles.Content}>Это {errorAuthor} еще не соревновалось.</div>
+      <div className={style ? style.Content : Styles.Content} style={{ textAlign: 'center' }}>
+        {errorAuthor}
+      </div>
     </motion.div>
   );
 };

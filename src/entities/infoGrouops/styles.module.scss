@@ -4,6 +4,9 @@
   background-color: var(--SecondaryBackgroundColor);
   border-radius: 10px;
   border: 1px solid var(--TransparentColor);
+  .Title {
+    text-align: center;
+  }
   .Content {
     margin-top: 3px;
     color: var(--SecondaryTextColor);

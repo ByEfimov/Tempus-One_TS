@@ -17,7 +17,7 @@ const PlansModal = ({
   return (
     <IsModal setModalOpen={setModalOpen}>
       {UserAdmin && selectCreate && <CreatePlan OpenTeam={OpenTeam} setSelectCreate={setSelectCreate} />}
-      {!selectCreate && <RenderPlans userAdmin={UserAdmin} setSelectCreate={setSelectCreate} />}
+      {!selectCreate && <RenderPlans userAdmin={UserAdmin} OpenTeam={OpenTeam} setSelectCreate={setSelectCreate} />}
     </IsModal>
   );
 };

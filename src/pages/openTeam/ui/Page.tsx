@@ -30,11 +30,12 @@ export function TeamPage() {
     getRequestObject('teams/' + id)
       .then((team) => {
         setOpenTeam(team);
-        getUserAdmins(UserId).then((teams) => {
-          setUserAdmin(teams.some((team) => team.value === id));
-        });
       })
       .catch(() => toast.error('Сообщество не найдено.'));
+
+    getUserAdmins(UserId).then((teams) => {
+      setUserAdmin(teams.some((team) => team.value === id));
+    });
   }, [id]);
 
   useEffect(() => {

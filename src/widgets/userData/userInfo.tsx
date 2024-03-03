@@ -5,8 +5,8 @@ import { LastQuiz, Subscribers } from '@/entities/infoGrouops';
 const UserInfo = ({ OpenUser }: { OpenUser: OpenUserType | UserType }) => {
   return (
     <>
-      <Subscribers errorAuthor="пользователя" members={OpenUser.members} />
-      <LastQuiz errorAuthor="пользователь" />
+      <Subscribers title="Подписчики" errorAuthor="пользователя" members={OpenUser.members} />
+      <LastQuiz errorAuthor="Этот пользователь еще не соревновался." />
     </>
   );
 };
