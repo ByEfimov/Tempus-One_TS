@@ -20,9 +20,11 @@ const Plans = ({
   style?: Record<string, string>;
   setPlansModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const currentPlan = Object.values(plans).find((obj) =>
-    Array.isArray(obj.date) ? obj.date.includes(currentDate) : obj.date === currentDate,
-  );
+  const currentPlan =
+    plans &&
+    Object.values(plans).find((obj) =>
+      Array.isArray(obj.date) ? obj.date.includes(currentDate) : obj.date === currentDate,
+    );
 
   return (
     <motion.div

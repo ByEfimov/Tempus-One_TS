@@ -47,7 +47,7 @@
   flex-direction: column;
   gap: 20px;
   .Plans {
-    max-height: 290px;
+    max-height: 400px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -112,11 +112,11 @@
         height: auto;
       }
       .Desc {
-        width: 300px;
+        width: 100%;
         text-align: start;
         font-size: 14px;
         color: var(--SecondaryTextColor);
-        height: 35px;
+        max-height: 35px;
         overflow: hidden;
       }
     }

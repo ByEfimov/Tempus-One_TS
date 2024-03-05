@@ -85,10 +85,10 @@ const RenderPlan = ({ plan }: { plan: Plan }) => {
         <motion.button
           className={Styles.Asigner}
           onClick={() => {
-            navigate(AppRoutes.USER + '/' + plan.asigner);
+            navigate(AppRoutes.USER + '/' + plan.asigner?.id);
           }}
         >
-          {plan.asigner}
+          <img src={plan.asigner?.photo || ''} alt="" />
         </motion.button>
       </motion.div>
     </motion.div>

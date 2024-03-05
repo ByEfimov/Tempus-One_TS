@@ -28,8 +28,14 @@ export interface Plan {
   title: string;
   id?: string;
   desc: string;
-  asigner: string;
+  asigner?: Asigner;
   type: string;
+}
+
+export interface Asigner {
+  id: string | null;
+  name: string | null;
+  photo: string | null;
 }
 
 const currentDate = moment().format('YYYY-MM-DD');
@@ -44,7 +50,7 @@ const CreatePlan = ({
   setSelectCreate: React.Dispatch<React.SetStateAction<boolean>>;
   OpenTeam: OpenTeamType;
 }) => {
-  const { UserId } = useAuth();
+  const { UserId, UserName, UserPhoto } = useAuth();
   const [teamCreators, setTeamCreators] = useState<UserType[]>();
 
   useEffect(() => {
@@ -63,7 +69,7 @@ const CreatePlan = ({
     date: currentDate,
     title: '',
     desc: '',
-    asigner: UserId,
+    asigner: { id: UserId, name: UserName, photo: UserPhoto },
     type: planTypes[0],
   });
 
@@ -139,11 +145,11 @@ const CreatePlan = ({
           setSelect={(value: string) => {
             setForm({
               ...form,
-              asigner: value,
+              asigner: teamCreators?.find((asigner) => asigner.id === value),
             });
           }}
           Color={InputColors.primary}
-          DefaultValue={form.asigner}
+          DefaultValue={form.asigner?.id}
           Placeholder="Выполняющий"
           Array={teamCreators?.map((item) => ({
             label: item.name,

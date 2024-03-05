@@ -15,45 +15,56 @@
     justify-content: start;
     align-items: center;
     height: 50px;
-    .Plan {
-      display: flex;
-      gap: 5px;
-      .Type {
-        flex-shrink: 0;
-        border-radius: 50%;
-        width: 50px;
-        box-shadow: var(--AccentBackgroundShadow);
-        height: 50px;
-        background-color: var(--TransparentColor);
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        svg {
-          width: 70%;
-          height: 70%;
-        }
-      }
-      .Text {
+  }
+}
+
+.Plan {
+  display: flex;
+  gap: 5px;
+  .Type {
+    flex-shrink: 0;
+    border-radius: 50%;
+    width: 50px;
+    box-shadow: var(--AccentBackgroundShadow);
+    height: 50px;
+    background-color: var(--TransparentColor);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+      width: 70%;
+      height: 70%;
+    }
+  }
+  .Text {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .Title {
+      text-align: start;
+      font-size: 16px;
+      color: var(--PrimaryTextColor);
+    }
+    .Desc {
+      text-align: start;
+      font-size: 14px;
+      width: 195px;
+      text-overflow: ellipsis;
+      height: 18px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .Plan {
+    .Text {
+      .Desc {
         width: 100%;
-        height: 50px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        .Title {
-          text-align: start;
-          font-size: 16px;
-          color: var(--PrimaryTextColor);
-        }
-        .Desc {
-          text-align: start;
-          font-size: 14px;
-          width: 195px;
-          text-overflow: ellipsis;
-          height: 18px;
-          overflow: hidden;
-          white-space: nowrap;
-        }
       }
     }
   }

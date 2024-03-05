@@ -24,7 +24,7 @@ const Select = ({
   Type: SelectTypes;
   Placeholder?: string;
   Color?: InputColors;
-  DefaultValue?: string;
+  DefaultValue?: string | null;
 }) => {
   if (Type === SelectTypes.Row) {
     return (
