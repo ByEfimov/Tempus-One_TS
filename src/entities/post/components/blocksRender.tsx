@@ -4,7 +4,7 @@ import { useAuth } from '@/app/hooks/useAuth';
 import { blockType, blockTypes, blocksType } from '@/app/slices/witePost/writePostSlice';
 import { postRequestWithoutNewId } from '@/features/api/requests/post-requests-with-new-id';
 import { NOTIFI_TEXTS } from '@/shared/notifyTexts/notifyTexts';
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import { LivePreview, LiveProvider } from 'react-live';
 import { toast } from 'react-toastify';
 import 'swiper/css';
@@ -14,9 +14,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 interface BlocksRender {
   Blocks: blocksType;
   postId: string | undefined;
+  inView: boolean;
 }
 
-const BlocksRender: FC<BlocksRender> = ({ Blocks, postId }) => {
+const BlocksRender = ({ Blocks, postId, inView }: BlocksRender) => {
   return (
     Blocks && (
       <div className={Styles.BlocksData}>
@@ -37,9 +38,9 @@ const BlocksRender: FC<BlocksRender> = ({ Blocks, postId }) => {
               return (
                 <SwiperSlide key={block.id}>
                   {block.type === blockTypes.Image && 'imageUrl' in block.data ? (
-                    <ShowImage imageSrc={block.data.imageUrl}></ShowImage>
+                    <ShowImage inView={inView} imageSrc={block.data.imageUrl}></ShowImage>
                   ) : block.type === blockTypes.Code && 'code' in block.data ? (
-                    <ShowCode UserCode={block.data.code}></ShowCode>
+                    <ShowCode inView={inView} UserCode={block.data.code}></ShowCode>
                   ) : (
                     <ShowSurvey postId={postId} block={block}></ShowSurvey>
                   )}
@@ -53,12 +54,14 @@ const BlocksRender: FC<BlocksRender> = ({ Blocks, postId }) => {
   );
 };
 
-const ShowCode = ({ UserCode }: { UserCode?: string }) => {
+const ShowCode = ({ UserCode, inView }: { UserCode?: string; inView: boolean }) => {
   return (
     <div className={Styles.CodePostBlock}>
-      <LiveProvider enableTypeScript={true} code={UserCode}>
-        {UserCode ? <LivePreview /> : 'Здесь будет результат.'}
-      </LiveProvider>
+      {inView && (
+        <LiveProvider enableTypeScript={true} code={UserCode}>
+          {UserCode ? <LivePreview /> : 'Здесь будет результат.'}
+        </LiveProvider>
+      )}
       <button
         className={Styles.copy}
         onClick={(e) => {
@@ -73,10 +76,10 @@ const ShowCode = ({ UserCode }: { UserCode?: string }) => {
   );
 };
 
-const ShowImage = ({ imageSrc }: { imageSrc?: string }) => {
+const ShowImage = ({ imageSrc, inView }: { imageSrc?: string; inView: boolean }) => {
   return (
     <div className={Styles.ImageBlock}>
-      {imageSrc ? <img src={imageSrc} alt="" /> : 'Картинка сломалась('}
+      {imageSrc && inView ? <img src={imageSrc} alt="" /> : 'Картинка сломалась('}
       <button
         className={Styles.copy}
         onClick={(e) => {

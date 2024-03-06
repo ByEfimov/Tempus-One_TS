@@ -13,6 +13,7 @@ import { postRequestWithoutNewId } from '@/features/api/requests/post-requests-w
 import AppRoutes from '@/shared/routes/app-routes';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 import { useNavigate } from 'react-router-dom';
 
 export interface WhoWrotePost {
@@ -31,6 +32,7 @@ const PostRender = ({ post }: { post: PostType }) => {
   const haveBlockNoText = post.blocks.find((block) => block?.type !== blockTypes.Text);
   const { UserId, UserIsAuth } = useAuth();
   const navigate = useNavigate();
+  const { ref, inView } = useInView();
 
   useEffect(() => {
     function LoadUser() {
@@ -39,14 +41,16 @@ const PostRender = ({ post }: { post: PostType }) => {
         .catch(() => getRequestObject('teams/' + post.author).then((team) => setWhoWrotePost(team)));
     }
     LoadUser();
+  }, []);
 
+  useEffect(() => {
     function ViewingPost() {
-      if (!Object.values(post.views || 0).includes(UserId) && UserIsAuth) {
+      if (!Object.values(post.views || 0).includes(UserId) && UserIsAuth && inView) {
         postRequestWithoutNewId('posts/' + post.id + '/views/' + UserId, UserId);
       }
     }
     ViewingPost();
-  }, []);
+  }, [inView]);
 
   const navigateToPost = () => {
     navigate(AppRoutes.POST + '/' + post.id);
@@ -61,12 +65,14 @@ const PostRender = ({ post }: { post: PostType }) => {
         CommentsOpen={commentsOpen}
         RepostModalOpen={repostModalOpen}
       ></PostModals>
-      <motion.div onClick={navigateToPost} variants={defaultItem} className={Styles.Post}>
+      <motion.div ref={ref} onClick={navigateToPost} variants={defaultItem} className={Styles.Post}>
         <AuthorDataRender post={post} WhoWrotePost={whoWrotePost} />
+
         <motion.div className={haveBlockNoText ? Styles.main : undefined}>
           <PostTextRender post={post} />
-          <BlocksRender Blocks={post.blocks} postId={post.id} />
+          <BlocksRender Blocks={post.blocks} inView={inView} postId={post.id} />
         </motion.div>
+
         <LinkToOrig post={post} />
         <Activities setCommentsOpen={setCommentsOpen} setRepostModalOpen={setRepostOpen} post={post} />
       </motion.div>

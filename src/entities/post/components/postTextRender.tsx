@@ -1,6 +1,5 @@
 import Styles from '../styles.module.scss';
 import { PostType } from '@/app/slices/witePost/writePostSlice';
-import { FC } from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
 import remarkGfm from 'remark-gfm';
@@ -9,7 +8,7 @@ interface PostTextRenderProps {
   post: PostType;
 }
 
-const PostTextRender: FC<PostTextRenderProps> = ({ post }) => {
+const PostTextRender = ({ post }: PostTextRenderProps) => {
   const filteredArray = post.blocks.filter((obj) => obj?.type === 'Text');
 
   return (

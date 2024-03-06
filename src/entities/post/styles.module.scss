@@ -26,6 +26,7 @@
   border-radius: 15px;
   .PostData {
     margin-top: 5px;
+    width: 100%;
     cursor: pointer;
     .Title {
       color: var(--DarkTextColor);
@@ -34,6 +35,15 @@
     }
     .Text {
       max-height: 40px;
+      overflow: hidden;
+      color: var(--DarkTextColor);
+      font-weight: 300;
+      *:not(img) {
+        all: unset;
+      }
+    }
+    .fakeText {
+      height: 40px;
       overflow: hidden;
       color: var(--DarkTextColor);
       font-weight: 300;
@@ -93,6 +103,12 @@
         object-fit: contain;
         height: 100%;
       }
+    }
+    .fakeBlock {
+      background-color: #60658310;
+      width: 100%;
+      aspect-ratio: 16 / 12;
+      flex-shrink: 0;
     }
     .CodePostBlock {
       background-color: #60658310;
