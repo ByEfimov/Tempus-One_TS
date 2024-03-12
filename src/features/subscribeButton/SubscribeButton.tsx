@@ -15,32 +15,32 @@ interface SubscribeButton {
 }
 
 const SubscribeButton = ({ WhoWrotePost, id }: SubscribeButton) => {
-  const { UserId, UserSubscriptions, UserExperience, UserIsAuth } = useAuth();
+  const user = useAuth();
 
-  const isMember = itsMember(UserId, UserSubscriptions, WhoWrotePost);
+  const isMember = itsMember(user.id, user.subscriptions, WhoWrotePost);
   const isAdminPresent = Object.values(WhoWrotePost?.members || '').some(
-    (user) => user.UserId === UserId && user.UserRole === 'Administrator',
+    (user) => user.UserId === user.id && user.UserRole === 'Administrator',
   );
   const isTeam = WhoWrotePost?.id && WhoWrotePost.id[0] === '-';
 
   function subbing() {
-    if (UserIsAuth && !isAdminPresent && WhoWrotePost?.id !== UserId) {
+    if (user.isAuth && !isAdminPresent && WhoWrotePost?.id !== user.id) {
       const message = isMember ? 'Вы отписались!' : 'Вы подписались!';
 
-      const NewXp = isMember ? UserExperience - 10 : UserExperience + 10;
+      const NewXp = isMember ? user.experience - 10 : user.experience + 10;
 
-      Subscription(isTeam ? 'team' : 'user', id, UserId, isMember ? true : false);
+      Subscription(isTeam ? 'team' : 'user', id, user.id, isMember ? true : false);
 
-      changeRequest('users/' + UserId, '/experience', NewXp);
+      changeRequest('users/' + user.id, '/experience', NewXp);
       toast.info(message);
     } else {
       if (isAdminPresent) {
         toast.warning('Это сообщество принадлежит вам.');
       }
-      if (WhoWrotePost?.id === UserId) {
+      if (WhoWrotePost?.id === user.id) {
         toast.warning('Этот аккаунт принадлежит вам.');
       }
-      if (!UserIsAuth) {
+      if (!user.isAuth) {
         toast.error(NOTIFI_TEXTS.ERROR_NOT_AUTH);
       }
     }

@@ -23,7 +23,7 @@ const ShowPosts = ({
 }) => {
   const [posts, setPosts] = useState<PostType[]>();
   const [selectFilter, setSelectFilter] = useState<string>('Default');
-  const { UserSubscriptions, UserId } = useAuth();
+  const user = useAuth();
   const { HeaderSearchBar } = useHeader();
   const dispatch = useAppDispatch();
 
@@ -32,8 +32,8 @@ const ShowPosts = ({
       if (HeaderSearchBar) {
         const filteredPosts = aplyFilterPosts(
           selectFilter,
-          UserSubscriptions,
-          UserId,
+          user.subscriptions,
+          user.id,
           HeaderSearchBar,
           AuthorFilter,
           posts,
@@ -43,8 +43,8 @@ const ShowPosts = ({
         getRequestArray('/posts').then((posts) => {
           const filteredPosts = aplyFilterPosts(
             selectFilter,
-            UserSubscriptions,
-            UserId,
+            user.subscriptions,
+            user.id,
             HeaderSearchBar,
             AuthorFilter,
             posts,

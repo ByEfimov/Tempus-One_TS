@@ -14,7 +14,7 @@ interface ListenerFC {
 export default function FireBaseProvider({ children }: ListenerFC) {
   const db = getDatabase();
   const UserIdC = decryptData(Cookies.get('UserId'));
-  const { UserId } = useAuth();
+  const user = useAuth();
   const auth = getAuth();
   const dispatch = useAppDispatch();
 
@@ -26,8 +26,8 @@ export default function FireBaseProvider({ children }: ListenerFC) {
       Cookies.remove('UserId');
     }
 
-    if (UserIdC || UserId) {
-      const starCountRef = ref(db, '/users/' + UserId);
+    if (UserIdC || user.id) {
+      const starCountRef = ref(db, '/users/' + user.id);
       onValue(starCountRef, (snapshot) => {
         const data = snapshot.val();
         if (data) {
@@ -53,7 +53,7 @@ export default function FireBaseProvider({ children }: ListenerFC) {
     } else {
       LogoutUser();
     }
-  }, [UserId]);
+  }, [user.id]);
 
   return children;
 }

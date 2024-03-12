@@ -8,9 +8,9 @@ import { motion } from 'framer-motion';
 import { Navigate } from 'react-router-dom';
 
 const VerifyingEmailPage = () => {
-  const { UserEmailVerified, UserId } = useAuth();
+  const user = useAuth();
 
-  if (!UserEmailVerified) {
+  if (!user.emailVerified) {
     return (
       <motion.div className={Styles.wrapper}>
         <motion.div {...formContainer} className={Styles.buttons}>
@@ -23,7 +23,7 @@ const VerifyingEmailPage = () => {
             Title="Отправить письмо"
             Click={() => sendMailForVerifying()}
           />
-          <Button Variants={formItem} Type={ButtonTypes.active} Title="Подтвердил" Click={() => Verifying(UserId)} />
+          <Button Variants={formItem} Type={ButtonTypes.active} Title="Подтвердил" Click={() => Verifying(user.id)} />
         </motion.div>
       </motion.div>
     );

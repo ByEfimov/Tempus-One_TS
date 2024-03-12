@@ -23,7 +23,7 @@ const CURRENT_DATE = new Date();
 const CURRENT_UNIX_TIME = getUnixTime(CURRENT_DATE);
 
 const CommentsModal: FC<CommentsModalProps> = ({ setModalOpen, PostId }) => {
-  const { UserId, UserIsAuth } = useAuth();
+  const user = useAuth();
   const [commentInput, setCommentInput] = useState('');
   const [comments, setComments] = useState<Comments[]>();
 
@@ -38,16 +38,16 @@ const CommentsModal: FC<CommentsModalProps> = ({ setModalOpen, PostId }) => {
   const sendComment = () => {
     const commentText = filterBadWords(commentInput);
     const commentPath = 'posts/' + PostId + '/comments/';
-    if (commentInput && UserIsAuth) {
+    if (commentInput && user.isAuth) {
       const NewComment = {
-        CommentatorId: UserId,
+        CommentatorId: user.id,
         CommentText: commentText,
         CommentDate: CURRENT_UNIX_TIME,
       };
       postRequestWithNewId(commentPath, NewComment);
       getCommentsOfPost();
       setCommentInput('');
-    } else if (!UserIsAuth) {
+    } else if (!user.isAuth) {
       toast.error(NOTIFI_TEXTS.ERROR_NOT_AUTH);
     }
   };

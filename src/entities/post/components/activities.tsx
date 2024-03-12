@@ -15,9 +15,9 @@ interface ActivitiesProps {
 }
 
 const Activities: FC<ActivitiesProps> = ({ post, setCommentsOpen, setRepostModalOpen }) => {
-  const { UserId, UserCanChanging, UserIsAuth } = useAuth();
+  const user = useAuth();
   const [postLikes, setPostLikes] = useState(post.likes ? Object.values(post.likes).length : 0);
-  const [itPostLiked, setItPostLiked] = useState(post.likes ? Object.values(post.likes).includes(UserId) : false);
+  const [itPostLiked, setItPostLiked] = useState(post.likes ? Object.values(post.likes).includes(user.id) : false);
   const postComments = post.comments ? Object.keys(post.comments).length : 0;
 
   const likePostHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -26,7 +26,7 @@ const Activities: FC<ActivitiesProps> = ({ post, setCommentsOpen, setRepostModal
       itPostLiked,
       setPostLikes,
       setItPostLiked: setItPostLiked,
-      UserId: UserId,
+      UserId: user.id,
       post: post,
       PostLikes: postLikes,
     });
@@ -51,11 +51,11 @@ const Activities: FC<ActivitiesProps> = ({ post, setCommentsOpen, setRepostModal
         <button
           onClick={(e) => {
             e.stopPropagation();
-            if (UserCanChanging) {
+            if (user.canChanging) {
               setRepostModalOpen(true);
-            } else if (!UserIsAuth) {
+            } else if (!user.isAuth) {
               toast.error(NOTIFI_TEXTS.ERROR_NOT_AUTH);
-            } else if (!UserCanChanging) {
+            } else if (!user.canChanging) {
               toast.warning(NOTIFI_TEXTS.ERROR_NOT_VERIFIED_EMAIL);
             }
           }}

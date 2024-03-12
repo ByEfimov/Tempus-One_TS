@@ -95,12 +95,12 @@ const ShowImage = ({ imageSrc, inView }: { imageSrc?: string; inView: boolean })
 };
 
 const ShowSurvey = ({ block, postId }: { block: blockType; postId?: string | undefined }) => {
-  const { UserId, UserIsAuth } = useAuth();
+  const user = useAuth();
   const [SelectVariant, setSelectVariant] = useState<number | null | undefined>(null);
 
   const [ItPostSelect, setItPostSelect] = useState(
     'variants' in block.data &&
-      Object.values(block.data.variants || 0).some((obj) => obj.selected && obj.selected[UserId] === UserId),
+      Object.values(block.data.variants || 0).some((obj) => obj.selected && obj.selected[user.id] === user.id),
   );
 
   const selectedUsers = Object.values(('variants' in block.data && block.data.variants) || 0).reduce((acc, obj) => {
@@ -112,14 +112,14 @@ const ShowSurvey = ({ block, postId }: { block: blockType; postId?: string | und
   }, []);
 
   function selectVariant(Variant: { id: number | undefined; text: string; selected?: Record<string, string> }) {
-    if (!ItPostSelect && UserIsAuth) {
+    if (!ItPostSelect && user.isAuth) {
       postRequestWithoutNewId(
-        'posts/' + postId + '/blocks/' + block.id + '/data/variants/' + Variant.id + '/selected/' + UserId,
-        UserId,
+        'posts/' + postId + '/blocks/' + block.id + '/data/variants/' + Variant.id + '/selected/' + user.id,
+        user.id,
       );
       setSelectVariant(Variant.id);
       setItPostSelect(true);
-    } else if (!UserIsAuth) {
+    } else if (!user.isAuth) {
       toast.error(NOTIFI_TEXTS.ERROR_NOT_AUTH);
     } else if (ItPostSelect) {
       toast.warning('Вы уже выбирали ответ на этом посте.');

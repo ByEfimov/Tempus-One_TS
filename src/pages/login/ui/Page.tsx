@@ -6,12 +6,12 @@ import AppRoutes from '@/shared/routes/app-routes';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 export function LoginPage() {
-  const { UserIsAuth } = useAuth();
+  const user = useAuth();
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  return !UserIsAuth ? (
+  return !user.isAuth ? (
     <AuthenticationFrom
       title="Войди в свой 
 						Аккаунт"

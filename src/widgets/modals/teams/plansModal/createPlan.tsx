@@ -50,7 +50,7 @@ const CreatePlan = ({
   setSelectCreate: React.Dispatch<React.SetStateAction<boolean>>;
   OpenTeam: OpenTeamType;
 }) => {
-  const { UserId, UserName, UserPhoto } = useAuth();
+  const user = useAuth();
   const [teamCreators, setTeamCreators] = useState<UserType[]>();
 
   useEffect(() => {
@@ -69,7 +69,7 @@ const CreatePlan = ({
     date: currentDate,
     title: '',
     desc: '',
-    asigner: { id: UserId, name: UserName, photo: UserPhoto },
+    asigner: { id: user.id, name: user.name, photo: user.photo },
     type: planTypes[0],
   });
 

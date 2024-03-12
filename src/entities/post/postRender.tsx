@@ -30,7 +30,7 @@ const PostRender = ({ post }: { post: PostType }) => {
   const [commentsOpen, setCommentsOpen] = useState(false);
   const [repostModalOpen, setRepostOpen] = useState(false);
   const haveBlockNoText = post.blocks.find((block) => block?.type !== blockTypes.Text);
-  const { UserId, UserIsAuth } = useAuth();
+  const user = useAuth();
   const navigate = useNavigate();
   const { ref, inView } = useInView();
 
@@ -45,8 +45,8 @@ const PostRender = ({ post }: { post: PostType }) => {
 
   useEffect(() => {
     function ViewingPost() {
-      if (!Object.values(post.views || 0).includes(UserId) && UserIsAuth && inView) {
-        postRequestWithoutNewId('posts/' + post.id + '/views/' + UserId, UserId);
+      if (!Object.values(post.views || 0).includes(user.id) && user.isAuth && inView) {
+        postRequestWithoutNewId('posts/' + post.id + '/views/' + user.id, user.id);
       }
     }
     ViewingPost();

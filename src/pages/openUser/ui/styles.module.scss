@@ -119,6 +119,8 @@
   .UserPosts {
     z-index: 0;
     margin-left: 80px;
-    width: 975px;
+    width: 100%;
+    max-width: 1000px;
+    padding-right: 25px;
   }
 }

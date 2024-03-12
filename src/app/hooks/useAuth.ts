@@ -19,24 +19,24 @@ export function useAuth() {
     selectedVariants,
   } = useAppSelector((state) => state.user);
 
-  const PathToProfile = email ? AppRoutes.USER + '/' + decryptData(Cookies.get('UserId')) : AppRoutes.LOGIN;
+  const pathToProfile = email ? AppRoutes.USER + '/' + decryptData(Cookies.get('UserId')) : AppRoutes.LOGIN;
 
   return {
-    UserIsAuth: !!decryptData(Cookies.get('UserId')),
-    UserCanChanging: !!emailVerified && !!email,
-    UserSubscriptions: subscriptions,
-    UserEmailVerified: emailVerified,
-    UserEmail: email,
-    UserId: decryptData(Cookies.get('UserId')),
-    UserPhoto: photo,
-    UserName: name,
-    UserAge: age,
-    UserPostsLiked: postsLiked,
-    UserMembers: members,
-    UserViewings: viewings,
-    UserExperience: experience || 0,
-    UserLevel: level || 1,
-    UserSelectedVariants: selectedVariants,
-    PathToProfile,
+    isAuth: !!decryptData(Cookies.get('UserId')),
+    canChanging: !!emailVerified && !!email,
+    subscriptions: subscriptions,
+    emailVerified: emailVerified,
+    email: email,
+    id: decryptData(Cookies.get('UserId')),
+    photo,
+    name,
+    age,
+    postsLiked,
+    members,
+    viewings,
+    experience: experience || 0,
+    level: level || 1,
+    selectedVariants,
+    pathToProfile,
   };
 }

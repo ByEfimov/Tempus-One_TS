@@ -17,7 +17,7 @@ import { toast } from 'react-toastify';
 
 export function TeamPage() {
   const { id } = useParams();
-  const { UserId } = useAuth();
+  const user = useAuth();
   const [openTeam, setOpenTeam] = useState<OpenTeamType>();
   const [isUserAdmin, setUserAdmin] = useState(false);
   const [settingsModalOpen, setSettingsModalOpen] = useState(false);
@@ -33,7 +33,7 @@ export function TeamPage() {
       })
       .catch(() => toast.error('Сообщество не найдено.'));
 
-    getUserAdmins(UserId).then((teams) => {
+    getUserAdmins(user.id).then((teams) => {
       setUserAdmin(teams.some((team) => team.value === id));
     });
   }, [id]);

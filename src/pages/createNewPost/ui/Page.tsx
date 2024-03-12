@@ -23,7 +23,7 @@ import { useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 const CreatePostPage = () => {
-  const { UserId, UserCanChanging } = useAuth();
+  const user = useAuth();
   const [selectBlockModalOpen, setSelectBlockModalOpen] = useState(false);
   const [userAdmins, setUserAdmins] = useState<{ value: string; label: string }[]>();
   const newPost = useAppSelector((state) => state.WritePost);
@@ -31,8 +31,8 @@ const CreatePostPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getUserAdmins(UserId).then((teams) => setUserAdmins(teams));
-    handleSelectAuthor(UserId);
+    getUserAdmins(user.id).then((teams) => setUserAdmins(teams));
+    handleSelectAuthor(user.id);
   }, []);
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const CreatePostPage = () => {
       setExecuteButton({
         button: {
           component: (
-            <Button Click={() => UserCanChanging && sendNewPost(newPost, dispatch, navigate)} Type={ButtonTypes.icon}>
+            <Button Click={() => user.canChanging && sendNewPost(newPost, dispatch, navigate)} Type={ButtonTypes.icon}>
               <ButtonIcons Icon={buttonIcons.Sent} />
             </Button>
           ),
@@ -49,36 +49,35 @@ const CreatePostPage = () => {
     );
   }, [newPost]);
 
-  const Authors = [{ label: 'От меня', value: UserId }, ...(userAdmins ? userAdmins : [])];
+  const Authors = [{ label: 'От меня', value: user.id }, ...(userAdmins ? userAdmins : [])];
 
   const handleSelectAuthor = (authorId: string) => {
     dispatch(changeAuthorPost({ authorId }));
   };
+  if (!user.canChanging) {
+    return <Navigate to={AppRoutes.DEFAULT}></Navigate>;
+  }
 
-  return UserCanChanging ? (
-    <motion.div className={Styles.WritePost} {...formContainer}>
-      <CreatePostModals
-        selectBlockModalOpen={selectBlockModalOpen}
-        setSelectBlockModalOpen={setSelectBlockModalOpen}
-      ></CreatePostModals>
-      <Select
-        Type={SelectTypes.Input}
-        Array={Authors}
-        setSelect={handleSelectAuthor}
-        Placeholder="От кого пост"
-        DefaultValue={UserId}
-      ></Select>
-      <RenderBlocks blocksData={newPost.blocks}></RenderBlocks>
-      <Button
-        Variants={formItem}
-        Title="Добавить блок"
-        Type={ButtonTypes.default}
-        Click={() => setSelectBlockModalOpen(true)}
-      ></Button>
-    </motion.div>
-  ) : (
-    <Navigate to={AppRoutes.DEFAULT}></Navigate>
-  );
+  <motion.div className={Styles.WritePost} {...formContainer}>
+    <CreatePostModals
+      selectBlockModalOpen={selectBlockModalOpen}
+      setSelectBlockModalOpen={setSelectBlockModalOpen}
+    ></CreatePostModals>
+    <Select
+      Type={SelectTypes.Input}
+      Array={Authors}
+      setSelect={handleSelectAuthor}
+      Placeholder="От кого пост"
+      DefaultValue={user.id}
+    ></Select>
+    <RenderBlocks blocksData={newPost.blocks}></RenderBlocks>
+    <Button
+      Variants={formItem}
+      Title="Добавить блок"
+      Type={ButtonTypes.default}
+      Click={() => setSelectBlockModalOpen(true)}
+    ></Button>
+  </motion.div>;
 };
 
 export { CreatePostPage };

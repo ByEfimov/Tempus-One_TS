@@ -9,23 +9,23 @@ export let AddUserXp: (xp: number) => void;
 export let takeUserXp: (xp: number) => void;
 
 const LevelProvider = ({ children }: { children: React.ReactChild | React.ReactNode }) => {
-  const { UserLevel, UserExperience, UserId, UserIsAuth } = useAuth();
+  const user = useAuth();
 
   useEffect(() => {
-    if (UserExperience >= MaxXpToNextLevel(UserLevel) && UserIsAuth) {
-      LevelUP(UserId, UserLevel, UserExperience);
-      toast.info(`Новый уровень ${UserLevel + 1}!`);
+    if (user.experience >= MaxXpToNextLevel(user.level) && user.isAuth) {
+      LevelUP(user.id, user.level, user.experience);
+      toast.info(`Новый уровень ${user.level + 1}!`);
     }
 
     AddUserXp = (xp: number) => {
-      UserIsAuth && changeRequest(`users/`, `${UserId}/experience`, UserExperience + xp);
+      user.isAuth && changeRequest(`users/`, `${user.id}/experience`, user.experience + xp);
     };
     takeUserXp = (xp: number) => {
-      if (UserExperience >= xp) {
-        UserIsAuth && changeRequest('users/', `${UserId}/experience`, UserExperience - xp);
+      if (user.experience >= xp) {
+        user.isAuth && changeRequest('users/', `${user.id}/experience`, user.experience - xp);
       }
     };
-  }, [UserExperience]);
+  }, [user.experience]);
 
   return children;
 };

@@ -3,6 +3,7 @@ import Styles from './styles.module.scss';
 import { ButtonIcons, TeamIcons, buttonIcons, formContainer, formItem } from '@/app/assets/Tempus-Ui';
 import { OpenTeamType } from '@/app/types/TypesOfData/team-or-user/open-team-type';
 import { subcribeOnData } from '@/features/api/requests/subscribeOnData';
+import { CloseModal } from '@/shared/modals/isModal';
 import AppRoutes from '@/shared/routes/app-routes';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
@@ -85,6 +86,7 @@ const RenderPlan = ({ plan }: { plan: Plan }) => {
         <motion.button
           className={Styles.Asigner}
           onClick={() => {
+            CloseModal();
             navigate(AppRoutes.USER + '/' + plan.asigner?.id);
           }}
         >

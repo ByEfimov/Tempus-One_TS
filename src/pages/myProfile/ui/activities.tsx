@@ -17,7 +17,7 @@ const ActiveButtons = ({
 }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { PathToProfile, UserEmailVerified } = useAuth();
+  const user = useAuth();
   const auth = getAuth();
   function LogoutUser() {
     signOut(auth)
@@ -32,7 +32,7 @@ const ActiveButtons = ({
   }
   return (
     <motion.ul className={Styles.Buttons} {...formContainer}>
-      {!UserEmailVerified && (
+      {!user.emailVerified && (
         <Button
           Title="Подтвердить почту"
           Variants={formItem}
@@ -48,7 +48,7 @@ const ActiveButtons = ({
         Variants={formItem}
         Title="Перейти в профиль"
         Click={() => {
-          navigate(PathToProfile);
+          navigate(user.pathToProfile);
         }}
       >
         <ButtonIcons Icon={buttonIcons.User} />
@@ -81,7 +81,7 @@ const ActiveButtons = ({
         Type={ButtonTypes.default}
         Title="Поделиться профилем"
         Click={() => {
-          navigator.clipboard.writeText('https://tempus-one-ts.vercel.app' + PathToProfile);
+          navigator.clipboard.writeText('https://tempus-one-ts.vercel.app' + user.pathToProfile);
         }}
       >
         <ButtonIcons Icon={buttonIcons.Link} />

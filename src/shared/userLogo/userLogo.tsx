@@ -2,11 +2,11 @@ import FakeLogo from '@/app/assets/Icons/Header/user.svg';
 import { useAuth } from '@/app/hooks/useAuth';
 
 const UserLogo = ({ Logo }: { Logo?: string | null }) => {
-  const { UserPhoto, UserIsAuth } = useAuth();
+  const user = useAuth();
   return (
     <img
-      style={UserIsAuth || Logo ? { width: '100%', height: '100%', borderRadius: '50%' } : undefined}
-      src={(Logo && Logo) || (UserIsAuth && UserPhoto) || FakeLogo}
+      style={user.isAuth || Logo ? { width: '100%', height: '100%', borderRadius: '50%' } : undefined}
+      src={(Logo && Logo) || (user.isAuth && user.photo) || FakeLogo}
       alt=""
     />
   );

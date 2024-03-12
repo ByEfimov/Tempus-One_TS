@@ -25,7 +25,7 @@ import { toast } from 'react-toastify';
 
 export function PostPage() {
   const { id } = useParams();
-  const { UserId } = useAuth();
+  const user = useAuth();
   const [openPost, setOpenPost] = useState<PostType>();
   const [whoWrotePost, setWhoWrotePost] = useState<WhoWrotePost>();
   const [commentsModalOpen, setCommentsModalOpen] = useState(false);
@@ -47,7 +47,7 @@ export function PostPage() {
         dispatch(
           setExecuteButton({
             button: {
-              component: OpenPost?.author === UserId && (
+              component: OpenPost?.author === user.id && (
                 <Button Type={ButtonTypes.icon} Click={() => {}}>
                   <ButtonIcons Icon={buttonIcons.Settings} />
                 </Button>

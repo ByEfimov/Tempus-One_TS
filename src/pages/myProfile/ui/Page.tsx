@@ -11,11 +11,11 @@ import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 
 const MyProfilePage = () => {
-  const { UserIsAuth } = useAuth();
+  const user = useAuth();
   const OpenUser: UserType = useAppSelector((state) => state.user);
   const [settingsModalOpen, setSettingsModalOpen] = useState(false);
 
-  if (UserIsAuth) {
+  if (user.isAuth) {
     return (
       <motion.div className={Styles.ProfilePage}>
         <MyProfileModals settingsModalOpen={settingsModalOpen} setSettingsModalOpen={setSettingsModalOpen} />

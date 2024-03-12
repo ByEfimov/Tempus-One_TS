@@ -16,7 +16,7 @@ export type NewTeamType = {
 };
 
 const CreateTeamPage = () => {
-  const { UserCanChanging, UserId } = useAuth();
+  const user = useAuth();
   const navigate = useNavigate();
   const [newTeam, setNewTeam] = useState<NewTeamType>({
     title: '',
@@ -25,24 +25,23 @@ const CreateTeamPage = () => {
     direction: '',
     creators: '',
     members: {
-      [UserId]: { UserId: UserId, UserRole: 'Administrator' },
+      [user.id]: { UserId: user.id, UserRole: 'Administrator' },
     },
   });
 
-  if (UserCanChanging) {
-    return (
-      <CreateNewTeamForm newTeam={newTeam} setNewTeam={setNewTeam}>
-        <Button
-          Click={() => createNewTeam(newTeam, navigate)}
-          Type={ButtonTypes.active}
-          Title="Создать команду"
-          Variants={formItem}
-        />
-      </CreateNewTeamForm>
-    );
-  } else if (!UserCanChanging) {
+  if (!user.canChanging) {
     return <Navigate to={AppRoutes.TEAMS} />;
   }
+  return (
+    <CreateNewTeamForm newTeam={newTeam} setNewTeam={setNewTeam}>
+      <Button
+        Click={() => createNewTeam(newTeam, navigate)}
+        Type={ButtonTypes.active}
+        Title="Создать команду"
+        Variants={formItem}
+      />
+    </CreateNewTeamForm>
+  );
 };
 
 export { CreateTeamPage };

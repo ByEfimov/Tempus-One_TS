@@ -31,7 +31,7 @@ export default function NavigationReducer({ children }: { children: React.ReactC
   const location = useLocation().pathname;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { UserEmailVerified, UserIsAuth } = useAuth();
+  const user = useAuth();
 
   useEffect(() => {
     const Path = location.split('/')[1];
@@ -103,9 +103,9 @@ export default function NavigationReducer({ children }: { children: React.ReactC
         ExecuteConfig = {
           icon: headerIcons.Add,
           function: () => {
-            if (UserIsAuth && UserEmailVerified) navigate(AppRoutes.CREATENEWTEAM);
-            else if (!UserIsAuth) toast.error(NOTIFI_TEXTS.ERROR_NOT_AUTH);
-            else if (!UserEmailVerified) toast.warning(NOTIFI_TEXTS.ERROR_NOT_VERIFIED_EMAIL);
+            if (user.isAuth && user.emailVerified) navigate(AppRoutes.CREATENEWTEAM);
+            else if (!user.isAuth) toast.error(NOTIFI_TEXTS.ERROR_NOT_AUTH);
+            else if (!user.emailVerified) toast.warning(NOTIFI_TEXTS.ERROR_NOT_VERIFIED_EMAIL);
           },
         };
         break;
@@ -121,9 +121,9 @@ export default function NavigationReducer({ children }: { children: React.ReactC
         ExecuteConfig = {
           icon: headerIcons.Add,
           function: () => {
-            if (UserIsAuth && UserEmailVerified) navigate(AppRoutes.WRITENEWPOST);
-            else if (!UserIsAuth) toast.error(NOTIFI_TEXTS.ERROR_NOT_AUTH);
-            else if (!UserEmailVerified) toast.error(NOTIFI_TEXTS.ERROR_NOT_VERIFIED_EMAIL);
+            if (user.isAuth && user.emailVerified) navigate(AppRoutes.WRITENEWPOST);
+            else if (!user.isAuth) toast.error(NOTIFI_TEXTS.ERROR_NOT_AUTH);
+            else if (!user.emailVerified) toast.error(NOTIFI_TEXTS.ERROR_NOT_VERIFIED_EMAIL);
           },
         };
         break;

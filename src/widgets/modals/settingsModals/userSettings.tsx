@@ -25,7 +25,7 @@ interface SettingsUserModal {
 
 const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
   const [allSpecializations, setAllSpecializations] = useState<{ label: string; value: string }[]>();
-  const { UserId } = useAuth();
+  const user = useAuth();
   const [form, setForm] = useState<{ photo: string; name: string; age: string; specialization: string }>({
     photo: '',
     name: '',
@@ -34,7 +34,7 @@ const SettingsUserModal: FC<SettingsUserModal> = ({ setModalOpen }) => {
   });
 
   const ChangeFunction = () => {
-    const defaultPath = 'users/' + UserId;
+    const defaultPath = 'users/' + user.id;
 
     if (form.photo !== '') {
       changeRequest(defaultPath, '/photo', form.photo);

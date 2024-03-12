@@ -16,18 +16,18 @@ interface RepostModal {
 }
 
 const RepostModal = ({ setModalOpen, post }: RepostModal) => {
-  const { UserPhoto, UserId, UserIsAuth } = useAuth();
+  const user = useAuth();
   const [teamsAdmin, setTeamsAdmin] = useState<{ label: string; value: string; image?: string }[] | undefined>();
   const navigate = useNavigate();
 
   useEffect(() => {
-    getUserAdmins(UserId).then((teams) => setTeamsAdmin(teams));
+    getUserAdmins(user.id).then((teams) => setTeamsAdmin(teams));
   }, []);
 
   const repostConfig = {
     post,
-    UserIsAuth,
-    UserId,
+    UserIsAuth: user.isAuth,
+    UserId: user.id,
     navigate,
   };
 
@@ -35,7 +35,7 @@ const RepostModal = ({ setModalOpen, post }: RepostModal) => {
     <IsModal setModalOpen={setModalOpen}>
       <motion.div {...defaultContainer} className={Styles.RepostModal}>
         <motion.button variants={defaultItem} onClick={() => repostToYou(repostConfig)} className={Styles.RepostToYou}>
-          <UserLogo Logo={UserPhoto}></UserLogo>
+          <UserLogo Logo={user.photo}></UserLogo>
           <p className={Styles.name}>Себе</p>
         </motion.button>
         {teamsAdmin &&

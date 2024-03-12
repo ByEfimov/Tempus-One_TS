@@ -20,7 +20,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function BaseLayout() {
-  const { PathToProfile, UserIsAuth } = useAuth();
+  const user = useAuth();
 
   const navBarLinksMobile = [
     {
@@ -36,7 +36,7 @@ function BaseLayout() {
     {
       name: 'Пользователи',
       path: [AppRoutes.USERS, AppRoutes.TEAM, AppRoutes.TEAMS, AppRoutes.USER],
-      blackList: [PathToProfile],
+      blackList: [user.pathToProfile],
       icon: navBarIcons.Users,
     },
     {
@@ -46,7 +46,7 @@ function BaseLayout() {
     },
     {
       name: 'Профиль',
-      path: [UserIsAuth ? AppRoutes.MYPROFILE : AppRoutes.LOGIN, PathToProfile],
+      path: [user.isAuth ? AppRoutes.MYPROFILE : AppRoutes.LOGIN, user.pathToProfile],
       icon: navBarIcons.User,
     },
   ];
@@ -65,7 +65,7 @@ function BaseLayout() {
     {
       name: 'Пользователи',
       path: [AppRoutes.USERS, AppRoutes.USER],
-      blackList: [PathToProfile],
+      blackList: [user.pathToProfile],
       icon: navBarIcons.Users,
     },
     {

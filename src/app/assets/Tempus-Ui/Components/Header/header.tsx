@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   const { HeaderTitle, HeaderSearchBar, HeaderClickBack, PlaceholderForInput, ButtonExecute, HeaderType } = useHeader();
-  const { UserIsAuth } = useAuth();
+  const user = useAuth();
   const dispatch = useAppDispatch();
 
   if (HeaderType === TypesOfHeader.WithoutSearchBar) {
@@ -39,7 +39,7 @@ const Header = () => {
         {ButtonExecute?.component ? (
           ButtonExecute.component
         ) : (
-          <Link to={UserIsAuth ? AppRoutes.MYPROFILE : AppRoutes.LOGIN} className={Styles.UserPhoto}>
+          <Link to={user.isAuth ? AppRoutes.MYPROFILE : AppRoutes.LOGIN} className={Styles.UserPhoto}>
             <UserLogo></UserLogo>
           </Link>
         )}
@@ -71,7 +71,7 @@ const Header = () => {
             <HeaderIcons Icon={ButtonExecute.icon}></HeaderIcons>
           </motion.button>
         )}
-        <Link to={UserIsAuth ? AppRoutes.MYPROFILE : AppRoutes.LOGIN} className={Styles.UserPhoto}>
+        <Link to={user.isAuth ? AppRoutes.MYPROFILE : AppRoutes.LOGIN} className={Styles.UserPhoto}>
           <UserLogo></UserLogo>
         </Link>
       </motion.header>

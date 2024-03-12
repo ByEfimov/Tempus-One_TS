@@ -6,11 +6,11 @@ import AppRoutes from '@/shared/routes/app-routes';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 export function RegisterPage() {
-  const { UserIsAuth } = useAuth();
+  const user = useAuth();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  return !UserIsAuth ? (
+  return !user.isAuth ? (
     <AuthenticationFrom
       title="Создай свой
 						Аккаунт"
