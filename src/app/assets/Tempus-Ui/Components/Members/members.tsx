@@ -3,6 +3,7 @@ import Styles from './members.module.scss';
 import { OpenUserType } from '@/app/types/TypesOfData/team-or-user/open-user-type';
 import { getUsersFromIdArray } from '@/features/api/Users/getUsersFromIdArray';
 import AppRoutes from '@/shared/routes/app-routes';
+import UserLogo from '@/shared/userLogo/userLogo';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -42,7 +43,7 @@ const Members = ({
             navigate(AppRoutes.USER + '/' + user.id);
           }}
         >
-          <img src={user.photo} alt="" />
+          <UserLogo Logo={user.photo} />
         </motion.li>
       ))}
     </motion.ul>

@@ -58,26 +58,28 @@ const CreatePostPage = () => {
     return <Navigate to={AppRoutes.DEFAULT}></Navigate>;
   }
 
-  <motion.div className={Styles.WritePost} {...formContainer}>
-    <CreatePostModals
-      selectBlockModalOpen={selectBlockModalOpen}
-      setSelectBlockModalOpen={setSelectBlockModalOpen}
-    ></CreatePostModals>
-    <Select
-      Type={SelectTypes.Input}
-      Array={Authors}
-      setSelect={handleSelectAuthor}
-      Placeholder="От кого пост"
-      DefaultValue={user.id}
-    ></Select>
-    <RenderBlocks blocksData={newPost.blocks}></RenderBlocks>
-    <Button
-      Variants={formItem}
-      Title="Добавить блок"
-      Type={ButtonTypes.default}
-      Click={() => setSelectBlockModalOpen(true)}
-    ></Button>
-  </motion.div>;
+  return (
+    <motion.div className={Styles.WritePost} {...formContainer}>
+      <CreatePostModals
+        selectBlockModalOpen={selectBlockModalOpen}
+        setSelectBlockModalOpen={setSelectBlockModalOpen}
+      ></CreatePostModals>
+      <Select
+        Type={SelectTypes.Input}
+        Array={Authors}
+        setSelect={handleSelectAuthor}
+        Placeholder="От кого пост"
+        DefaultValue={user.id}
+      ></Select>
+      <RenderBlocks blocksData={newPost.blocks}></RenderBlocks>
+      <Button
+        Variants={formItem}
+        Title="Добавить блок"
+        Type={ButtonTypes.default}
+        Click={() => setSelectBlockModalOpen(true)}
+      ></Button>
+    </motion.div>
+  );
 };
 
 export { CreatePostPage };

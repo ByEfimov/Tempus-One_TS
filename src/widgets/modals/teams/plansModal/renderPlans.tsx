@@ -54,16 +54,20 @@ const RenderPlans = ({
           Добавить план <ButtonIcons Icon={buttonIcons.Arrow}></ButtonIcons>
         </motion.div>
       )}
-      <motion.div className={Styles.Plans} {...formContainer}>
-        {Object.entries(groupedByDate).map(([date, plans]) => (
-          <motion.div variants={formItem} className={Styles.GroupDate} key={date}>
-            <h4>{date}</h4>
-            {plans.map((plan) => (
-              <RenderPlan plan={plan} key={plan.id} />
-            ))}
-          </motion.div>
-        ))}
-      </motion.div>
+      {plans.length > 0 ? (
+        <motion.div className={Styles.Plans} {...formContainer}>
+          {Object.entries(groupedByDate).map(([date, plans]) => (
+            <motion.div variants={formItem} className={Styles.GroupDate} key={date}>
+              <h4>{date}</h4>
+              {plans.map((plan) => (
+                <RenderPlan plan={plan} key={plan.id} />
+              ))}
+            </motion.div>
+          ))}
+        </motion.div>
+      ) : (
+        <h5>У этого сообщества еще нет планов.</h5>
+      )}
     </motion.div>
   );
 };

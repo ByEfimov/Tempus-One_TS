@@ -60,12 +60,12 @@ const AuthWithGoogle = () => {
       getRequestObject('users/' + user.uid)
         .then(() => {
           loginWithGoogle(user);
-          Cookies.set('UserId', encryptData(user.uid));
+          Cookies.set('UserId', encryptData(user.uid), { expires: Infinity });
           navigate(AppRoutes.DEFAULT);
         })
         .catch(() => {
           registerWithGoogle(user);
-          Cookies.set('UserId', encryptData(user.uid));
+          Cookies.set('UserId', encryptData(user.uid), { expires: Infinity });
           navigate(AppRoutes.DEFAULT);
         });
     });

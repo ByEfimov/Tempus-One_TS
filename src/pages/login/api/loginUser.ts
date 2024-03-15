@@ -23,7 +23,7 @@ export default function loginUser(
         }),
       );
 
-      Cookies.set('UserId', encryptData(user.uid));
+      Cookies.set('UserId', encryptData(user.uid), { expires: Infinity });
       navigate(AppRoutes.DEFAULT);
     })
     .catch(() => {

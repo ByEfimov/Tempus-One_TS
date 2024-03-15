@@ -41,6 +41,14 @@
     font-size: 14px;
   }
 }
+h5 {
+  color: var(--SecondaryTextColor);
+  font-size: 16px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .container {
   display: flex;
