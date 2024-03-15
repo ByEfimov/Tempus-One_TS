@@ -8,7 +8,6 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/",
   "display": "standalone",
   "theme_color": "#18191e",
   "background_color": "#18191e"
