@@ -15,11 +15,12 @@ export type AuthenticationFromData = {
 };
 
 interface AuthenticationFromProps {
+  microservice?: string;
   title: string;
   handlerSubmit: ({ email, password, name, age }: AuthenticationFromData) => void;
 }
 
-const AuthenticationFrom: FC<AuthenticationFromProps> = ({ title, handlerSubmit }) => {
+const AuthenticationFrom: FC<AuthenticationFromProps> = ({ title, handlerSubmit, microservice }) => {
   const location = useLocation().pathname;
   const Path = '/' + location.split('/')[1];
 
@@ -81,12 +82,22 @@ const AuthenticationFrom: FC<AuthenticationFromProps> = ({ title, handlerSubmit 
 
       <div className={FormsStyles.BottomForm}>
         <TextWithLine>Или</TextWithLine>
-        <AuthWithGoogle />
+        <AuthWithGoogle microservice={microservice} />
 
         <div className={FormsStyles.nextForm}>
           <h4>
             {Path === AppRoutes.REGISTER ? 'Уже есть аккаунт? ' : 'Еще нет аккаунта? '}
-            <Link to={Path === AppRoutes.REGISTER ? AppRoutes.LOGIN : AppRoutes.REGISTER}>
+            <Link
+              to={
+                Path === AppRoutes.REGISTER
+                  ? !microservice
+                    ? AppRoutes.LOGIN
+                    : AppRoutes.LOGIN + `/${microservice}`
+                  : !microservice
+                  ? AppRoutes.REGISTER
+                  : AppRoutes.REGISTER + `/${microservice}`
+              }
+            >
               {Path === AppRoutes.REGISTER ? 'Войди!' : 'Зарегистрируйся!'}
             </Link>
           </h4>

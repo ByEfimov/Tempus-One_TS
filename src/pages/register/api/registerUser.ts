@@ -13,6 +13,7 @@ export function registerUser(
   { email, password, name, age }: AuthenticationFromData,
   dispatch: AppDispatch,
   navigate: NavigateFunction,
+  microservice?: string,
 ) {
   const auth = getAuth();
   createUserWithEmailAndPassword(auth, email, password)
@@ -37,7 +38,11 @@ export function registerUser(
         }),
       );
       Cookies.set('UserId', encryptData(user.uid), { expires: Infinity });
-      navigate(AppRoutes.DEFAULT);
+      if (microservice && microservice === 'quiz') {
+        window.location.href = `https://tempus-quiz-ts.vercel.app/main/${encryptData(user.uid)}`;
+      } else {
+        navigate(AppRoutes.DEFAULT);
+      }
     })
     .catch(() => {
       toast.error('Ошибка при регистрации.');

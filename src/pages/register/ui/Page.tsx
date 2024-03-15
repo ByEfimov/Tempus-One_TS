@@ -2,19 +2,29 @@ import { registerUser } from '../api/registerUser';
 import { useAppDispatch } from '@/app/hooks/redux-hooks';
 import { useAuth } from '@/app/hooks/useAuth';
 import AuthenticationFrom from '@/entities/authenticationForm/authenticationForm';
+import { encryptData } from '@/shared/crypt-data/cripting-data';
 import AppRoutes from '@/shared/routes/app-routes';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 
 export function RegisterPage() {
+  const { microservice } = useParams();
   const user = useAuth();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  if (user.isAuth && microservice) {
+    if (microservice === 'quiz') {
+      window.location.href = `https://tempus-quiz-ts.vercel.app/main/${encryptData(user.id)}`;
+    } else {
+      return <Navigate to={AppRoutes.DEFAULT}></Navigate>;
+    }
+  }
 
   return !user.isAuth ? (
     <AuthenticationFrom
       title="Создай свой
 						Аккаунт"
-      handlerSubmit={(formData) => registerUser(formData, dispatch, navigate)}
+      handlerSubmit={(formData) => registerUser(formData, dispatch, navigate, microservice)}
     ></AuthenticationFrom>
   ) : (
     <Navigate to={AppRoutes.DEFAULT}></Navigate>

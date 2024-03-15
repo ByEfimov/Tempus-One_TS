@@ -11,6 +11,7 @@ export default function loginUser(
   { email, password }: { email: string; password: string },
   dispatch: AppDispatch,
   navigate: NavigateFunction,
+  microservice?: string,
 ) {
   const auth = getAuth();
   signInWithEmailAndPassword(auth, email, password)
@@ -24,7 +25,11 @@ export default function loginUser(
       );
 
       Cookies.set('UserId', encryptData(user.uid), { expires: Infinity });
-      navigate(AppRoutes.DEFAULT);
+      if (microservice && microservice === 'quiz') {
+        window.location.href = `https://tempus-quiz-ts.vercel.app/main/${encryptData(user.uid)}`;
+      } else {
+        navigate(AppRoutes.DEFAULT);
+      }
     })
     .catch(() => {
       toast.error('Данные от аккаунта введены не верно.');

@@ -17,7 +17,7 @@ type User = {
   emailVerified: boolean | null;
 };
 
-const AuthWithGoogle = () => {
+const AuthWithGoogle = ({ microservice }: { microservice?: string }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -61,12 +61,20 @@ const AuthWithGoogle = () => {
         .then(() => {
           loginWithGoogle(user);
           Cookies.set('UserId', encryptData(user.uid), { expires: Infinity });
-          navigate(AppRoutes.DEFAULT);
+          if (microservice && microservice === 'quiz') {
+            window.location.href = `https://tempus-quiz-ts.vercel.app/main/${encryptData(user.uid)}`;
+          } else {
+            navigate(AppRoutes.DEFAULT);
+          }
         })
         .catch(() => {
           registerWithGoogle(user);
           Cookies.set('UserId', encryptData(user.uid), { expires: Infinity });
-          navigate(AppRoutes.DEFAULT);
+          if (microservice && microservice === 'quiz') {
+            window.location.href = `https://tempus-quiz-ts.vercel.app/main/${encryptData(user.uid)}`;
+          } else {
+            navigate(AppRoutes.DEFAULT);
+          }
         });
     });
   }

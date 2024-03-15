@@ -106,11 +106,13 @@ function BaseLayout() {
         <Route path={AppRoutes.USERS} element={<UsersPage />} />
         <Route path={AppRoutes.TEAMS} element={<TeamsPage />} />
         <Route path={AppRoutes.SERVICES} element={<ServicesPage />} />
-        <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
         <Route path={AppRoutes.MYPROFILE} element={<MyProfilePage />} />
+
         <Route path={AppRoutes.USER + '/:id'} element={<UserPage />} />
         <Route path={AppRoutes.POST + '/:id'} element={<PostPage />} />
         <Route path={AppRoutes.TEAM + '/:id'} element={<TeamPage />} />
+        <Route path={AppRoutes.LOGIN + '/:microservice'} element={<LoginPage />} />
+        <Route path={AppRoutes.REGISTER + '/:microservice'} element={<RegisterPage />} />
         <Route path={AppRoutes.FORGOTPASSWORD} element={<ForgotPasswordPage />} />
       </Routes>
       <NavBar Links={window.innerWidth > 900 ? navBarLinksDesctop : navBarLinksMobile}></NavBar>
