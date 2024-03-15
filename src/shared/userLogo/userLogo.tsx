@@ -6,7 +6,7 @@ const UserLogo = ({ Logo }: { Logo?: string | null }) => {
   return (
     <img
       style={user.isAuth || Logo ? { width: '100%', height: '100%', borderRadius: '50%' } : undefined}
-      src={(Logo && Logo) || (user.isAuth && user.photo) || FakeLogo}
+      src={Logo || FakeLogo || (user.isAuth && user.photo)}
       alt=""
     />
   );
