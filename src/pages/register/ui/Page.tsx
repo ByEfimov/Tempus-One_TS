@@ -14,7 +14,7 @@ export function RegisterPage() {
 
   if (user.isAuth && microservice) {
     if (microservice === 'quiz') {
-      window.location.href = `https://tempus-quiz-ts.vercel.app/main/${encryptData(user.id)}`;
+      window.location.href = `https://tempus-quiz-ts.vercel.app/login/${encryptData(user.id)}`;
     } else {
       return <Navigate to={AppRoutes.DEFAULT}></Navigate>;
     }

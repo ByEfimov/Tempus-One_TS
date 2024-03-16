@@ -26,7 +26,7 @@ export default function loginUser(
 
       Cookies.set('UserId', encryptData(user.uid), { expires: Infinity });
       if (microservice && microservice === 'quiz') {
-        window.location.href = `https://tempus-quiz-ts.vercel.app/main/${encryptData(user.uid)}`;
+        window.location.href = `https://tempus-quiz-ts.vercel.app/login/${encryptData(user.uid)}`;
       } else {
         navigate(AppRoutes.DEFAULT);
       }
