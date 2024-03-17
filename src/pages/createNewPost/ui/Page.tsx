@@ -54,10 +54,10 @@ const CreatePostPage = () => {
   const handleSelectAuthor = (authorId: string) => {
     dispatch(changeAuthorPost({ authorId }));
   };
+
   if (!user.canChanging) {
     return <Navigate to={AppRoutes.DEFAULT}></Navigate>;
   }
-
   return (
     <motion.div className={Styles.WritePost} {...formContainer}>
       <CreatePostModals

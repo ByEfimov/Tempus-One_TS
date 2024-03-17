@@ -19,7 +19,7 @@ const SubscribeButton = ({ WhoWrotePost, id }: SubscribeButton) => {
 
   const isMember = itsMember(user.id, user.subscriptions, WhoWrotePost);
   const isAdminPresent = Object.values(WhoWrotePost?.members || '').some(
-    (user) => user.UserId === user.id && user.UserRole === 'Administrator',
+    (User) => User.UserId === user.id && User.UserRole === 'Administrator',
   );
   const isTeam = WhoWrotePost?.id && WhoWrotePost.id[0] === '-';
 

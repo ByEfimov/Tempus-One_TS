@@ -9,7 +9,7 @@ export type UserType = {
   photo: string | null;
   emailVerified: boolean | null;
   subscriptions?: {
-    teams?: { [key: string]: string };
+    teams?: { TeamId: string; UserRole: string }[];
     users?: { [key: string]: string };
   } | null;
   members: { UserId: string; UserRole: string }[] | null;

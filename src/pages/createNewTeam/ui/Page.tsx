@@ -35,7 +35,7 @@ const CreateTeamPage = () => {
   return (
     <CreateNewTeamForm newTeam={newTeam} setNewTeam={setNewTeam}>
       <Button
-        Click={() => createNewTeam(newTeam, navigate)}
+        Click={() => createNewTeam(newTeam, navigate, user.id)}
         Type={ButtonTypes.active}
         Title="Создать команду"
         Variants={formItem}
