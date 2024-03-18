@@ -6,7 +6,10 @@ const Description = ({ desc, style }: { desc: string; style?: Record<string, str
   return (
     <motion.div variants={formItem} className={style ? style.Group : Styles.Group}>
       <div className={style ? style.Title : Styles.Title}>Описание</div>
-      <div className={style ? style.Content : Styles.Content} style={{ textAlign: 'start' }}>
+      <div
+        className={style ? style.Content : Styles.Content}
+        style={desc.length > 20 ? { textAlign: 'start' } : { textAlign: 'center', width: '100%' }}
+      >
         {desc}
       </div>
     </motion.div>
